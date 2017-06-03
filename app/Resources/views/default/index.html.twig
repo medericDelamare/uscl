@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Full Slider - Start Bootstrap Template</title>
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Font Awsome -->
+    <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('css/full-slider.css') }}" rel="stylesheet">
+
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+{% include('default/navbar.html.twig') %}
+
+<!-- Full Page Image Background Carousel Header -->
+<header id="myCarousel" class="carousel slide">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for Slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <!-- Set the first background image using inline CSS below. -->
+            <div class="fill" style="background-image:url('{{ asset('pictures/slide1.jpg') }}');"></div>
+        </div>
+        <div class="item">
+            <!-- Set the second background image using inline CSS below. -->
+            <div class="fill" style="background-image:url('{{ asset('pictures/slide2.jpg') }}');"></div>
+        </div>
+        <div class="item">
+            <!-- Set the third background image using inline CSS below. -->
+            <div class="fill" style="background-image:url('{{ asset('pictures/slide3.jpg') }}');"></div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="icon-next"></span>
+    </a>
+
+</header>
+
+<!-- Page Content -->
+<div class = "container">
+    <h2 class = "page-header">Introduction au club</h2>
+    <div class = "text-justify">
+        <img src="img/logo.png" class="logo img-responsive" alt="Responsive image">
+        Le club de foot de l'Union Sportive de Cormeilles et de Lieurey possède une histoire commune très récente. En effet, ce n'est que depuis 2003 que les clubs de Cormeilles et de Lieurey ont fusionné.
+        Depuis 15 ans, le club ne cesse de grandir et aujourd'hui, l'USCL ne compte pas moins de 220 licenciés et possède au moins une équipe dans chaque catégorie. Ce club de foot est considéré comme un club
+        familiale qui met en avant une bonne ambiance afin d'avoir de bons résultats. En plus du foot en herbe, le club dispose d'une section futsal accéssible pour tous les mordus de foot indoor. Tous nos
+        bénévoles sont prêt à vous accueillir afin de vous encadrer vous ou votre enfant. <br />Le foot étant le sport le plus populaire de France, sa licence dans notre club est largement abordable avec un motant de 55€.<br />
+        <br /><br />En cette année 2015/2016, le club possèdes 15 équipes :
+        <ul>
+            <li>1 équipe vétéran</li>
+            <li>1 équipe futsal</li>
+            <li>2 équipes séniors</li>
+            <li>1 équipe U18</li>
+            <li>1 équipe U15</li>
+            <li>1 équipe U13</li>
+            <li>2 équipes U11</li>
+            <li>2 équipes U9</li>
+            <li>4 équipes U7</li>
+        </ul>
+        Si vous êtes intéréssé par la perspective de rejoindre nos couleurs, je vous propose de venir vous essayer à un entrainement de votre catégorie un Mercredi en fonction des horaires ci-dessous
+        <br/>
+        <div class="table-responsive col-sm-4 col-sm-offset-4">
+            <table class = "table">
+                <caption>Horaires des entraînements du Mercredi</caption>
+                <tr>
+                    <td>U7/U9</td>
+                    <td>14h - 15h30</td>
+                </tr>
+                <tr>
+                    <td>U11</td>
+                    <td>15h30 - 17h</td>
+                </tr>
+                <tr>
+                    <td>U13/U15</td>
+                    <td>17h/19h</td>
+                </tr>
+                <tr>
+                    <td>U18 / Séniors</td>
+                    <td>19h - 21h</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+<!-- Script to Activate the Carousel -->
+<script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+</script>
+
+</body>
+
+</html>

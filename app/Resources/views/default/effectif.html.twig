@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Full Slider - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('css/full-slider.css') }}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+{% include('default/navbar.html.twig') %}
+
+<ol class="breadcrumb">
+    <li><a href="index.php">Accueil</a></li>
+    <li class="active">Club</li>
+</ol>
+
+<div class="container">
+    <h1 class = "page-header">{{ category }}</h1>
+    <h3 class = "page-header">Gardiens</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Buts</th>
+            <th>Passes</th>
+            <th>Cartons Jaunes</th>
+            <th>Cartons Rouges</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for gardien in gardiens%}
+            <tr>
+                <td>{{ gardien.nom }}</td>
+                <td>{{ gardien.prenom }}</td>
+                <td>{{ gardien.buts }}</td>
+                <td>{{ gardien.passes }}</td>
+                <td>{{ gardien.cartonsJaunes }}</td>
+                <td>{{ gardien.cartonsRouges }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class = "page-header">Defenseurs</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Buts</th>
+            <th>Passes</th>
+            <th>Cartons Jaunes</th>
+            <th>Cartons Rouges</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for defenseur in defenseurs %}
+            <tr>
+                <td>{{ defenseur.nom }}</td>
+                <td>{{ defenseur.prenom }}</td>
+                <td>{{ defenseur.buts }}</td>
+                <td>{{ defenseur.passes }}</td>
+                <td>{{ defenseur.cartonsJaunes }}</td>
+                <td>{{ defenseur.cartonsRouges }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class = "page-header">Milieux</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Buts</th>
+            <th>Passes</th>
+            <th>Cartons Jaunes</th>
+            <th>Cartons Rouges</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for milieu in milieux %}
+            <tr>
+                <td>{{ milieu.nom }}</td>
+                <td>{{ milieu.prenom }}</td>
+                <td>{{ milieu.buts }}</td>
+                <td>{{ milieu.passes }}</td>
+                <td>{{ milieu.cartonsJaunes }}</td>
+                <td>{{ milieu.cartonsRouges }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 class = "page-header">Attaquants</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Buts</th>
+            <th>Passes</th>
+            <th>Cartons Jaunes</th>
+            <th>Cartons Rouges</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for attaquant in attaquants%}
+            <tr>
+                <td>{{ attaquant.nom }}</td>
+                <td>{{ attaquant.prenom }}</td>
+                <td>{{ attaquant.buts }}</td>
+                <td>{{ attaquant.passes }}</td>
+                <td>{{ attaquant.cartonsJaunes }}</td>
+                <td>{{ attaquant.cartonsRouges }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- jQuery -->
+<script src="{{ asset('vendor/jquery/dist/jquery.js') }}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
+
+<!-- Script to Activate the Carousel -->
+<script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Full Slider - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('css/full-slider.css') }}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+{% include('default/navbar.html.twig') %}
+
+<ol class="breadcrumb">
+    <li><a href="index.php">Accueil</a></li>
+    <li class="active">Club</li>
+</ol>
+
+<div class="container">
+    <h1 class = "page-header">Composition du bureau 2017/2018</h1>
+    <div class="row margin-bottom">
+        <div class="col-sm-4 col-sm-offset-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Président</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.president.prenom }} {{ club.president.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.president.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.president.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row margin-bottom">
+        <div class="col-sm-4 margin-bottom">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Vice-président</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.vicePresident1.prenom }} {{ club.vicePresident1.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.vicePresident1.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.vicePresident1.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 margin-bottom">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Vice-président</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.vicePresident2.prenom }} {{ club.vicePresident2.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.vicePresident2.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.vicePresident2.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 margin-bottom">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Vice-président</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.vicePresident3.prenom }} {{ club.vicePresident3.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.vicePresident3.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.vicePresident3.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row margin-bottom ">
+        <div class="col-sm-6 margin-bottom">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Secrétaire</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.secretaire.prenom }} {{ club.secretaire.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.secretaire.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.secretaire.fixe }} / {{ club.secretaire.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 margin-bottom">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Trésorière</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.tresoirier.prenom }} {{ club.tresoirier.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.tresoirier.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.tresoirier.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row margin-bottom">
+        <div class="col-sm-6 margin-bottom">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Pole sportif jeunes</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.responsableJeunes.prenom }} {{ club.responsableJeunes.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.responsableJeunes.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.responsableJeunes.fixe }} / {{ club.responsableJeunes.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 margin-bottom">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Pole sportif seniors</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.responsableSeniors.prenom }} {{ club.responsableSeniors.prenom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.responsableSeniors.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.responsableSeniors.fixe }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="{{ asset('vendor/jquery/dist/jquery.js') }}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
+
+<!-- Script to Activate the Carousel -->
+<script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Full Slider - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('css/full-slider.css') }}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+{% include('default/navbar.html.twig') %}
+
+<ol class="breadcrumb">
+    <li><a href="index.php">Accueil</a></li>
+    <li class="active">Club</li>
+</ol>
+
+<div class="container">
+    <h1 class = "page-header">Résponsables par catégories</h1>
+    <div class="row margin-bottom">
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Séniors A</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.responsableA.prenom }} {{ club.responsableA.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.responsableA.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.responsableA.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Séniors B</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.responsableB.prenom }} {{ club.responsableB.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.responsableB.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.responsableB.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Futsal</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.responsableFutsal.prenom }} {{ club.responsableFutsal.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.responsableFutsal.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.responsableFutsal.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row margin-bottom">
+        <div class="col-sm-4 margin-bottom">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">U18</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.responsableU18.prenom }} {{ club.responsableU18.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.responsableU18.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.responsableU18.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 margin-bottom">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">U15</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.responsableU15.prenom }} {{ club.responsableU15.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.responsableU15.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.responsableU15.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 margin-bottom">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">U13</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.responsableU13.prenom }} {{ club.responsableU13.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.responsableU13.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.responsableU13.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row margin-bottom">
+        <div class="col-sm-4 margin-bottom">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">U11</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.responsableU11.prenom }} {{ club.responsableU11.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.responsableU11.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.responsableU11.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 margin-bottom">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">U9</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.responsableU9.prenom }} {{ club.responsableU9.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.responsableU9.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.responsableU9.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 margin-bottom">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">U7</h3>
+                </div>
+                <div class="panel-body row">
+                    <div class="row">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4>{{ club.responsableU7.prenom }} {{ club.responsableU7.nom }}</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.responsableU7.mail }}</h4>
+                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.responsableU7.mobile }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="{{ asset('vendor/jquery/dist/jquery.js') }}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
+
+<!-- Script to Activate the Carousel -->
+<script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+</script>
+
+</body>
+
+</html>
