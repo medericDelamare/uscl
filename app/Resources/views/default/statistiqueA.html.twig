@@ -87,6 +87,20 @@
             </table>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-1">
+            <h2 class="page-header">Calendrier</h2>
+            <table class="resultats table table-condensed">
+                {% for calendrierInfos in calendrier %}
+                    <tr>
+                        <td>{{ calendrierInfos['equipe1'] }}</td>
+                        <td>{{ calendrierInfos['score'] }}</td>
+                        <td>{{ calendrierInfos['equipe2'] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 </div>
 
 
