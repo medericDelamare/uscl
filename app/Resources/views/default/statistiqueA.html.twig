@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Full Slider - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('css/full-slider.css') }}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+{% include('default/navbar.html.twig') %}
+
+<ol class="breadcrumb">
+    <li><a href="index.php">Accueil</a></li>
+    <li class="active">Club</li>
+</ol>
+
+<div class="container col-md-12">
+    <h1 class="page-header">Statistiques seniors A <small>1<sup>ère</sup> Division Groupe A</small></h1>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-4">
+            <h2 class="page-header">Classement</h2>
+            <table class="resultats table table-condensed">
+                <thead>
+                <tr>
+                    <td>Pl</td>
+                    <td>Equipe</td>
+                    <td>Pts</td>
+                    <td>G</td>
+                    <td>N</td>
+                    <td>D</td>
+                    <td>F</td>
+                    <td>BP</td>
+                    <td>BC</td>
+                    <td>P</td>
+                    <td>Diff</td>
+                </tr>
+                </thead>
+                {% for detail in classement %}
+                    <tr>
+                        <td>{{ detail['place'] }}</td>
+                        <td>{{ detail['equipe'] }}</td>
+                        <td>{{ detail['points'] }}</td>
+                        <td>{{ detail['gagnes'] }}</td>
+                        <td>{{ detail['nuls'] }}</td>
+                        <td>{{ detail['defaites'] }}</td>
+                        <td>{{ detail['forfaits'] }}</td>
+                        <td>{{ detail['butsPour'] }}</td>
+                        <td>{{ detail['butsContre'] }}</td>
+                        <td>{{ detail['penalites'] }}</td>
+                        <td>{{ detail['differences'] }}</td>
+
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="col-sm-4 col-sm-offset-2">
+            <h2 class="page-header">Résutats du groupe</h2>
+            <table class="resultats table table-condensed">
+                {% for resultat in resultats %}
+                    <tr>
+                        <td>{{ resultat['equipe1'] }}</td>
+                        <td>{{ resultat['score'] }}</td>
+                        <td>{{ resultat['equipe2'] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- jQuery -->
+<script src="{{ asset('vendor/jquery/dist/jquery.js') }}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
+
+<!-- Script to Activate the Carousel -->
+<script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+</script>
+
+</body>
+
+</html>
