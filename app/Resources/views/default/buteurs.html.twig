@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Full Slider - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('css/full-slider.css') }}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+{% include('default/navbar.html.twig') %}
+
+<ol class="breadcrumb">
+    <li><a href="index.php">Accueil</a></li>
+    <li class="active">Club</li>
+</ol>
+
+<div class="container col-md-12">
+    <h1 class="page-header">Buteurs</h1>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-primary">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Buteurs Seniors
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <h1>Classements des buteurs<small> 	Seniors</small></h1>
+                    <div class = "row">
+                        <table class = "text-center tableauButeur table-striped col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
+                            <tr>
+                                <th class = "text-center">#</th>
+                                <th class = "text-center">Nom</th>
+                                <th class = "text-center">But en A</th>
+                                <th class = "text-center">But en B</th>
+                                <th class = "text-center">But en Coupe</th>
+                                <th class = "text-center">Total</th>
+                            </tr>
+                            {% for senior in seniors %}
+                                <tr>
+                                    <td>{{ senior.prenom }} {{ senior.nom }}</td>
+                                    <td>{{ senior.butsA }}</td>
+                                    <td>{{ senior.butsB }}</td>
+                                    <td>{{ senior.butsCoupe }}</td>
+                                    <td>{{ senior.buts }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        Buteurs U18
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="panel-body">
+                    <h1>Classements des buteurs<small> 	U18</small></h1>
+                    <div class = "row">
+                        <table class = "text-center tableauButeur table-striped col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
+                            <tr>
+                                <th class = "text-center">#</th>
+                                <th class = "text-center">Nom</th>
+                                <th class = "text-center">Nombre de buts</th>
+                            </tr>
+                            {% for U18Infos in U18 %}
+                                <tr>
+                                    <td>{{ U18Infos.prenom }} {{ U18Infos.nom }}</td>
+                                    <td>{{ U18Infos.butsA }}</td>
+                                    <td>{{ U18Infos.butsB }}</td>
+                                    <td>{{ U18Infos.butsCoupe }}</td>
+                                    <td>{{ U18Infos.buts }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading" role="tab" id="headingThree">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                        Buteurs U15
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="panel-body">
+                    <h1>Classements des buteurs<small> 	U15</small></h1>
+                    <div class = "row">
+                        <table class = "text-center tableauButeur table-striped col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
+                            <tr>
+                                <th class = "text-center">#</th>
+                                <th class = "text-center">Nom</th>
+                                <th class = "text-center">Nombre de buts</th>
+                            </tr>
+                            {% for U15Infos in U15 %}
+                                <tr>
+                                    <td>{{ U15Infos.prenom }} {{ U15Infos.nom }}</td>
+                                    <td>{{ U15Infos.butsA }}</td>
+                                    <td>{{ U15Infos.butsB }}</td>
+                                    <td>{{ U15Infos.butsCoupe }}</td>
+                                    <td>{{ U15Infos.buts }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading" role="tab" id="headingFour">
+                <h4 class="panel-title">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Buteurs U13
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                <div class="panel-body">
+                    <h1>Classements des buteurs<small> 	U13</small></h1>
+                    <div class = "row">
+                        <table class = "text-center tableauButeur table-striped col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
+                            <tr>
+                                <th class = "text-center">#</th>
+                                <th class = "text-center">Nom</th>
+                                <th class = "text-center">Nombre de buts</th>
+                            </tr>
+                            {% for U13Infos in U13 %}
+                                <tr>
+                                    <td>{{ U13Infos.prenom }} {{ U13Infos.nom }}</td>
+                                    <td>{{ U13Infos.butsA }}</td>
+                                    <td>{{ U13Infos.butsB }}</td>
+                                    <td>{{ U13Infos.butsCoupe }}</td>
+                                    <td>{{ U13Infos.buts }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- jQuery -->
+<script src="{{ asset('vendor/jquery/dist/jquery.js') }}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
+
+<!-- Script to Activate the Carousel -->
+<script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+</script>
+
+</body>
+
+</html>

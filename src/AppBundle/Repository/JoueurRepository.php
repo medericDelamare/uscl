@@ -18,4 +18,16 @@ class JoueurRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findByCategoryAndByBut($category){
+        $query =  $this->createQueryBuilder('j')
+            ->where('j.categorie = :categorie')
+            ->andWhere('j.buts > 0')
+            ->setParameter('categorie', $category)
+            ->orderBy('j.buts', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
 }
