@@ -13,20 +13,50 @@ use Symfony\Component\HttpFoundation\Request;
 class StatsAController extends Controller
 {
     /**
-     * @Route("/classement-A", name="classementA")
+     * @Route("/statistiques/{category}", name="statistiques")
      * @Template()
      */
-    public function showAction()
+    public function showAction($category)
     {
+        switch ($category){
+            case 'senior-A':
+                $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?sa_no=2016&cp_no=328937&ph_no=1&gp_no=1');
+                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=328937&ph_no=1&gp_no=1');
+                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=328937&ph_no=1&gp_no=1&sa_no=2016&typ_rech=equipe&cl_no=104246&eq_no=1&type_match=deux&lieu_match=deux');
+                $categ = 'Senior A';
+                break;
+            case 'senior-B':
+                $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?cp_no=328938&ph_no=1&sa_no=&gp_no=3');
+                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=328938&ph_no=1&gp_no=3');
+                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=328938&ph_no=1&gp_no=3&sa_no=2016&typ_rech=equipe&cl_no=104246&eq_no=2&type_match=deux&lieu_match=deux');
+                $categ = 'Senior B';
+                break;
+            case 'U18':
+                $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?cp_no=329044&ph_no=2&sa_no=&gp_no=2');
+                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=329044&ph_no=2&gp_no=2');
+                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=329044&ph_no=2&gp_no=2&sa_no=2016&typ_rech=equipe&cl_no=104246&eq_no=4&type_match=deux&lieu_match=deux');
+                $categ = $category;
+                break;
+            case 'U15':
+                $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?cp_no=329047&ph_no=2&sa_no=&gp_no=2');
+                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=329047&ph_no=2&gp_no=2');
+                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=329047&ph_no=2&gp_no=2&sa_no=2016&typ_rech=equipe&cl_no=104246&eq_no=5&type_match=deux&lieu_match=deux');
+                $categ = $category;
+                break;
+            case 'U13':
+                $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?cp_no=329051&ph_no=2&sa_no=&gp_no=2');
+                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=329051&ph_no=2&gp_no=2');
+                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=329051&ph_no=2&gp_no=2&sa_no=2016&typ_rech=equipe&cl_no=104246&eq_no=7&type_match=deux&lieu_match=deux');
+                $categ = $category;
+                break;
+        }
 
-        $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?sa_no=2016&cp_no=328937&ph_no=1&gp_no=1');
-        $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=328937&ph_no=1&gp_no=1');
-        $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=328937&ph_no=1&gp_no=1&sa_no=2016&typ_rech=equipe&cl_no=104246&eq_no=1&type_match=deux&lieu_match=deux');
 
-        return $this->render(':default:statistiqueA.html.twig', [
+        return $this->render(':default:statistiques.html.twig', [
             'resultats' => $resultats,
             'classement' => $classement,
-            'calendrier' => $calendrier
+            'calendrier' => $calendrier,
+            'categorie' => $categ
         ]);
     }
 
@@ -60,8 +90,13 @@ class StatsAController extends Controller
 
         for ($i = 0; $i < $crawler->filter('.resultatmatch')->count(); $i++) {
             $craw = $crawler->filter('.resultatmatch')->eq($i);
-            $equipe1 = $craw->filter('.matchLink')->eq(0)->text();
-            $equipe2 = $craw->filter('.matchLink')->eq(1)->text();
+            if ($craw->filter('.matchLink')->count() == 2){
+                $equipe1 = $craw->filter('.matchLink')->eq(0)->text();
+                $equipe2 = $craw->filter('.matchLink')->eq(1)->text();
+            } else{
+                $equipe1 = $craw->filter('.matchLink')->eq(0)->text();
+                $equipe2 = 'Exempt';
+            }
             $score = $craw->filter('.score')->first()->text();
             $resultats[] = [
                 'equipe1' => $equipe1,
@@ -165,8 +200,15 @@ class StatsAController extends Controller
 
         for ($i = 0; $i < $crawler->filter('.resultatmatch')->count(); $i++) {
             $craw = $crawler->filter('.resultatmatch')->eq($i);
-            $equipe1 = $craw->filter('.matchLink')->eq(0)->text();
-            $equipe2 = $craw->filter('.matchLink')->eq(1)->text();
+
+            if ($craw->filter('.matchLink')->count() == 2){
+                $equipe1 = $craw->filter('.matchLink')->eq(0)->text();
+                $equipe2 = $craw->filter('.matchLink')->eq(1)->text();
+            } else{
+                $equipe1 = $craw->filter('.matchLink')->eq(0)->text();
+                $equipe2 = 'Exempt';
+            }
+
             $score = $craw->filter('.score')->first()->text();
             $resultats[] = [
                 'equipe1' => $equipe1,
