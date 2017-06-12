@@ -12,46 +12,33 @@ class JoueurAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('title', 'text', array(
-                'label' => 'Post Title'
-            ))
-            ->add('author', 'entity', array(
-                'class' => 'AppBundle\Entity\User'
-            ))
-
-            // if no type is specified, SonataAdminBundle tries to guess it
-            ->add('body')
-
-            // ...
-        ;
+            ->add('nom')
+            ->add('prenom')
+            ->add('categorie')
+            ->add('poste')
+            ->add('butsA')
+            ->add('butsB')
+            ->add('butsCoupe')
+            ->add('cartonsJaunes')
+            ->add('cartonsRouges')
+            ->add('buts')
+            ->add('passes');
     }
 
     // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper
-            ->add('title')
-            ->add('author')
-        ;
+
     }
 
     // Fields to be shown on lists
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title')
-            ->add('slug')
-            ->add('author')
-        ;
-    }
-
-    // Fields to be shown on show action
-    protected function configureShowFields(ShowMapper $showMapper)
-    {
-        $showMapper
-            ->add('title')
-            ->add('slug')
-            ->add('author')
-        ;
+            ->addIdentifier('nom')
+            ->add('prenom')
+            ->add('categorie')
+            ->add('poste')
+            ->add('buts');
     }
 }

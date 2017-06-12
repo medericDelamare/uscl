@@ -1,0 +1,6 @@
+services:
+    admin.joueur:
+            class: AppBundle\Admin\JoueurAdmin
+            arguments: [~, AppBundle\Entity\Joueur, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: page.plural}
