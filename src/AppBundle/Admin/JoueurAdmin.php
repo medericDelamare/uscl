@@ -25,13 +25,15 @@ class JoueurAdmin extends AbstractAdmin
             ->add('passes');
     }
 
-    // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-
+        $datagridMapper
+            ->add('nom')
+            ->add('prenom')
+            ->add('categorie')
+            ->add('poste');
     }
 
-    // Fields to be shown on lists
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper

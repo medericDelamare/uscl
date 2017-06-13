@@ -54,7 +54,7 @@ class Club
      * @var Dirigeant
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
      */
-    private $tresoirier;
+    private $tresorier;
 
     /**
      * @var Dirigeant
@@ -223,18 +223,18 @@ class Club
     /**
      * @return Dirigeant
      */
-    public function getTresoirier()
+    public function getTresorier()
     {
-        return $this->tresoirier;
+        return $this->tresorier;
     }
 
     /**
-     * @param Dirigeant $tresoirier
+     * @param Dirigeant $tresorier
      * @return Club
      */
-    public function setTresoirier($tresoirier)
+    public function setTresorier($tresorier)
     {
-        $this->tresoirier = $tresoirier;
+        $this->tresorier = $tresorier;
         return $this;
     }
 

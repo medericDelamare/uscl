@@ -3,4 +3,16 @@ services:
             class: AppBundle\Admin\JoueurAdmin
             arguments: [~, AppBundle\Entity\Joueur, ~]
             tags:
-                - { name: sonata.admin, manager_type: orm, label: page.plural}
+                - { name: sonata.admin, manager_type: orm, label: Joueurs}
+
+    admin.club:
+            class: AppBundle\Admin\ClubAdmin
+            arguments: [~, AppBundle\Entity\Club, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: Club}
+
+    admin.club:
+            class: AppBundle\Admin\DirigeantAdmin
+            arguments: [~, AppBundle\Entity\Dirigeant, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: Dirigeants}
