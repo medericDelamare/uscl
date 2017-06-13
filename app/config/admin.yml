@@ -11,7 +11,7 @@ services:
             tags:
                 - { name: sonata.admin, manager_type: orm, label: Club}
 
-    admin.club:
+    admin.dirigeant:
             class: AppBundle\Admin\DirigeantAdmin
             arguments: [~, AppBundle\Entity\Dirigeant, ~]
             tags:
