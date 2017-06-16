@@ -10,18 +10,13 @@
 
     <title>Full Slider - Start Bootstrap Template</title>
 
-    <!-- Bootstrap Core CSS -->
     <link href="{{ asset('vendor/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <!-- Custom CSS -->
     <link href="{{ asset('css/full-slider.css') }}" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
 
 </head>
 
@@ -100,6 +95,17 @@
                 {% endfor %}
             </table>
         </div>
+        <div class="col-sm-4 col-sm-offset-2">
+            <h2 class="page-header">Calendrier</h2>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="page-header">Calendrier</h2>
+            <canvas id="myChart"></canvas>
+        </div>
+
     </div>
 </div>
 
@@ -110,11 +116,41 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
 
-<!-- Script to Activate the Carousel -->
 <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["2010/2011", "2011/2012", "2012/2013", "2013/2014", "2014/2015", "2015/2016", "2016/2017"],
+            datasets: [{
+                data: [12, 10, 3, 5, 2, 3,10],
+                borderWidth: 2,
+                backgroundColor: [],
+                lineTension: 0.1,
+                fill: false,
+                borderColor: "rgb(75, 192, 192)"
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Position'
+                    },
+                    ticks: {
+                        beginAtZero:true,
+                        reverse: true,
+                        min: 1,
+                        max: 12
+                    }
+                }]
+            }
+        }
+    });
 </script>
 
 </body>
