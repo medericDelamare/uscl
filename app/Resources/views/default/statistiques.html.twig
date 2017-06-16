@@ -96,16 +96,9 @@
             </table>
         </div>
         <div class="col-sm-4 col-sm-offset-2">
-            <h2 class="page-header">Calendrier</h2>
-            
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <h2 class="page-header">Calendrier</h2>
+            <h2 class="page-header">Évolution du classement final selon les années</h2>
             <canvas id="myChart"></canvas>
         </div>
-
     </div>
 </div>
 
@@ -118,17 +111,20 @@
 
 <script>
     var ctx = document.getElementById("myChart").getContext('2d');
+
+    var positions = {{ positions|json_encode() }};
+    var annees = {{ annees|json_encode|raw }};
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["2010/2011", "2011/2012", "2012/2013", "2013/2014", "2014/2015", "2015/2016", "2016/2017"],
+            labels: annees,
             datasets: [{
-                data: [12, 10, 3, 5, 2, 3,10],
+                data: positions,
                 borderWidth: 2,
                 backgroundColor: [],
                 lineTension: 0.1,
                 fill: false,
-                borderColor: "rgb(75, 192, 192)"
+                borderColor: "rgb(58, 83, 155)"
             }]
         },
         options: {
@@ -146,6 +142,12 @@
                         reverse: true,
                         min: 1,
                         max: 12
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Année'
                     }
                 }]
             }

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\HistoriqueClassement;
 use GuzzleHttp\Client;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -51,12 +52,22 @@ class StatsAController extends Controller
                 break;
         }
 
+        $historiques = $this->getDoctrine()->getManager()->getRepository(HistoriqueClassement::class)->findAll();
+        foreach ($historiques as $historique){
+            $annees[] = $historique->getAnnee();
+            $points[] = $historique->getNbPoints();
+            $positions[] = $historique->getPosition();
+        }
+
 
         return $this->render(':default:statistiques.html.twig', [
             'resultats' => $resultats,
             'classement' => $classement,
             'calendrier' => $calendrier,
-            'categorie' => $categ
+            'categorie' => $categ,
+            'annees' => $annees,
+            'points' => $points,
+            'positions' => $positions
         ]);
     }
 
