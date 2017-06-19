@@ -5,3 +5,8 @@ body, html{
 body>ol {
     margin-top: 50px;
 }
+
+.stats{
+    font-size: 30px;
+    font-weight: bold;
+}
