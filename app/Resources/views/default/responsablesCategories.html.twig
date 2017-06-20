@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-{{ include(':default:head.html.twig') }}
-
-
-<body>
-
-{% include('default/navbar.html.twig') %}
+{% extends 'base.html.twig' %}
+{% block body %}
 
 <ol class="breadcrumb">
     <li><a href="index.php">Accueil</a></li>
@@ -251,20 +244,4 @@
         </div>
     </div>
 </div>
-
-<!-- jQuery -->
-<script src="{{ asset('vendor/jquery/dist/jquery.js') }}"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
-
-<!-- Script to Activate the Carousel -->
-<script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-</script>
-
-</body>
-
-</html>
+{% endblock %}

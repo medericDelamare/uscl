@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-{{ include(':default:head.html.twig') }}
-
-
-<body>
-
-{% include('default/navbar.html.twig') %}
-
+{% extends 'base.html.twig' %}
+{% block body %}
 <ol class="breadcrumb">
     <li><a href="index.php">Accueil</a></li>
     <li class="active">Club</li>
@@ -85,14 +77,9 @@
         </div>
     </div>
 </div>
+{% endblock %}
 
-
-<!-- jQuery -->
-<script src="{{ asset('vendor/jquery/dist/jquery.js') }}"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
-
+{% block javascripts %}
 <script>
     var ctx = document.getElementById("myChart").getContext('2d');
 
@@ -138,7 +125,4 @@
         }
     });
 </script>
-
-</body>
-
-</html>
+{% endblock %}

@@ -1,63 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ include(':default:head.html.twig') }}
+    <ol class="breadcrumb">
+        <li>Accueil</li>
+        <li>Profile</li>
+        <li class="active">Mathieu LEOUP</li>
+    </ol>
 
-{{ include(':default:head.html.twig') }}
+    <!-- Page Content -->
+    <div class = "container col-md-12">
+        <div class="panel panel-primary col-md-8 col-md-offset-2">
+            <div class="panel-heading">
+                <h3 class="panel-title">Mathieu LELOUP</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="{{ asset('pictures/profiles/PP2127597972.jpg') }}" alt="{{ joueur.prenom }}" class="img-rounded col-md-6">
+                    </div>
 
-
-<body>
-
-{% include('default/navbar.html.twig') %}
-<ol class="breadcrumb">
-    <li>Accueil</li>
-    <li>Profile</li>
-    <li class="active">Mathieu LEOUP</li>
-</ol>
-
-<!-- Page Content -->
-<div class = "container col-md-12">
-    <div class="panel panel-primary col-md-8 col-md-offset-2">
-        <div class="panel-heading">
-            <h3 class="panel-title">Mathieu LELOUP</h3>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="{{ asset('pictures/profiles/PP2127597972.jpg') }}" alt="{{ joueur.prenom }}" class="img-rounded col-md-6">
-                </div>
-
-                <div class="col-md-4">
-                    <div class="row"><i class="fa fa-flag" aria-hidden="true"></i> <strong>Pays : </strong> FRANCE</div>
-                    <div class="row"><i class="fa fa-birthday-cake" aria-hidden="true"></i> <strong>Date de naissance : </strong>14/07/1994 (22 ans)</div>
-                    <div class="row"><i class="fa fa-globe" aria-hidden="true"></i> <strong>Lieu d Naissance : </strong>NOGENT SUR MARNE</div>
-                    <div class="row"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Adresse : </strong>Epaignes</div>
-                    <div class="row"><i class="fa fa-futbol-o" aria-hidden="true"></i> <strong>Poste : </strong>Milieu</div>
-                    <div class="row"><i class="fa fa-sort-numeric-desc" aria-hidden="true"></i> <strong>Numéro : </strong>10</div>
-                    <div class="row"><i class="fa fa-mobile" aria-hidden="true"></i> <strong>Téléphone : </strong>06.30.28.63.64</div>
-                    <div class="row"><i class="fa fa-address-card" aria-hidden="true"></i> <strong>Téléphone : </strong>	2127597972</div>
-                    <div class="row"><i class="fa fa-envelope" aria-hidden="true"></i> <strong>Mail : </strong>	leloupmathieu@hotmail.fr</div>
-                </div>
-                <div class="col-md-4">
-                    <div class="row"><strong>Saison 2016-2017 avec l'USCL : </strong></div>
-                    <ul>
-                        <li><span class="stats">22</span> Matchs Disputés</li>
-                        <li><span class="stats">10</span> Buts Marqués</li>
-                        <li><span class="stats">7</span> Passes Décisives</li>
-                        <li><span class="stats">0</span> Cartons Jaunes</li>
-                        <li><span class="stats">0</span> Cartons Rouges</li>
-                    </ul>
+                    <div class="col-md-4">
+                        <div class="row"><i class="fa fa-flag" aria-hidden="true"></i> <strong>Pays : </strong> FRANCE</div>
+                        <div class="row"><i class="fa fa-birthday-cake" aria-hidden="true"></i> <strong>Date de naissance : </strong>14/07/1994 (22 ans)</div>
+                        <div class="row"><i class="fa fa-globe" aria-hidden="true"></i> <strong>Lieu d Naissance : </strong>NOGENT SUR MARNE</div>
+                        <div class="row"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Adresse : </strong>Epaignes</div>
+                        <div class="row"><i class="fa fa-futbol-o" aria-hidden="true"></i> <strong>Poste : </strong>Milieu</div>
+                        <div class="row"><i class="fa fa-sort-numeric-desc" aria-hidden="true"></i> <strong>Numéro : </strong>10</div>
+                        <div class="row"><i class="fa fa-mobile" aria-hidden="true"></i> <strong>Téléphone : </strong>06.30.28.63.64</div>
+                        <div class="row"><i class="fa fa-address-card" aria-hidden="true"></i> <strong>Téléphone : </strong>	2127597972</div>
+                        <div class="row"><i class="fa fa-envelope" aria-hidden="true"></i> <strong>Mail : </strong>	leloupmathieu@hotmail.fr</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row"><strong>Saison 2016-2017 avec l'USCL : </strong></div>
+                        <ul>
+                            <li><span class="stats">22</span> Matchs Disputés</li>
+                            <li><span class="stats">10</span> Buts Marqués</li>
+                            <li><span class="stats">7</span> Passes Décisives</li>
+                            <li><span class="stats">0</span> Cartons Jaunes</li>
+                            <li><span class="stats">0</span> Cartons Rouges</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-5">
-        <h1 class = "page-header">Carrière</h1>
-        <table class="table table-striped text-center">
-            <thead>
+        <div class="col-md-5">
+            <h1 class = "page-header">Carrière</h1>
+            <table class="table table-striped text-center">
+                <thead>
                 <tr>
                     <td>Saison</td><td>Sous-catégorie</td><td>Club</td>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr>
                     <td>2016-2017</td><td>Libre / Senior</td><td>U.S. CORMEILLES - LIEUREY	</td>
                 </tr>
@@ -118,22 +112,16 @@
                 <tr class="info">
                     <td>2000-2001</td><td>Libre / Débutant (2)</td><td>A.S. EPAIGNES</td>
                 </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-5 col-md-offset-2">
+            <h1 class = "page-header">Statistiques Personnelles</h1>
+            <canvas id="myChart"></canvas>
+        </div>
     </div>
-    <div class="col-md-5 col-md-offset-2">
-        <h1 class = "page-header">Statistiques Personnelles</h1>
-        <canvas id="myChart"></canvas>
-    </div>
-</div>
-<!-- /.container -->
-
-<!-- jQuery -->
-<script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-
+{% endblock %}
+{% block javascripts %}
 <script>
     var ctx = document.getElementById("myChart").getContext('2d');
 
@@ -158,13 +146,13 @@
                 fill: false,
                 borderColor: "rgb(38, 196, 236)"
             },{
-                    label: 'Cartons Jaunes',
-                    data: [4,0,1,3],
-                    borderWidth: 2,
-                    backgroundColor: [],
-                    lineTension: 0.1,
-                    fill: false,
-                    borderColor: "rgb(255,255,0)"
+                label: 'Cartons Jaunes',
+                data: [4,0,1,3],
+                borderWidth: 2,
+                backgroundColor: [],
+                lineTension: 0.1,
+                fill: false,
+                borderColor: "rgb(255,255,0)"
             },{
                 label: 'Cartons Rouges',
                 data: [0,0,0,0],
@@ -200,7 +188,4 @@
         }
     });
 </script>
-
-</body>
-
-</html>
+{% endblock %}
