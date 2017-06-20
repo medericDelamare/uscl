@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -85,6 +86,65 @@ class Joueur
      * @ORM\Column(type="integer", nullable=true)
      */
     private $passes;
+
+    /**
+     * @var integer
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $nbMatchs;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $dateNaissance;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $lieuNaissance;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $numero;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $mobile;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $numeroLicence;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $mail;
+
+    /**
+     * @var CarriereJoueur[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CarriereJoueur", mappedBy="joueur")
+     */
+    private $carriere;
+
+    public function __construct()
+    {
+        $this->carriere = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -299,6 +359,168 @@ class Joueur
     public function setPasses($passes)
     {
         $this->passes = $passes;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbMatchs()
+    {
+        return $this->nbMatchs;
+    }
+
+    /**
+     * @param int $nbMatchs
+     * @return Joueur
+     */
+    public function setNbMatchs($nbMatchs)
+    {
+        $this->nbMatchs = $nbMatchs;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateNaissance()
+    {
+        return $this->dateNaissance;
+    }
+
+    /**
+     * @param \DateTime $dateNaissance
+     * @return Joueur
+     */
+    public function setDateNaissance($dateNaissance)
+    {
+        $this->dateNaissance = $dateNaissance;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLieuNaissance()
+    {
+        return $this->lieuNaissance;
+    }
+
+    /**
+     * @param string $lieuNaissance
+     * @return Joueur
+     */
+    public function setLieuNaissance($lieuNaissance)
+    {
+        $this->lieuNaissance = $lieuNaissance;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
+    }
+
+    /**
+     * @param string $ville
+     * @return Joueur
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumero()
+    {
+        return $this->numero;
+    }
+
+    /**
+     * @param int $numero
+     * @return Joueur
+     */
+    public function setNumero($numero)
+    {
+        $this->numero = $numero;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMobile()
+    {
+        return $this->mobile;
+    }
+
+    /**
+     * @param string $mobile
+     * @return Joueur
+     */
+    public function setMobile($mobile)
+    {
+        $this->mobile = $mobile;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNumeroLicence()
+    {
+        return $this->numeroLicence;
+    }
+
+    /**
+     * @param string $numeroLicence
+     * @return Joueur
+     */
+    public function setNumeroLicence($numeroLicence)
+    {
+        $this->numeroLicence = $numeroLicence;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * @param string $mail
+     * @return Joueur
+     */
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+        return $this;
+    }
+
+    /**
+     * @return CarriereJoueur[]
+     */
+    public function getCarriere()
+    {
+        return $this->carriere;
+    }
+
+    /**
+     * @param CarriereJoueur[] $carriere
+     * @return Joueur
+     */
+    public function setCarriere($carriere)
+    {
+        $this->carriere = $carriere;
         return $this;
     }
 }
