@@ -138,6 +138,7 @@ class Joueur
     /**
      * @var CarriereJoueur[]
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\CarriereJoueur", mappedBy="joueur")
+     * @ORM\OrderBy({"id" = "DESC"})
      */
     private $carriere;
 

@@ -22,7 +22,7 @@
             <tbody>
             {% for gardien in gardiens%}
                 <tr>
-                    <td>{{ gardien.nom }}</td>
+                    <td><a href="{{ path('profile', {'id': gardien.id}) }}">{{ gardien.nom }}</a></td>
                     <td>{{ gardien.prenom }}</td>
                     <td>{{ gardien.buts }}</td>
                     <td>{{ gardien.passes }}</td>
@@ -48,7 +48,7 @@
             <tbody>
             {% for defenseur in defenseurs %}
                 <tr>
-                    <td>{{ defenseur.nom }}</td>
+                    <td><a href="{{ path('profile', {'id': defenseur.id}) }}">{{ defenseur.nom }}</a></td>
                     <td>{{ defenseur.prenom }}</td>
                     <td>{{ defenseur.buts }}</td>
                     <td>{{ defenseur.passes }}</td>
@@ -74,7 +74,7 @@
             <tbody>
             {% for milieu in milieux %}
                 <tr>
-                    <td>{{ milieu.nom }}</td>
+                    <td><a href="{{ path('profile', {'id': milieu.id}) }}">{{ milieu.nom }}</a></td>
                     <td>{{ milieu.prenom }}</td>
                     <td>{{ milieu.buts }}</td>
                     <td>{{ milieu.passes }}</td>
@@ -98,9 +98,9 @@
             </tr>
             </thead>
             <tbody>
-            {% for attaquant in attaquants%}
+            {% for attaquant in attaquants %}
                 <tr>
-                    <td>{{ attaquant.nom }}</td>
+                    <td><a href="{{ path('profile', {'id': attaquant.id}) }}">{{ attaquant.nom }}</a></td>
                     <td>{{ attaquant.prenom }}</td>
                     <td>{{ attaquant.buts }}</td>
                     <td>{{ attaquant.passes }}</td>
