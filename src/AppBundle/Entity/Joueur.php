@@ -142,6 +142,11 @@ class Joueur
      */
     private $carriere;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $photo;
+
     public function __construct()
     {
         $this->carriere = new ArrayCollection();
@@ -522,6 +527,24 @@ class Joueur
     public function setCarriere($carriere)
     {
         $this->carriere = $carriere;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * @param mixed $photo
+     * @return Joueur
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
         return $this;
     }
 

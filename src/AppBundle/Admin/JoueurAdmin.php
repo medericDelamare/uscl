@@ -8,9 +8,27 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpKernel\Kernel;
 
 class JoueurAdmin extends AbstractAdmin
 {
+
+    /**
+     * @var Kernel $kernel
+     */
+    private $kernel;
+
+    /**
+     * @param Kernel $kernel
+     */
+    public function setKernel(Kernel $kernel)
+    {
+        $this->kernel = $kernel;
+    }
+
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -24,6 +42,9 @@ class JoueurAdmin extends AbstractAdmin
                     ->add('lieuNaissance')
                     ->add('numero')
                     ->add('numeroLicence')
+                    ->add('photo', 'file', [
+                        'required' => false
+                    ])
                 ->end()
                 ->with('Statistiques', ['class' => 'col-md-6'])
                     ->add('categorie')
@@ -46,6 +67,22 @@ class JoueurAdmin extends AbstractAdmin
                 'inline' => 'table',
             ])
             ->end();
+
+        $formMapper->get('photo')->addModelTransformer(new CallbackTransformer(
+            function ($path) {
+                dump($path);
+                if ($path != null){
+                    return new File($this->kernel->getRootDir() . '/../web/pictures/profiles/' . $path);
+                }
+            },
+            function (UploadedFile $file = null) {
+                if ($file != null){
+                    $file->move($this->kernel->getRootDir() . '/../web/pictures/profiles', $file->getClientOriginalName());
+                    return $file->getClientOriginalName();
+                }
+            }
+
+        ));
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
