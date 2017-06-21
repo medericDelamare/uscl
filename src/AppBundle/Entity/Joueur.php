@@ -524,4 +524,9 @@ class Joueur
         $this->carriere = $carriere;
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->nom . ' ' . $this->prenom;
+    }
 }

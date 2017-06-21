@@ -16,3 +16,9 @@ services:
             arguments: [~, AppBundle\Entity\Dirigeant, ~]
             tags:
                 - { name: sonata.admin, manager_type: orm, label: Dirigeants}
+
+    admin.carriere:
+            class: AppBundle\Admin\CarriereAdmin
+            arguments: [~, AppBundle\Entity\CarriereJoueur, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: Carriere}
