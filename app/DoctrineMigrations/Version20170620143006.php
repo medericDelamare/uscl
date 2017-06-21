@@ -203,9 +203,9 @@ class Version20170620143006 extends AbstractMigration
         $this->addSql('INSERT INTO carriere_joueur(joueur_id, saison, sous_categorie, club) VALUES (11,\'2015-2016\', \'Libre / Senior\', \'U.S. CORMEILLES - LIEUREY\')');
         $this->addSql('INSERT INTO carriere_joueur(joueur_id, saison, sous_categorie, club) VALUES (11,\'2016-2017\', \'Libre / Senior\', \'U.S. CORMEILLES - LIEUREY\')');
 
-        $this->addSql('INSERT INTO carriere_joueur(joueur_id, saison, sous_categorie, club) VALUES (11,\'2010-2011\', \'Libre / U19 (- 19 ans)\', \'U.S. CORMEILLES - LIEUREY\')');
-        $this->addSql('INSERT INTO carriere_joueur(joueur_id, saison, sous_categorie, club) VALUES (11,\'2015-2016\', \'Libre / Senior\', \'U.S. CORMEILLES - LIEUREY\')');
-        $this->addSql('INSERT INTO carriere_joueur(joueur_id, saison, sous_categorie, club) VALUES (11,\'2016-2017\', \'Libre / Senior\', \'U.S. CORMEILLES - LIEUREY\')');
+        $this->addSql('INSERT INTO carriere_joueur(joueur_id, saison, sous_categorie, club) VALUES (12,\'2010-2011\', \'Libre / U19 (- 19 ans)\', \'U.S. CORMEILLES - LIEUREY\')');
+        $this->addSql('INSERT INTO carriere_joueur(joueur_id, saison, sous_categorie, club) VALUES (12,\'2015-2016\', \'Libre / Senior\', \'U.S. CORMEILLES - LIEUREY\')');
+        $this->addSql('INSERT INTO carriere_joueur(joueur_id, saison, sous_categorie, club) VALUES (12,\'2016-2017\', \'Libre / Senior\', \'U.S. CORMEILLES - LIEUREY\')');
 
 
 
