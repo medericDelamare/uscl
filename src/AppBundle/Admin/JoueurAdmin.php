@@ -42,9 +42,9 @@ class JoueurAdmin extends AbstractAdmin
                     ->add('lieuNaissance')
                     ->add('numero')
                     ->add('numeroLicence')
-                    ->add('photo', 'file', [
+                    /*->add('photo', 'file', [
                         'required' => false
-                    ])
+                    ])*/
                 ->end()
                 ->with('Statistiques', ['class' => 'col-md-6'])
                     ->add('categorie')
@@ -61,14 +61,14 @@ class JoueurAdmin extends AbstractAdmin
             ->tab('Carrière')
             ->add('carriere', 'sonata_type_collection', [
                 'label' => false,
-                'btn_add' => 'Ajouter un bloc'
+                'btn_add' => false
             ],[
                 'edit' => 'inline',
                 'inline' => 'table',
             ])
             ->end();
 
-        $formMapper->get('photo')->addModelTransformer(new CallbackTransformer(
+        /*$formMapper->get('photo')->addModelTransformer(new CallbackTransformer(
             function ($path) {
                 dump($path);
                 if ($path != null){
@@ -82,7 +82,7 @@ class JoueurAdmin extends AbstractAdmin
                 }
             }
 
-        ));
+        ));*/
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

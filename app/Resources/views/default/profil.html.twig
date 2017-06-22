@@ -70,13 +70,20 @@
 <script>
     var ctx = document.getElementById("myChart").getContext('2d');
 
+    var saisons = {{ saisons|json_encode|raw }}
+    var buts = {{ buts|json_encode }}
+    var passes = {{ passes|json_encode }}
+    var cartonsJ = {{ cartonsJ|json_encode }}
+    var cartonsR = {{ cartonsR|json_encode }}
+
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['13/14', ['14/15'], ['15/16'], ['16/17'] ],
+            labels: saisons,
             datasets: [{
+                spanGaps: true,
                 label: 'Buts',
-                data: [3,0,5,10],
+                data: buts,
                 borderWidth: 2,
                 backgroundColor: [],
                 lineTension: 0.1,
@@ -84,7 +91,7 @@
                 borderColor: "rgb(58, 83, 155)"
             },{
                 label: 'Passes Décisisves',
-                data: [1,10,5,7],
+                data: passes,
                 borderWidth: 2,
                 backgroundColor: [],
                 lineTension: 0.1,
@@ -92,7 +99,7 @@
                 borderColor: "rgb(38, 196, 236)"
             },{
                 label: 'Cartons Jaunes',
-                data: [4,0,1,3],
+                data: cartonsJ,
                 borderWidth: 2,
                 backgroundColor: [],
                 lineTension: 0.1,
@@ -100,7 +107,7 @@
                 borderColor: "rgb(255,255,0)"
             },{
                 label: 'Cartons Rouges',
-                data: [0,0,0,0],
+                data: cartonsR,
                 borderWidth: 2,
                 backgroundColor: [],
                 lineTension: 0.1,

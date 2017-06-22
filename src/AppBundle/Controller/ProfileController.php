@@ -21,8 +21,38 @@ class ProfileController extends Controller
     public function profileShowAction($id){
         $joueur = $this->getDoctrine()->getManager()->getRepository(Joueur::class)->find($id);
 
+        $saisons = [];
+        foreach ($joueur->getHistoriqueStats() as $historiqueStat){
+            $saisons[] = $historiqueStat->getSaison();
+        }
+
+        $buts = [];
+        foreach ($joueur->getHistoriqueStats() as $historiqueStat){
+            $buts[] = $historiqueStat->getNbButs();
+        }
+
+        $passes = [];
+        foreach ($joueur->getHistoriqueStats() as $historiqueStat){
+            $passes[] = $historiqueStat->getNbPasses();
+        }
+
+        $cartonsJ = [];
+        foreach ($joueur->getHistoriqueStats() as $historiqueStat) {
+            $cartonsJ[] = $historiqueStat->getNbCartonsJaunes();
+        }
+
+        $cartonsR = [];
+        foreach ($joueur->getHistoriqueStats() as $historiqueStat){
+            $cartonsR[] = $historiqueStat->getNbCartonsRouges();
+        }
+
         return $this->render(':default:profil.html.twig', [
-            'joueur' => $joueur
+            'joueur' => $joueur,
+            'saisons' => $saisons,
+            'cartonsJ' => $cartonsJ,
+            'cartonsR' => $cartonsR,
+            'buts' => $buts,
+            'passes' => $passes
         ]);
     }
 }

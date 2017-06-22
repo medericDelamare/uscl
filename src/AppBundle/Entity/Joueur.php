@@ -143,6 +143,14 @@ class Joueur
     private $carriere;
 
     /**
+     * @var HistoriqueStats[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\HistoriqueStats", mappedBy="joueur")
+     * @ORM\OrderBy({"id" = "DESC"})
+     */
+    private $historiqueStats;
+
+
+    /**
      * @ORM\Column(type="string", nullable=true)
      */
     private $photo;
@@ -150,6 +158,7 @@ class Joueur
     public function __construct()
     {
         $this->carriere = new ArrayCollection();
+        $this->historiqueStats= new ArrayCollection();
     }
 
     /**
@@ -545,6 +554,24 @@ class Joueur
     public function setPhoto($photo)
     {
         $this->photo = $photo;
+        return $this;
+    }
+
+    /**
+     * @return HistoriqueStats[]
+     */
+    public function getHistoriqueStats()
+    {
+        return $this->historiqueStats;
+    }
+
+    /**
+     * @param HistoriqueStats[] $historiqueStats
+     * @return Joueur
+     */
+    public function setHistoriqueStats($historiqueStats)
+    {
+        $this->historiqueStats = $historiqueStats;
         return $this;
     }
 
