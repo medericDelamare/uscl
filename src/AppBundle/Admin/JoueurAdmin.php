@@ -38,13 +38,10 @@ class JoueurAdmin extends AbstractAdmin
                     ->add('prenom')
                     ->add('mail')
                     ->add('mobile')
-                    ->add('dateNaissance')
+                    ->add('dateNaissance', 'sonata_type_date_picker')
                     ->add('lieuNaissance')
                     ->add('numero')
                     ->add('numeroLicence')
-                    /*->add('photo', 'file', [
-                        'required' => false
-                    ])*/
                 ->end()
                 ->with('Statistiques', ['class' => 'col-md-6'])
                     ->add('categorie')
@@ -68,21 +65,6 @@ class JoueurAdmin extends AbstractAdmin
             ])
             ->end();
 
-        /*$formMapper->get('photo')->addModelTransformer(new CallbackTransformer(
-            function ($path) {
-                dump($path);
-                if ($path != null){
-                    return new File($this->kernel->getRootDir() . '/../web/pictures/profiles/' . $path);
-                }
-            },
-            function (UploadedFile $file = null) {
-                if ($file != null){
-                    $file->move($this->kernel->getRootDir() . '/../web/pictures/profiles', $file->getClientOriginalName());
-                    return $file->getClientOriginalName();
-                }
-            }
-
-        ));*/
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -101,6 +83,7 @@ class JoueurAdmin extends AbstractAdmin
             ->add('prenom')
             ->add('categorie')
             ->add('poste')
-            ->add('buts');
+            ->add('buts')
+            ->add('numeroLicence');
     }
 }
