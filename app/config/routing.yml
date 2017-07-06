@@ -13,3 +13,9 @@ _sonata_admin:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+plans:
+    path: /plans
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: default/plans.html.twig
