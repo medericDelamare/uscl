@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78bb3aa0-0eb0-47c5-b770-a68aff5f22c6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/framework-standard-edition.iml" afterPath="$PROJECT_DIR$/.idea/framework-standard-edition.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AppKernel.php" afterPath="$PROJECT_DIR$/app/AppKernel.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/default/profil.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/default/profil.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/config/admin.yml" afterPath="$PROJECT_DIR$/app/config/admin.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Admin/JoueurAdmin.php" afterPath="$PROJECT_DIR$/src/AppBundle/Admin/JoueurAdmin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Joueur.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Joueur.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/default/statistiques.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/default/statistiques.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/symfony_requirements" afterPath="$PROJECT_DIR$/bin/symfony_requirements" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/var/SymfonyRequirements.php" afterPath="$PROJECT_DIR$/var/SymfonyRequirements.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/config.php" afterPath="$PROJECT_DIR$/web/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/style.css" afterPath="$PROJECT_DIR$/web/css/style.css" />
     </list>
     <ignored path="framework-standard-edition.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,33 +64,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="JoueurAdmin.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Admin/JoueurAdmin.php">
+      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="44" column="20" lean-forward="true" selection-start-line="44" selection-start-column="20" selection-end-line="46" selection-end-column="22" />
-              <folding>
-                <element signature="e#34#70#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="File.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/File/File.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state relative-caret-position="272">
+              <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Joueur.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Joueur.php">
+      <file leaf-file-name="profil.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/default/profil.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="145" column="47" lean-forward="false" selection-start-line="145" selection-start-column="47" selection-end-line="145" selection-end-column="47" />
+            <state relative-caret-position="170">
+              <caret line="10" column="47" lean-forward="false" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="statistiques.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/default/statistiques.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="10" column="46" lean-forward="false" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="362">
+              <caret line="171" column="18" lean-forward="false" selection-start-line="171" selection-start-column="18" selection-end-line="171" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="effectif.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/default/effectif.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-828">
+              <caret line="36" column="27" lean-forward="false" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -103,6 +124,7 @@
       <find>carriere</find>
       <find>toStr</find>
       <find>photo</find>
+      <find>Admi</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -114,7 +136,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/.bowerrc" />
         <option value="$PROJECT_DIR$/app/Resources/css/style.css" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/joueur.php" />
@@ -137,22 +158,23 @@
         <option value="$PROJECT_DIR$/app/Resources/views/default/buteurs.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/default/responsablesCategories.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/default/head.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/default/statistiques.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/DoctrineMigrations/Version20170620143006.php" />
         <option value="$PROJECT_DIR$/app/DoctrineMigrations/Version20170621080935.php" />
         <option value="$PROJECT_DIR$/app/DoctrineMigrations/Version20170621095527.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/default/effectif.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/EffectifController.php" />
-        <option value="$PROJECT_DIR$/web/css/style.css" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/CarriereJoueur.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Admin/CarriereAdmin.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/default/profil.html.twig" />
         <option value="$PROJECT_DIR$/app/config/admin.yml" />
-        <option value="$PROJECT_DIR$/app/AppKernel.php" />
         <option value="$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/HttpFoundation/File/File.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Joueur.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Admin/JoueurAdmin.php" />
+        <option value="$PROJECT_DIR$/app/AppKernel.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/default/statistiques.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/default/profil.html.twig" />
+        <option value="$PROJECT_DIR$/web/css/style.css" />
       </list>
     </option>
   </component>
@@ -164,10 +186,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="1912" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -185,6 +207,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -305,18 +328,96 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USCL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USCL" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USCL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USCL" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USCL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USCL" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="default" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USCL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="USCL" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="profil&#9;FILE&#9;file://C:/wamp64/www/USCL/app/Resources/views/default/profil.html.twig&#10;admin.yml&#9;FILE&#9;file://C:/wamp64/www/USCL/app/config/admin.yml&#10;profil.&#9;FILE&#9;file://C:/wamp64/www/USCL/app/Resources/views/default/profil.html.twig&#10;style&#9;FILE&#9;file://C:/wamp64/www/USCL/web/css/style.css&#10;profile.html&#9;FILE&#9;file://C:/wamp64/www/USCL/vendor/eightpoints/guzzle-bundle/EightPoints/Bundle/GuzzleBundle/Resources/views/profiler.html.twig&#10;profile.&#9;FILE&#9;file://C:/wamp64/www/USCL/vendor/eightpoints/guzzle-bundle/EightPoints/Bundle/GuzzleBundle/Resources/views/profiler.html.twig&#10;navba&#9;FILE&#9;file://C:/wamp64/www/USCL/app/Resources/views/default/navbar.html.twig&#10;effe&#9;FILE&#9;file://C:/wamp64/www/USCL/app/Resources/views/default/effectif.html.twig&#10;style.&#9;FILE&#9;file://C:/wamp64/www/USCL/web/css/style.css&#10;stat&#9;FILE&#9;file://C:/wamp64/www/USCL/app/Resources/views/default/statistiques.html.twig&#10;sty&#9;FILE&#9;file://C:/wamp64/www/USCL/web/css/style.css&#10;routing&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/app/config/routing.yml&#10;nav&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/app/Resources/views/default/navbar.html.twig&#10;index&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/app/Resources/views/default/index.html.twig&#10;tw&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/app/Resources/views/default/club.html.twig&#10;appK&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/app/AppKernel.php&#10;AppK&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/app/AppKernel.php&#10;full-s&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/web/css/full-slider.css&#10;kerne&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/app/AppKernel.php&#10;plugin&#9;ACTION&#9;null" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="SearchEverywhereHistoryKey" value="sty&#9;FILE&#9;file://C:/wamp64/www/USCL/web/css/style.css&#10;effect&#9;FILE&#9;file://C:/wamp64/www/USCL/app/Resources/views/default/effectif.html.twig&#10;profil&#9;FILE&#9;file://C:/wamp64/www/USCL/app/Resources/views/default/profil.html.twig&#10;base.ht&#9;FILE&#9;file://C:/wamp64/www/USCL/app/Resources/views/base.html.twig&#10;composer.&#9;FILE&#9;file://C:/wamp64/www/USCL/composer.json&#10;appKer&#9;FILE&#9;file://C:/wamp64/www/USCL/app/AppKernel.php&#10;admin.yml&#9;FILE&#9;file://C:/wamp64/www/USCL/app/config/admin.yml&#10;profil.&#9;FILE&#9;file://C:/wamp64/www/USCL/app/Resources/views/default/profil.html.twig&#10;style&#9;FILE&#9;file://C:/wamp64/www/USCL/web/css/style.css&#10;profile.html&#9;FILE&#9;file://C:/wamp64/www/USCL/vendor/eightpoints/guzzle-bundle/EightPoints/Bundle/GuzzleBundle/Resources/views/profiler.html.twig&#10;profile.&#9;FILE&#9;file://C:/wamp64/www/USCL/vendor/eightpoints/guzzle-bundle/EightPoints/Bundle/GuzzleBundle/Resources/views/profiler.html.twig&#10;navba&#9;FILE&#9;file://C:/wamp64/www/USCL/app/Resources/views/default/navbar.html.twig&#10;effe&#9;FILE&#9;file://C:/wamp64/www/USCL/app/Resources/views/default/effectif.html.twig&#10;style.&#9;FILE&#9;file://C:/wamp64/www/USCL/web/css/style.css&#10;stat&#9;FILE&#9;file://C:/wamp64/www/USCL/app/Resources/views/default/statistiques.html.twig&#10;routing&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/app/config/routing.yml&#10;nav&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/app/Resources/views/default/navbar.html.twig&#10;index&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/app/Resources/views/default/index.html.twig&#10;tw&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/app/Resources/views/default/club.html.twig&#10;appK&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/app/AppKernel.php&#10;AppK&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/app/AppKernel.php&#10;full-s&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/web/css/full-slider.css&#10;kerne&#9;FILE&#9;file://C:/wamp64/www/framework-standard-edition/app/AppKernel.php&#10;plugin&#9;ACTION&#9;null" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
   </component>
@@ -425,32 +526,33 @@
       <workItem from="1497880110580" duration="9450000" />
       <workItem from="1497955161333" duration="21322000" />
       <workItem from="1498032540146" duration="23210000" />
+      <workItem from="1499461198380" duration="2502000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111497000" />
+    <option name="totallyTimeSpent" value="113999000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18123667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18081991" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942432" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32875264" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32875264" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -473,13 +575,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20170515173433.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="620">
-          <caret line="47" column="188" lean-forward="false" selection-start-line="47" selection-start-column="188" selection-end-line="47" selection-end-column="188" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -559,9 +654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="16" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -569,9 +661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="770">
           <caret line="246" column="11" lean-forward="false" selection-start-line="246" selection-start-column="11" selection-end-line="246" selection-end-column="11" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -579,9 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="16" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -592,21 +678,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/default/statistiques.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="838">
-          <caret line="127" column="6" lean-forward="false" selection-start-line="127" selection-start-column="6" selection-end-line="127" selection-end-column="6" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Validator/Constraints/Date.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="21" column="6" lean-forward="false" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -614,25 +689,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1496936880491" expanded="true" signature="585:966" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="993:1101" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="1128:1236" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="1263:1373" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="1400:1510" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="1537:1647" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="1674:1783" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="1810:1919" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="1946:2055" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="2082:2194" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="3344:3397" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="3424:3477" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="3584:3637" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="3664:3717" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="3744:3796" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="3983:4035" ph="ALTER TABLE club... " />
-            <marker date="1496936880491" expanded="true" signature="4654:4891" ph="ALTER TABLE club... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -640,9 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1497371164595" expanded="true" signature="585:638" ph="ALTER TABLE club... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -650,10 +703,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1497427209052" expanded="true" signature="585:1304" ph="CREATE TABLE... fos_user" />
-            <marker date="1497427209052" expanded="true" signature="1658:1677" ph="DROP TABLE f... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -661,11 +711,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <marker date="1497880408828" expanded="true" signature="585:812" ph="CREATE TABLE... historique_classement" />
-            <marker date="1497880408828" expanded="true" signature="1166:1198" ph="DROP TABLE h... " />
-            <marker date="1497880408828" expanded="true" signature="1225:1244" ph="DROP TABLE f... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -673,28 +719,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="17" column="88" lean-forward="false" selection-start-line="17" selection-start-column="88" selection-end-line="17" selection-end-column="88" />
-          <folding>
-            <marker date="1497880152339" expanded="true" signature="504:1048" ph="INSERT INTO historique_classement... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f57f0bb0-f386-451d-8a96-ca4196c7ae9c/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/f57f0bb0-f386-451d-8a96-ca4196c7ae9c/console.sql" />
     <entry file="file://$PROJECT_DIR$/app/DoctrineMigrations/Version20170620134725.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="21" column="135" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="21" selection-end-column="135" />
           <folding>
             <element signature="e#42#89#0#PHP" expanded="false" />
-            <marker date="1497966445717" expanded="true" signature="585:894" ph="CREATE TABLE... carriere_joueur" />
-            <marker date="1497966445717" expanded="true" signature="921:1030" ph="ALTER TABLE carriere_joueur... " />
-            <marker date="1497966445717" expanded="true" signature="1384:1410" ph="DROP TABLE c... " />
           </folding>
         </state>
       </provider>
@@ -703,23 +738,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <marker date="1498039332497" expanded="true" signature="504:645" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498039332497" expanded="true" signature="672:809" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498039332497" expanded="true" signature="836:985" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498039332497" expanded="true" signature="1012:1165" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498039332497" expanded="true" signature="1192:1345" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498039332497" expanded="true" signature="1372:1532" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498039332497" expanded="true" signature="1559:1704" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498039332497" expanded="true" signature="1731:1876" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498039332497" expanded="true" signature="1903:2043" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498039332497" expanded="true" signature="2070:2215" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498039332497" expanded="true" signature="2242:2382" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498039332497" expanded="true" signature="2409:2554" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498039332497" expanded="true" signature="2581:2721" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498039332497" expanded="true" signature="2748:2893" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498039332497" expanded="true" signature="2920:3060" ph="INSERT INTO carriere_joueur... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -727,195 +746,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="19" column="166" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="19" selection-end-column="166" />
-          <folding>
-            <marker date="1498038708601" expanded="true" signature="504:644" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="671:811" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="838:989" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="1016:1167" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="1194:1343" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="1370:1519" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="1546:1699" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="1726:1879" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="1906:2059" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="2086:2246" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="2273:2418" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="2445:2590" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="2617:2762" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="2789:2934" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="2962:3104" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="3131:3270" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="3297:3442" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="3469:3614" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="3641:3786" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="3813:3958" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="3985:4130" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="4157:4302" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="4329:4474" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="4501:4646" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="4673:4818" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="4846:4992" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="5019:5165" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="5193:5334" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="5361:5501" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="5528:5678" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="5705:5856" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="5883:6034" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="6061:6198" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="6225:6378" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="6405:6558" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="6585:6738" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="6765:6918" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="6945:7105" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="7132:7277" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="7304:7449" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="7476:7621" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="7648:7745" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="7648:7788" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="7816:7955" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="7982:8121" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="8148:8286" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="8313:8451" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="8478:8617" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="8644:8783" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="8810:8947" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="8974:9111" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="9138:9275" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="9302:9443" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="9470:9596" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="9623:9764" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="9791:9932" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="9959:10112" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="10139:10267" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="10294:10454" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="10481:10609" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="10636:10764" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="10791:10936" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="10963:11108" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="11136:11288" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="11315:11467" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="11494:11647" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="11674:11827" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="11854:12005" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="12032:12174" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="12201:12344" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="12201:12352" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="12379:12530" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="12557:12708" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="12735:12883" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="12910:13062" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="13089:13244" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="13271:13426" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="13453:13613" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="13640:13785" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="13812:13957" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="13984:14129" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="14156:14301" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="14328:14468" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="14496:14637" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="14664:14803" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="14830:14969" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="14996:15135" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="15162:15299" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="15326:15463" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="15490:15635" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="15662:15807" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="15834:15979" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="16006:16146" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="16173:16313" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="16340:16485" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="16512:16657" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="16684:16829" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="16856:17001" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="17028:17173" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="17200:17345" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="17372:17517" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="17545:17690" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="17717:17862" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="17889:18034" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="18061:18206" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="18233:18378" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="18405:18550" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="18577:18722" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="18749:18894" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="18921:19066" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="19093:19233" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="19260:19400" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="19427:19572" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="19599:19739" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="19766:19911" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="19938:20083" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="20110:20256" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="20284:20429" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="20456:20601" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="20628:20766" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="20793:20931" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="20958:21120" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="21147:21309" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="21336:21498" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="21525:21687" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="21714:21876" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="21903:22065" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="22092:22237" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="22265:22404" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="22431:22570" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="22597:22736" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="22763:22902" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="22929:23068" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="23095:23240" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="23268:23419" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="23446:23596" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="23623:23773" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="23800:23953" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="23980:24133" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="24160:24313" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="24340:24493" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="24520:24673" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="24700:24853" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="24880:25033" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="25060:25213" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="25241:25392" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="25419:25570" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="25597:25747" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="25774:25927" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="25954:26107" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="26134:26287" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="26314:26468" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="26495:26648" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="26675:26829" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="26856:27010" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="27038:27189" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="27216:27366" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="27393:27543" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="27570:27723" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="27750:27903" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="27930:28083" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="28110:28263" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="28290:28443" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="28470:28619" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="28646:28799" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="28826:28979" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="29006:29159" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="29187:29323" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="29350:29486" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="29513:29649" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="29676:29812" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="29839:29975" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="30002:30138" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="30165:30310" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="30337:30482" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="30509:30654" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="30681:30821" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="30848:30993" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="31020:31160" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="31187:31332" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="31359:31499" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498038708601" expanded="true" signature="31527:31651" ph="INSERT INTO joueur... " />
-            <marker date="1498038708601" expanded="true" signature="31527:31661" ph="INSERT INTO joueur... " />
-            <marker date="1498038708601" expanded="true" signature="31527:31676" ph="INSERT INTO joueur... " />
-            <marker date="1498038708601" expanded="true" signature="31527:31700" ph="INSERT INTO joueur... " />
-            <marker date="1498038708601" expanded="true" signature="31527:31702" ph="INSERT INTO joueur... " />
-            <marker date="1498038708601" expanded="true" signature="31527:31714" ph="INSERT INTO joueur... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -923,193 +754,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="515">
           <caret line="207" column="165" lean-forward="true" selection-start-line="207" selection-start-column="140" selection-end-line="207" selection-end-column="165" />
-          <folding>
-            <marker date="1498032658329" expanded="true" signature="504:581" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="504:644" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="671:810" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="837:986" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="1013:1163" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="1190:1306" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="1190:1340" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="1367:1515" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="1542:1690" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="1717:1870" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="1897:2016" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="1897:2049" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="2076:2227" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="2254:2406" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="2433:2585" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="2612:2771" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="2798:2942" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="2969:3113" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="3141:3289" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="3316:3464" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="3491:3586" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="3491:3632" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="3659:3803" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="3831:3952" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="3831:3970" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="3997:4135" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="4162:4300" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="4327:4465" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="4492:4630" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="4657:4795" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="4822:4964" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="4991:5135" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="5162:5306" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="5333:5477" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="5504:5638" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="5665:5810" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="5837:5982" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="6009:6148" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="6175:6320" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="6347:6486" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="6514:6654" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="6681:6819" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="6846:6984" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="7011:7155" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="7182:7326" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="7353:7497" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="7524:7668" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="7695:7839" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="7866:8010" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="8037:8181" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="8208:8352" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="8379:8523" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="8550:8694" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="8721:8865" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="8893:9032" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="9059:9198" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="9225:9364" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="9391:9530" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="9557:9694" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="9721:9858" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="9885:10016" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="9885:10024" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="9885:10026" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="10053:10203" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="10230:10371" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="10398:10535" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="10562:10706" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="10733:10877" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="10904:11048" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="11075:11219" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="11246:11383" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="11410:11547" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="11574:11711" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="11738:11875" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="11902:12039" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="12066:12203" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="12230:12374" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="12402:12552" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="12579:12728" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="12755:12904" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="12931:13083" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="13110:13262" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="13289:13441" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="13468:13620" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="13647:13800" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="13827:13979" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="14006:14158" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="14185:14337" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="14365:14503" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="14530:14669" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="14696:14835" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="14862:14999" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="15026:15163" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="15190:15338" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="15365:15513" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="15540:15688" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="15715:15863" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="15890:16038" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="16065:16213" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="16240:16384" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="16411:16555" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="16582:16726" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="16753:16897" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="16924:17068" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="17095:17239" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="17266:17410" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="17437:17581" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="17609:17755" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="17782:17927" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="17954:18099" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="18126:18272" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="18299:18445" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="18472:18620" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="18647:18795" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="18822:18970" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="18997:19145" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="19172:19320" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="19347:19495" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="19522:19674" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="19701:19860" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="19887:20031" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="20058:20198" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="20225:20365" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="20392:20532" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="20559:20699" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="20726:20870" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="20898:21044" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="21071:21217" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="21244:21388" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="21415:21559" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="21586:21730" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="21757:21895" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="21922:22060" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="22087:22235" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="22262:22410" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="22437:22585" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="22612:22756" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="22783:22927" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="22954:23098" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="23125:23269" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="23296:23440" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="23467:23611" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="23638:23782" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="23809:23953" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="23980:24124" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="24151:24295" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="24323:24464" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="24491:24630" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="24657:24796" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="24823:24962" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="24989:25124" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="25151:25286" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="25313:25458" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="25485:25630" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="25657:25802" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="25829:25974" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="26001:26146" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="26173:26318" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="26345:26490" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="26517:26662" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="26689:26834" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="26861:27006" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="27033:27178" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="27205:27350" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="27377:27522" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="27549:27694" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="27721:27861" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="27889:28035" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="28062:28203" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="28230:28369" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="28396:28545" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="28572:28721" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="28748:28897" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="28924:29073" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="29100:29249" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="29276:29425" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="29452:29597" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="29624:29763" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="29790:29935" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="29962:30107" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="30134:30279" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="30306:30451" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="30479:30632" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="30659:30804" ph="INSERT INTO carriere_joueur... " />
-            <marker date="1498032658329" expanded="true" signature="30831:30976" ph="INSERT INTO carriere_joueur... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1117,10 +762,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <marker date="1497965076094" expanded="true" signature="585:904" ph="ALTER TABLE joueur... " />
-            <marker date="1497965076094" expanded="true" signature="1258:1403" ph="ALTER TABLE joueur... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1136,26 +778,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" column="84" lean-forward="false" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="84" />
-          <folding>
-            <element signature="e#638#646#0#Twig" expanded="false" />
-            <element signature="e#1138#1144#0#Twig" expanded="false" />
-            <element signature="e#1229#1241#0#Twig" expanded="false" />
-            <element signature="e#1670#1678#0#Twig" expanded="false" />
-            <element signature="e#1773#1781#0#Twig" expanded="false" />
-            <element signature="e#1869#1877#0#Twig" expanded="false" />
-            <element signature="e#1965#1973#0#Twig" expanded="false" />
-            <element signature="e#2420#2432#0#Twig" expanded="false" />
-            <element signature="e#2531#2543#0#Twig" expanded="false" />
-            <element signature="e#2642#2654#0#Twig" expanded="false" />
-            <element signature="e#2742#2754#0#Twig" expanded="false" />
-            <element signature="e#2842#2854#0#Twig" expanded="false" />
-            <element signature="e#2982#2989#0#Twig" expanded="false" />
-            <element signature="e#3536#3557#0#Twig" expanded="false" />
-            <element signature="e#3742#3764#0#Twig" expanded="false" />
-            <element signature="e#3922#3946#0#Twig" expanded="false" />
-            <element signature="e#4151#4174#0#Twig" expanded="false" />
-            <element signature="e#4291#4314#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1163,7 +785,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1171,35 +792,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="21" column="49" lean-forward="false" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/default/effectif.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="36" column="27" lean-forward="false" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="27" />
-          <folding>
-            <element signature="e#736#743#0#Twig" expanded="false" />
-            <element signature="e#1633#1640#0#Twig" expanded="false" />
-            <element signature="e#2535#2542#0#Twig" expanded="false" />
-            <element signature="e#3425#3432#0#Twig" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="54" lean-forward="false" selection-start-line="24" selection-start-column="54" selection-end-line="24" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="17" lean-forward="false" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1233,17 +825,7 @@
         <state relative-caret-position="238">
           <caret line="14" column="48" lean-forward="false" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
           <folding>
-            <element signature="e#36#79#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/default/profil.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="49" lean-forward="false" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="49" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
+            <element signature="e#36#79#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1252,7 +834,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1272,10 +853,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Joueur.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2448">
+          <caret line="145" column="29" lean-forward="false" selection-start-line="145" selection-start-column="29" selection-end-line="145" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Admin/JoueurAdmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="69" column="77" lean-forward="false" selection-start-line="69" selection-start-column="77" selection-end-line="69" selection-end-column="77" />
+          <folding>
+            <element signature="e#34#70#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="49" column="26" lean-forward="false" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
+        <state relative-caret-position="306">
+          <caret line="25" column="17" lean-forward="false" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1288,21 +895,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Joueur.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="145" column="47" lean-forward="false" selection-start-line="145" selection-start-column="47" selection-end-line="145" selection-end-column="47" />
+        <state relative-caret-position="272">
+          <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Admin/JoueurAdmin.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/default/effectif.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="44" column="20" lean-forward="true" selection-start-line="44" selection-start-column="20" selection-end-line="46" selection-end-column="22" />
-          <folding>
-            <element signature="e#34#70#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="-828">
+          <caret line="36" column="27" lean-forward="false" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/default/statistiques.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="10" column="46" lean-forward="false" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/default/profil.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="47" lean-forward="false" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="171" column="18" lean-forward="false" selection-start-line="171" selection-start-column="18" selection-end-line="171" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>

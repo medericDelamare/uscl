@@ -166,3 +166,18 @@ body>ol {
     width:100%;
     max-height: 400px !important;
 }
+
+@media (min-width: 768px) {
+    .my-custom-container{
+        width:100%;
+    }}
+
+@media (min-width: 992px) {
+    .my-custom-container{
+        width:100%;
+    }}
+
+@media (min-width: 1200px) {
+    .my-custom-container{
+        width:100%;
+    }}
