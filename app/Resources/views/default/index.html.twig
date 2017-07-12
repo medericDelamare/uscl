@@ -1,47 +1,85 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-        <header id="myCarousel" class="carousel slide">
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-
-            <div class="carousel-inner">
-                <div class="item active">
-                    <div class="fill" style="background-image:url({{ asset('pictures/slide4.jpg') }});"></div>
-                </div>
-                <div class="item">
-                    <div class="fill" style="background-image:url({{ asset('pictures/slide2.jpg') }});"></div>
-                </div>
-                <div class="item">
-                    <div class="fill" style="background-image:url({{ asset('pictures/slide3.jpg') }});"></div>
+    <header class="business-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="tagline">Union Sportive Cormeilles Lieurey</h1>
                 </div>
             </div>
+        </div>
+    </header>
+    <div class="container">
+        <h1 class="page-header">Bienvenue sur le site de l'USCL</h1>
+        <h2 class="page-header">Quelques chiffres</h2>
 
-            <!-- Controls -->
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                <span class="icon-prev"></span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                <span class="icon-next"></span>
-            </a>
-        </header>
-
-
-            {#<div class="col-md-5">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">Planning des entrînements & des matchs</div>
-                            <div class="panel-body">
-                                <div id='calendar'></div>
-                            </div>
-                        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-line-chart" aria-hidden="true"></i> Evolution du nombre de licenciés</h4>
+                    </div>
+                    <div class="panel-body">
+                        <canvas id="myChart"></canvas>
                     </div>
                 </div>
             </div>
-        </div>#}
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-users" aria-hidden="true"></i> Nombre d'équipes</h4>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item justify-content-between">
+                                Vétérans
+                                <span class="badge badge-primary badge-pill">1</span>
+                            </li>
+                            <li class="list-group-item justify-content-between">
+                                Seniors
+                                <span class="badge badge-primary badge-pill">2</span>
+                            </li>
+                            <li class="list-group-item justify-content-between">
+                                U18
+                                <span class="badge badge-primary badge-pill">1</span>
+                            </li>
+                            <li class="list-group-item justify-content-between">
+                                U15
+                                <span class="badge badge-primary badge-pill">1</span>
+                            </li>
+                            <li class="list-group-item justify-content-between">
+                                U13
+                                <span class="badge badge-primary badge-pill">2</span>
+                            </li>
+                            <li class="list-group-item justify-content-between">
+                                U11
+                                <span class="badge badge-primary badge-pill">2</span>
+                            </li>
+                            <li class="list-group-item justify-content-between">
+                                U9
+                                <span class="badge badge-primary badge-pill">4</span>
+                            </li>
+                            <li class="list-group-item justify-content-between">
+                                U7
+                                <span class="badge badge-primary badge-pill">4</span>
+                            </li>
+                        </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-calendar" aria-hidden="true"></i> Calendrier des entraînements </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div id='calendar'></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block javascripts %}
     <script src="{{ asset('vendor/jquery/src/fotorama.js') }}"></script>
@@ -49,38 +87,75 @@
     <script src='{{ asset('vendor/fullcalendar/dist/fullcalendar.js') }}'></script>
     <script src='{{ asset('vendor/fullcalendar/dist/locale/fr.js') }}'></script>
     <script>
+        var ctx = document.getElementById("myChart").getContext('2d');
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['10/11','11/12','12/13','13/14','14/15','15/16','16/17'],
+                datasets: [{
+                    data: [143,131,149,157,191,208,231],
+                    borderWidth: 2,
+                    backgroundColor: [],
+                    lineTension: 0.1,
+                    fill: false,
+                    borderColor: "rgb(58, 83, 155)"
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Position'
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Année'
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    <script>
         $(document).ready(function() {
             $('#calendar').fullCalendar({
                 header: false,
-                columnFormat: 'dddd',
+                columnFormat: 'dd',
                 allDaySlot: false,
                 defaultView: 'agendaWeek',
-                minTime: '12:00:00',
+                minTime: '14:00:00',
                 maxTime: '21:00:00',
-                events: [ // values will be coming from an ajax call so I'm just placing here what inputs I would like
+                weekends:false,
+                events: [
                     {
-                        title:"Entraînement Seniors",
                         start: '19:00',
                         end: '21:00',
                         dow: [ 3,5 ],
                         backgroundColor: '#ff0000'
                     },
                     {
-                        title:"Entraînement U7/U9 Cormeilles",
+                        title:"U7/U9",
                         start: '14:00',
                         end: '15:30',
                         dow: [ 3 ],
                         backgroundColor: '#5472AE'
                     },
                     {
-                        title:"Entraînement U11",
+                        title:"U11",
                         start: '15:30',
                         end: '17:00',
                         dow: [ 3 ],
                         backgroundColor: '#4CA66B'
                     },
                     {
-                        title:"Entraînement U13/U15",
+                        title:"U13/U15",
                         start: '17:00',
                         end: '19:00',
                         dow: [ 3 ],
