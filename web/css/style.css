@@ -7,9 +7,6 @@ body {
     padding: 0;
 }
 
-body>ol {
-    margin-top: 50px;
-}
 
 .stats{
     font-size: 30px;
@@ -181,8 +178,6 @@ body {
     padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
-/* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
-
 .business-header {
     height: 400px;
     background: url('../pictures/test.jpg') center center no-repeat scroll;
@@ -192,8 +187,6 @@ body {
     -o-background-size: cover;
 }
 
-/* Customize the text color and shadow color and to optimize text legibility. */
-
 .tagline {
     text-shadow: 0 0 10px #000;
     color: #fff;
@@ -201,4 +194,43 @@ body {
 
 .img-center {
     margin: 0 auto;
+}
+
+@media(max-width:991px) {
+    .customer-img,
+    .img-related {
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width:767px) {
+    .img-portfolio {
+        margin-bottom: 15px;
+    }
+
+    header.carousel .carousel {
+        height: 70%;
+    }
+}
+
+.img-portfolio {
+    margin-bottom: 30px;
+}
+
+.img-hover:hover {
+    opacity: 0.8;
+}
+
+.navbar-inverse {
+    background-color: #3A539B;
+    border-color: #080808;
+}
+
+.navbar-inverse .navbar-nav>li>a
+{
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
 }
