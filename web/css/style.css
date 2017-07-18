@@ -234,3 +234,7 @@ body {
 .navbar-inverse .navbar-brand {
     color: #ffffff;
 }
+
+.fc-content .fc-time{
+    display : none;
+}
