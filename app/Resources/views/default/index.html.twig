@@ -55,31 +55,31 @@
                             </li>
                             <li class="list-group-item justify-content-between">
                                 Seniors
-                                <span class="badge badge-primary badge-pill">2</span>
+                                <span class="badge badge-seniors badge-pill">2</span>
                             </li>
                             <li class="list-group-item justify-content-between">
                                 U18
-                                <span class="badge badge-primary badge-pill">1</span>
+                                <span class="badge badge-U18 badge-pill">1</span>
                             </li>
                             <li class="list-group-item justify-content-between">
                                 U15
-                                <span class="badge badge-primary badge-pill">1</span>
+                                <span class="badge badge-U15 badge-pill">1</span>
                             </li>
                             <li class="list-group-item justify-content-between">
                                 U13
-                                <span class="badge badge-primary badge-pill">2</span>
+                                <span class="badge badge-U13 badge-pill">2</span>
                             </li>
                             <li class="list-group-item justify-content-between">
                                 U11
-                                <span class="badge badge-primary badge-pill">2</span>
+                                <span class="badge badge-U11 badge-pill">2</span>
                             </li>
                             <li class="list-group-item justify-content-between">
                                 U9
-                                <span class="badge badge-primary badge-pill">4</span>
+                                <span class="badge badge-U9 badge-pill">4</span>
                             </li>
                             <li class="list-group-item justify-content-between">
                                 U7
-                                <span class="badge badge-primary badge-pill">4</span>
+                                <span class="badge badge-U7 badge-pill">4</span>
                             </li>
                         </ul>
                         </p>
@@ -93,6 +93,13 @@
                     </div>
                     <div class="panel-body">
                         <div id='calendar'></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div>
+                                <button class="btn col-md-4">Seniors</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -219,13 +226,13 @@
                     yAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'Position'
+                            labelString: 'Quantité'
                         }
                     }],
                     xAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'Année'
+                            labelString: 'Années'
                         }
                     }]
                 }
@@ -235,6 +242,10 @@
     <script>
         $(document).ready(function() {
             $('#calendar').fullCalendar({
+                /*eventClick: function(calEvent, jsEvent, view) {
+                    $(".modal-title").text('test');
+                    $("#myModal").modal()
+                },*/
                 header: false,
                 columnFormat: 'dd',
                 allDaySlot: false,
@@ -242,33 +253,55 @@
                 minTime: '14:00:00',
                 maxTime: '21:00:00',
                 weekends:false,
+                height: 'auto',
                 events: [
                     {
                         start: '19:00',
                         end: '21:00',
-                        dow: [ 3,5 ],
+                        dow: [ 1,4 ],
                         backgroundColor: '#ff0000'
                     },
                     {
-                        title:"U7/U9",
-                        start: '14:00',
-                        end: '15:30',
-                        dow: [ 3 ],
+                        start: '19:00',
+                        end: '21:00',
+                        dow: [ 2,5 ],
                         backgroundColor: '#5472AE'
                     },
                     {
-                        title:"U11",
-                        start: '15:30',
-                        end: '17:00',
-                        dow: [ 3 ],
+                        start: '17:00',
+                        end: '19:00',
+                        dow: [ 2,3 ],
                         backgroundColor: '#4CA66B'
                     },
                     {
-                        title:"U13/U15",
                         start: '17:00',
                         end: '19:00',
                         dow: [ 3 ],
                         backgroundColor: '#008B8B'
+                    },
+                    {
+                        start: '17:30',
+                        end: '19:00',
+                        dow: [ 5 ],
+                        backgroundColor: '#008B8B'
+                    },
+                    {
+                        start: '17:30',
+                        end: '19:00',
+                        dow: [ 1 ],
+                        backgroundColor: '#A9A9A9'
+                    },
+                    {
+                        start: '15:30',
+                        end: '17:00',
+                        dow: [ 3 ],
+                        backgroundColor: '#A9A9A9'
+                    },
+                    {
+                        start: '14:00',
+                        end: '15:30',
+                        dow: [ 3 ],
+                        backgroundColor: '#EE82EE'
                     }
                 ]
             });

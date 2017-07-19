@@ -26,8 +26,9 @@
                         <div class="row"><i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Adresse : </strong>{{ joueur.ville }}</div>
                         <div class="row"><i class="fa fa-futbol-o" aria-hidden="true"></i> <strong>Poste : </strong>{{ joueur.poste }}</div>
                         <div class="row"><i class="fa fa-sort-numeric-desc" aria-hidden="true"></i> <strong>Numéro : </strong>{{ joueur.numero }}</div>
-                        <div class="row"><i class="fa fa-mobile" aria-hidden="true"></i> <strong>Téléphone : </strong>{{ joueur.mobile }}</div>
+
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <div class="row"><i class="fa fa-mobile" aria-hidden="true"></i> <strong>Téléphone : </strong>{{ joueur.mobile }}</div>
                             <div class="row"><i class="fa fa-address-card" aria-hidden="true"></i> <strong>Licence : </strong> {{ joueur.numeroLicence }}</div>
                             <div class="row"><i class="fa fa-envelope" aria-hidden="true"></i> <strong>Mail : </strong>	{{ joueur.mail }}</div>
                         {% endif %}
@@ -81,11 +82,11 @@
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: saisons,
+            labels: saisons.reverse(),
             datasets: [{
                 spanGaps: true,
                 label: 'Buts',
-                data: buts,
+                data: buts.reverse(),
                 borderWidth: 2,
                 backgroundColor: [],
                 lineTension: 0.1,
@@ -93,7 +94,7 @@
                 borderColor: "rgb(58, 83, 155)"
             },{
                 label: 'Passes Décisisves',
-                data: passes,
+                data: passes.reverse(),
                 borderWidth: 2,
                 backgroundColor: [],
                 lineTension: 0.1,
@@ -101,7 +102,7 @@
                 borderColor: "rgb(38, 196, 236)"
             },{
                 label: 'Cartons Jaunes',
-                data: cartonsJ,
+                data: cartonsJ.reverse(),
                 borderWidth: 2,
                 backgroundColor: [],
                 lineTension: 0.1,
@@ -109,7 +110,7 @@
                 borderColor: "rgb(255,255,0)"
             },{
                 label: 'Cartons Rouges',
-                data: cartonsR,
+                data: cartonsR.reverse(),
                 borderWidth: 2,
                 backgroundColor: [],
                 lineTension: 0.1,
