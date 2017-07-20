@@ -5,6 +5,8 @@ body {
     min-height: 100%;
     margin: 0;
     padding: 0;
+    padding-top: 50px;
+    position: relative;
 }
 
 
@@ -27,6 +29,7 @@ body {
     height: auto;
     padding-bottom: 30px;
     position: relative;
+    bottom: 0;
     width: 100%;
     border-bottom: 1px solid #CCCCCC;
     border-top: 1px solid #DDDDDD;
@@ -173,10 +176,6 @@ body {
     .my-custom-container{
         width:100%;
     }}
-
-body {
-    padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-}
 
 .business-header {
     height: 400px;
