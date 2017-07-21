@@ -274,6 +274,13 @@ body {
     width: 100%;
     padding-bottom: 15px;
 }
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.slide-image {
+    width: 100%;
+}
 
 .carousel-holder {
     margin-bottom: 30px;
