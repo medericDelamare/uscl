@@ -270,10 +270,6 @@ body {
     background-color: #EE82EE;
 }
 
-body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-}
-
 .slide-image {
     width: 100%;
     padding-bottom: 15px;
@@ -314,4 +310,14 @@ body {
 .thumbnail .caption-full {
     padding: 9px;
     color: #333;
+}
+
+.panel-uscl{
+    border-color: #3A539B;
+}
+
+.panel-uscl>.panel-heading {
+    color: #fff;
+    background-color: #3A539B;
+    border-color: #3A539B;
 }
