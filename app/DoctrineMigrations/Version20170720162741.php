@@ -15,6 +15,9 @@ class Version20170720162741 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
+        $this->addSql('DELETE FROM carriere_joueur WHERE carriere_joueur.joueur_id = 11');
+        $this->addSql('DELETE FROM carriere_joueur WHERE carriere_joueur.joueur_id = 15');
+        $this->addSql('DELETE FROM carriere_joueur WHERE carriere_joueur.joueur_id = 24');
         $this->addSql('DELETE FROM joueur WHERE joueur.id = 11');
         $this->addSql('DELETE FROM joueur WHERE joueur.id = 15');
         $this->addSql('DELETE FROM joueur WHERE joueur.id = 24');
