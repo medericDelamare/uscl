@@ -21,9 +21,10 @@ class StatsAController extends Controller
     {
         switch ($category){
             case 'senior-A':
-                $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?sa_no=2016&cp_no=328937&ph_no=1&gp_no=1');
-                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=328937&ph_no=1&gp_no=1');
-                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=328937&ph_no=1&gp_no=1&sa_no=2016&typ_rech=equipe&cl_no=104246&eq_no=1&type_match=deux&lieu_match=deux');
+                $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?sa_no=2017&cp_no=339167&ph_no=1&gp_no=1');
+                $agenda = $this->getAgenda('http://eure.fff.fr/competitions/php/championnat/championnat_agenda.php?sa_no=2017&cp_no=339167&ph_no=1&gp_no=1');
+                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2017&cp_no=339167&ph_no=1&gp_no=1');
+                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=339167&ph_no=1&gp_no=1&sa_no=2017&typ_rech=equipe&cl_no=104246&eq_no=1&type_match=deux&lieu_match=deux');
                 $categ = 'Senior A';
                 break;
             case 'senior-B':
@@ -61,6 +62,7 @@ class StatsAController extends Controller
 
 
         return $this->render(':default:statistiques.html.twig', [
+            'agendas' => $agenda,
             'resultats' => $resultats,
             'classement' => $classement,
             'calendrier' => $calendrier,
@@ -69,6 +71,60 @@ class StatsAController extends Controller
             'points' => $points,
             'positions' => $positions
         ]);
+    }
+
+    private function getAgenda($html){
+        $ch = curl_init();
+
+
+        curl_setopt($ch, CURLOPT_URL, $html);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_NOBODY, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+
+        curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.7.12) Gecko/20050915 Firefox/1.0.7");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_REFERER, $_SERVER['REQUEST_URI']);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
+
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_exec($ch);
+
+        $html = curl_exec($ch);
+
+        curl_close($ch);
+
+        $crawler = new Crawler($html);
+
+        $crawler->filter('.resultatmatch');
+
+        $resultats = [];
+
+        $refpop = $crawler->filter('#refpop');
+        $date = $refpop->filter('h3')->first()->text();
+
+        for ($i = 0; $i < $crawler->filter('.resultatmatch')->count(); $i++) {
+            $craw = $crawler->filter('.resultatmatch')->eq($i);
+
+            if ($craw->filter('.matchLink')->count() == 2){
+                $equipe1 = $craw->filter('.matchLink')->eq(0)->text();
+                $equipe2 = $craw->filter('.matchLink')->eq(1)->text();
+            } else{
+                $equipe1 = $craw->filter('.matchLink')->eq(0)->text();
+                $equipe2 = 'Exempt';
+            }
+            $score = $craw->filter('.score')->first()->text();
+
+            $resultats[] = [
+                'equipe1' => $equipe1,
+                'equipe2' => $equipe2,
+                'score' => $score,
+                'date' => $date,
+            ];
+        }
+
+        return $resultats;
     }
 
     private function getCalendrier($html){
@@ -109,10 +165,12 @@ class StatsAController extends Controller
                 $equipe2 = 'Exempt';
             }
             $score = $craw->filter('.score')->first()->text();
+            $date = $craw->filter('.dat')->first()->text();
             $resultats[] = [
                 'equipe1' => $equipe1,
                 'equipe2' => $equipe2,
-                'score' => $score
+                'score' => $score,
+                'date' => $date
             ];
         }
 
@@ -221,10 +279,12 @@ class StatsAController extends Controller
             }
 
             $score = $craw->filter('.score')->first()->text();
+            $date = $craw->filter('.dat')->first()->text();
             $resultats[] = [
                 'equipe1' => $equipe1,
                 'equipe2' => $equipe2,
-                'score' => $score
+                'score' => $score,
+                'date' => $date
             ];
         }
 

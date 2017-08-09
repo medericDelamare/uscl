@@ -8,7 +8,7 @@
 <div class="container my-custom-container">
     <h1 class="page-header">Statistiques {{ categorie }} <small>1<sup>ère</sup> Division Groupe A</small></h1>
     <div class="row">
-        <div class="col-md-offset-1 col-md-4">
+        <div class="col-sm-4 col-sm-offset-1">
             <h2 class="page-header">Classement</h2>
             <table class="resultats table table-condensed">
                 <thead>
@@ -39,7 +39,6 @@
                         <td>{{ detail['butsContre'] }}</td>
                         <td>{{ detail['penalites'] }}</td>
                         <td>{{ detail['differences'] }}</td>
-
                     </tr>
                 {% endfor %}
             </table>
@@ -50,9 +49,12 @@
             <table class="resultats table table-condensed">
                 {% for resultat in resultats %}
                     <tr>
-                        <td>{{ resultat['equipe1'] }}</td>
-                        <td>{{ resultat['score'] }}</td>
-                        <td>{{ resultat['equipe2'] }}</td>
+                        <td class="text-center">{{ resultat['equipe1'] }}</td>
+                        <td class="text-center">{{ resultat['score'] }}</td>
+                        <td class="text-center">{{ resultat['equipe2'] }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="tr-date text-center"><small><em>{{ resultat['date'] }}</em></small></td>
                     </tr>
                 {% endfor %}
             </table>
@@ -60,27 +62,104 @@
     </div>
     <div class="row">
         <div class="col-sm-4 col-sm-offset-1">
-            <h2 class="page-header">Calendrier</h2>
-            <table class="resultats table table-condensed">
-                {% for calendrierInfos in calendrier %}
+            <h2 class="page-header">Agenda</h2>
+            <table class="agenda table table-condensed">
+                {% for agenda in agendas%}
                     <tr>
-                        <td>{{ calendrierInfos['equipe1'] }}</td>
-                        <td>{{ calendrierInfos['score'] }}</td>
-                        <td>{{ calendrierInfos['equipe2'] }}</td>
+                        <td class="text-center">{{ agenda['equipe1'] }}</td>
+                        <td class="text-center">{{ agenda['score'] }}</td>
+                        <td class="text-center">{{ agenda['equipe2'] }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="tr-date text-center"><small><em>{{ agenda['date'] }}</em></small></td>
                     </tr>
                 {% endfor %}
             </table>
         </div>
         <div class="col-sm-4 col-sm-offset-2">
-            <h2 class="page-header">Évolution du classement final selon les années</h2>
-            <canvas id="myChart"></canvas>
+            <h2 class="page-header">Calendrier</h2>
+            <table class="calendrier table table-condensed">
+                {% for calendrierInfos in calendrier %}
+                    <tr>
+                        <td class="text-center">{{ calendrierInfos['equipe1'] }}</td>
+                        <td class="text-center">{{ calendrierInfos['score'] }}</td>
+                        <td class="text-center">{{ calendrierInfos['equipe2'] }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="tr-date text-center"><small><em>{{ calendrierInfos['date'] }}</em></small></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-1">
+                <h2 class="page-header">Évolution du classement final selon les années</h2>
+                <canvas id="myChart"></canvas>
+            </div>
         </div>
     </div>
 </div>
 {% endblock %}
 
 {% block javascripts %}
-<script>
+    <script type="text/javascript">
+        $(".classement td").each(function() {
+            if($(this).html() == "Corm.Lieurey Us"){
+                $(this).parent().addClass("info");
+                $(this).parent().css("font-weight","bold");
+            }
+        });
+
+        $(".resultats td").each(function() {
+            if($(this).html() == "Corm.Lieurey Us"){
+                $(this).parent().addClass("info");
+                $(this).parent().css("font-weight","bold");
+            }
+        });
+
+        $(".agenda td").each(function() {
+            if($(this).html() == "Corm.Lieurey Us"){
+                $(this).parent().addClass("info");
+                $(this).parent().css("font-weight","bold");
+            }
+        });
+
+        $(".calendrier > tbody > tr").each(function(){
+
+            var string = $('.score > strong', this).html();
+            if(string != null)
+            {
+                var res = string.split(" ");
+
+                if (res[0] == res[2]) {
+                    $(this).addClass('warning');
+                };
+
+                if ($('.text-left', this).html() == 'Corm.Lieurey Us' && res[0] > res[2]) {
+                    $(this).addClass('success');
+                };
+
+                if ($('.text-left', this).html() == 'Corm.Lieurey Us' && res[0] < res[2]) {
+                    $(this).addClass('danger');
+                };
+
+                if ($('.text-right', this).html() == 'Corm.Lieurey Us' && res[0] < res[2]) {
+                    $(this).addClass('success');
+                };
+
+                if ($('.text-right', this).html() == 'Corm.Lieurey Us' && res[0] > res[2]) {
+                    $(this).addClass('danger');
+                };
+            }
+
+        });
+
+        $( ".classement > tbody > tr:nth-child(2)" ).addClass("success");
+        $( ".classement > tbody > tr:nth-child(3)" ).addClass("success");
+        $( ".classement > tbody > tr:nth-child(13)" ).addClass("danger");
+    </script>
+
+    <script>
     var ctx = document.getElementById("myChart").getContext('2d');
 
     var positions = {{ positions|json_encode() }};

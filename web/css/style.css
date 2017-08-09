@@ -273,10 +273,10 @@ body {
 .slide-image {
     width: 100%;
     padding-bottom: 15px;
-}
+}/*
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-}
+    padding-top: 70px; !* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. *!
+}*/
 
 .slide-image {
     width: 100%;
@@ -327,4 +327,8 @@ body {
     color: #fff;
     background-color: #3A539B;
     border-color: #3A539B;
+}
+
+.tr-date{
+    border: none;
 }
