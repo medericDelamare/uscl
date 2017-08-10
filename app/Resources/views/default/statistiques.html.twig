@@ -49,12 +49,10 @@
             <table class="resultats table table-condensed">
                 {% for resultat in resultats %}
                     <tr>
+                        <td colspan="3" class="tr-date text-center"><small><em>{{ resultat['date'] }}</em></small></td>
                         <td class="text-center">{{ resultat['equipe1'] }}</td>
                         <td class="text-center">{{ resultat['score'] }}</td>
                         <td class="text-center">{{ resultat['equipe2'] }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="tr-date text-center"><small><em>{{ resultat['date'] }}</em></small></td>
                     </tr>
                 {% endfor %}
             </table>
@@ -66,12 +64,10 @@
             <table class="agenda table table-condensed">
                 {% for agenda in agendas%}
                     <tr>
+                        <td colspan="3" class="tr-date text-center"><small><em>{{ agenda['date'] }}</em></small></td>
                         <td class="text-center">{{ agenda['equipe1'] }}</td>
                         <td class="text-center">{{ agenda['score'] }}</td>
                         <td class="text-center">{{ agenda['equipe2'] }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="tr-date text-center"><small><em>{{ agenda['date'] }}</em></small></td>
                     </tr>
                 {% endfor %}
             </table>
@@ -81,7 +77,7 @@
             <table class="calendrier table table-condensed">
                 {% for calendrierInfos in calendrier %}
                     <tr>
-                        <td>{{ calendrierInfos['date'] }}</td>
+                        <td colspan="3" class="tr-date text-center"><small><em>{{ calendrierInfos['date'] }}</em></small></td>
                         <td class="text-center">{{ calendrierInfos['equipe1'] }}</td>
                         <td class="text-center">{{ calendrierInfos['score'] }}</td>
                         <td class="text-center">{{ calendrierInfos['equipe2'] }}</td>

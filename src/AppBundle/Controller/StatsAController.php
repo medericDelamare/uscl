@@ -28,9 +28,10 @@ class StatsAController extends Controller
                 $categ = 'Senior A';
                 break;
             case 'senior-B':
-                $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?cp_no=328938&ph_no=1&sa_no=&gp_no=3');
-                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=328938&ph_no=1&gp_no=3');
-                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=328938&ph_no=1&gp_no=3&sa_no=2016&typ_rech=equipe&cl_no=104246&eq_no=2&type_match=deux&lieu_match=deux');
+                $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?cp_no=339168&ph_no=1&sa_no=&gp_no=3');
+                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2017&cp_no=339168&ph_no=1&gp_no=3');
+                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=339168&ph_no=1&gp_no=3&sa_no=2017&typ_rech=equipe&cl_no=104246&eq_no=2&type_match=deux&lieu_match=deux');
+                $agenda = $this->getAgenda('http://eure.fff.fr/competitions/php/championnat/championnat_agenda.php?sa_no=2017&cp_no=339168&ph_no=1&gp_no=3');
                 $categ = 'Senior B';
                 break;
             case 'U18':
@@ -102,7 +103,7 @@ class StatsAController extends Controller
         $resultats = [];
 
         $refpop = $crawler->filter('#refpop');
-        $date = $refpop->filter('h3')->first()->text();
+        $date = $this->convertDate($refpop->filter('h3')->first()->text());
 
         for ($i = 0; $i < $crawler->filter('.resultatmatch')->count(); $i++) {
             $craw = $crawler->filter('.resultatmatch')->eq($i);
@@ -279,7 +280,7 @@ class StatsAController extends Controller
             }
 
             $score = $craw->filter('.score')->first()->text();
-            $date = $craw->filter('.dat')->first()->text();
+            $date = $this->convertDate($craw->filter('.dat')->first()->text());
             $resultats[] = [
                 'equipe1' => $equipe1,
                 'equipe2' => $equipe2,
