@@ -81,12 +81,10 @@
             <table class="calendrier table table-condensed">
                 {% for calendrierInfos in calendrier %}
                     <tr>
+                        <td>{{ calendrierInfos['date'] }}</td>
                         <td class="text-center">{{ calendrierInfos['equipe1'] }}</td>
                         <td class="text-center">{{ calendrierInfos['score'] }}</td>
                         <td class="text-center">{{ calendrierInfos['equipe2'] }}</td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" class="tr-date text-center"><small><em>{{ calendrierInfos['date'] }}</em></small></td>
                     </tr>
                 {% endfor %}
             </table>

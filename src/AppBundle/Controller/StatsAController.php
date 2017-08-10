@@ -165,7 +165,7 @@ class StatsAController extends Controller
                 $equipe2 = 'Exempt';
             }
             $score = $craw->filter('.score')->first()->text();
-            $date = $craw->filter('.dat')->first()->text();
+            $date = $this->convertDate($craw->filter('.dat')->first()->text());
             $resultats[] = [
                 'equipe1' => $equipe1,
                 'equipe2' => $equipe2,
@@ -289,6 +289,54 @@ class StatsAController extends Controller
         }
 
         return $resultats;
+    }
+
+    public function convertDate($date){
+        $dateRegex = preg_replace('(\s+)', ' ', $date);
+        $dateSplit = explode(' ',$dateRegex);
+
+        switch (strtolower($dateSplit[2])){
+            case 'janvier':
+                $dateSplit[2] = "01";
+                break;
+            case 'fevrier':
+            case 'février':
+                $dateSplit[2] = "02";
+                break;
+            case 'mars':
+                $dateSplit[2] = "03";
+                break;
+            case 'avril':
+                $dateSplit[2] = "04";
+                break;
+            case 'mai':
+                $dateSplit[2] = "05";
+                break;
+            case 'juin':
+                $dateSplit[2] = "06";
+                break;
+            case 'jullet':
+                $dateSplit[2] = "07";
+                break;
+            case 'aout':
+            case 'août':
+                $dateSplit[2] = "08";
+                break;
+            case 'septembre':
+                $dateSplit[2] = "09";
+                break;
+            case 'octobre':
+                $dateSplit[2] = "10";
+                break;
+            case 'novembre':
+                $dateSplit[2] = "11";
+                break;
+            case 'decembre':
+            case 'décembre':
+                $dateSplit[2] = "12";
+                break;
+        }
+        return $dateSplit[1] . "/" . $dateSplit[2] . "/" . $dateSplit[3];
     }
 }
 
