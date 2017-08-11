@@ -221,7 +221,7 @@ body {
 }
 
 .navbar-inverse {
-    background-color: #3A539B;
+    background-color: #0050A1;
     border-color: #080808;
 }
 
@@ -320,15 +320,19 @@ body {
 }
 
 .panel-uscl{
-    border-color: #3A539B;
+    border-color: #0050A1;
 }
 
 .panel-uscl>.panel-heading {
     color: #fff;
-    background-color: #3A539B;
-    border-color: #3A539B;
+    background-color: #0050A1;
+    border-color: #0050A1;
 }
 
 .tr-date{
     border: none;
+}
+
+.uscl-ighlighting{
+    background-color: rgba(0,80,161,0.5);
 }

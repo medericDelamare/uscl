@@ -76,11 +76,11 @@
             <h2 class="page-header">Calendrier</h2>
             <table class="calendrier table table-condensed">
                 {% for calendrierInfos in calendrier %}
-                    <tr>
-                        <td colspan="3" class="tr-date text-center"><small><em>{{ calendrierInfos['date'] }}</em></small></td>
-                        <td class="text-center">{{ calendrierInfos['equipe1'] }}</td>
-                        <td class="text-center">{{ calendrierInfos['score'] }}</td>
-                        <td class="text-center">{{ calendrierInfos['equipe2'] }}</td>
+                    <tr class="text-center">
+                        <td colspan="3" class="tr-date"><small><em>{{ calendrierInfos['date'] }}</em></small></td>
+                        <td >{{ calendrierInfos['equipe1'] }}</td>
+                        <td >{{ calendrierInfos['score'] }}</td>
+                        <td >{{ calendrierInfos['equipe2'] }}</td>
                     </tr>
                 {% endfor %}
             </table>
@@ -99,22 +99,28 @@
     <script type="text/javascript">
         $(".classement td").each(function() {
             if($(this).html() == "Corm.Lieurey Us"){
-                $(this).parent().addClass("info");
+                $(this).parent().addClass("uscl-ighlighting");
                 $(this).parent().css("font-weight","bold");
             }
         });
 
         $(".resultats td").each(function() {
             if($(this).html() == "Corm.Lieurey Us"){
-                $(this).parent().addClass("info");
+                $(this).parent().addClass("uscl-ighlighting");
                 $(this).parent().css("font-weight","bold");
             }
         });
 
         $(".agenda td").each(function() {
             if($(this).html() == "Corm.Lieurey Us"){
-                $(this).parent().addClass("info");
+                $(this).parent().addClass("uscl-ighlighting");
                 $(this).parent().css("font-weight","bold");
+            }
+        });
+
+        $(".calendrier td").each(function() {
+            if($(this).html() == "Corm.Lieurey Us"){
+                $(this).css("font-weight","bold");
             }
         });
 
@@ -123,6 +129,10 @@
             var string = $('.score > strong', this).html();
             if(string != null)
             {
+                if ($('.text-left', this).html() == 'Corm.Lieurey Us') {
+                    $(this).addClass('success');
+                };
+
                 var res = string.split(" ");
 
                 if (res[0] == res[2]) {
