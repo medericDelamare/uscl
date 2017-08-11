@@ -3,7 +3,7 @@ services:
             class: AppBundle\Admin\JoueurAdmin
             arguments: [~, AppBundle\Entity\Joueur, ~]
             tags:
-                - { name: sonata.admin, manager_type: orm, label: Joueurs}
+                - { name: sonata.admin, manager_type: orm, label: Joueurs, group: "joueurs"}
             calls:
                 - [ setKernel, ["@kernel"]]
 
@@ -11,16 +11,16 @@ services:
             class: AppBundle\Admin\ClubAdmin
             arguments: [~, AppBundle\Entity\Club, ~]
             tags:
-                - { name: sonata.admin, manager_type: orm, label: Club}
+                - { name: sonata.admin, manager_type: orm, label: Club, group: "club"}
 
     admin.dirigeant:
             class: AppBundle\Admin\DirigeantAdmin
             arguments: [~, AppBundle\Entity\Dirigeant, ~]
             tags:
-                - { name: sonata.admin, manager_type: orm, label: Dirigeants}
+                - { name: sonata.admin, manager_type: orm, label: Dirigeants, group: "club"}
 
     admin.carriere:
             class: AppBundle\Admin\CarriereAdmin
             arguments: [~, AppBundle\Entity\CarriereJoueur, ~]
             tags:
-                - { name: sonata.admin, manager_type: orm, label: Carriere}
+                - { name: sonata.admin, manager_type: orm, label: Carriere, group: "joueurs"}
