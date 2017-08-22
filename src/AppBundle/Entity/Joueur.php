@@ -138,7 +138,7 @@ class Joueur
     /**
      * @var CarriereJoueur[]
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\CarriereJoueur", mappedBy="joueur")
-     * @ORM\OrderBy({"id" = "DESC"})
+     * @ORM\OrderBy({"saison" = "DESC"})
      */
     private $carriere;
 
@@ -148,7 +148,6 @@ class Joueur
      * @ORM\OrderBy({"id" = "DESC"})
      */
     private $historiqueStats;
-
 
     /**
      * @ORM\Column(type="string", nullable=true)

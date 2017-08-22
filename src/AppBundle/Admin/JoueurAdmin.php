@@ -15,6 +15,11 @@ use Symfony\Component\HttpKernel\Kernel;
 
 class JoueurAdmin extends AbstractAdmin
 {
+    protected $datagridValues = array(
+        '_page' => 1,
+        '_sort_order' => 'ASC',
+        '_sort_by' => 'nom',
+    );
 
     /**
      * @var Kernel $kernel
@@ -44,8 +49,27 @@ class JoueurAdmin extends AbstractAdmin
                     ->add('numeroLicence')
                 ->end()
                 ->with('Statistiques', ['class' => 'col-md-6'])
-                    ->add('categorie')
-                    ->add('poste')
+                    ->add('categorie', 'choice', [
+                        'expanded' => true,
+                        'multiple' => false,
+                        'choices' => [
+                            "Sénior" => "Senior",
+                            "U18" => "U18",
+                            "U15" => "U15",
+                            "U13" => "U13",
+                        ]
+                    ])
+                    ->add('poste', 'choice', [
+                        'expanded' => true,
+                        'multiple' => false,
+                        'choices' => [
+                            "Gardien" => "Gardien",
+                            "Défenseur" => "Defenseur",
+                            "Milieu" => "Milieu",
+                            "Attaquant" => "Attaquant",
+                        ]
+                    ])
+                    ->add('nbMatchs')
                     ->add('butsA')
                     ->add('butsB')
                     ->add('butsCoupe')

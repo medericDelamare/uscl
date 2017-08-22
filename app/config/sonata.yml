@@ -28,3 +28,7 @@ sonata_admin:
                     label:           Club
                     label_catalogue: messages
                     icon:            '<i class="fa fa-briefcase" aria-hidden="true"></i>'
+                utilisateurs:
+                    label:           Utilisateurs
+                    label_catalogue: messages
+                    icon:            '<i class="fa fa-lock" aria-hidden="true"></i>'

@@ -25,26 +25,31 @@ class ProfileController extends Controller
         foreach ($joueur->getHistoriqueStats() as $historiqueStat){
             $saisons[] = $historiqueStat->getSaison();
         }
+        array_unshift($saisons, '17/18');
 
         $buts = [];
         foreach ($joueur->getHistoriqueStats() as $historiqueStat){
             $buts[] = $historiqueStat->getNbButs();
         }
+        array_unshift($buts, $joueur->getButs());
 
         $passes = [];
         foreach ($joueur->getHistoriqueStats() as $historiqueStat){
             $passes[] = $historiqueStat->getNbPasses();
         }
+        array_unshift($passes, $joueur->getPasses());
 
         $cartonsJ = [];
         foreach ($joueur->getHistoriqueStats() as $historiqueStat) {
             $cartonsJ[] = $historiqueStat->getNbCartonsJaunes();
         }
+        array_unshift($cartonsJ, $joueur->getCartonsJaunes());
 
         $cartonsR = [];
         foreach ($joueur->getHistoriqueStats() as $historiqueStat){
             $cartonsR[] = $historiqueStat->getNbCartonsRouges();
         }
+        array_unshift($cartonsR, $joueur->getCartonsRouges());
 
         return $this->render(':default:profil.html.twig', [
             'joueur' => $joueur,
