@@ -12,7 +12,16 @@ class DirigeantAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
-
+        $formMapper
+            ->add('nom')
+            ->add('prenom')
+            ->add('fixe',null ,[
+                'required' => false
+            ])
+            ->add('mobile')
+            ->add('mail', null, [
+                'required' => false
+            ]);
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -23,7 +32,7 @@ class DirigeantAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('nom')
+            ->addIdentifier('nom')
             ->add('prenom')
             ->add('fixe')
             ->add('mobile')

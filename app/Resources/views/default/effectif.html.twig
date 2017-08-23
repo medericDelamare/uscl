@@ -17,6 +17,9 @@
                 <th>Passes</th>
                 <th>Cartons Jaunes</th>
                 <th>Cartons Rouges</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th>Numéro de téléphone</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -28,6 +31,9 @@
                     <td>{{ gardien.passes }}</td>
                     <td>{{ gardien.cartonsJaunes }}</td>
                     <td>{{ gardien.cartonsRouges }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td>{{ gardien.mobile }}</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>
@@ -43,6 +49,9 @@
                 <th>Passes</th>
                 <th>Cartons Jaunes</th>
                 <th>Cartons Rouges</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th>Numéro de téléphone</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -54,6 +63,9 @@
                     <td>{{ defenseur.passes }}</td>
                     <td>{{ defenseur.cartonsJaunes }}</td>
                     <td>{{ defenseur.cartonsRouges }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td>{{ defenseur.mobile }}</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>
@@ -69,6 +81,9 @@
                 <th>Passes</th>
                 <th>Cartons Jaunes</th>
                 <th>Cartons Rouges</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th>Numéro de téléphone</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -80,6 +95,9 @@
                     <td>{{ milieu.passes }}</td>
                     <td>{{ milieu.cartonsJaunes }}</td>
                     <td>{{ milieu.cartonsRouges }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td>{{ milieu.mobile }}</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>
@@ -95,6 +113,9 @@
                 <th>Passes</th>
                 <th>Cartons Jaunes</th>
                 <th>Cartons Rouges</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th>Numéro de téléphone</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -106,6 +127,9 @@
                     <td>{{ attaquant.passes }}</td>
                     <td>{{ attaquant.cartonsJaunes }}</td>
                     <td>{{ attaquant.cartonsRouges }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <td>{{ attaquant.mobile }}</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>

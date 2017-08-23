@@ -174,6 +174,6 @@ class Dirigeant
 
     public function __toString()
     {
-        return $this->getPrenom() . $this->getNom();
+        return $this->getPrenom() . ' ' .  $this->getNom();
     }
 }

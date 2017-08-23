@@ -20,7 +20,15 @@ class ClubAdmin extends AbstractAdmin
             ->add('secretaire')
             ->add('tresorier')
             ->add('responsableJeunes')
-            ->add('responsableSeniors');
+            ->add('responsableSeniors')
+            ->add('responsableA')
+            ->add('responsableB')
+            ->add('responsableU18')
+            ->add('responsableU15')
+            ->add('responsableU13')
+            ->add('responsableU11')
+            ->add('responsableU9')
+            ->add('responsableU7');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -31,13 +39,21 @@ class ClubAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('president')
+            ->addIdentifier('president')
             ->add('vicePresident1')
             ->add('vicePresident2')
             ->add('vicePresident3')
             ->add('secretaire')
             ->add('tresorier')
             ->add('responsableJeunes')
-            ->add('responsableSeniors');
+            ->add('responsableSeniors')
+            ->add('responsableA')
+            ->add('responsableB')
+            ->add('responsableU18')
+            ->add('responsableU15')
+            ->add('responsableU13')
+            ->add('responsableU11')
+            ->add('responsableU9')
+            ->add('responsableU7');
     }
 }

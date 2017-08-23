@@ -3,21 +3,21 @@
 
 <ol class="breadcrumb">
     <li><a href="index.php">Accueil</a></li>
-    <li class="active">Club</li>
+    <li class="active">Résponsables par équipe</li>
 </ol>
 
 <div class="container">
     <h1 class = "page-header">Résponsables par catégories</h1>
     <div class="row margin-bottom">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="panel panel-uscl">
                 <div class="panel-heading">
                     <h3 class="panel-title">Séniors A</h3>
                 </div>
                 <div class="panel-body row">
                     <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
-                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
+                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-rounded" alt="Responsive image">
                         </div>
                     </div>
                     <div class="row">
@@ -34,15 +34,15 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="panel panel-uscl">
                 <div class="panel-heading">
                     <h3 class="panel-title">Séniors B</h3>
                 </div>
                 <div class="panel-body row">
                     <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
-                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
+                            <img src="{{ asset(club.responsableB.photo) }}" class="img-rounded" alt="{{ club.responsableB.nom }}">
                         </div>
                     </div>
                     <div class="row">
@@ -59,31 +59,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
-            <div class="panel panel-uscl">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Futsal</h3>
-                </div>
-                <div class="panel-body row">
-                    <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
-                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="text-center">
-                            <h4>{{ club.responsableFutsal.prenom }} {{ club.responsableFutsal.nom }}</h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="text-center">
-                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ club.responsableFutsal.mail }}</h4>
-                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ club.responsableFutsal.mobile }}</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="row margin-bottom">
         <div class="col-sm-4 margin-bottom">
@@ -93,8 +68,8 @@
                 </div>
                 <div class="panel-body row">
                     <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
-                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
+                            <img src="{{ asset(club.responsableU18.photo) }}" class="img-rounded" alt="{{ club.responsableU18.nom }}">
                         </div>
                     </div>
                     <div class="row">
@@ -119,8 +94,8 @@
                 </div>
                 <div class="panel-body row">
                     <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
-                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
+                            <img src="{{ asset(club.responsableU15.photo) }}" class="img-rounded" alt="{{ club.responsableU15.nom }}">
                         </div>
                     </div>
                     <div class="row">
@@ -145,8 +120,8 @@
                 </div>
                 <div class="panel-body row">
                     <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
-                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
+                            <img src="{{ asset(club.responsableU13.photo) }}" class="img-rounded" alt="{{ club.responsableU13.nom }}">
                         </div>
                     </div>
                     <div class="row">
@@ -172,8 +147,8 @@
                 </div>
                 <div class="panel-body row">
                     <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
-                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
+                            <img src="{{ asset(club.responsableU11.photo) }}" class="img-rounded" alt="{{ club.responsableU11.nom }}">
                         </div>
                     </div>
                     <div class="row">
@@ -198,8 +173,8 @@
                 </div>
                 <div class="panel-body row">
                     <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
-                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
+                            <img src="{{ asset(club.responsableU9.photo) }}" class="img-rounded" alt="Responsive image">
                         </div>
                     </div>
                     <div class="row">
@@ -224,8 +199,8 @@
                 </div>
                 <div class="panel-body row">
                     <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4">
-                            <img src="{{ asset('pictures/profiles/default.png') }}" class="img-responsive img-circle" alt="Responsive image">
+                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
+                            <img src="{{ asset(club.responsableU7.photo) }}" class="img-rounded" alt="{{ club.responsableU7.nom }}">
                         </div>
                     </div>
                     <div class="row">
