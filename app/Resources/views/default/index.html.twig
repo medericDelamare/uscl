@@ -102,33 +102,31 @@
                 <h2 class="page-header">Dernières photos</h2>
             </div>
             <div class="col-md-4 col-sm-6">
+                    <img class="img-responsive img-portfolio img-hover" src="{{ asset('pictures/index/1.jpg') }}" alt="">
+            </div>
+            <div class="col-md-4 col-sm-6">
                 <a href="#">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="{{ asset('pictures/index/2.jpg') }}" alt="">
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="#">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="{{ asset('pictures/index/3.jpg') }}" alt="">
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="#">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="{{ asset('pictures/index/4.jpg') }}" alt="">
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="#">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="{{ asset('pictures/index/5.jpg') }}" alt="">
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="#">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-                </a>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <a href="#">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="{{ asset('pictures/index/6.jpg') }}" alt="">
                 </a>
             </div>
         </div>
@@ -138,52 +136,17 @@
             </div>
             <div class="col-lg-6">
                 <h2 class="page-header">Prochaines rencontres</h2>
-            </div>
-            <div class="col-md-6 col-sm-6 table-responsive">
-
-            </div>
-            <div class="col-md-6 col-sm-6">
                 <table class="table">
-                    <tr>
-                        <td>USCL</td><td>5-2</td><td>CAPA</td>
-                    </tr>
-                    <tr>
-                        <td>USCL</td><td>5-2</td><td>CAPA</td>
-                    </tr>
-                    <tr>
-                        <td>USCL</td><td>5-2</td><td>CAPA</td>
-                    </tr>
-                    <tr>
-                        <td>USCL</td><td>5-2</td><td>CAPA</td>
-                    </tr>
-                    <tr>
-                        <td>USCL</td><td>5-2</td><td>CAPA</td>
-                    </tr>
-                    <tr>
-                        <td>USCL</td><td>5-2</td><td>CAPA</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-md-6 col-sm-6">
-                <table class="table">
-                    <tr>
-                        <td>USCL</td><td>5-2</td><td>CAPA</td>
-                    </tr>
-                    <tr>
-                        <td>USCL</td><td>5-2</td><td>CAPA</td>
-                    </tr>
-                    <tr>
-                        <td>USCL</td><td>5-2</td><td>CAPA</td>
-                    </tr>
-                    <tr>
-                        <td>USCL</td><td>5-2</td><td>CAPA</td>
-                    </tr>
-                    <tr>
-                        <td>USCL</td><td>5-2</td><td>CAPA</td>
-                    </tr>
-                    <tr>
-                        <td>USCL</td><td>5-2</td><td>CAPA</td>
-                    </tr>
+                    {% for match in prochainsMatchs%}
+                        <tr>
+                            <td colspan="3" class="text-center"><strong>{{ match['competition'] }}</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="tr-date text-center"><small><em>{{ match['date'] }}</em></small></td>
+                            <td class="text-center">{{ match['equipe1'] }}</td>
+                            <td class="text-center">{{ match['equipe2'] }}</td>
+                        </tr>
+                    {% endfor %}
                 </table>
             </div>
         </div>

@@ -12,11 +12,11 @@ namespace AppBundle\Admin;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 
 class UserAdmin extends AbstractAdmin
 {
-
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper->add('roles', 'choice', [
@@ -25,6 +25,7 @@ class UserAdmin extends AbstractAdmin
             'choices' => [
                 "Utilisateur" => "ROLE_USER",
                 "Administrateur" => "ROLE_ADMIN",
+                "Super Administrateur" => "ROLE_SUPER_ADMIN",
             ],
             'label' => 'Roles'
         ]);
