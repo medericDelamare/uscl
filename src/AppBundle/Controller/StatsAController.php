@@ -21,10 +21,10 @@ class StatsAController extends Controller
     {
         switch ($category){
             case 'senior-A':
-                $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?sa_no=2017&cp_no=339167&ph_no=1&gp_no=1');
-                $agenda = $this->getAgenda('http://eure.fff.fr/competitions/php/championnat/championnat_agenda.php?sa_no=2017&cp_no=339167&ph_no=1&gp_no=1');
+                $resultats = $this->getResults('https://eure.fff.fr/competitions/?id=339167&poule=1&phase=1&type=ch&tab=resultat');
+                /*$agenda = $this->getAgenda('http://eure.fff.fr/competitions/php/championnat/championnat_agenda.php?sa_no=2017&cp_no=339167&ph_no=1&gp_no=1');
                 $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2017&cp_no=339167&ph_no=1&gp_no=1');
-                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=339167&ph_no=1&gp_no=1&sa_no=2017&typ_rech=equipe&cl_no=104246&eq_no=1&type_match=deux&lieu_match=deux');
+                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=339167&ph_no=1&gp_no=1&sa_no=2017&typ_rech=equipe&cl_no=104246&eq_no=1&type_match=deux&lieu_match=deux');*/
                 $categ = 'Senior A';
                 break;
             case 'senior-B':
@@ -61,12 +61,11 @@ class StatsAController extends Controller
             $positions[] = $historique->getPosition();
         }
 
-
         return $this->render(':default:statistiques.html.twig', [
-            'agendas' => $agenda,
+            /*'agendas' => $agenda,*/
             'resultats' => $resultats,
-            'classement' => $classement,
-            'calendrier' => $calendrier,
+            /*'classement' => $classement,
+            'calendrier' => $calendrier,*/
             'categorie' => $categ,
             'annees' => $annees,
             'points' => $points,
@@ -264,28 +263,26 @@ class StatsAController extends Controller
 
         $crawler = new Crawler($html);
 
-        $crawler->filter('.resultatmatch');
+        $crawler->filter('.confrontation');
 
         $resultats = [];
 
-        for ($i = 0; $i < $crawler->filter('.resultatmatch')->count(); $i++) {
-            $craw = $crawler->filter('.resultatmatch')->eq($i);
+        for ($i = 0; $i < $crawler->filter('.confrontation')->count(); $i++) {
+            $craw = $crawler->filter('.confrontation')->eq($i);
 
-            if ($craw->filter('.matchLink')->count() == 2){
-                $equipe1 = $craw->filter('.matchLink')->eq(0)->text();
-                $equipe2 = $craw->filter('.matchLink')->eq(1)->text();
-            } else{
-                $equipe1 = $craw->filter('.matchLink')->eq(0)->text();
-                $equipe2 = 'Exempt';
-            }
+            $equipe1 = trim($craw->filter('.equipe1')->filter('.name')->text());
+            $equipe2 = trim($craw->filter('.equipe2')->text());
+            $imgUrl1 = $craw->filter('.number')->eq(0)->attr('src');
+            $imgUrl2 = $craw->filter('.number')->eq(1)->attr('src');
 
-            $score = $craw->filter('.score')->first()->text();
-            $date = $this->convertDate($craw->filter('.dat')->first()->text());
+            $score = $this->getNumberByImgUrl($imgUrl1) . '-' . $this->getNumberByImgUrl($imgUrl2);
+
+            $date = $this->convertDate($craw->filter('.date')->first()->text());
             $resultats[] = [
                 'equipe1' => $equipe1,
                 'equipe2' => $equipe2,
                 'score' => $score,
-                'date' => $date
+                'date'=> $date
             ];
         }
 
@@ -295,54 +292,77 @@ class StatsAController extends Controller
     public function convertDate($date){
         $dateRegex = preg_replace('(\s+)', ' ', $date);
         $dateSplit = explode(' ',$dateRegex);
-
-        switch (strtolower($dateSplit[2])){
+        switch (strtolower($dateSplit[3])){
             case 'janvier':
-                $dateSplit[2] = "01";
+                $dateSplit[3] = "01";
                 break;
             case 'fevrier':
             case 'février':
-                $dateSplit[2] = "02";
+                $dateSplit[3] = "02";
                 break;
             case 'mars':
-                $dateSplit[2] = "03";
+                $dateSplit[3] = "03";
                 break;
             case 'avril':
-                $dateSplit[2] = "04";
+                $dateSplit[3] = "04";
                 break;
             case 'mai':
-                $dateSplit[2] = "05";
+                $dateSplit[3] = "05";
                 break;
             case 'juin':
-                $dateSplit[2] = "06";
+                $dateSplit[3] = "06";
                 break;
             case 'jullet':
-                $dateSplit[2] = "07";
+                $dateSplit[3] = "07";
                 break;
             case 'aout':
             case 'août':
-                $dateSplit[2] = "08";
+                $dateSplit[3] = "08";
                 break;
             case 'septembre':
-                $dateSplit[2] = "09";
+                $dateSplit[3] = "09";
                 break;
             case 'octobre':
-                $dateSplit[2] = "10";
+                $dateSplit[3] = "10";
                 break;
             case 'novembre':
-                $dateSplit[2] = "11";
+                $dateSplit[3] = "11";
                 break;
             case 'decembre':
             case 'décembre':
-                $dateSplit[2] = "12";
+                $dateSplit[3] = "12";
                 break;
         }
-        return $dateSplit[1] . "/" . $dateSplit[2] . "/" . $dateSplit[3];
+        return $dateSplit[2] . "/" . $dateSplit[3] . "/" . $dateSplit[4];
+    }
+
+    public function getNumberByImgUrl($imgUrl){
+        $imgHeaders = get_headers($imgUrl, 1);
+
+        switch ($imgHeaders['Content-Length']){
+            case '2543':
+                $score = '0';
+                break;
+            case '733':
+                $score = '1';
+                break;
+            case '1921':
+                $score = '2';
+                break;
+            case '1987':
+                $score = '3';
+                break;
+            case '1595':
+                $score = '4';
+                break;
+            case '1909':
+                $score = '5';
+                break;
+            case '2632':
+                $score = '6';
+                break;
+        }
+
+        return $score;
     }
 }
-
-
-
-
-
-
