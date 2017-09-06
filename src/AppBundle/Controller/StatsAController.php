@@ -22,9 +22,9 @@ class StatsAController extends Controller
         switch ($category){
             case 'senior-A':
                 $resultats = $this->getResults('https://eure.fff.fr/competitions/?id=339167&poule=1&phase=1&type=ch&tab=resultat');
-                /*$agenda = $this->getAgenda('http://eure.fff.fr/competitions/php/championnat/championnat_agenda.php?sa_no=2017&cp_no=339167&ph_no=1&gp_no=1');
-                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2017&cp_no=339167&ph_no=1&gp_no=1');
-                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=339167&ph_no=1&gp_no=1&sa_no=2017&typ_rech=equipe&cl_no=104246&eq_no=1&type_match=deux&lieu_match=deux');*/
+                $agenda = $this->getAgenda('https://eure.fff.fr/competitions/?id=339167&poule=1&phase=1&type=ch&tab=agenda');
+                $classement = $this->getClassement('https://eure.fff.fr/competitions/?id=339167&poule=1&phase=1&type=ch&tab=ranking');
+                $calendrier = $this->getCalendrier('https://eure.fff.fr/competitions/?journee=&date=&equipe=104246-1&opposant=&place=&sens=&id=339167&poule=1&phase=1&tab=advanced_search&type=ch');
                 $categ = 'Senior A';
                 break;
             case 'senior-B':
@@ -62,10 +62,10 @@ class StatsAController extends Controller
         }
 
         return $this->render(':default:statistiques.html.twig', [
-            /*'agendas' => $agenda,*/
+            'agendas' => $agenda,
             'resultats' => $resultats,
-            /*'classement' => $classement,
-            'calendrier' => $calendrier,*/
+            'classement' => $classement,
+            'calendrier' => $calendrier,
             'categorie' => $categ,
             'annees' => $annees,
             'points' => $points,
@@ -97,30 +97,21 @@ class StatsAController extends Controller
 
         $crawler = new Crawler($html);
 
-        $crawler->filter('.resultatmatch');
+        $crawler->filter('.confrontation');
 
         $resultats = [];
 
-        $refpop = $crawler->filter('#refpop');
-        $date = $this->convertDate($refpop->filter('h3')->first()->text());
+        for ($i = 0; $i < $crawler->filter('.confrontation')->count(); $i++) {
+            $craw = $crawler->filter('.confrontation')->eq($i);
 
-        for ($i = 0; $i < $crawler->filter('.resultatmatch')->count(); $i++) {
-            $craw = $crawler->filter('.resultatmatch')->eq($i);
+            $equipe1 = trim($craw->filter('.equipe1')->filter('.name')->text());
+            $equipe2 = trim($craw->filter('.equipe2')->text());
 
-            if ($craw->filter('.matchLink')->count() == 2){
-                $equipe1 = $craw->filter('.matchLink')->eq(0)->text();
-                $equipe2 = $craw->filter('.matchLink')->eq(1)->text();
-            } else{
-                $equipe1 = $craw->filter('.matchLink')->eq(0)->text();
-                $equipe2 = 'Exempt';
-            }
-            $score = $craw->filter('.score')->first()->text();
-
+            $date = $this->convertDate($craw->filter('.date')->first()->text());
             $resultats[] = [
                 'equipe1' => $equipe1,
                 'equipe2' => $equipe2,
-                'score' => $score,
-                'date' => $date,
+                'date'=> $date
             ];
         }
 
@@ -151,30 +142,36 @@ class StatsAController extends Controller
 
         $crawler = new Crawler($html);
 
-        $crawler->filter('.resultatmatch');
+        $crawler->filter('.confrontation');
 
         $resultats = [];
 
-        for ($i = 0; $i < $crawler->filter('.resultatmatch')->count(); $i++) {
-            $craw = $crawler->filter('.resultatmatch')->eq($i);
-            if ($craw->filter('.matchLink')->count() == 2){
-                $equipe1 = $craw->filter('.matchLink')->eq(0)->text();
-                $equipe2 = $craw->filter('.matchLink')->eq(1)->text();
-            } else{
-                $equipe1 = $craw->filter('.matchLink')->eq(0)->text();
-                $equipe2 = 'Exempt';
+        for ($i = 0; $i < $crawler->filter('.confrontation')->count(); $i++) {
+            $craw = $crawler->filter('.confrontation')->eq($i);
+
+            $equipe1 = trim($craw->filter('.equipe1')->filter('.name')->text());
+            $equipe2 = trim($craw->filter('.equipe2')->text());
+
+            $date = $this->convertDate($craw->filter('.date')->first()->text());
+
+            if (($craw->filter('.number')->count()> 0)){
+                $imgUrl1 = $craw->filter('.number')->eq(0)->attr('src');
+                $imgUrl2 = $craw->filter('.number')->eq(1)->attr('src');
+
+                $score = $this->getNumberByImgUrl($imgUrl1) . '-' . $this->getNumberByImgUrl($imgUrl2);
             }
-            $score = $craw->filter('.score')->first()->text();
-            $date = $this->convertDate($craw->filter('.dat')->first()->text());
+            else{
+                $score = '-';
+            }
             $resultats[] = [
                 'equipe1' => $equipe1,
                 'equipe2' => $equipe2,
-                'score' => $score,
-                'date' => $date
+                'date'=> $date,
+                'score'=>$score
             ];
         }
 
-        return $resultats;
+        return array_reverse($resultats);
     }
 
     private function getClassement($html){
@@ -201,12 +198,12 @@ class StatsAController extends Controller
 
         $crawler = new Crawler($html);
 
-        $crawler->filter('.tablo');
+        $crawler->filter('.ranking-tab');
 
         $classement = [];
 
-        for ($i = 0; $i < $crawler->filter('.tablo > tr')->count(); $i++) {
-            $craw = $crawler->filter('.tablo > tr')->eq($i);
+        for ($i = 1; $i < $crawler->filter('.ranking-tab > tr')->count(); $i++) {
+            $craw = $crawler->filter('.ranking-tab > tr')->eq($i);
             $place = $craw->filter('td')->eq(0)->text();
             $equipe = $craw->filter('td')->eq(1)->text();
             $points = $craw->filter('td')->eq(2)->text();
@@ -219,6 +216,8 @@ class StatsAController extends Controller
             $butsContre = $craw->filter('td')->eq(9)->text();
             $penalites = $craw->filter('td')->eq(10)->text();
             $differences = $craw->filter('td')->eq(11)->text();
+
+
 
             $classement[] = [
                 'place' => $place,
@@ -235,7 +234,6 @@ class StatsAController extends Controller
                 'differences' => $differences
             ];
         }
-
         return $classement;
     }
 
@@ -292,13 +290,14 @@ class StatsAController extends Controller
     public function convertDate($date){
         $dateRegex = preg_replace('(\s+)', ' ', $date);
         $dateSplit = explode(' ',$dateRegex);
+        dump($dateSplit);
         switch (strtolower($dateSplit[3])){
             case 'janvier':
                 $dateSplit[3] = "01";
                 break;
-            case 'fevrier':
             case 'février':
-                $dateSplit[3] = "02";
+            case 'fevrier':
+            $dateSplit[3] = "02";
                 break;
             case 'mars':
                 $dateSplit[3] = "03";
@@ -328,9 +327,9 @@ class StatsAController extends Controller
             case 'novembre':
                 $dateSplit[3] = "11";
                 break;
-            case 'decembre':
             case 'décembre':
-                $dateSplit[3] = "12";
+            case 'decembre':
+            $dateSplit[3] = "12";
                 break;
         }
         return $dateSplit[2] . "/" . $dateSplit[3] . "/" . $dateSplit[4];
