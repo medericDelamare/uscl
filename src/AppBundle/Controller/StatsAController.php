@@ -28,10 +28,10 @@ class StatsAController extends Controller
                 $categ = 'Senior A';
                 break;
             case 'senior-B':
-                $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?cp_no=339168&ph_no=1&sa_no=&gp_no=3');
-                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2017&cp_no=339168&ph_no=1&gp_no=3');
-                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=339168&ph_no=1&gp_no=3&sa_no=2017&typ_rech=equipe&cl_no=104246&eq_no=2&type_match=deux&lieu_match=deux');
-                $agenda = $this->getAgenda('http://eure.fff.fr/competitions/php/championnat/championnat_agenda.php?sa_no=2017&cp_no=339168&ph_no=1&gp_no=3');
+                $resultats = $this->getResults('https://eure.fff.fr/competitions/?id=339168&poule=3&phase=1&type=ch&tab=resultat');
+                $classement = $this->getClassement('https://eure.fff.fr/competitions/?id=339168&poule=3&phase=1&type=ch&tab=ranking');
+                $calendrier = $this->getCalendrier('https://eure.fff.fr/competitions/?journee=&date=&equipe=104246-2&opposant=&place=&sens=&id=339168&poule=3&phase=1&tab=advanced_search&type=ch');
+                $agenda = $this->getAgenda('https://eure.fff.fr/competitions/?id=339168&poule=3&phase=1&type=ch&tab=agenda');
                 $categ = 'Senior B';
                 break;
             case 'U18':
@@ -171,7 +171,7 @@ class StatsAController extends Controller
             ];
         }
 
-        return array_reverse($resultats);
+        return $resultats;
     }
 
     private function getClassement($html){
@@ -270,8 +270,14 @@ class StatsAController extends Controller
 
             $equipe1 = trim($craw->filter('.equipe1')->filter('.name')->text());
             $equipe2 = trim($craw->filter('.equipe2')->text());
-            $imgUrl1 = $craw->filter('.number')->eq(0)->attr('src');
-            $imgUrl2 = $craw->filter('.number')->eq(1)->attr('src');
+            if ($craw->filter('.number')->count() > 0 ){
+                $imgUrl1 = $craw->filter('.number')->eq(0)->attr('src');
+                $imgUrl2 = $craw->filter('.number')->eq(1)->attr('src');
+            }
+            else{
+                $imgUrl1 = 'vide';
+                $imgUrl2 = 'vide';
+            }
 
             $score = $this->getNumberByImgUrl($imgUrl1) . '-' . $this->getNumberByImgUrl($imgUrl2);
 
@@ -290,8 +296,7 @@ class StatsAController extends Controller
     public function convertDate($date){
         $dateRegex = preg_replace('(\s+)', ' ', $date);
         $dateSplit = explode(' ',$dateRegex);
-        dump($dateSplit);
-        switch (strtolower($dateSplit[3])){
+        switch ($dateSplit[3]){
             case 'janvier':
                 $dateSplit[3] = "01";
                 break;
@@ -336,6 +341,9 @@ class StatsAController extends Controller
     }
 
     public function getNumberByImgUrl($imgUrl){
+        if ($imgUrl == 'vide'){
+            return '';
+        }
         $imgHeaders = get_headers($imgUrl, 1);
 
         switch ($imgHeaders['Content-Length']){

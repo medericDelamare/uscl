@@ -61,17 +61,23 @@
     </div>
     <div class="row">
         <div class="col-sm-4 col-sm-offset-1">
-            <h2 class="page-header">Agenda</h2>
-            <table class="agenda table table-condensed">
-                {% for agenda in agendas%}
-                    <tr>
-                        <td colspan="3" class="tr-date text-center"><small><em>{{ agenda['date'] }}</em></small></td>
-                        <td class="text-center">{{ agenda['equipe1'] }}</td>
-                        <td class="text-center">-</td>
-                        <td class="text-center">{{ agenda['equipe2'] }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
+            <div class="row">
+                <h2 class="page-header">Agenda</h2>
+                <table class="agenda table table-condensed">
+                    {% for agenda in agendas%}
+                        <tr>
+                            <td colspan="3" class="tr-date text-center"><small><em>{{ agenda['date'] }}</em></small></td>
+                            <td class="text-center">{{ agenda['equipe1'] }}</td>
+                            <td class="text-center">-</td>
+                            <td class="text-center">{{ agenda['equipe2'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="row">
+                <h2 class="page-header">Évolution du classement final selon les années</h2>
+                <canvas id="myChart"></canvas>
+            </div>
         </div>
         <div class="col-sm-4 col-sm-offset-2">
             <h2 class="page-header">Calendrier</h2>
@@ -80,20 +86,15 @@
                 {% for calendrierInfos in calendrier %}
                     <tr class="text-center">
                         <td colspan="3" class="tr-date"><small><em>{{ calendrierInfos['date'] }}</em></small></td>
-                        <td >{{ calendrierInfos['equipe1'] }}</td>
+                        <td class ="eqLeft">{{ calendrierInfos['equipe1'] }}</td>
                         <td class="score">{{ calendrierInfos['score'] }}</td>
-                        <td >{{ calendrierInfos['equipe2'] }}</td>
+                        <td class ="eqRight">{{ calendrierInfos['equipe2'] }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
-        <div class="row">
-            <div class="col-sm-4 col-sm-offset-1">
-                <h2 class="page-header">Évolution du classement final selon les années</h2>
-                <canvas id="myChart"></canvas>
-            </div>
-        </div>
+
     </div>
 </div>
 {% endblock %}
@@ -131,9 +132,25 @@
             var score = $('.score', this).html();
             var res = score.split("-");
 
-            if(!res[0])
+            if(res[0])
             {
+                if (res[0] == res[1]){$(this).addClass('warning');}
 
+                if ($('.eqLeft',this).html().indexOf('CORM') != -1 && res[0] < res[1]) {
+                    $(this).addClass('danger');
+                }
+
+                if ($('.eqLeft',this).html().indexOf('CORM') != -1 && res[0] > res[1]) {
+                    $(this).addClass('success');
+                }
+
+                if ($('.eqRight',this).html().indexOf('CORM') != -1 && res[0] < res[1]) {
+                    $(this).addClass('success');
+                }
+
+                if ($('.eqRight',this).html().indexOf('CORM') != -1 && res[0] > res[1]) {
+                    $(this).addClass('danger');
+                }
             }
 
         });
