@@ -142,6 +142,8 @@ class StatsAController extends Controller
 
         $crawler = new Crawler($html);
 
+
+
         $crawler->filter('.confrontation');
 
         $resultats = [];
@@ -154,11 +156,23 @@ class StatsAController extends Controller
 
             $date = $this->convertDate($craw->filter('.date')->first()->text());
 
-            if (($craw->filter('.number')->count()> 0)){
-                $imgUrl1 = $craw->filter('.number')->eq(0)->attr('src');
-                $imgUrl2 = $craw->filter('.number')->eq(1)->attr('src');
 
-                $score = $this->getNumberByImgUrl($imgUrl1) . '-' . $this->getNumberByImgUrl($imgUrl2);
+
+            if (($craw->filter('.number')->count()> 0)){
+                $score = $craw->filter('.score_match')->html();
+                $scoreExposed = explode(' - ', $score);
+                $domicile = null;
+                $exterieur = null;
+                foreach ($scoreExposed as $item => $value){
+                    $craw2 = new Crawler($value);
+                    for ($i = 0;$i<=$craw2->filter('.number')->count() - 1; $i++){
+                        $url = $craw2->filter('.number')->eq($i)->attr('src');
+                        if ($item == 0){$domicile = $domicile . $this->getNumberByImgUrl($url);  }
+                        elseif($item == 1){$exterieur = $exterieur . $this->getNumberByImgUrl($url);}
+                    }
+                }
+
+                $score = $domicile . '-' . $exterieur;
             }
             else{
                 $score = '-';
