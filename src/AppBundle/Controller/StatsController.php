@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DomCrawler\Crawler;
 
-class StatsAController extends Controller
+class StatsController extends Controller
 {
     /**
      * @Route("/statistiques/{category}", name="statistiques")
