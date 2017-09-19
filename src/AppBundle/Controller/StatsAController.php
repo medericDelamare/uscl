@@ -4,12 +4,10 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\HistoriqueClassement;
-use GuzzleHttp\Client;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\HttpFoundation\Request;
 
 class StatsAController extends Controller
 {
@@ -161,22 +159,14 @@ class StatsAController extends Controller
             if (($craw->filter('.number')->count()> 0)){
                 $score = $craw->filter('.score_match')->html();
                 $scoreExposed = explode(' - ', $score);
-                $domicile = null;
-                $exterieur = null;
-                foreach ($scoreExposed as $item => $value){
-                    $craw2 = new Crawler($value);
-                    for ($i = 0;$i<=$craw2->filter('.number')->count() - 1; $i++){
-                        $url = $craw2->filter('.number')->eq($i)->attr('src');
-                        if ($item == 0){$domicile = $domicile . $this->getNumberByImgUrl($url);  }
-                        elseif($item == 1){$exterieur = $exterieur . $this->getNumberByImgUrl($url);}
-                    }
-                }
-
-                $score = $domicile . '-' . $exterieur;
+                $scoreDomicile = $this->getNombre($scoreExposed[0]);
+                $scoreExterieur = $this->getNombre($scoreExposed[1]);
+                $score = $scoreDomicile . ' - ' . $scoreExterieur;
             }
             else{
                 $score = '-';
             }
+
             $resultats[] = [
                 'equipe1' => $equipe1,
                 'equipe2' => $equipe2,
@@ -279,23 +269,24 @@ class StatsAController extends Controller
 
         $resultats = [];
 
+
         for ($i = 0; $i < $crawler->filter('.confrontation')->count(); $i++) {
             $craw = $crawler->filter('.confrontation')->eq($i);
-
             $equipe1 = trim($craw->filter('.equipe1')->filter('.name')->text());
             $equipe2 = trim($craw->filter('.equipe2')->text());
-            if ($craw->filter('.number')->count() > 0 ){
-                $imgUrl1 = $craw->filter('.number')->eq(0)->attr('src');
-                $imgUrl2 = $craw->filter('.number')->eq(1)->attr('src');
+            $date = $this->convertDate($craw->filter('.date')->first()->text());
+
+            if (($craw->filter('.number')->count()> 0)){
+                $score = $craw->filter('.score_match')->html();
+                $scoreExposed = explode(' - ', $score);
+                $scoreDomicile = $this->getNombre($scoreExposed[0]);
+                $scoreExterieur = $this->getNombre($scoreExposed[1]);
+                $score = $scoreDomicile . ' - ' . $scoreExterieur;
             }
             else{
-                $imgUrl1 = 'vide';
-                $imgUrl2 = 'vide';
+                $score = '-';
             }
 
-            $score = $this->getNumberByImgUrl($imgUrl1) . '-' . $this->getNumberByImgUrl($imgUrl2);
-
-            $date = $this->convertDate($craw->filter('.date')->first()->text());
             $resultats[] = [
                 'equipe1' => $equipe1,
                 'equipe2' => $equipe2,
@@ -382,8 +373,26 @@ class StatsAController extends Controller
             case '2632':
                 $score = '6';
                 break;
+            case '1276':
+                $score = '7';
+                break;
+            case '2585':
+                $score = '8';
+                break;
+            case '2570':
+                $score = '9';
+                break;
         }
 
         return $score;
+    }
+
+    private function getNombre($html){
+        $crawler = new Crawler($html);
+        $nombre = null;
+        for ($i=0; $i <= $crawler->filter('.number')->count() -1; $i++ ){
+            $nombre = $nombre . $this->getNumberByImgUrl($crawler->filter('.number')->eq($i)->attr('src'));
+        }
+        return $nombre;
     }
 }
