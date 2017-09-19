@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\HistoriqueClassement;
+use AppBundle\Entity\StatsParJournee;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -24,6 +25,7 @@ class StatsController extends Controller
                 $classement = $this->getClassement('https://eure.fff.fr/competitions/?id=339167&poule=1&phase=1&type=ch&tab=ranking');
                 $calendrier = $this->getCalendrier('https://eure.fff.fr/competitions/?journee=&date=&equipe=104246-1&opposant=&place=&sens=&id=339167&poule=1&phase=1&tab=advanced_search&type=ch');
                 $categ = 'Senior A';
+                $classementParJournee = $this->getDoctrine()->getManager()->getRepository(StatsParJournee::class)->findByCategOrderByJournee('Senior-A');
                 break;
             case 'senior-B':
                 $resultats = $this->getResults('https://eure.fff.fr/competitions/?id=339168&poule=3&phase=1&type=ch&tab=resultat');
@@ -31,6 +33,7 @@ class StatsController extends Controller
                 $calendrier = $this->getCalendrier('https://eure.fff.fr/competitions/?journee=&date=&equipe=104246-2&opposant=&place=&sens=&id=339168&poule=3&phase=1&tab=advanced_search&type=ch');
                 $agenda = $this->getAgenda('https://eure.fff.fr/competitions/?id=339168&poule=3&phase=1&type=ch&tab=agenda');
                 $categ = 'Senior B';
+                $classementParJournee = $this->getDoctrine()->getManager()->getRepository(StatsParJournee::class)->findByCategOrderByJournee('Senior-B');
                 break;
             case 'U18':
                 $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?cp_no=329044&ph_no=2&sa_no=&gp_no=2');
@@ -59,6 +62,17 @@ class StatsController extends Controller
             $positions[] = $historique->getPosition();
         }
 
+        $classementTriParEquipe = [];
+        /** @var StatsParJournee $classement */
+        foreach ($classementParJournee as $classementInfos){
+            $classementTriParEquipe[$classementInfos->getEquipe()][] = $classementInfos->getPlace();
+        }
+
+        $nbjournees = [];
+        for ($i = 1; $i<= (count($classementTriParEquipe)-1)*2 ; $i++){
+            $nbjournees[] = $i;
+        }
+
         return $this->render(':default:statistiques.html.twig', [
             'agendas' => $agenda,
             'resultats' => $resultats,
@@ -67,7 +81,9 @@ class StatsController extends Controller
             'categorie' => $categ,
             'annees' => $annees,
             'points' => $points,
-            'positions' => $positions
+            'positions' => $positions,
+            'classement_par_journee' => $classementTriParEquipe,
+            'nb_journees' => $nbjournees
         ]);
     }
 

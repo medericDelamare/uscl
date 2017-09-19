@@ -33,7 +33,6 @@ class Version20170919202052 extends AbstractMigration
         $this->addSql('INSERT INTO stats_par_journee(category, equipe, journee, place) VALUES(\'Senior-A\', \'CONTEVILLE CO\',1,11) ');
         $this->addSql('INSERT INTO stats_par_journee(category, equipe, journee, place) VALUES(\'Senior-A\', \'LE BEL AIR FC 2\',1,12) ');
 
-        $this->addSql('ALTER TABLE stats_par_journee CHANGE journee journee INT NOT NULL, CHANGE place place INT NOT NULL');
         $this->addSql('INSERT INTO stats_par_journee(category, equipe, journee, place) VALUES(\'Senior-B\', \'CHARENTONNE\',1,1) ');
         $this->addSql('INSERT INTO stats_par_journee(category, equipe, journee, place) VALUES(\'Senior-B\', \'ST AUBIN LE VERTUEUX\',1,2) ');
         $this->addSql('INSERT INTO stats_par_journee(category, equipe, journee, place) VALUES(\'Senior-B\', \'VIEVRE AS\',1,3) ');

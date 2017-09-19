@@ -96,6 +96,12 @@
         </div>
 
     </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="page-header">Classement par journée</h2>
+            <canvas id="classementParJournee"></canvas>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
@@ -161,48 +167,99 @@
     </script>
 
     <script>
-    var ctx = document.getElementById("myChart").getContext('2d');
+        var ctx = document.getElementById("myChart").getContext('2d');
 
-    var positions = {{ positions|json_encode() }};
-    var annees = {{ annees|json_encode|raw }};
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: annees,
-            datasets: [{
-                data: positions,
+        var positions = {{ positions|json_encode() }};
+        var annees = {{ annees|json_encode|raw }};
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: annees,
+                datasets: [{
+                    data: positions,
+                    borderWidth: 2,
+                    backgroundColor: [],
+                    lineTension: 0.1,
+                    fill: false,
+                    borderColor: "rgb(58, 83, 155)"
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Position'
+                        },
+                        ticks: {
+                            beginAtZero:true,
+                            reverse: true,
+                            min: 1,
+                            max: 12
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Année'
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById("classementParJournee").getContext('2d');
+        var array = {{ classement_par_journee|json_encode|raw }};
+        var datasetValue = [];
+        var j = 0;
+        $.each(array, function (index, value) {
+            datasetValue[j] = {
+                spanGaps: true,
+                label: index,
+                data: value,
                 borderWidth: 2,
                 backgroundColor: [],
                 lineTension: 0.1,
                 fill: false,
                 borderColor: "rgb(58, 83, 155)"
-            }]
-        },
-        options: {
-            legend: {
-                display: false
-            },
-            scales: {
-                yAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Position'
-                    },
-                    ticks: {
-                        beginAtZero:true,
-                        reverse: true,
-                        min: 1,
-                        max: 12
-                    }
-                }],
-                xAxes: [{
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Année'
-                    }
-                }]
             }
-        }
-    });
-</script>
+            j++;
+        });
+
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{ nb_journees|json_encode|raw }},
+                datasets: datasetValue
+            },
+            options: {
+                legend: {
+                    display: true
+                },
+                scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Classement',
+                        },
+                        ticks: {
+                            beginAtZero:true,
+                            min: 1,
+                            reverse: true,
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Journée'
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 {% endblock %}
