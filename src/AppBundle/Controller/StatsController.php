@@ -83,8 +83,48 @@ class StatsController extends Controller
             'points' => $points,
             'positions' => $positions,
             'classement_par_journee' => $classementTriParEquipe,
-            'nb_journees' => $nbjournees
+            'nb_journees' => $nbjournees,
+            'category' => $category
         ]);
+    }
+
+    /**
+     * @Route("/save-classement/{category}", name="save-classement")
+     * @Template()
+     */
+    public function saveClassementAction($category){
+        switch ($category){
+            case 'senior-A':
+                $classement = $this->getClassement('https://eure.fff.fr/competitions/?id=339167&poule=1&phase=1&type=ch&tab=ranking');
+                break;
+            case 'senior-B':
+                $classement = $this->getClassement('https://eure.fff.fr/competitions/?id=339168&poule=3&phase=1&type=ch&tab=ranking');
+                break;
+            case 'U18':
+                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=329044&ph_no=2&gp_no=2');
+                break;
+            case 'U15':
+                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=329047&ph_no=2&gp_no=2');
+                break;
+            case 'U13':
+                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=329051&ph_no=2&gp_no=2');
+                break;
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $journee = $this->getDoctrine()->getRepository(StatsParJournee::class)->findLastJourneeByCateg($category);
+
+
+        foreach ($classement as $classementInfos){
+            $statsParjournee = new StatsParJournee();
+            $statsParjournee->setCategory($category);
+            $statsParjournee->setEquipe($classementInfos['equipe']);
+            $statsParjournee->setJournee($journee+1);
+            $statsParjournee->setPlace($classementInfos['place']);
+            $em->persist($statsParjournee);
+        }
+        $em->flush();
+        return $this->showAction($category);
     }
 
     private function getAgenda($html){

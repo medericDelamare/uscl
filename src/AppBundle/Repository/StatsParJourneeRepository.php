@@ -33,4 +33,16 @@ class StatsParJourneeRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findLastJourneeByCateg($categ){
+        return $this->createQueryBuilder('s')
+            ->select('s.journee')
+            ->where('s.category = :categ')
+            ->orderBy('s.journee', 'ASC')
+            ->setParameter('categ', $categ)
+            ->setMaxResults(1)
+            ->distinct()
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
