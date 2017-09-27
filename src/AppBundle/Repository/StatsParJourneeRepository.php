@@ -43,6 +43,6 @@ class StatsParJourneeRepository extends EntityRepository
             ->setMaxResults(1)
             ->distinct()
             ->getQuery()
-            ->getSingleScalarResult();
+            ->getOneOrNullResult();
     }
 }

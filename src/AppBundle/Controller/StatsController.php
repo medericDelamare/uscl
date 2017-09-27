@@ -36,15 +36,19 @@ class StatsController extends Controller
                 $classementParJournee = $this->getDoctrine()->getManager()->getRepository(StatsParJournee::class)->findByCategOrderByJournee('Senior-B');
                 break;
             case 'U18':
-                $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?cp_no=329044&ph_no=2&sa_no=&gp_no=2');
-                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=329044&ph_no=2&gp_no=2');
-                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=329044&ph_no=2&gp_no=2&sa_no=2016&typ_rech=equipe&cl_no=104246&eq_no=4&type_match=deux&lieu_match=deux');
+                $resultats = $this->getResults('https://eure.fff.fr/competitions/?id=339172&poule=1&phase=1&type=ch&tab=resultat');
+                $classement = $this->getClassement('https://eure.fff.fr/competitions/?id=339172&poule=1&phase=1&type=ch&tab=ranking');
+                $calendrier = $this->getCalendrier('https://eure.fff.fr/competitions/?journee=&date=&equipe=104246-4&opposant=&place=&sens=&id=339172&poule=1&phase=1&tab=advanced_search&type=ch');
+                $agenda = $this->getAgenda('https://eure.fff.fr/competitions/?id=339172&poule=1&phase=1&type=ch&tab=agenda');
                 $categ = $category;
+                $classementParJournee = $this->getDoctrine()->getManager()->getRepository(StatsParJournee::class)->findByCategOrderByJournee('U18');
                 break;
             case 'U15':
-                $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?cp_no=329047&ph_no=2&sa_no=&gp_no=2');
-                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=329047&ph_no=2&gp_no=2');
-                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=329047&ph_no=2&gp_no=2&sa_no=2016&typ_rech=equipe&cl_no=104246&eq_no=5&type_match=deux&lieu_match=deux');
+                $resultats = $this->getResults('https://eure.fff.fr/competitions/?id=339174&poule=1&phase=1&type=ch&tab=resultat');
+                $classement = $this->getClassement('https://eure.fff.fr/competitions/?id=339174&poule=1&phase=1&type=ch&tab=ranking');
+                $agenda = $this->getAgenda('https://eure.fff.fr/competitions/?id=339174&poule=1&phase=1&type=ch&tab=agenda');
+                $calendrier = $this->getCalendrier('https://eure.fff.fr/competitions/?journee=&date=&equipe=104246-5&opposant=&place=&sens=&id=339174&poule=1&phase=1&tab=advanced_search&type=ch');
+                $classementParJournee = $this->getDoctrine()->getManager()->getRepository(StatsParJournee::class)->findByCategOrderByJournee('U15');
                 $categ = $category;
                 break;
             case 'U13':
@@ -101,10 +105,10 @@ class StatsController extends Controller
                 $classement = $this->getClassement('https://eure.fff.fr/competitions/?id=339168&poule=3&phase=1&type=ch&tab=ranking');
                 break;
             case 'U18':
-                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=329044&ph_no=2&gp_no=2');
+                $classement = $this->getClassement('https://eure.fff.fr/competitions/?id=339172&poule=1&phase=1&type=ch&tab=ranking');
                 break;
             case 'U15':
-                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=329047&ph_no=2&gp_no=2');
+                $classement = $this->getClassement('https://eure.fff.fr/competitions/?id=339174&poule=1&phase=1&type=ch&tab=ranking');
                 break;
             case 'U13':
                 $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=329051&ph_no=2&gp_no=2');
@@ -113,16 +117,18 @@ class StatsController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $journee = $this->getDoctrine()->getRepository(StatsParJournee::class)->findLastJourneeByCateg($category);
-
-
+        if ($journee == null){
+            $journee = 1;
+        }
         foreach ($classement as $classementInfos){
             $statsParjournee = new StatsParJournee();
             $statsParjournee->setCategory($category);
-            $statsParjournee->setEquipe($classementInfos['equipe']);
-            $statsParjournee->setJournee($journee+1);
+            $statsParjournee->setEquipe(trim($classementInfos['equipe']));
+            $statsParjournee->setJournee($journee['journee']+1);
             $statsParjournee->setPlace($classementInfos['place']);
             $em->persist($statsParjournee);
         }
+
         $em->flush();
         return $this->showAction($category);
     }
