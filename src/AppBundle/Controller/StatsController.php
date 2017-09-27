@@ -51,11 +51,21 @@ class StatsController extends Controller
                 $classementParJournee = $this->getDoctrine()->getManager()->getRepository(StatsParJournee::class)->findByCategOrderByJournee('U15');
                 $categ = $category;
                 break;
-            case 'U13':
-                $resultats = $this->getResults('http://eure.fff.fr/competitions/php/championnat/championnat_resultat.php?cp_no=329051&ph_no=2&sa_no=&gp_no=2');
-                $classement = $this->getClassement('http://eure.fff.fr/competitions/php/championnat/championnat_classement.php?sa_no=2016&cp_no=329051&ph_no=2&gp_no=2');
-                $calendrier = $this->getCalendrier('http://eure.fff.fr/competitions/php/championnat/championnat_calendrier_resultat.php?cp_no=329051&ph_no=2&gp_no=2&sa_no=2016&typ_rech=equipe&cl_no=104246&eq_no=7&type_match=deux&lieu_match=deux');
-                $categ = $category;
+            case 'U13-A':
+                $resultats = $this->getResults('https://eure.fff.fr/competitions/?id=339179&poule=1&phase=1&type=ch&tab=resultat');
+                $classement = $this->getClassement('https://eure.fff.fr/competitions/?id=339179&poule=1&phase=1&type=ch&tab=ranking');
+                $agenda = $this->getAgenda('https://eure.fff.fr/competitions/?id=339179&poule=1&phase=1&type=ch&tab=agenda');
+                $calendrier = $this->getCalendrier('https://eure.fff.fr/competitions/?journee=&date=&equipe=104246-6&opposant=&place=&sens=&id=339179&poule=1&phase=1&tab=advanced_search&type=ch');
+                $classementParJournee = $this->getDoctrine()->getManager()->getRepository(StatsParJournee::class)->findByCategOrderByJournee('U13-A');
+                $categ = 'U13 A';
+                break;
+            case 'U13-B':
+                $resultats = $this->getResults('https://eure.fff.fr/competitions/?id=339179&poule=2&phase=1&type=ch&tab=resultat');
+                $classement = $this->getClassement('https://eure.fff.fr/competitions/?id=339179&poule=2&phase=1&type=ch&tab=ranking');
+                $agenda = $this->getAgenda('https://eure.fff.fr/competitions/?id=339179&poule=2&phase=1&type=ch&tab=agenda');
+                $calendrier = $this->getCalendrier('https://eure.fff.fr/competitions/?journee=&date=&equipe=104246-18&opposant=&place=&sens=&id=339179&poule=2&phase=1&tab=advanced_search&type=ch');
+                $classementParJournee = $this->getDoctrine()->getManager()->getRepository(StatsParJournee::class)->findByCategOrderByJournee('U13-B');
+                $categ = 'U13 B';
                 break;
         }
 
