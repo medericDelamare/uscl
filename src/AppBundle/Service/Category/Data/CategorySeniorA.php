@@ -3,13 +3,6 @@
 namespace AppBundle\Service\Category\Data;
 use AppBundle\Service\Category\Category;
 
-/**
- * Created by PhpStorm.
- * User: mdelamare
- * Date: 27/09/2017
- * Time: 19:22
- */
-
 class CategorySeniorA extends Category
 {
     public function __construct($em, $category)

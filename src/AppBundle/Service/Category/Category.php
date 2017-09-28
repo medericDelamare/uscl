@@ -90,7 +90,7 @@ abstract class Category
     }
 
     public function getCalendrier(){
-        if (null === $this->urlCalendrier) {
+        if (null === $this->calendrier) {
             $ch = curl_init();
 
 
