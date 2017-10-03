@@ -51,7 +51,8 @@ class StatsController extends Controller
             'positions' => $positions,
             'classement_par_journee' => $classementTriParEquipe,
             'nb_journees' => $nbjournees,
-            'category' => $category
+            'category' => $category,
+            'division' => $instance->getDivision()
         ]);
     }
 

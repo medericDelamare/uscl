@@ -24,6 +24,7 @@ abstract class Category
     protected $urlResult;
 
     protected $category;
+    protected $division;
 
     protected $resultats;
     protected $agenda;
@@ -39,6 +40,10 @@ abstract class Category
 
     public function getClassementParJournee(){
         return $this->em->getRepository(StatsParJournee::class)->findByCategOrderByJournee($this->category);
+    }
+
+    public function getDivision(){
+        return $this->division;
     }
 
     public function getAgenda(){
