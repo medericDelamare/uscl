@@ -23,7 +23,6 @@
                         <div class = "row">
                             <table class = "text-center tableauButeur table-striped col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
                                 <tr>
-                                    <th class = "text-center">#</th>
                                     <th class = "text-center">Nom</th>
                                     <th class = "text-center">But en A</th>
                                     <th class = "text-center">But en B</th>
@@ -32,7 +31,7 @@
                                 </tr>
                                 {% for senior in seniors %}
                                     <tr>
-                                        <td>{{ senior.prenom }} {{ senior.nom }}</td>
+                                        <td><a href="{{ path('profile', {'id': senior.id}) }}">{{ senior.nom }} {{ senior.prenom }}</td>
                                         <td>{{ senior.butsA }}</td>
                                         <td>{{ senior.butsB }}</td>
                                         <td>{{ senior.butsCoupe }}</td>
@@ -58,16 +57,12 @@
                         <div class = "row">
                             <table class = "text-center tableauButeur table-striped col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
                                 <tr>
-                                    <th class = "text-center">#</th>
                                     <th class = "text-center">Nom</th>
                                     <th class = "text-center">Nombre de buts</th>
                                 </tr>
                                 {% for U18Infos in U18 %}
                                     <tr>
-                                        <td>{{ U18Infos.prenom }} {{ U18Infos.nom }}</td>
-                                        <td>{{ U18Infos.butsA }}</td>
-                                        <td>{{ U18Infos.butsB }}</td>
-                                        <td>{{ U18Infos.butsCoupe }}</td>
+                                        <td><a href="{{ path('profile', {'id': U18Infos.id}) }}">{{ U18Infos.nom }} {{ U18Infos.prenom }}</td>
                                         <td>{{ U18Infos.buts }}</td>
                                     </tr>
                                 {% endfor %}
@@ -90,16 +85,12 @@
                         <div class = "row">
                             <table class = "text-center tableauButeur table-striped col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
                                 <tr>
-                                    <th class = "text-center">#</th>
                                     <th class = "text-center">Nom</th>
                                     <th class = "text-center">Nombre de buts</th>
                                 </tr>
                                 {% for U15Infos in U15 %}
                                     <tr>
-                                        <td>{{ U15Infos.prenom }} {{ U15Infos.nom }}</td>
-                                        <td>{{ U15Infos.butsA }}</td>
-                                        <td>{{ U15Infos.butsB }}</td>
-                                        <td>{{ U15Infos.butsCoupe }}</td>
+                                        <td><a href="{{ path('profile', {'id': U15Infos.id}) }}">{{ U15Infos.nom }} {{ U15Infos.prenom }}</td>
                                         <td>{{ U15Infos.buts }}</td>
                                     </tr>
                                 {% endfor %}
@@ -122,16 +113,12 @@
                         <div class = "row">
                             <table class = "text-center tableauButeur table-striped col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
                                 <tr>
-                                    <th class = "text-center">#</th>
                                     <th class = "text-center">Nom</th>
                                     <th class = "text-center">Nombre de buts</th>
                                 </tr>
                                 {% for U13Infos in U13 %}
                                     <tr>
-                                        <td>{{ U13Infos.prenom }} {{ U13Infos.nom }}</td>
-                                        <td>{{ U13Infos.butsA }}</td>
-                                        <td>{{ U13Infos.butsB }}</td>
-                                        <td>{{ U13Infos.butsCoupe }}</td>
+                                        <td><a href="{{ path('profile', {'id': U13Infos.id}) }}">{{ U13Infos.nom }} {{ U13Infos.prenom }}</td>
                                         <td>{{ U13Infos.buts }}</td>
                                     </tr>
                                 {% endfor %}

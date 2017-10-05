@@ -218,6 +218,7 @@
         var array = {{ classement_par_journee|json_encode|raw }};
         var datasetValue = [];
         var j = 0;
+        var borderColor;
         $.each(array, function (index, value) {
             datasetValue[j] = {
                 spanGaps: true,
@@ -227,12 +228,21 @@
                 backgroundColor: [],
                 lineTension: 0.1,
                 fill: false,
-                borderColor: "rgb(58, 83, 155)"
+                borderColor: colorByTeam(index)
             }
             j++;
         });
 
+        function colorByTeam(team) {
+            if (team.indexOf('CORM') != -1){
+                console.log(team);
+                return "rgb(58, 83, 155)";
+            }
+            else return '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+        }
+
         var myChart = new Chart(ctx, {
+            responsive: true,
             type: 'line',
             data: {
                 labels: {{ nb_journees|json_encode|raw }},
