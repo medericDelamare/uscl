@@ -133,6 +133,19 @@
         <div class="row">
             <div class="col-lg-6">
                 <h2 class="page-header">Derniers résultats</h2>
+                <table class="table">
+                    {% for resultat in resultats%}
+                        <tr>
+                            <td colspan="4" class="text-center"><strong>{{ resultat['competition'] }}</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="tr-date text-center"><small><em>{{ resultat['date'] }}</em></small></td>
+                            <td class="text-center">{{ resultat['equipe1'] }}</td>
+                            <td class="text-center">{{ resultat['score'] }}</td>
+                            <td class="text-center">{{ resultat['equipe2'] }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
             </div>
             <div class="col-lg-6">
                 <h2 class="page-header">Prochaines rencontres</h2>
