@@ -17,8 +17,6 @@ class DefaultController extends Controller
         $prochainsMatchs = $this->getAgenda('https://www.fff.fr/la-vie-des-clubs/104246/agenda');
         $resultats = $this->getResult('https://eure.fff.fr/recherche-clubs/?scl=104246&tab=resultats');
 
-        dump($resultats);
-
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
@@ -54,8 +52,8 @@ class DefaultController extends Controller
 
         $resultats = [];
 
-        for ($i = 0; $i < $crawler->filter('.bloc_result')->count(); $i++) {
 
+        for ($i = 0; $i < $crawler->filter('.bloc_result')->count(); $i++) {
             $craw = $crawler->filter('.bloc_result')->eq($i);
             $date = $this->convertDate($craw->filter('h4')->first()->text());
 
@@ -111,7 +109,7 @@ class DefaultController extends Controller
 
         $crawler->filter('.confrontation');
 
-
+        $resultats = [];
         for ($i = 0; $i < $crawler->filter('.confrontation')->count(); $i++) {
             $craw = $crawler->filter('.confrontation')->eq($i);
             $competition = $craw->filter('.competition')->text();

@@ -105,46 +105,37 @@
                     <img class="img-responsive img-portfolio img-hover" src="{{ asset('pictures/index/1.jpg') }}" alt="">
             </div>
             <div class="col-md-4 col-sm-6">
-                <a href="#">
                     <img class="img-responsive img-portfolio img-hover" src="{{ asset('pictures/index/2.jpg') }}" alt="">
-                </a>
             </div>
             <div class="col-md-4 col-sm-6">
-                <a href="#">
                     <img class="img-responsive img-portfolio img-hover" src="{{ asset('pictures/index/3.jpg') }}" alt="">
-                </a>
             </div>
             <div class="col-md-4 col-sm-6">
-                <a href="#">
                     <img class="img-responsive img-portfolio img-hover" src="{{ asset('pictures/index/4.jpg') }}" alt="">
-                </a>
             </div>
             <div class="col-md-4 col-sm-6">
-                <a href="#">
                     <img class="img-responsive img-portfolio img-hover" src="{{ asset('pictures/index/5.jpg') }}" alt="">
-                </a>
             </div>
             <div class="col-md-4 col-sm-6">
-                <a href="#">
                     <img class="img-responsive img-portfolio img-hover" src="{{ asset('pictures/index/6.jpg') }}" alt="">
-                </a>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
                 <h2 class="page-header">Derniers résultats</h2>
                 <table class="table">
-                    {% for resultat in resultats%}
-                        <tr>
-                            <td colspan="4" class="text-center"><strong>{{ resultat['competition'] }}</strong></td>
-                        </tr>
-                        <tr>
-                            <td class="tr-date text-center"><small><em>{{ resultat['date'] }}</em></small></td>
-                            <td class="text-center">{{ resultat['equipe1'] }}</td>
-                            <td class="text-center">{{ resultat['score'] }}</td>
-                            <td class="text-center">{{ resultat['equipe2'] }}</td>
-                        </tr>
-                    {% endfor %}
+                    {% if resultats is not empty %}
+                        {% for resultat in resultats%}
+                            <tr>
+                                <td colspan="3" class="text-center"><strong>{{ resultat['competition'] }}</strong> - <small><em>{{ resultat['date'] }}</em></small></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">{{ resultat['equipe1'] }}</td>
+                                <td class="text-center">{{ resultat['score'] }}</td>
+                                <td class="text-center">{{ resultat['equipe2'] }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
                 </table>
             </div>
             <div class="col-lg-6">
@@ -152,10 +143,9 @@
                 <table class="table">
                     {% for match in prochainsMatchs%}
                         <tr>
-                            <td colspan="3" class="text-center"><strong>{{ match['competition'] }}</strong></td>
+                            <td colspan="2" class="text-center"><strong>{{ match['competition'] }}</strong> - <small><em>{{ match['date'] }}</em></small></td>
                         </tr>
                         <tr>
-                            <td class="tr-date text-center"><small><em>{{ match['date'] }}</em></small></td>
                             <td class="text-center">{{ match['equipe1'] }}</td>
                             <td class="text-center">{{ match['equipe2'] }}</td>
                         </tr>

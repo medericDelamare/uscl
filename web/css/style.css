@@ -5,8 +5,8 @@ body {
     min-height: 100%;
     margin: 0;
     padding: 0;
-    padding-top: 50px;
     position: relative;
+    font-family: 'Open Sans', sans-serif;
 }
 
 
@@ -184,15 +184,25 @@ body {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+    padding-top: 50px;
 }
 
 .tagline {
-    text-shadow: 0 0 10px #000;
+    text-shadow: 2px 2px 2px #000;
     color: #fff;
+    font-family: 'Montserrat', sans-serif;
 }
-
+.page-header {
+    font-family: 'Montserrat', sans-serif;
+}
 .img-center {
     margin: 0 auto;
+}
+
+.nav>li>a {
+
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 @media(max-width:991px) {
@@ -221,8 +231,9 @@ body {
 }
 
 .navbar-inverse {
-    background-color: #0050A1;
+    background-color: rgba(0, 33, 66, 0.55);
     border-color: #080808;
+    border: 0;
 }
 
 .navbar-inverse .navbar-nav>li>a
