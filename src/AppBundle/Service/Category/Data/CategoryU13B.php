@@ -11,6 +11,6 @@ class CategoryU13B extends Category
         $this->urlAgenda        = "https://eure.fff.fr/competitions/?id=339179&poule=2&phase=1&type=ch&tab=agenda";
         $this->urlClassement    = "https://eure.fff.fr/competitions/?id=339179&poule=2&phase=1&type=ch&tab=ranking";
         $this->urlCalendrier    = "https://eure.fff.fr/competitions/?journee=&date=&equipe=104246-18&opposant=&place=&sens=&id=339179&poule=2&phase=1&tab=advanced_search&type=ch";
-        $this->division         = "Départemental 3 Groupe B";
+        $this->division         = "Départemental 4 Groupe B";
     }
 }

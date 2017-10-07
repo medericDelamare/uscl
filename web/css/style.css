@@ -231,7 +231,7 @@ body {
 }
 
 .navbar-inverse {
-    background-color: rgba(0, 33, 66, 0.55);
+    background-color: rgba(0, 80, 161, 0.5);
     border-color: #080808;
     border: 0;
 }
@@ -346,4 +346,13 @@ body {
 
 .uscl-ighlighting{
     background-color: rgba(0,80,161,0.5);
+}
+
+.breadcrumb{
+    padding-top: 50px;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    color: #fff;
+    background-color: rgb(0,80,161);
 }
