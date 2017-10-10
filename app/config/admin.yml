@@ -30,3 +30,11 @@ services:
             arguments: [~, AppBundle\Entity\User, ~]
             tags:
                 - { name: sonata.admin, manager_type: orm, label: Utilisateurs, group: "utilisateurs"}
+
+    admin.stats:
+            class: AppBundle\Admin\StatsAdmin
+            arguments: [~, ~, AppBundle:StatsAdmin]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: Statistiques, group: "joueurs"}
+            calls:
+                - [ setTemplate, [add, SonataAdminBundle:Stats:stats.html.twig]]
