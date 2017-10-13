@@ -16,6 +16,7 @@ class StatsAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->add('add');
+        $collection->add('save');
     }
 
     protected function configureFormFields(FormMapper $formMapper)
