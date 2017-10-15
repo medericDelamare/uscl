@@ -8,7 +8,13 @@ use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Sonata\AdminBundle\Form\Type\ModelAutocompleteType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Routing\Annotation\Route;
+
 class StatsAdminController extends Controller{
+
+    /**
+     * @Route("/add", name="stats_add")
+     */
     public function addAction(){
         $request = $this->getRequest();
         $joueursBdd = $this->getDoctrine()->getManager()->getRepository(Joueur::class)->findAll();
@@ -87,12 +93,6 @@ class StatsAdminController extends Controller{
         }
         return $this->render('@SonataAdmin/Stats/stats.html.twig', [
             'form' => $form->createView(),
-        ]);
-    }
-    public function saveAction(Request $request){
-        dump($request);
-
-        return $this->render('@SonataAdmin/Core/dashboard.html.twig', [
         ]);
     }
 }
