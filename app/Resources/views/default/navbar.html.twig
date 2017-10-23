@@ -41,6 +41,7 @@
                     </ul>
                 </li>
                 <li><a href="{{ path('buteurs') }}"><i class="fa fa-futbol-o" aria-hidden="true"></i> Buteurs</a></li>
+                <li><a href="{{ path('fos_user_registration_register') }}"><i class="fa fa-gamepad" aria-hidden="true"></i> Tournoi FIFA 18</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -57,7 +58,6 @@
 
                 {% else  %}
                     <li><a href="{{ path('fos_user_security_login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Connexion</a></li>
-                    <li><a href="{{ path('fos_user_registration_register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Inscription</a></li>
                 {% endif %}
 
             </ul>
