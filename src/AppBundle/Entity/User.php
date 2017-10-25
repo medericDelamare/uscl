@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -32,7 +33,7 @@ class User extends BaseUser
     private $lastName;
 
     /**
-     * @var string
+     * @var ArrayCollection
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\ClubFifa")
      */
     private $clubFifa;
@@ -40,6 +41,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->clubFifa = new ArrayCollection();
     }
 
     /**
@@ -51,7 +53,7 @@ class User extends BaseUser
     }
 
     /**
-     * @return string
+     * @return ArrayCollection
      */
     public function getClubFifa()
     {
@@ -59,7 +61,7 @@ class User extends BaseUser
     }
 
     /**
-     * @param string $clubFifa
+     * @param ArrayCollection $clubFifa
      * @return User
      */
     public function setClubFifa($clubFifa)

@@ -2,7 +2,12 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\ClubFifa;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class RegistrationType extends AbstractType{
@@ -10,10 +15,19 @@ class RegistrationType extends AbstractType{
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
-            ->add('firstname')
-            ->add('lastname')
-            ->add('club_fifa');
+            ->add('username', TextType::class, [
+                'label' => 'Pseudo'
+            ])
+            ->add('firstname', TextType::class, [
+                'label' => 'Prénom'
+            ])
+            ->add('lastname', TextType::class, [
+                'label' => 'Nom de famille'
+            ])
+            ->add('club_fifa', EntityType::class, [
+                'class' => ClubFifa::class,
+                'label' => 'Club'
+            ]);
     }
 
     public function getParent()

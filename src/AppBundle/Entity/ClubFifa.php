@@ -29,7 +29,7 @@ class ClubFifa{
      * @var string
      * @ORM\Column(type="string", nullable=false)
      */
-    private $pays;
+    private $nom;
 
     /**
      * @return int
@@ -60,18 +60,23 @@ class ClubFifa{
     /**
      * @return string
      */
-    public function getPays()
+    public function getNom()
     {
-        return $this->pays;
+        return $this->nom;
     }
 
     /**
-     * @param string $pays
+     * @param string $nom
      * @return ClubFifa
      */
-    public function setPays($pays)
+    public function setNom($nom)
     {
-        $this->pays = $pays;
+        $this->nom = $nom;
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getNom();
     }
 }
