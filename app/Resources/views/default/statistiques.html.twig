@@ -142,7 +142,7 @@
 
             if(res[0])
             {
-                if (res[0] == res[1]){$(this).addClass('warning');}
+                if (parseInt(res[0]) == parseInt(res[1])){$(this).addClass('warning');}
 
                 if ($('.eqLeft',this).html().indexOf('CORM') != -1 && parseInt(res[0]) < parseInt(res[1])) {
                     $(this).addClass('danger');

@@ -14,7 +14,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $prochainsMatchs = $this->getAgenda('https://www.fff.fr/la-vie-des-clubs/104246/agenda');
+        $prochainsMatchs = $this->getAgenda('https://eure.fff.fr/recherche-clubs/?scl=104246&tab=resultats&subtab=agenda');
         $resultats = $this->getResult('https://eure.fff.fr/recherche-clubs/?scl=104246&tab=resultats');
 
         // replace this example code with whatever you need
@@ -48,34 +48,31 @@ class DefaultController extends Controller
 
         $crawler = new Crawler($html);
 
-        $crawler->filter('.bloc_result');
+        $crawler->filter('.confrontation');
 
         $resultats = [];
 
 
-        for ($i = 0; $i < $crawler->filter('.bloc_result')->count(); $i++) {
-            $craw = $crawler->filter('.bloc_result')->eq($i);
-            $date = $this->convertDate($craw->filter('h4')->first()->text());
-
-            if ($craw->filter('.regular')->count() == 2){
-                $equipe1 = $craw->filter('.regular')->eq(0)->text();
-                $equipe2 = $craw->filter('.regular')->eq(1)->text();
-            } else{
-                $equipe1 = $craw->filter('.regular')->eq(0)->text();
-                $equipe2 = 'Exempt';
-            }
-
+        for ($i = 0; $i < $crawler->filter('.confrontation')->count(); $i++) {
+            $craw = $crawler->filter('.confrontation')->eq($i);
+            $competition = $craw->filter('.competition')->text();
+            $equipe1 = trim($craw->filter('.equipe1')->filter('.name')->text());
+            $equipe2 = trim($craw->filter('.equipe2')->text());
             $resultats[] = [
                 'equipe1' => $equipe1,
                 'equipe2' => $equipe2,
-                'date' => $date,
+                'competition' => $competition
             ];
         }
+        $crawler->filter('.date span')->each(function (Crawler $crawler) {
+            foreach ($crawler as $node) {
+                $node->parentNode->removeChild($node);
+            }
+        });
 
-        for ($i = 0; $i < $crawler->filter('.sub_tilte')->count(); $i++) {
-            $resultats[$i]['competition'] =
-                $crawler->filter('.sub_tilte')->eq($i)->text()
-            ;
+        for ($i = 0; $i < $crawler->filter('.date')->count(); $i++) {
+            $craw = $crawler->filter('.date')->eq($i);
+            $resultats[$i]['date'] = $this->convertDate(str_replace('<br>', '',$craw->html()));
         }
         return $resultats;
     }
