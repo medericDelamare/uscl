@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\ClubFifa;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -11,7 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class RegistrationType extends AbstractType{
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -26,7 +26,11 @@ class RegistrationType extends AbstractType{
             ])
             ->add('club_fifa', EntityType::class, [
                 'class' => ClubFifa::class,
-                'label' => 'Club'
+                'label' => 'Club',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->orderBy('c.championnat', 'ASC');
+                },
             ]);
     }
 
