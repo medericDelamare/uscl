@@ -1,2 +1,4 @@
 joueur:
   plural: Joueurs
+import:
+  plural: Imports

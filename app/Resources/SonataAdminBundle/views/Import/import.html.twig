@@ -28,9 +28,18 @@
                 </div>
                 <div class="box-body">
                     <div class="sonata-ba-collapsed-fields">
-                        {% for file in files %}
-                            {{ file.relativePathname }}
-                        {% endfor %}
+                        <table class="table">
+                            <tr>
+                                <th>Nom du fichier</th>
+                                <th>Actions</th>
+                            </tr>
+                            {% for file in files %}
+                                <tr>
+                                    <td>{{ file.relativePathname }}</td>
+                                    <td><a class="btn btn-default" href="{{ path('imports_import-joueurs', {'fileName': file.relativePathname }) }}">Importer</a></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
                     </div>
                 </div>
             </div>

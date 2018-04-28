@@ -5,12 +5,15 @@ namespace AppBundle\Controller;
 
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Console\Application;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\Process\Process;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ImportAdminController extends Controller
@@ -55,5 +58,14 @@ class ImportAdminController extends Controller
             'files' => $files,
             'form'=> $form->createView(),
         ]);
+    }
+
+    public function importJoueursAction(Request $request){
+        $fileName = $request->get('fileName');
+        $process = new Process('php ../bin/console import:footclub:csv --fileName="'.$fileName.'"');
+        $process->run();
+
+        $this->addFlash('sonata_flash_success', 'Import en cours');
+        return $this->redirectToRoute('sonata_admin_dashboard');
     }
 }

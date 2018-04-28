@@ -32,6 +32,7 @@ class ImportAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->add('add');
+        $collection->add('import-joueurs', 'import-joueurs/{fileName}');
         $collection->remove('list');
         $collection->remove('create');
         $collection->remove('edit');
