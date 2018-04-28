@@ -16,3 +16,5 @@
 /web/bundles/
 
 \.idea/workspace\.xml
+
+\.idea/dataSources\.local\.xml

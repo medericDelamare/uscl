@@ -18,7 +18,9 @@ class EffectifController extends Controller
      * @Route("/effectif/{category}", name="effectif")
      * @Template()
      */
-    public function listByCategoryAction($category){
+    public function listByCategoryAction($category)
+    {
+
         $em = $this->getDoctrine()->getManager();
         $gardiens = $em->getRepository(Joueur::class)->findByCategoryAndPost($category, 'gardien');
         $defenseurs = $em->getRepository(Joueur::class)->findByCategoryAndPost($category, 'defenseur');
