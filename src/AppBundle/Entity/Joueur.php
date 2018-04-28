@@ -34,8 +34,9 @@ class Joueur
     private $prenom;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", nullable=false)
+     * @var Categorie
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Categorie", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
 
@@ -43,55 +44,55 @@ class Joueur
      * @var integer
      * @ORM\Column(type="integer",nullable=true)
      */
-    private $butsA;
+    private $butsA = 0;
 
     /**
      * @var integer
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $butsB;
+    private $butsB = 0;
 
     /**
      * @var integer
      * @ORM\Column(type="integer",nullable=true)
      */
-    private $butsCoupe;
+    private $butsCoupe = 0;
 
     /**
      * @var integer
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $buts;
+    private $buts = 0;
 
     /**
      * @var integer
      * @ORM\Column(type="integer",nullable=true)
      */
-    private $cartonsJaunes;
+    private $cartonsJaunes = 0;
 
     /**
      * @var integer
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $cartonsRouges;
+    private $cartonsRouges = 0;
 
     /**
      * @var string
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $poste;
+    private $poste = 0;
 
     /**
      * @var integer
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $passes;
+    private $passes = 0;
 
     /**
      * @var integer
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $nbMatchs;
+    private $nbMatchs = 0;
 
     /**
      * @var \DateTime
@@ -125,7 +126,7 @@ class Joueur
 
     /**
      * @var string
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true, nullable=false)
      */
     private $numeroLicence;
 

@@ -41,7 +41,7 @@ services:
 
     admin.import:
             class: AppBundle\Admin\ImportAdmin
-            arguments: [~, ~, AdminBundle:Import]
+            arguments: [~, ~, AppBundle:ImportAdmin]
             tags:
                 - { name: sonata.admin, manager_type: orm, label: import.plural, group: "imports"}
             calls:
