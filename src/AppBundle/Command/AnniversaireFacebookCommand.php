@@ -1,20 +1,31 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Command;
 
 
 use AppBundle\Entity\Joueur;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
-class FacebookController extends Controller
+class AnniversaireFacebookCommand extends ContainerAwareCommand
 {
-    /**
-     * @Route("/facebook/publish-anniversaire", name="facebook-publish")
-     */
-    public function publishAction(){
-        $joueurs = $this->getDoctrine()->getManager()->getRepository(Joueur::class)->findByBirthdayNow();
+    protected function configure()
+    {
+        $this
+            ->setName('anniversaire:facebook')
+            ->setDescription('Import des joueurs via la liste extraite de Footclub');
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        // Showing when the script is launched
+        $now = new \DateTime();
+        $output->writeln('<comment>Start : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
+
+        // Getting doctrine manager
+        $em = $this->getContainer()->get('doctrine')->getManager();
+        $joueurs = $em->getRepository(Joueur::class)->findByBirthdayNow();
 
         $message = null;
         $noms = null;
@@ -47,9 +58,10 @@ class FacebookController extends Controller
 
             }
         }
+        $this->getContainer()->get('app_core.facebook')->poster($message);
 
-        $this->get('app_core.facebook')->poster($message);
-
-        return new Response("Post Envoyé");
+        // Showing when the script is over
+        $now = new \DateTime();
+        $output->writeln('<comment>End : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
     }
 }

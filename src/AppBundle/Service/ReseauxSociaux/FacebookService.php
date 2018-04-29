@@ -41,10 +41,6 @@ class FacebookService
             'message' => $msg
         );
 
-        dump($this->connection);
-
-        dump($this->pageID, $this->appId, $this->token, $this->appSecret);
-
         // on poste sur notre page Facebook
         try {
             $this->connection->post('/' . $this->pageID . '/feed', $attachment, $this->token);
