@@ -65,4 +65,13 @@ class JoueurRepository extends EntityRepository
 
         return $query;
     }
+
+    public function findByBirthdayNow(){
+        $now = new \DateTime();
+        return $this->createQueryBuilder('j')
+            ->where('j.dateNaissance LIKE :date')
+            ->setParameter('date','%' . $now->format('m-d'))
+            ->getQuery()
+            ->getResult();
+    }
 }
