@@ -11,3 +11,9 @@ services:
             - { name: form.type, alias: app_user_registration }
     import.csvtoarray:
             class: AppBundle\Service\Import\ConvertCsvToArray
+
+    app_core.facebook:
+       # notre classe
+       class: AppBundle\Service\ReseauxSociaux\FacebookService
+       #  on ajoute nos identifiants en paramètre
+       arguments: ["%app_id%","%app_secret%","%page_id%","%token%"]
