@@ -11,5 +11,8 @@
       <user-name>root</user-name>
       <introspection-schemas>*:symfony</introspection-schemas>
     </data-source>
+    <data-source name="uscl@localhost" uuid="5cc828fc-681b-4481-ad65-3c58a2ce22b9">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    </data-source>
   </component>
 </project>

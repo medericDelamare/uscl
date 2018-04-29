@@ -38,3 +38,11 @@ services:
                 - { name: sonata.admin, manager_type: orm, label: Statistiques, group: "joueurs"}
             calls:
                 - [ setTemplate, [add, SonataAdminBundle:Stats:stats.html.twig]]
+
+    admin.import:
+            class: AppBundle\Admin\ImportAdmin
+            arguments: [~, ~, AppBundle:ImportAdmin]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: import.plural, group: "imports"}
+            calls:
+                - [ setTemplate, [list, SonataAdminBundle:Import:import.html.twig]]
