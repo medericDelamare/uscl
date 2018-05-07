@@ -17,3 +17,8 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    app_id: 997836653699165
+    app_secret: 79b0ba738b65a330af7213ab69a42c4
+    page_id: 134432930097257
+    token: EAAOLhvNJoF0BABYSwAKfRZBzqruP7utpY1erPZAHIUo68QliWF6iLBOGPcMmuNipvYAUDagRkxg3DcVGrK6rqy9JNj4kLc78eGJNR04cPQHMbzm6TzW7cZBxg8r81mZCvZAEBiyhZCsRpU6gk8HYoPqgZAZBjDhKUdlwWFm4lqfUtAZDZD
