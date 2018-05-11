@@ -26,6 +26,9 @@ class ImportAdminController extends Controller
         /** @var Kernel $kernel */
         $kernel = $this->container->get( 'kernel' );
         $dir = $kernel->getRootDir() . '\Resources\Infos_Footclub';
+        if(!is_dir($dir)){
+            mkdir($kernel->getRootDir() . '\Resources\Infos_Footclub');
+        }
         $request = $this->getRequest();
         /** @var Form $form */
         $form = $this->createFormBuilder()
