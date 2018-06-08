@@ -10,7 +10,7 @@
 
     <div class="container">
         <h1 class = "page-header">{{ category }} -<small> {{ nb_joueurs }} Joueurs</small></h1>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th>Nom</th>
@@ -28,7 +28,7 @@
             <tbody>
             {% for joueur in joueurs%}
                 <tr>
-                    <td><a href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nom }}</a></td>
+                    <td><strong><a class="nom-effectif" href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nom }}</a></strong></td>
                     <td>{{ joueur.prenom }}</td>
                     <td data-order={{ joueur.poste.position }}>{{ joueur.poste.nom }}</td>
                     <td>{{ joueur.buts }}</td>
