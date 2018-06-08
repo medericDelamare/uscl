@@ -50,16 +50,7 @@ class JoueurAdmin extends AbstractAdmin
                 ->end()
                 ->with('Statistiques', ['class' => 'col-md-6'])
                     ->add('categorie')
-                    ->add('poste', 'choice', [
-                        'expanded' => true,
-                        'multiple' => false,
-                        'choices' => [
-                            "Gardien" => "Gardien",
-                            "Défenseur" => "Defenseur",
-                            "Milieu" => "Milieu",
-                            "Attaquant" => "Attaquant",
-                        ]
-                    ])
+                    ->add('poste')
                     ->add('nbMatchs')
                     ->add('butsA')
                     ->add('butsB')
