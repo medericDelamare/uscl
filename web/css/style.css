@@ -372,3 +372,12 @@ body {
         font-size: 25px;
     }
 }
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: rgba(0, 80, 161, 0.5);
+}
+
+.nom-effectif, .nom-effectif:hover{
+    text-decoration: none;
+    color: #0f0f0f;
+}

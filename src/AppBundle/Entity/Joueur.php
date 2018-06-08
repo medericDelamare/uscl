@@ -78,9 +78,10 @@ class Joueur
 
     /**
      * @var string
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Poste")
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $poste = 0;
+    private $poste;
 
     /**
      * @var integer

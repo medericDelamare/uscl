@@ -8,12 +8,12 @@ use Doctrine\ORM\EntityRepository;
 class JoueurRepository extends EntityRepository
 {
 
-    public function findByCategoryAndPost($category,$poste){
+    public function findByCategoryOrderByPoste($category){
 
         $categories = [];
         switch ($category){
             case 'Senior':
-                $categories = ['Senior', 'Senior U20 (- 20 ans)', 'U19 (- 19 ans)'];
+                $categories = ['Vétéran', 'Senior', 'Senior U20 (- 20 ans)', 'U19 (- 19 ans)'];
                 break;
             case 'U18':
                 $categories = ['U18 (- 18 ans)', 'U17 (- 17 ans)', 'U16 (- 16 ans)'];
@@ -29,10 +29,9 @@ class JoueurRepository extends EntityRepository
 
         return $this->createQueryBuilder('j')
             ->join('j.categorie','c')
+            ->join('j.poste', 'p')
             ->where('c.nom IN (:categories)')
-            ->andWhere('j.poste = :poste')
-            ->orderBy('j.nom')
-            ->setParameter('poste', $poste)
+            ->orderBy('p.position', 'DESC')
             ->setParameter('categories', $categories)
             ->getQuery()
             ->getResult();
@@ -42,7 +41,7 @@ class JoueurRepository extends EntityRepository
         $categories = [];
         switch ($category){
             case 'Senior':
-                $categories = ['Senior', 'Senior U20 (- 20 ans)', 'U19 (- 19 ans)'];
+                $categories = ['Vétéran', 'Senior', 'Senior U20 (- 20 ans)', 'U19 (- 19 ans)'];
                 break;
             case 'U18':
                 $categories = ['U18 (- 18 ans)', 'U17 (- 17 ans)', 'U16 (- 16 ans)'];
