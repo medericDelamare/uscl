@@ -50,30 +50,13 @@ class ContactController extends Controller
     }
 
     private function sendEmail($data){
-        $myappContactMail = 'contact@uscl-foot.fr';
-        $myappContactPassword = null;
-
-        if ( $this->container->get('kernel')->getEnvironment() == "dev" ) {
-
-            $transport = \Swift_SmtpTransport::newInstance('localhost', 1025,null);
-
-        } else {
-
-            $transport = \Swift_SmtpTransport::newInstance();
-
-        }
-
-
-
-        $mailer = \Swift_Mailer::newInstance($transport);
-
         $message = \Swift_Message::newInstance()
-            ->setSubject('Mail Contact')
+            ->setSubject('Mail Contact USCL')
             ->setFrom($data['email'])
             ->setTo('contact@uscl-foot.fr')
-            ->setBody($data['message'])
-        ;
+            ->setBody('bonjour');
 
-        return $mailer->send($message);
+
+        return $$this->get('mailer')->send($message);
     }
 }
