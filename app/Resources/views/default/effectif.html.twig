@@ -1,4 +1,7 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+{% endblock %}
 {% block body %}
     <ol class="breadcrumb">
         <li><a href="index.php">Accueil</a></li>
@@ -7,12 +10,12 @@
 
     <div class="container">
         <h1 class = "page-header">{{ category }} -<small> {{ nb_joueurs }} Joueurs</small></h1>
-        <h3 class = "page-header">Gardiens</h3>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th>Nom</th>
                 <th>Prénom</th>
+                <th>Poste</th>
                 <th>Buts</th>
                 <th>Passes</th>
                 <th>Cartons Jaunes</th>
@@ -23,116 +26,38 @@
             </tr>
             </thead>
             <tbody>
-            {% for gardien in gardiens%}
+            {% for joueur in joueurs%}
                 <tr>
-                    <td><a href="{{ path('profile', {'id': gardien.id}) }}">{{ gardien.nom }}</a></td>
-                    <td>{{ gardien.prenom }}</td>
-                    <td>{{ gardien.buts }}</td>
-                    <td>{{ gardien.passes }}</td>
-                    <td>{{ gardien.cartonsJaunes }}</td>
-                    <td>{{ gardien.cartonsRouges }}</td>
+                    <td><strong><a class="nom-effectif" href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nom }}</a></strong></td>
+                    <td>{{ joueur.prenom }}</td>
+                    <td data-order={{ joueur.poste.position }}>{{ joueur.poste.nom }}</td>
+                    <td>{{ joueur.buts }}</td>
+                    <td>{{ joueur.passes }}</td>
+                    <td>{{ joueur.cartonsJaunes }}</td>
+                    <td>{{ joueur.cartonsRouges }}</td>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <td>{{ gardien.mobile }}</td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
-        <h3 class = "page-header">Defenseurs</h3>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Buts</th>
-                <th>Passes</th>
-                <th>Cartons Jaunes</th>
-                <th>Cartons Rouges</th>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <th>Numéro de téléphone</th>
-                {% endif %}
-            </tr>
-            </thead>
-            <tbody>
-            {% for defenseur in defenseurs %}
-                <tr>
-                    <td><a href="{{ path('profile', {'id': defenseur.id}) }}">{{ defenseur.nom }}</a></td>
-                    <td>{{ defenseur.prenom }}</td>
-                    <td>{{ defenseur.buts }}</td>
-                    <td>{{ defenseur.passes }}</td>
-                    <td>{{ defenseur.cartonsJaunes }}</td>
-                    <td>{{ defenseur.cartonsRouges }}</td>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <td>{{ defenseur.mobile }}</td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
-        <h3 class = "page-header">Milieux</h3>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Buts</th>
-                <th>Passes</th>
-                <th>Cartons Jaunes</th>
-                <th>Cartons Rouges</th>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <th>Numéro de téléphone</th>
-                {% endif %}
-            </tr>
-            </thead>
-            <tbody>
-            {% for milieu in milieux %}
-                <tr>
-                    <td><a href="{{ path('profile', {'id': milieu.id}) }}">{{ milieu.nom }}</a></td>
-                    <td>{{ milieu.prenom }}</td>
-                    <td>{{ milieu.buts }}</td>
-                    <td>{{ milieu.passes }}</td>
-                    <td>{{ milieu.cartonsJaunes }}</td>
-                    <td>{{ milieu.cartonsRouges }}</td>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <td>{{ milieu.mobile }}</td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
-        <h3 class = "page-header">Attaquants</h3>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Buts</th>
-                <th>Passes</th>
-                <th>Cartons Jaunes</th>
-                <th>Cartons Rouges</th>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <th>Numéro de téléphone</th>
-                {% endif %}
-            </tr>
-            </thead>
-            <tbody>
-            {% for attaquant in attaquants %}
-                <tr>
-                    <td><a href="{{ path('profile', {'id': attaquant.id}) }}">{{ attaquant.nom }}</a></td>
-                    <td>{{ attaquant.prenom }}</td>
-                    <td>{{ attaquant.buts }}</td>
-                    <td>{{ attaquant.passes }}</td>
-                    <td>{{ attaquant.cartonsJaunes }}</td>
-                    <td>{{ attaquant.cartonsRouges }}</td>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <td>{{ attaquant.mobile }}</td>
+                        <td>{{ joueur.mobile }}</td>
                     {% endif %}
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <script >
+        $(document).ready( function () {
+            $('.table').DataTable({
+                "paging": false,
+                "bInfo" : false,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
+                },
+                "order": [[ 2, "asc" ]]
+            });
+        } );
+    </script>
 {% endblock %}

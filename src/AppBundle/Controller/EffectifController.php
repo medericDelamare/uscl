@@ -22,18 +22,11 @@ class EffectifController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $gardiens = $em->getRepository(Joueur::class)->findByCategoryAndPost($category, 'gardien');
-        $defenseurs = $em->getRepository(Joueur::class)->findByCategoryAndPost($category, 'defenseur');
-        $milieux = $em->getRepository(Joueur::class)->findByCategoryAndPost($category, 'milieu');
-        $attaquants = $em->getRepository(Joueur::class)->findByCategoryAndPost($category, 'attaquant');
-        $nbJoueurs = count($gardiens) + count($defenseurs) + count($milieux) + count($attaquants);
+        $joueurs = $em->getRepository(Joueur::class)->findByCategoryOrderByPoste($category);
         return $this->render('default/effectif.html.twig', [
-            'gardiens' => $gardiens,
-            'defenseurs' => $defenseurs,
-            'milieux' => $milieux,
-            'attaquants' => $attaquants,
+            'joueurs' => $joueurs,
             'category' => $category,
-            'nb_joueurs' => $nbJoueurs
+            'nb_joueurs' => count($joueurs)
         ]);
 
     }
