@@ -54,9 +54,9 @@ class ContactController extends Controller
             ->setSubject('Mail Contact USCL')
             ->setFrom($data['email'])
             ->setTo('contact@uscl-foot.fr')
-            ->setBody('bonjour');
+            ->setBody($data['message']);
 
 
-        return $$this->get('mailer')->send($message);
+        return $this->get('mailer')->send($message);
     }
 }
