@@ -3,6 +3,8 @@ namespace AppBundle\Command;
 
 
 
+use AppBundle\Entity\Equipe;
+use AppBundle\Entity\Rencontre;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -51,9 +53,11 @@ class saveRencontresCommand extends ContainerAwareCommand
                 $craw = $crawler->filter('.results-content')->eq($i);
                 if (($craw->filter('.widgettitle > span')->count() > 0)) {
                     $journee = $craw->filter('.widgettitle > span')->text();
+                    $journee = (int)str_replace('Journée ', '', $journee);
                     for ($j = 0; $j < $craw->filter('.result-display')->count(); $j++){
                         $crawRencontre = $craw->filter('.result-display')->eq($j);
                         $equipe1 = trim($crawRencontre->filter('.equipe1 > .name')->text());
+
                         $equipe2 = trim($crawRencontre->filter('.equipe2 > .name')->text());
                         $date = $this->convertDate($crawRencontre->filter('.date')->first()->text());
                         $date = \DateTime::createFromFormat('d/m/Y H:i', $date);
@@ -63,6 +67,21 @@ class saveRencontresCommand extends ContainerAwareCommand
                             $scoreDomicile = $this->getNombre($scoreExposed[0]);
                             $scoreExterieur = $this->getNombre($scoreExposed[1]);
                             $score = $scoreDomicile . ' - ' . $scoreExterieur;
+
+                            $em = $this->getContainer()->get('doctrine')->getManager();
+
+                            $equipeDom = $em->getRepository(Equipe::class)->findOneByNomParse($equipe1);
+                            $equipeExt = $em->getRepository(Equipe::class)->findOneByNomParse($equipe2);
+
+                            $rencontre = new Rencontre();
+                            $rencontre
+                                ->setEquipeDomicile($equipeDom)
+                                ->setEquipeExterieure($equipeExt)
+                                ->setDate($date)
+                                ->setJournee($journee)
+                                ->setScore($score);
+                            $em->persist($rencontre);
+                            $em->flush();
                         } else {
                             $score = '-';
                         }
