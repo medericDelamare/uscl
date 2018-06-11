@@ -70,8 +70,39 @@ class saveRencontresCommand extends ContainerAwareCommand
 
                             $em = $this->getContainer()->get('doctrine')->getManager();
 
+                            /** @var Equipe $equipeDom */
                             $equipeDom = $em->getRepository(Equipe::class)->findOneByNomParse($equipe1);
+
+                            /** @var Equipe $equipeExt */
                             $equipeExt = $em->getRepository(Equipe::class)->findOneByNomParse($equipe2);
+
+
+                            if ($scoreDomicile > $scoreExterieur){
+                                $statsDom = $equipeDom->getStats();
+                                $statsDom
+                                    ->addPoints(4);
+
+                                $statsExt = $equipeExt->getStats();
+                                $statsExt
+                                    ->addPoints(1);
+                            } elseif ($scoreDomicile < $scoreExterieur){
+                                $statsDom = $equipeDom->getStats();
+                                $statsDom
+                                    ->addPoints(1);
+
+                                $statsExt = $equipeExt->getStats();
+                                $statsExt
+                                    ->addPoints(4);
+                            } elseif ( $scoreDomicile == $scoreExterieur){
+                                $statsDom = $equipeDom->getStats();
+                                $statsDom
+                                    ->addPoints(2);
+
+                                $statsExt = $equipeExt->getStats();
+                                $statsExt
+                                    ->addPoints(2);
+                            }
+
 
                             $rencontre = new Rencontre();
                             $rencontre
@@ -80,6 +111,8 @@ class saveRencontresCommand extends ContainerAwareCommand
                                 ->setDate($date)
                                 ->setJournee($journee)
                                 ->setScore($score);
+                            $em->persist($equipeExt);
+                            $em->persist($equipeDom);
                             $em->persist($rencontre);
                             $em->flush();
                         } else {
@@ -89,8 +122,6 @@ class saveRencontresCommand extends ContainerAwareCommand
                 } else {
                 }
             }
-
-            die;
 
 
         $output->writeln('<comment>End : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');

@@ -157,4 +157,22 @@ class Equipe
         $this->categorie = $categorie;
         return $this;
     }
+
+    /**
+     * @return StatsEquipe
+     */
+    public function getStats()
+    {
+        return $this->stats;
+    }
+
+    /**
+     * @param mixed $stats
+     * @return Equipe
+     */
+    public function setStats($stats)
+    {
+        $this->stats = $stats;
+        return $this;
+    }
 }

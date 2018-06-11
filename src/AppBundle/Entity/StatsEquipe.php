@@ -86,6 +86,11 @@ class StatsEquipe
         return $this;
     }
 
+    public function addPoints($points){
+        $this->points = $this->points + $points;
+        return $this;
+    }
+
     /**
      * @return int
      */
