@@ -109,6 +109,11 @@ class StatsEquipe
         return $this;
     }
 
+    public function addJournee(){
+        $this->journees = $this->journees + 1;
+        return $this;
+    }
+
     /**
      * @return int
      */
@@ -124,6 +129,11 @@ class StatsEquipe
     public function setVictoires($victoires)
     {
         $this->victoires = $victoires;
+        return $this;
+    }
+
+    public function addVictoire(){
+        $this->victoires = $this->victoires + 1;
         return $this;
     }
 
@@ -145,6 +155,11 @@ class StatsEquipe
         return $this;
     }
 
+    public function addNul(){
+        $this->nuls = $this->nuls + 1;
+        return $this;
+    }
+
     /**
      * @return int
      */
@@ -160,6 +175,11 @@ class StatsEquipe
     public function setDefaites($defaites)
     {
         $this->defaites = $defaites;
+        return $this;
+    }
+
+    public function addDefaite(){
+        $this->defaites = $this->defaites + 1;
         return $this;
     }
 
@@ -181,6 +201,11 @@ class StatsEquipe
         return $this;
     }
 
+    public function addForfait(){
+        $this->forfaits = $this->forfaits + 1;
+        return $this;
+    }
+
     /**
      * @return int
      */
@@ -196,6 +221,11 @@ class StatsEquipe
     public function setButsPour($butsPour)
     {
         $this->butsPour = $butsPour;
+        return $this;
+    }
+
+    public function addButsPour($buts){
+        $this->butsPour = $this->butsPour + $buts;
         return $this;
     }
 
@@ -217,6 +247,11 @@ class StatsEquipe
         return $this;
     }
 
+    public function addButsContre($buts){
+        $this->butsContre = $this->butsContre + $buts;
+        return $this;
+    }
+
     /**
      * @return int
      */
@@ -235,6 +270,11 @@ class StatsEquipe
         return $this;
     }
 
+    public function addPenalite(){
+        $this->butsContre = $this->butsContre + 1;
+        return $this;
+    }
+
     /**
      * @return int
      */
@@ -250,6 +290,11 @@ class StatsEquipe
     public function setDifference($difference)
     {
         $this->difference = $difference;
+        return $this;
+    }
+
+    public function addDifference($buts){
+        $this->difference = $this->difference + $buts;
         return $this;
     }
 }

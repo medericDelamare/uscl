@@ -24,106 +24,187 @@ class saveRencontresCommand extends ContainerAwareCommand
         // Showing when the script is launched
         $now = new \DateTime();
         $output->writeln('<comment>Start : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
-            $ch = curl_init();
+        $ch = curl_init();
 
 
-            curl_setopt($ch, CURLOPT_URL, 'https://eure.fff.fr/competitions/?id=339167&poule=1&phase=1&type=ch&tab=calendar');
-            curl_setopt($ch, CURLOPT_HEADER, false);
-            curl_setopt($ch, CURLOPT_NOBODY, false);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_URL, 'https://eure.fff.fr/competitions/?id=339167&poule=1&phase=1&type=ch&tab=calendar');
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_NOBODY, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 
-            curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.7.12) Gecko/20050915 Firefox/1.0.7");
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            //curl_setopt($ch, CURLOPT_REFERER, $_SERVER['REQUEST_URI']);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
+        curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.7.12) Gecko/20050915 Firefox/1.0.7");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        //curl_setopt($ch, CURLOPT_REFERER, $_SERVER['REQUEST_URI']);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
 
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-            curl_exec($ch);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_exec($ch);
 
-            $html = curl_exec($ch);
+        $html = curl_exec($ch);
 
-            curl_close($ch);
+        curl_close($ch);
 
-            $crawler = new Crawler($html);
+        $crawler = new Crawler($html);
 
-            $crawler->filter('.confrontation');
-
-            for ($i = 0; $i < $crawler->filter('.results-content')->count(); $i++) {
-                $craw = $crawler->filter('.results-content')->eq($i);
-                if (($craw->filter('.widgettitle > span')->count() > 0)) {
-                    $journee = $craw->filter('.widgettitle > span')->text();
-                    $journee = (int)str_replace('Journée ', '', $journee);
-                    for ($j = 0; $j < $craw->filter('.result-display')->count(); $j++){
-                        $crawRencontre = $craw->filter('.result-display')->eq($j);
-                        $equipe1 = trim($crawRencontre->filter('.equipe1 > .name')->text());
-
-                        $equipe2 = trim($crawRencontre->filter('.equipe2 > .name')->text());
-                        $date = $this->convertDate($crawRencontre->filter('.date')->first()->text());
-                        $date = \DateTime::createFromFormat('d/m/Y H:i', $date);
-                        if (($crawRencontre->filter('.number')->count() > 0)) {
-                            $score = $crawRencontre->filter('.score_match')->html();
-                            $scoreExposed = explode(' - ', $score);
-                            $scoreDomicile = $this->getNombre($scoreExposed[0]);
-                            $scoreExterieur = $this->getNombre($scoreExposed[1]);
-                            $score = $scoreDomicile . ' - ' . $scoreExterieur;
-
-                            $em = $this->getContainer()->get('doctrine')->getManager();
-
-                            /** @var Equipe $equipeDom */
-                            $equipeDom = $em->getRepository(Equipe::class)->findOneByNomParse($equipe1);
-
-                            /** @var Equipe $equipeExt */
-                            $equipeExt = $em->getRepository(Equipe::class)->findOneByNomParse($equipe2);
+        $crawler->filter('.confrontation');
 
 
-                            if ($scoreDomicile > $scoreExterieur){
-                                $statsDom = $equipeDom->getStats();
-                                $statsDom
-                                    ->addPoints(4);
+        $em = $this->getContainer()->get('doctrine')->getManager();
 
-                                $statsExt = $equipeExt->getStats();
-                                $statsExt
-                                    ->addPoints(1);
-                            } elseif ($scoreDomicile < $scoreExterieur){
-                                $statsDom = $equipeDom->getStats();
-                                $statsDom
-                                    ->addPoints(1);
+        // Truncate de la table rencontre à chaque commande
+        $connection = $em->getConnection();
+        $platform   = $connection->getDatabasePlatform();
+        $connection->executeUpdate($platform->getTruncateTableSQL('rencontre', false));
 
-                                $statsExt = $equipeExt->getStats();
-                                $statsExt
-                                    ->addPoints(4);
-                            } elseif ( $scoreDomicile == $scoreExterieur){
-                                $statsDom = $equipeDom->getStats();
-                                $statsDom
-                                    ->addPoints(2);
+        // reset des stats sur les différentes equipes
+        $em->getRepository(Equipe::class)->resetStats();
 
-                                $statsExt = $equipeExt->getStats();
-                                $statsExt
-                                    ->addPoints(2);
-                            }
+        for ($i = 0; $i < $crawler->filter('.results-content')->count(); $i++) {
+            $craw = $crawler->filter('.results-content')->eq($i);
+            if (($craw->filter('.widgettitle > span')->count() > 0)) {
+                $journee = $craw->filter('.widgettitle > span')->text();
+                $journee = (int)str_replace('Journée ', '', $journee);
+                for ($j = 0; $j < $craw->filter('.result-display')->count(); $j++){
+                    $crawRencontre = $craw->filter('.result-display')->eq($j);
+                    $equipe1 = trim($crawRencontre->filter('.equipe1 > .name')->text());
 
+                    $equipe2 = trim($crawRencontre->filter('.equipe2 > .name')->text());
+                    $date = $this->convertDate($crawRencontre->filter('.date')->first()->text());
+                    $date = \DateTime::createFromFormat('d/m/Y H:i', $date);
 
-                            $rencontre = new Rencontre();
-                            $rencontre
-                                ->setEquipeDomicile($equipeDom)
-                                ->setEquipeExterieure($equipeExt)
-                                ->setDate($date)
-                                ->setJournee($journee)
-                                ->setScore($score);
-                            $em->persist($equipeExt);
-                            $em->persist($equipeDom);
-                            $em->persist($rencontre);
-                            $em->flush();
-                        } else {
-                            $score = '-';
+                    $isForfaitDom = empty(trim($crawRencontre->filter('.equipe1 > .forfeit')->text())) ? $forfaitDom = false : $forfaitDom=true;
+                    $isForfaitExt = empty(trim($crawRencontre->filter('.equipe2 > .forfeit')->text())) ? $forfaitExt = false : $forfaitExt=true;
+
+                    if (($crawRencontre->filter('.number')->count() > 0)) {
+                        $score = $crawRencontre->filter('.score_match')->html();
+                        $scoreExposed = explode(' - ', $score);
+                        $scoreDomicile = $this->getNombre($scoreExposed[0]);
+                        $scoreExterieur = $this->getNombre($scoreExposed[1]);
+                        $score = $scoreDomicile . ' - ' . $scoreExterieur;
+
+                        /** @var Equipe $equipeDom */
+                        $equipeDom = $em->getRepository(Equipe::class)->findOneByNomParse($equipe1);
+
+                        /** @var Equipe $equipeExt */
+                        $equipeExt = $em->getRepository(Equipe::class)->findOneByNomParse($equipe2);
+
+                        if ($isForfaitDom){
+                            $statsDom = $equipeDom->getStats();
+                            $statsDom
+                                ->addPoints(0)
+                                ->addForfait()
+                                ->addButsContre($scoreExterieur)
+                                ->addJournee()
+                                ->addDifference(-3)
+                                ->addButsPour($scoreDomicile)
+                            ;
+
+                            $statsExt = $equipeExt->getStats();
+                            $statsExt
+                                ->addPoints(4)
+                                ->addButsContre($scoreDomicile)
+                                ->addJournee()
+                                ->addVictoire()
+                                ->addDifference(3)
+                                ->addButsPour($scoreExterieur);
+                        }elseif ($isForfaitExt){
+                            $statsDom = $equipeDom->getStats();
+                            $statsDom
+                                ->addPoints(4)
+                                ->addVictoire()
+                                ->addButsContre($scoreExterieur)
+                                ->addJournee()
+                                ->addButsPour($scoreDomicile)
+                                ->addDifference(3)
+                            ;
+
+                            $statsExt = $equipeExt->getStats();
+                            $statsExt
+                                ->addPoints(0)
+                                ->addForfait()
+                                ->addButsContre($scoreExterieur)
+                                ->addJournee()
+                                ->addButsPour($scoreDomicile)
+                                ->addDifference(-3)
+                            ;
                         }
+                        elseif ($scoreDomicile > $scoreExterieur){
+                            $statsDom = $equipeDom->getStats();
+                            $statsDom
+                                ->addPoints(4)
+                                ->addVictoire()
+                                ->addButsPour($scoreDomicile)
+                                ->addButsContre($scoreExterieur)
+                                ->addJournee()
+                                ->addDifference($scoreDomicile - $scoreExterieur)
+                            ;
+
+                            $statsExt = $equipeExt->getStats();
+                            $statsExt
+                                ->addPoints(1)
+                                ->addDefaite()
+                                ->addButsPour($scoreExterieur)
+                                ->addButsContre($scoreDomicile)
+                                ->addDifference($scoreExterieur - $scoreDomicile)
+                                ->addJournee();
+                        }elseif ($scoreDomicile < $scoreExterieur){
+                            $statsDom = $equipeDom->getStats();
+                            $statsDom
+                                ->addPoints(1)
+                                ->addDefaite()
+                                ->addButsPour($scoreDomicile)
+                                ->addButsContre($scoreExterieur)
+                                ->addDifference($scoreDomicile - $scoreExterieur)
+                                ->addJournee()
+                            ;
+
+                            $statsExt = $equipeExt->getStats();
+                            $statsExt
+                                ->addPoints(4)
+                                ->addVictoire()
+                                ->addButsPour($scoreExterieur)
+                                ->addButsContre($scoreDomicile)
+                                ->addDifference($scoreExterieur - $scoreDomicile)
+                                ->addJournee();
+                        }  elseif ( $scoreDomicile == $scoreExterieur){
+                            $statsDom = $equipeDom->getStats();
+                            $statsDom
+                                ->addPoints(2)
+                                ->addNul()
+                                ->addButsPour($scoreExterieur)
+                                ->addButsContre($scoreDomicile)
+                                ->addJournee();
+
+                            $statsExt = $equipeExt->getStats();
+                            $statsExt
+                                ->addPoints(2)
+                                ->addNul()
+                                ->addButsPour($scoreExterieur)
+                                ->addButsContre($scoreDomicile)
+                                ->addJournee();
+                        }else{
+                            dump('noooon');
+                        }
+
+
+                        $rencontre = new Rencontre();
+                        $rencontre
+                            ->setEquipeDomicile($equipeDom)
+                            ->setEquipeExterieure($equipeExt)
+                            ->setDate($date)
+                            ->setJournee($journee)
+                            ->setScore($score);
+                        $em->persist($equipeExt);
+                        $em->persist($equipeDom);
+                        $em->persist($rencontre);
+                        $em->flush();
                     }
-                } else {
                 }
             }
+        }
 
-
+        $now = new \DateTime();
         $output->writeln('<comment>End : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
     }
 

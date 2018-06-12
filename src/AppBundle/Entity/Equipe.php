@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Equipe
  * @package AppBundle\Entity
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EquipeRepository")
  */
 class Equipe
 {
@@ -175,4 +175,6 @@ class Equipe
         $this->stats = $stats;
         return $this;
     }
+
+
 }
