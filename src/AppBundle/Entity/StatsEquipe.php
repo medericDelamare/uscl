@@ -297,4 +297,60 @@ class StatsEquipe
         $this->difference = $this->difference + $buts;
         return $this;
     }
+
+    public function computeVictoire($butsPour, $butsContre){
+        $this
+            ->addVictoire()
+            ->addPoints(4)
+            ->addJournee()
+            ->addButsPour($butsPour)
+            ->addButsContre($butsContre)
+            ->addDifference($butsContre - $butsPour);
+
+        return $this;
+    }
+
+    public function computeDefaite($butsPour, $butsContre){
+        $this
+            ->addDefaite()
+            ->addPoints(1)
+            ->addJournee()
+            ->addButsPour($butsPour)
+            ->addButsContre($butsContre)
+            ->addDifference($butsContre - $butsPour);
+
+        return $this;
+    }
+
+    public function computeForfaitPour(){
+        $this
+            ->addDefaite()
+            ->addPoints(4)
+            ->addJournee()
+            ->addButsPour(3)
+            ->addButsContre(0)
+            ->addDifference(3);
+
+        return $this;
+    }
+
+    public function computeForfaitContre(){
+        $this
+            ->addDefaite()
+            ->addPoints(0)
+            ->addJournee()
+            ->addButsPour(0)
+            ->addButsContre(3)
+            ->addDifference(-3);
+
+        return $this;
+    }
+
+    public function computeNul($butsPour, $butsContre){
+        $this
+            ->addNul()
+            ->addJournee()
+            ->addButsPour($butsPour)
+            ->addButsContre($butsContre);
+    }
 }

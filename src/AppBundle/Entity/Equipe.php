@@ -42,7 +42,7 @@ class Equipe
 
     /**
      * @var string
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $division;
 
@@ -174,6 +174,11 @@ class Equipe
     {
         $this->stats = $stats;
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nomParse . ' ' . $this->categorie;
     }
 
 

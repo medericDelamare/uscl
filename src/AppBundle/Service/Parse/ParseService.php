@@ -19,7 +19,7 @@ class ParseService
         $this->em = $entityManager;
     }
 
-    public function getStats($url){
+    public function getStats($url, $category){
         $ch = curl_init();
 
 
@@ -61,13 +61,19 @@ class ParseService
                 for ($j = 0; $j < $craw->filter('.result-display')->count(); $j++){
                     $crawRencontre = $craw->filter('.result-display')->eq($j);
                     $equipe1 = trim($crawRencontre->filter('.equipe1 > .name')->text());
-
                     $equipe2 = trim($crawRencontre->filter('.equipe2 > .name')->text());
                     $date = $this->convertDate($crawRencontre->filter('.date')->first()->text());
                     $date = \DateTime::createFromFormat('d/m/Y H:i', $date);
 
-                    $isForfaitDom = empty(trim($crawRencontre->filter('.equipe1 > .forfeit')->text())) ? $forfaitDom = false : $forfaitDom=true;
-                    $isForfaitExt = empty(trim($crawRencontre->filter('.equipe2 > .forfeit')->text())) ? $forfaitExt = false : $forfaitExt=true;
+                    $isForfaitDom = null;
+                    if ($crawRencontre->filter('.equipe1 > .forfeit')->count() > 0){
+                        $isForfaitDom = empty(trim($crawRencontre->filter('.equipe1 > .forfeit')->text())) ? $forfaitDom = false : $forfaitDom=true;
+                    }
+
+                    $isForfaitExt = null;
+                    if ($crawRencontre->filter('.equipe2 > .forfeit')->count() > 0){
+                        $isForfaitExt = empty(trim($crawRencontre->filter('.equipe2 > .forfeit')->text())) ? $forfaitDom = false : $forfaitDom=true;
+                    }
 
                     if (($crawRencontre->filter('.number')->count() > 0)) {
                         $score = $crawRencontre->filter('.score_match')->html();
@@ -77,105 +83,53 @@ class ParseService
                         $score = $scoreDomicile . ' - ' . $scoreExterieur;
 
                         /** @var Equipe $equipeDom */
-                        $equipeDom = $this->em->getRepository(Equipe::class)->findOneByNomParse($equipe1);
+                        $equipeDom = $this->em->getRepository(Equipe::class)->findOneBy([
+                            'nomParse' => $equipe1,
+                            'categorie' => $category
+                        ]);
 
                         /** @var Equipe $equipeExt */
-                        $equipeExt = $this->em->getRepository(Equipe::class)->findOneByNomParse($equipe2);
+                        $equipeExt = $this->em->getRepository(Equipe::class)->findOneBy([
+                            'nomParse' => $equipe2,
+                            'categorie' => $category
+                        ]);
+
+                        if (is_null($equipeDom) || is_null($equipeExt)){
+                            continue;
+                        }
 
                         if ($isForfaitDom){
                             $statsDom = $equipeDom->getStats();
-                            $statsDom
-                                ->addPoints(0)
-                                ->addForfait()
-                                ->addButsContre($scoreExterieur)
-                                ->addJournee()
-                                ->addDifference(-3)
-                                ->addButsPour($scoreDomicile)
-                            ;
+                            $statsDom->computeForfaitContre();
 
                             $statsExt = $equipeExt->getStats();
-                            $statsExt
-                                ->addPoints(4)
-                                ->addButsContre($scoreDomicile)
-                                ->addJournee()
-                                ->addVictoire()
-                                ->addDifference(3)
-                                ->addButsPour($scoreExterieur);
+                            $statsExt->computeForfaitPour();
                         }elseif ($isForfaitExt){
                             $statsDom = $equipeDom->getStats();
-                            $statsDom
-                                ->addPoints(4)
-                                ->addVictoire()
-                                ->addButsContre($scoreExterieur)
-                                ->addJournee()
-                                ->addButsPour($scoreDomicile)
-                                ->addDifference(3)
-                            ;
+                            $statsDom->computeForfaitPour();
 
                             $statsExt = $equipeExt->getStats();
-                            $statsExt
-                                ->addPoints(0)
-                                ->addForfait()
-                                ->addButsContre($scoreExterieur)
-                                ->addJournee()
-                                ->addButsPour($scoreDomicile)
-                                ->addDifference(-3)
-                            ;
+                            $statsExt->computeForfaitContre();
                         }
                         elseif ($scoreDomicile > $scoreExterieur){
                             $statsDom = $equipeDom->getStats();
-                            $statsDom
-                                ->addPoints(4)
-                                ->addVictoire()
-                                ->addButsPour($scoreDomicile)
-                                ->addButsContre($scoreExterieur)
-                                ->addJournee()
-                                ->addDifference($scoreDomicile - $scoreExterieur)
-                            ;
+                            $statsDom->computeVictoire($scoreDomicile, $scoreExterieur);
 
                             $statsExt = $equipeExt->getStats();
-                            $statsExt
-                                ->addPoints(1)
-                                ->addDefaite()
-                                ->addButsPour($scoreExterieur)
-                                ->addButsContre($scoreDomicile)
-                                ->addDifference($scoreExterieur - $scoreDomicile)
-                                ->addJournee();
+                            $statsExt->computeDefaite($scoreExterieur, $scoreDomicile);
                         }elseif ($scoreDomicile < $scoreExterieur){
                             $statsDom = $equipeDom->getStats();
-                            $statsDom
-                                ->addPoints(1)
-                                ->addDefaite()
-                                ->addButsPour($scoreDomicile)
-                                ->addButsContre($scoreExterieur)
-                                ->addDifference($scoreDomicile - $scoreExterieur)
-                                ->addJournee()
-                            ;
+                            $statsDom->computeDefaite($scoreDomicile, $scoreExterieur);
 
                             $statsExt = $equipeExt->getStats();
-                            $statsExt
-                                ->addPoints(4)
-                                ->addVictoire()
-                                ->addButsPour($scoreExterieur)
-                                ->addButsContre($scoreDomicile)
-                                ->addDifference($scoreExterieur - $scoreDomicile)
-                                ->addJournee();
+                            $statsExt->computeVictoire($scoreExterieur, $scoreDomicile);
                         }  elseif ( $scoreDomicile == $scoreExterieur){
                             $statsDom = $equipeDom->getStats();
                             $statsDom
-                                ->addPoints(2)
-                                ->addNul()
-                                ->addButsPour($scoreExterieur)
-                                ->addButsContre($scoreDomicile)
-                                ->addJournee();
+                                ->computeNul($scoreDomicile, $scoreExterieur);
 
                             $statsExt = $equipeExt->getStats();
-                            $statsExt
-                                ->addPoints(2)
-                                ->addNul()
-                                ->addButsPour($scoreExterieur)
-                                ->addButsContre($scoreDomicile)
-                                ->addJournee();
+                            $statsExt->computeNul($scoreExterieur, $scoreDomicile);
                         }
 
                         $rencontre = new Rencontre();
