@@ -12,6 +12,11 @@ services:
     import.csvtoarray:
             class: AppBundle\Service\Import\ConvertCsvToArray
 
+    parse.parse_scores:
+            class: AppBundle\Service\Parse\ParseService
+            arguments:
+                    entityManager: "@doctrine.orm.entity_manager"
+
     app_core.facebook:
        # notre classe
        class: AppBundle\Service\ReseauxSociaux\FacebookService
