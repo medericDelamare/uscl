@@ -45,13 +45,14 @@ class ParseService
 
         $crawler->filter('.confrontation');
 
-        // Truncate de la table rencontre à chaque commande
-        $connection = $this->em->getConnection();
-        $platform   = $connection->getDatabasePlatform();
-        $connection->executeUpdate($platform->getTruncateTableSQL('rencontre', false));
-
         // reset des stats sur les différentes equipes
         $this->em->getRepository(Equipe::class)->resetStats();
+        $rencontres = $this->em->getRepository(Rencontre::class)->getRencontresByCategorie($category);
+
+        foreach ($rencontres as $rencontre){
+            $this->em->remove($rencontre);
+        }
+        $this->em->flush();
         for ($i = 0; $i < $crawler->filter('.results-content')->count(); $i++) {
             $craw = $crawler->filter('.results-content')->eq($i);
             if (($craw->filter('.widgettitle > span')->count() > 0)) {

@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Rencontre
  * @package AppBundle\Entity
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RencontreRepository")
  */
 class Rencontre
 {
