@@ -324,7 +324,7 @@ class StatsEquipe
 
     public function computeForfaitPour(){
         $this
-            ->addDefaite()
+            ->addVictoire()
             ->addPoints(4)
             ->addJournee()
             ->addButsPour(3)
@@ -339,6 +339,7 @@ class StatsEquipe
             ->addDefaite()
             ->addPoints(0)
             ->addJournee()
+            ->addForfait()
             ->addButsPour(0)
             ->addButsContre(3)
             ->addDifference(-3);
@@ -349,6 +350,7 @@ class StatsEquipe
     public function computeNul($butsPour, $butsContre){
         $this
             ->addNul()
+            ->addPoints(2)
             ->addJournee()
             ->addButsPour($butsPour)
             ->addButsContre($butsContre);

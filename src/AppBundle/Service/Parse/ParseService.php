@@ -52,12 +52,12 @@ class ParseService
 
         // reset des stats sur les différentes equipes
         $this->em->getRepository(Equipe::class)->resetStats();
-
         for ($i = 0; $i < $crawler->filter('.results-content')->count(); $i++) {
             $craw = $crawler->filter('.results-content')->eq($i);
             if (($craw->filter('.widgettitle > span')->count() > 0)) {
                 $journee = $craw->filter('.widgettitle > span')->text();
                 $journee = (int)str_replace('Journée ', '', $journee);
+
                 for ($j = 0; $j < $craw->filter('.result-display')->count(); $j++){
                     $crawRencontre = $craw->filter('.result-display')->eq($j);
                     $equipe1 = trim($crawRencontre->filter('.equipe1 > .name')->text());
@@ -75,28 +75,28 @@ class ParseService
                         $isForfaitExt = empty(trim($crawRencontre->filter('.equipe2 > .forfeit')->text())) ? $forfaitDom = false : $forfaitDom=true;
                     }
 
+                    if ($equipe1 == 'Exempt' || $equipe2 == 'Exempt'){
+                        continue;
+                    }
+
+                    /** @var Equipe $equipeDom */
+                    $equipeDom = $this->em->getRepository(Equipe::class)->findOneBy([
+                        'nomParse' => $equipe1,
+                        'categorie' => $category
+                    ]);
+
+                    /** @var Equipe $equipeExt */
+                    $equipeExt = $this->em->getRepository(Equipe::class)->findOneBy([
+                        'nomParse' => $equipe2,
+                        'categorie' => $category
+                    ]);
+
                     if (($crawRencontre->filter('.number')->count() > 0)) {
                         $score = $crawRencontre->filter('.score_match')->html();
                         $scoreExposed = explode(' - ', $score);
                         $scoreDomicile = $this->getNombre($scoreExposed[0]);
                         $scoreExterieur = $this->getNombre($scoreExposed[1]);
                         $score = $scoreDomicile . ' - ' . $scoreExterieur;
-
-                        /** @var Equipe $equipeDom */
-                        $equipeDom = $this->em->getRepository(Equipe::class)->findOneBy([
-                            'nomParse' => $equipe1,
-                            'categorie' => $category
-                        ]);
-
-                        /** @var Equipe $equipeExt */
-                        $equipeExt = $this->em->getRepository(Equipe::class)->findOneBy([
-                            'nomParse' => $equipe2,
-                            'categorie' => $category
-                        ]);
-
-                        if (is_null($equipeDom) || is_null($equipeExt)){
-                            continue;
-                        }
 
                         if ($isForfaitDom){
                             $statsDom = $equipeDom->getStats();
@@ -142,6 +142,25 @@ class ParseService
                         $this->em->persist($equipeExt);
                         $this->em->persist($equipeDom);
                         $this->em->persist($rencontre);
+                        $this->em->flush();
+                    }
+                    elseif(($crawRencontre->filter('.number')->count() == 0) && ($isForfaitExt || $isForfaitDom)){
+                        if ($isForfaitDom){
+                            $statsDom = $equipeDom->getStats();
+                            $statsDom->computeForfaitContre();
+
+                            $statsExt = $equipeExt->getStats();
+                            $statsExt->computeForfaitPour();
+                        }elseif ($isForfaitExt){
+                            $statsDom = $equipeDom->getStats();
+                            $statsDom->computeForfaitPour();
+
+                            $statsExt = $equipeExt->getStats();
+                            $statsExt->computeForfaitContre();
+                        }
+
+                        $this->em->persist($equipeExt);
+                        $this->em->persist($equipeDom);
                         $this->em->flush();
                     }
                 }
