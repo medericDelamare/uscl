@@ -6,15 +6,16 @@
 </ol>
 
 <div class="container my-custom-container">
-    <h1 class="page-header">Statistiques {{ categorie }} <small>{{ division }}</small></h1>
+    <h1 class="page-header">Statistiques {{ categorie }} <small>division</small></h1>
     <div class="row">
-        <div class="col-sm-4 col-sm-offset-1">
+        <div class="col-sm-5 col-sm-offset-1">
             <h2 class="page-header">Classement</h2>
             <table class="resultats table table-condensed classement">
                 <thead>
                 <tr>
                     <td>Pl</td>
                     <td>Equipe</td>
+                    <td>J</td>
                     <td>Pts</td>
                     <td>G</td>
                     <td>N</td>
@@ -27,19 +28,20 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for detail in classement %}
+                {% for equipe in equipes %}
                     <tr>
-                        <td>{{ detail['place'] }}</td>
-                        <td>{{ detail['equipe'] }}</td>
-                        <td>{{ detail['points'] }}</td>
-                        <td>{{ detail['gagnes'] }}</td>
-                        <td>{{ detail['nuls'] }}</td>
-                        <td>{{ detail['defaites'] }}</td>
-                        <td>{{ detail['forfaits'] }}</td>
-                        <td>{{ detail['butsPour'] }}</td>
-                        <td>{{ detail['butsContre'] }}</td>
-                        <td>{{ detail['penalites'] }}</td>
-                        <td>{{ detail['differences'] }}</td>
+                        <td>1</td>
+                        <td>{{ equipe.nomParse }}</td>
+                        <td>{{ equipe.stats.journees }}</td>
+                        <td>{{ equipe.stats.points }}</td>
+                        <td>{{ equipe.stats.victoires }}</td>
+                        <td>{{ equipe.stats.nuls }}</td>
+                        <td>{{ equipe.stats.defaites }}</td>
+                        <td>{{ equipe.stats.forfaits }}</td>
+                        <td>{{ equipe.stats.butsPour }}</td>
+                        <td>{{ equipe.stats.butsContre }}</td>
+                        <td>{{ equipe.stats.penalites }}</td>
+                        <td>{{ equipe.stats.difference }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -47,55 +49,6 @@
             {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('save-classement', {'category': category }) }}"><button class="btn"> Stocker classement</button></a>
             {% endif %}
-        </div>
-        <div class="col-sm-4 col-sm-offset-2">
-            <h2 class="page-header">Résutats du groupe</h2>
-            <table class="resultats table table-condensed">
-                {% for resultat in resultats %}
-                    <tr>
-                        <td colspan="3" class="tr-date text-center"><small><em>{{ resultat['date'] }}</em></small></td>
-                        <td class="text-center">{{ resultat['equipe1'] }}</td>
-                        <td class="text-center">{{ resultat['score'] }}</td>
-                        <td class="text-center">{{ resultat['equipe2'] }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4 col-sm-offset-1">
-            <div class="row">
-                <h2 class="page-header">Agenda</h2>
-                <table class="agenda table table-condensed">
-                    {% for agenda in agendas%}
-                        <tr>
-                            <td colspan="3" class="tr-date text-center"><small><em>{{ agenda['date'] }}</em></small></td>
-                            <td class="text-center">{{ agenda['equipe1'] }}</td>
-                            <td class="text-center">-</td>
-                            <td class="text-center">{{ agenda['equipe2'] }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </div>
-            <div class="row">
-                <h2 class="page-header">Évolution du classement final selon les années</h2>
-                <canvas id="myChart"></canvas>
-            </div>
-        </div>
-        <div class="col-sm-4 col-sm-offset-2">
-            <h2 class="page-header">Calendrier</h2>
-            <table class="calendrier table table-condensed">
-                <tbody>
-                {% for calendrierInfos in calendrier %}
-                    <tr class="text-center">
-                        <td colspan="3" class="tr-date"><small><em>{{ calendrierInfos['date'] }}</em></small></td>
-                        <td class ="eqLeft">{{ calendrierInfos['equipe1'] }}</td>
-                        <td class="score">{{ calendrierInfos['score'] }}</td>
-                        <td class ="eqRight">{{ calendrierInfos['equipe2'] }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
         </div>
     </div>
     <div class="row">
@@ -107,67 +60,8 @@
 </div>
 {% endblock %}
 
+{#
 {% block javascripts %}
-    <script type="text/javascript">
-        $(".classement td").each(function() {
-            if($(this).html().indexOf('CORM') != -1){
-                $(this).parent().addClass("uscl-ighlighting");
-                $(this).parent().css("font-weight","bold");
-            }
-        });
-
-        $(".resultats td").each(function() {
-            if($(this).html().indexOf('CORM') != -1){
-                $(this).parent().addClass("uscl-ighlighting");
-                $(this).parent().css("font-weight","bold");
-            }
-        });
-
-        $(".agenda td").each(function() {
-            if($(this).html().indexOf('CORM') != -1){
-                $(this).parent().addClass("uscl-ighlighting");
-                $(this).parent().css("font-weight","bold");
-            }
-        });
-
-        $(".calendrier td").each(function() {
-            if($(this).html().indexOf('CORM') != -1){
-                $(this).css("font-weight","bold");
-            }
-        });
-
-        $(".calendrier > tbody > tr").each(function(){
-            var score = $('.score', this).html();
-            var res = score.split("-");
-
-            if(res[0])
-            {
-                if (parseInt(res[0]) == parseInt(res[1])){$(this).addClass('warning');}
-
-                if ($('.eqLeft',this).html().indexOf('CORM') != -1 && parseInt(res[0]) < parseInt(res[1])) {
-                    $(this).addClass('danger');
-                }
-
-                if ($('.eqLeft',this).html().indexOf('CORM') != -1 && parseInt(res[0]) > parseInt(res[1])) {
-                    $(this).addClass('success');
-                }
-
-                if ($('.eqRight',this).html().indexOf('CORM') != -1 && parseInt(res[0]) < parseInt(res[1])) {
-                    $(this).addClass('success');
-                }
-
-                if ($('.eqRight',this).html().indexOf('CORM') != -1 && parseInt(res[0]) > parseInt(res[1])) {
-                    $(this).addClass('danger');
-                }
-            }
-
-        });
-
-        $( ".classement > tbody > tr:nth-child(1)" ).addClass("success");
-        $( ".classement > tbody > tr:nth-child(2)" ).addClass("success");
-        $( ".classement > tbody > tr:last-child" ).addClass("danger");
-    </script>
-
     <script>
         var ctx = document.getElementById("myChart").getContext('2d');
 
@@ -274,4 +168,4 @@
             }
         });
     </script>
-{% endblock %}
+{% endblock %}#}
