@@ -52,16 +52,22 @@ class RencontreRepository extends EntityRepository
             ->getQuery()
             ->getOneOrNullResult();
 
-        dump($prochaineJournee);
-
         $agendas = $rencontres = $this->createQueryBuilder('r')
             ->where('r.journee = :derniereJournee')
             ->setParameter('derniereJournee', $prochaineJournee)
             ->getQuery()
             ->getResult();
 
-        dump($agendas);
-
         return $agendas;
+    }
+
+    public function getCalendrierParCategorie($categorie){
+        return $this->createQueryBuilder('r')
+            ->join(Equipe::class, 'd')
+            ->where('d.categorie = :categorie')
+            ->orderBy('r.date', 'ASC')
+            ->setParameter('categorie', $categorie)
+            ->getQuery()
+            ->getResult();
     }
 }
