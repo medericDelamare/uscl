@@ -305,7 +305,7 @@ class StatsEquipe
             ->addJournee()
             ->addButsPour($butsPour)
             ->addButsContre($butsContre)
-            ->addDifference($butsContre - $butsPour);
+            ->addDifference($butsPour - $butsContre);
 
         return $this;
     }
@@ -317,7 +317,7 @@ class StatsEquipe
             ->addJournee()
             ->addButsPour($butsPour)
             ->addButsContre($butsContre)
-            ->addDifference($butsContre - $butsPour);
+            ->addDifference($butsPour - $butsContre);
 
         return $this;
     }
