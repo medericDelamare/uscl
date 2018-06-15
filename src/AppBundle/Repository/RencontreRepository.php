@@ -39,4 +39,29 @@ class RencontreRepository extends EntityRepository
 
         return $rencontres;
     }
+
+    public function getAgenda($categorie){
+        $prochaineJournee = $this->createQueryBuilder('r')
+            ->select('r.journee')
+            ->join(Equipe::class, 'd')
+            ->where('d.categorie = :categorie')
+            ->andWhere('r.score IS NULL')
+            ->orderBy('r.date', 'ASC')
+            ->setParameter('categorie', $categorie)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        dump($prochaineJournee);
+
+        $agendas = $rencontres = $this->createQueryBuilder('r')
+            ->where('r.journee = :derniereJournee')
+            ->setParameter('derniereJournee', $prochaineJournee)
+            ->getQuery()
+            ->getResult();
+
+        dump($agendas);
+
+        return $agendas;
+    }
 }

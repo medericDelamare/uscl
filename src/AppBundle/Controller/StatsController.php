@@ -23,11 +23,13 @@ class StatsController extends Controller
     {
         $equipes = $this->getDoctrine()->getRepository(Equipe::class)->getClassementByCategorie($category);
         $rencontres = $this->getDoctrine()->getRepository(Rencontre::class)->getDerniereJournee($category);
+        $agendas = $this->getDoctrine()->getRepository(Rencontre::class)->getAgenda($category);
 
         return $this->render(':default:statistiques.html.twig', [
             'categorie' => $category,
             'equipes' => $equipes,
-            'rencontres' => $rencontres
+            'rencontres' => $rencontres,
+            'agendas' => $agendas
         ]);
     }
 
