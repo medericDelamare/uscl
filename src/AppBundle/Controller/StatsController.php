@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Equipe;
 use AppBundle\Entity\HistoriqueClassement;
+use AppBundle\Entity\Rencontre;
 use AppBundle\Entity\StatsParJournee;
 use AppBundle\Service\Category\CategoryFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,10 +22,12 @@ class StatsController extends Controller
     public function showAction($category)
     {
         $equipes = $this->getDoctrine()->getRepository(Equipe::class)->getClassementByCategorie($category);
+        $rencontres = $this->getDoctrine()->getRepository(Rencontre::class)->getDerniereJournee($category);
 
         return $this->render(':default:statistiques.html.twig', [
             'categorie' => $category,
-            'equipes' => $equipes
+            'equipes' => $equipes,
+            'rencontres' => $rencontres
         ]);
     }
 

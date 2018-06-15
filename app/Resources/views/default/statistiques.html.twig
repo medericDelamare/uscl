@@ -46,10 +46,19 @@
                 {% endfor %}
                 </tbody>
             </table>
-            {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('save-classement', {'category': category }) }}"><button class="btn"> Stocker classement</button></a>
-            {% endif %}
         </div>
+        <div class="col-sm-5 col-sm-offset-1">
+            <h2 class="page-header">Résultats de la dernière journée</h2>
+            <table class="resultats table table-condensed classement">
+                {% for rencontre in rencontres %}
+                    <tr>
+                        <td>{{ rencontre.date|date("d/m/Y") }}</td>
+                        <td>{{ rencontre.equipeDomicile.nomParse }}</td>
+                        <td>{{ rencontre.score }}</td>
+                        <td>{{ rencontre.equipeExterieure.nomParse }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
     </div>
     <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
