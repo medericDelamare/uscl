@@ -70,4 +70,16 @@ class RencontreRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getCalendrierParEquipe($equipe){
+        return $this->createQueryBuilder('r')
+            ->join('r.equipeDomicile', 'd', 'WITH', 'd.id = r.equipeDomicile')
+            ->leftJoin('r.equipeExterieure', 'e', 'WITH', 'e.id = r.equipeExterieure')
+            ->where('d.id = :equipe')
+            ->orWhere('e.id = :equipe')
+            ->orderBy('r.date', 'ASC')
+            ->setParameter('equipe', $equipe)
+            ->getQuery()
+            ->getResult();
+    }
 }

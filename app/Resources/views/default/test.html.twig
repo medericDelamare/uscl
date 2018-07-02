@@ -1,0 +1,8 @@
+{% for calendrierDetail in equipes %}
+    <tr>
+        <td>{{ calendrierDetail.date|date("d/m/Y") }}</td>
+        <td>{{ calendrierDetail.equipeDomicile.nomParse }}</td>
+        <td>{{ calendrierDetail.equipeExterieure.nomParse }}</td>
+        <td>{{ calendrierDetail.score }}</td>
+    </tr>
+{% endfor %}

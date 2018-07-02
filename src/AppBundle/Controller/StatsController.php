@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class StatsController extends Controller
 {
@@ -25,6 +26,7 @@ class StatsController extends Controller
         $rencontres = $this->getDoctrine()->getRepository(Rencontre::class)->getDerniereJournee($category);
         $agendas = $this->getDoctrine()->getRepository(Rencontre::class)->getAgenda($category);
         $calendrier = $this->getDoctrine()->getRepository(Rencontre::class)->getCalendrierParCategorie($category);
+        $distinctEquipes = $this->getDoctrine()->getRepository(Equipe::class)->findByCategorie($category);
 
 
         return $this->render(':default:statistiques.html.twig', [
@@ -32,7 +34,8 @@ class StatsController extends Controller
             'equipes' => $equipes,
             'rencontres' => $rencontres,
             'agendas' => $agendas,
-            'calendrier' => $calendrier
+            'calendrier' => $calendrier,
+            'equipeListe' => $distinctEquipes
         ]);
     }
 
@@ -60,5 +63,17 @@ class StatsController extends Controller
 
         $em->flush();
         return $this->showAction($category);
+    }
+
+    /**
+     * @param Equipe $equipe
+     * @Route("/get-calendrier-par-equipe/{equipe}", name="calendrier-par-equipe")
+     */
+    public function getCalendrierParEquipe(Equipe $equipe){
+        $equipes = $this->getDoctrine()->getRepository(Rencontre::class)->getCalendrierParEquipe($equipe);
+
+        return $this->render(':default:test.html.twig',[
+            'equipes' => $equipes
+        ]);
     }
 }
