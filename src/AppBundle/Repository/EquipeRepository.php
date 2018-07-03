@@ -38,4 +38,13 @@ class EquipeRepository extends EntityRepository
             ");
         $statement->execute();
     }
+
+    public function findByCategorieOrderByNomParse($categorie){
+        return $this->createQueryBuilder('e')
+            ->where('e.categorie = :categorie')
+            ->orderBy('e.nomParse')
+            ->setParameter('categorie', $categorie)
+            ->getQuery()
+            ->getResult();
+    }
 }

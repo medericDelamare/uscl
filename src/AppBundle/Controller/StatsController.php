@@ -26,8 +26,15 @@ class StatsController extends Controller
         $rencontres = $this->getDoctrine()->getRepository(Rencontre::class)->getDerniereJournee($category);
         $agendas = $this->getDoctrine()->getRepository(Rencontre::class)->getAgenda($category);
         $calendrier = $this->getDoctrine()->getRepository(Rencontre::class)->getCalendrierParCategorie($category);
-        $distinctEquipes = $this->getDoctrine()->getRepository(Equipe::class)->findByCategorie($category);
+        $distinctEquipes = $this->getDoctrine()->getRepository(Equipe::class)->findByCategorieOrderByNomParse($category);
+        $cormeilles = null;
 
+        /** @var Equipe $equipe */
+        foreach ($distinctEquipes as $equipe){
+            if (strstr($equipe->getNomParse(),'CORM')){
+                $cormeilles = $equipe;
+            }
+        }
 
         return $this->render(':default:statistiques.html.twig', [
             'categorie' => $category,
@@ -35,7 +42,8 @@ class StatsController extends Controller
             'rencontres' => $rencontres,
             'agendas' => $agendas,
             'calendrier' => $calendrier,
-            'equipeListe' => $distinctEquipes
+            'equipeListe' => $distinctEquipes,
+            'cormeilles' => $cormeilles
         ]);
     }
 
@@ -68,11 +76,12 @@ class StatsController extends Controller
     /**
      * @param Equipe $equipe
      * @Route("/get-calendrier-par-equipe/{equipe}", name="calendrier-par-equipe")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function getCalendrierParEquipe(Equipe $equipe){
         $equipes = $this->getDoctrine()->getRepository(Rencontre::class)->getCalendrierParEquipe($equipe);
 
-        return $this->render(':default:test.html.twig',[
+        return $this->render(':default:tableauCalendrier.html.twig',[
             'equipes' => $equipes
         ]);
     }
