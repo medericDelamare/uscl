@@ -270,6 +270,6 @@ class ParseService
         }
 
         $heure = explode('H',$dateSplit[9]);
-        return $dateSplit[3] . "/" . $dateSplit[6] . "/" . $dateSplit[7] . ' ' . $heure[0] . ':' . $heure[1];
+        return $dateSplit[5] . "/" . $dateSplit[6] . "/" . $dateSplit[7] . ' ' . $heure[0] . ':' . $heure[1];
     }
 }
