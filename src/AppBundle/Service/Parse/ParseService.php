@@ -46,7 +46,7 @@ class ParseService
         $crawler->filter('.confrontation');
 
         // reset des stats sur les différentes equipes
-        $this->em->getRepository(Equipe::class)->resetStats();
+        $this->em->getRepository(Equipe::class)->resetStats($category);
         $rencontres = $this->em->getRepository(Rencontre::class)->getRencontresByCategorie($category);
 
         foreach ($rencontres as $rencontre){

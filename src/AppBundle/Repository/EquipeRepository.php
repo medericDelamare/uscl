@@ -21,7 +21,7 @@ class EquipeRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function resetStats(){
+    public function resetStats($categorie){
         $em = $this->getEntityManager();
         $connection = $em->getConnection();
         $statement = $connection->prepare("UPDATE equipe SET 
@@ -35,7 +35,9 @@ class EquipeRepository extends EntityRepository
             equipe.stats_buts_contre = 0,
             equipe.stats_penalites = 0,
             equipe.stats_difference = 0
+            WHERE equipe.categorie = :categorie
             ");
+        $statement->bindValue('categorie', $categorie);
         $statement->execute();
     }
 

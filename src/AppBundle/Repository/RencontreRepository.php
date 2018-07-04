@@ -12,8 +12,10 @@ class RencontreRepository extends EntityRepository
     public function getRencontresByCategorie($categorie){
         $query = $this->createQueryBuilder('r')
             ->select('r')
-            ->join(Equipe::class, 'd')
+            ->join('r.equipeDomicile', 'd', 'WITH', 'd.id = r.equipeDomicile')
+            ->leftJoin('r.equipeExterieure', 'e', 'WITH', 'e.id = r.equipeExterieure')
             ->where('d.categorie = :categorie')
+            ->orWhere('e.categorie = :categorie')
             ->setParameter('categorie', $categorie)
             ->getQuery();
 
@@ -32,8 +34,11 @@ class RencontreRepository extends EntityRepository
             ->getSingleScalarResult();
 
         $rencontres = $this->createQueryBuilder('r')
+            ->join('r.equipeDomicile', 'd', 'WITH', 'd.id = r.equipeDomicile')
             ->where('r.journee = :derniereJournee')
+            ->andWhere('d.categorie = :categorie')
             ->setParameter('derniereJournee', $dernireJournee)
+            ->setParameter('categorie', $categorie)
             ->getQuery()
             ->getResult();
 

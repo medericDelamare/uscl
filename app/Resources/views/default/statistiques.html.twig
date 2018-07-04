@@ -34,7 +34,7 @@
                 <tbody>
                 {% for equipe in equipes %}
                     <tr>
-                        <td>1</td>
+                        <td>{{ loop.index }}</td>
                         <td>{{ equipe.nomParse }}</td>
                         <td>{{ equipe.stats.journees }}</td>
                         <td>{{ equipe.stats.points }}</td>
@@ -80,13 +80,11 @@
         </div>
         <div class="col-sm-5">
             <h2 class="page-header">Calendrier</h2>
-            <div class="form-group col-md-offset-5 col-md-2">
-            <select class="" id="selectEquipe">
+            <select class="form-control"  id="selectEquipe">
                 {% for equipe in equipeListe %}
                     <option value={{ equipe.id }} data-href="{{ path('calendrier-par-equipe', {'equipe': equipe.id}) }}">{{ equipe.nomParse }}</option>
                 {% endfor %}
             </select>
-            </div>
             <table id="calendrier" class="resultats table table-condensed classement calendrier">
                 <tbody id="resultAjaxCalendrier">
                 </tbody>
