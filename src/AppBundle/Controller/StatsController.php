@@ -27,6 +27,21 @@ class StatsController extends Controller
         $agendas = $this->getDoctrine()->getRepository(Rencontre::class)->getAgenda($category);
         $calendrier = $this->getDoctrine()->getRepository(Rencontre::class)->getCalendrierParCategorie($category);
         $distinctEquipes = $this->getDoctrine()->getRepository(Equipe::class)->findByCategorieOrderByNomParse($category);
+        $classementParJournee = $this->getDoctrine()->getRepository(StatsParJournee::class)->findByCategOrderByJournee($category);
+
+
+        $classementTriParEquipe = [];
+        /** @var StatsParJournee $classementInfos */
+        foreach ($classementParJournee as $classementInfos){
+            $classementTriParEquipe[$classementInfos->getEquipe()->getNomParse()][] = $classementInfos->getPlace();
+        }
+
+        $nbJournees = [];
+        for ($i = 1; $i<= (count($classementTriParEquipe)-1)*2 ; $i++){
+            $nbJournees[] = $i;
+        }
+
+
         $cormeilles = null;
 
         /** @var Equipe $equipe */
@@ -43,7 +58,9 @@ class StatsController extends Controller
             'agendas' => $agendas,
             'calendrier' => $calendrier,
             'equipeListe' => $distinctEquipes,
-            'cormeilles' => $cormeilles
+            'cormeilles' => $cormeilles,
+            'classement_par_journee' => $classementTriParEquipe,
+            'nb_journees' => $nbJournees
         ]);
     }
 

@@ -49,7 +49,7 @@ class StatsParJournee
     }
 
     /**
-     * @return string
+     * @return Equipe
      */
     public function getEquipe()
     {
@@ -57,7 +57,7 @@ class StatsParJournee
     }
 
     /**
-     * @param string $equipe
+     * @param Equipe $equipe
      * @return StatsParJournee
      */
     public function setEquipe($equipe)

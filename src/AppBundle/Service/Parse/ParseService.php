@@ -53,6 +53,13 @@ class ParseService
         foreach ($rencontres as $rencontre){
             $this->em->remove($rencontre);
         }
+
+        $stats = $this->em->getRepository(StatsParJournee::class)->findByCategorie($category);
+        foreach ($stats as $stat){
+            $this->em->remove($stat);
+        }
+
+
         $this->em->flush();
         for ($i = 0; $i < $crawler->filter('.results-content')->count(); $i++) {
             $craw = $crawler->filter('.results-content')->eq($i);
@@ -168,6 +175,7 @@ class ParseService
                 }
             }
             $equipes = $this->em->getRepository(Equipe::class)->getClassementByCategorie($category);
+
 
             foreach ($equipes as $index => $equipe){
                 $classmentParJournee = new StatsParJournee();
