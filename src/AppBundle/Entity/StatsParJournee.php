@@ -22,14 +22,9 @@ class StatsParJournee
     private $id;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
-     */
-    private $category;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string")
+     * @var Equipe
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Equipe")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $equipe;
 
@@ -51,24 +46,6 @@ class StatsParJournee
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param string $category
-     * @return StatsParJournee
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-        return $this;
     }
 
     /**

@@ -6,6 +6,7 @@ namespace AppBundle\Service\Parse;
 
 use AppBundle\Entity\Equipe;
 use AppBundle\Entity\Rencontre;
+use AppBundle\Entity\StatsParJournee;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -166,6 +167,17 @@ class ParseService
                     }
                 }
             }
+            $equipes = $this->em->getRepository(Equipe::class)->getClassementByCategorie($category);
+
+            foreach ($equipes as $index => $equipe){
+                $classmentParJournee = new StatsParJournee();
+                $classmentParJournee
+                    ->setEquipe($equipe)
+                    ->setPlace($index+1)
+                    ->setJournee($journee);
+                $this->em->persist($classmentParJournee);
+            }
+            $this->em->flush();
         }
 
     }

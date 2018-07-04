@@ -14,7 +14,7 @@ class EquipeRepository extends EntityRepository
         $rsm = new \Doctrine\ORM\Query\ResultSetMappingBuilder($this->getEntityManager());
         $rsm->addRootEntityFromClassMetadata(Equipe::class, 'c');
 
-        $sql = "SELECT * FROM equipe WHERE equipe.categorie =:categorie ORDER BY equipe.stats_points DESC";
+        $sql = "SELECT * FROM equipe WHERE equipe.categorie =:categorie ORDER BY equipe.stats_points, equipe.stats_difference, equipe.stats_buts_pour DESC";
 
         $query = $this->getEntityManager()->createNativeQuery($sql, $rsm)
             ->setParameter('categorie', $categorie);
