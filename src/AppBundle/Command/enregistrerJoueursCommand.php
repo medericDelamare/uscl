@@ -4,6 +4,7 @@
 namespace AppBundle\Command;
 
 
+use AppBundle\Entity\Licencie;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -29,8 +30,32 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
         $data = json_decode($result, true);
 
-        foreach ($data as $d) {
-            dump($d); exit;
+        $compteur = 0;
+        foreach ($data as $joueur) {
+            if ($joueur['permits'][0]['state'] == 'Validée'){
+                $licencie = new Licencie();
+
+                $simpleDate = explode('T',$joueur['birthday']['date']);
+                
+                $licencie
+                    ->setNumeroLicence((integer)$joueur['id'])
+                    ->setCategorie('test')
+                    ->setNom($joueur['lastName'])
+                    ->setPrenom($joueur['firstName'])
+                    ->setNationalite($joueur['nationality'])
+                    ->setDateDeNaissance(\DateTime::createFromFormat('Y-m-d', $simpleDate[0]))
+                    ->setLieuDeNaissance($joueur['birthday']['birthPlace'])
+                    ->setAdresse($joueur['address']['city'])
+                    ->setJoueur(true)
+                    ->setDirigeant(true)
+                    ->setEducateur(true);
+
+                $doctrine = $this->getContainer()->get('doctrine');
+                $em = $doctrine->getManager();
+                $em->persist($licencie);
+                $em->flush();
+
+            }
         }
 
         $now = new \DateTime();
