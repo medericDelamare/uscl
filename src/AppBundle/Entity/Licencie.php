@@ -43,7 +43,7 @@ class Licencie
 
     /**
      * @var string
-     * @ORM\Column(type="string", nullable=false)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $categorie;
 
@@ -112,6 +112,18 @@ class Licencie
      * @ORM\Column(type="string", nullable=true)
      */
     private $photo;
+
+    /**
+     * @var CarriereJoueur[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CarriereJoueur", mappedBy="licencie", cascade={"all"})
+     * @ORM\OrderBy({"saison" = "DESC"})
+     */
+    private $carriere;
+
+    public function __construct()
+    {
+        $this->carriere = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -389,5 +401,33 @@ class Licencie
     {
         $this->photo = $photo;
         return $this;
+    }
+
+    /**
+     * @return CarriereJoueur[]
+     */
+    public function getCarriere()
+    {
+        return $this->carriere;
+    }
+
+    /**
+     * @param CarriereJoueur[] $carriere
+     * @return Licencie
+     */
+    public function setCarriere($carriere)
+    {
+        $this->carriere = $carriere;
+        return $this;
+    }
+
+    /**
+     * @param CarriereJoueur $carriere
+     */
+    public function addCarriere($carriere){
+        if (!$this->carriere->contains($carriere)){
+            $this->carriere->add($carriere);
+            $carriere->setLicencie($this);
+        }
     }
 }

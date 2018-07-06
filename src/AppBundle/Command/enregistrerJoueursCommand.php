@@ -4,7 +4,9 @@
 namespace AppBundle\Command;
 
 
+use AppBundle\Entity\CarriereJoueur;
 use AppBundle\Entity\Licencie;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -30,35 +32,99 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
         $data = json_decode($result, true);
 
-        $compteur = 0;
         foreach ($data as $joueur) {
             if ($joueur['permits'][0]['state'] == 'Validée'){
-                $licencie = new Licencie();
+                $doctrine = $this->getContainer()->get('doctrine');
+                $em = $doctrine->getManager();
+
+                if (!$licencie = $em->getRepository(Licencie::class)->findOneByNumeroLicence((integer)$joueur['id'])){
+                    $licencie = new Licencie();
+                }
+
+
 
                 $simpleDate = explode('T',$joueur['birthday']['date']);
-                
+
+                array_key_exists('Mobile personnel', $joueur['contacts']) ? $mobile = $joueur['contacts']['Mobile personnel'] :$mobile = null;
+                array_key_exists('Email principal', $joueur['contacts']) ? $email = $joueur['contacts']['Email principal'] : $email = null;
+                array_key_exists('Téléphone domicile', $joueur['contacts']) ? $fixe = $joueur['contacts']['Téléphone domicile'] : $fixe = null;
+
                 $licencie
                     ->setNumeroLicence((integer)$joueur['id'])
-                    ->setCategorie('test')
+                    ->setCategorie($this->getCategorie($joueur))
                     ->setNom($joueur['lastName'])
                     ->setPrenom($joueur['firstName'])
                     ->setNationalite($joueur['nationality'])
                     ->setDateDeNaissance(\DateTime::createFromFormat('Y-m-d', $simpleDate[0]))
                     ->setLieuDeNaissance($joueur['birthday']['birthPlace'])
                     ->setAdresse($joueur['address']['city'])
-                    ->setJoueur(true)
-                    ->setDirigeant(true)
-                    ->setEducateur(true);
+                    ->setPhoto($joueur['photo']['link'])
+                    ->setTelephoneDomicile($fixe)
+                    ->setTelephonePortable($mobile)
+                    ->setEmail($email)
+                    ->setJoueur($this->isJoueur($joueur))
+                    ->setDirigeant($this->isDirigeant($joueur))
+                    ->setEducateur($this->isEducateur($joueur));
 
-                $doctrine = $this->getContainer()->get('doctrine');
-                $em = $doctrine->getManager();
-                $em->persist($licencie);
+                foreach ($licencie->getCarriere() as $carriereJoueur){
+                    $em->remove($carriereJoueur);
+                }
+
                 $em->flush();
 
+                foreach ($joueur['permits'] as $licence){
+                    $carriere = new CarriereJoueur();
+                    $carriere
+                        ->setClub($licence['club']['name'])
+                        ->setSousCategorie($licence['subCategory'])
+                        ->setSaison(substr($licence['startSeason'],0,4) . '-' . substr($licence['endSeason'],0,4));
+                    $licencie->addCarriere($carriere);
+                }
+
+                $em->persist($licencie);
+                $em->flush();
             }
         }
 
         $now = new \DateTime();
         $output->writeln('<comment>End : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
+    }
+
+    private function isJoueur($joueur){
+        foreach ($joueur['permits'] as $licence){
+            if ('2018' ==  substr($licence['startSeason'],0,4) && strpos($licence['subCategory'],'Libre') !== false){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function isDirigeant($joueur){
+        foreach ($joueur['permits'] as $licence){
+            if ('2018' ==  substr($licence['startSeason'],0,4) && strpos($licence['subCategory'],'Dirigeant') !== false){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function isEducateur($joueur){
+        foreach ($joueur['permits'] as $licence){
+            if ('2018' ==  substr($licence['startSeason'],0,4) && strpos($licence['subCategory'],'Educateur') !== false){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function getCategorie($joueur){
+        foreach ($joueur['permits'] as $licence){
+            if ('2018' ==  substr($licence['startSeason'],0,4) && strpos($licence['subCategory'],'Libre') !== false){
+                return $licence['subCategory'];
+            }
+        }
     }
 }

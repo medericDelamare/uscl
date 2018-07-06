@@ -27,6 +27,12 @@ class CarriereJoueur
     private $joueur;
 
     /**
+     * @var Licencie
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Licencie", inversedBy="carriere")
+     */
+    private $licencie;
+
+    /**
      * @var string
      * @ORM\Column(type="string", nullable=false)
      */
@@ -121,6 +127,24 @@ class CarriereJoueur
     public function setClub($club)
     {
         $this->club = $club;
+        return $this;
+    }
+
+    /**
+     * @return Licencie
+     */
+    public function getLicencie()
+    {
+        return $this->licencie;
+    }
+
+    /**
+     * @param Licencie $licencie
+     * @return CarriereJoueur
+     */
+    public function setLicencie($licencie)
+    {
+        $this->licencie = $licencie;
         return $this;
     }
 }
