@@ -22,6 +22,8 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $now = new \DateTime();
+        $output->writeln('<comment>End : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
         $curl_request = curl_init("http://37.187.1.105:84/api/users/2018");
 
         curl_setopt($curl_request, CURLOPT_HEADER, 0);
@@ -32,6 +34,8 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
         $data = json_decode($result, true);
 
+        $nbCreation = 0;
+        $nbMaj = 0;
         foreach ($data as $joueur) {
             if ($joueur['permits'][0]['state'] == 'Validée'){
                 $doctrine = $this->getContainer()->get('doctrine');
@@ -41,7 +45,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
                     $licencie = new Licencie();
                 }
 
-
+                $licencie->getId() ? $nbMaj ++ : $nbCreation ++;
 
                 $simpleDate = explode('T',$joueur['birthday']['date']);
 
@@ -85,6 +89,9 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
                 $em->flush();
             }
         }
+
+
+        $output->writeln('<comment>Il y a ' . $nbCreation . ' créations et '. $nbMaj .' MAJ ---</comment>');
 
         $now = new \DateTime();
         $output->writeln('<comment>End : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
