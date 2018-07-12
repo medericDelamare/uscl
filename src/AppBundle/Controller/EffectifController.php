@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Joueur;
+use AppBundle\Entity\Licencie;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,7 +23,7 @@ class EffectifController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $joueurs = $em->getRepository(Joueur::class)->findByCategoryOrderByPoste($category);
+        $joueurs = $em->getRepository(Licencie::class)->findByCategoryOrderByPoste($category);
         return $this->render('default/effectif.html.twig', [
             'joueurs' => $joueurs,
             'category' => $category,

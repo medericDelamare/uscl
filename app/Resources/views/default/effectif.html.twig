@@ -30,11 +30,11 @@
                 <tr>
                     <td><strong><a class="nom-effectif" href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nom }}</a></strong></td>
                     <td>{{ joueur.prenom }}</td>
-                    <td data-order={{ joueur.poste.position }}>{{ joueur.poste.nom }}</td>
-                    <td>{{ joueur.buts }}</td>
-                    <td>{{ joueur.passes }}</td>
-                    <td>{{ joueur.cartonsJaunes }}</td>
-                    <td>{{ joueur.cartonsRouges }}</td>
+                    <td data-order={{ joueur.stats.poste.position }}>{{ joueur.stats.poste.nom }}</td>
+                    <td>{{ joueur.stats.buts }}</td>
+                    <td>{{ joueur.stats.passes }}</td>
+                    <td>{{ joueur.stats.cartonsJaunes }}</td>
+                    <td>{{ joueur.stats.cartonsRouges }}</td>
                     {% if is_granted('ROLE_ADMIN') %}
                         <td>{{ joueur.mobile }}</td>
                     {% endif %}
