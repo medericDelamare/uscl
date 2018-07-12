@@ -36,7 +36,7 @@
                     <td>{{ joueur.stats.cartonsJaunes }}</td>
                     <td>{{ joueur.stats.cartonsRouges }}</td>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <td>{{ joueur.mobile }}</td>
+                        <td>{{ joueur.telephonePortable }}</td>
                     {% endif %}
                 </tr>
             {% endfor %}

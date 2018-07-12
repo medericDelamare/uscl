@@ -1,7 +1,7 @@
 services:
     admin.joueur:
-            class: AppBundle\Admin\JoueurAdmin
-            arguments: [~, AppBundle\Entity\Joueur, ~]
+            class: AppBundle\Admin\LicencieAdmin
+            arguments: [~, AppBundle\Entity\Licencie, ~]
             tags:
                 - { name: sonata.admin, manager_type: orm, label: Joueurs, group: "joueurs"}
             calls:
