@@ -120,6 +120,14 @@ class Licencie
      */
     private $carriere;
 
+    /**
+     * One Cart has One Customer.
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\StatsJoueur", inversedBy="licencie", cascade={"all"})
+     * @ORM\JoinColumn(name="stats_id", referencedColumnName="id", nullable=true)
+     */
+    private $stats;
+
+
     public function __construct()
     {
         $this->carriere = new ArrayCollection();
@@ -429,5 +437,23 @@ class Licencie
             $this->carriere->add($carriere);
             $carriere->setLicencie($this);
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStats()
+    {
+        return $this->stats;
+    }
+
+    /**
+     * @param mixed $stats
+     * @return Licencie
+     */
+    public function setStats($stats)
+    {
+        $this->stats = $stats;
+        return $this;
     }
 }

@@ -6,6 +6,7 @@ namespace AppBundle\Command;
 
 use AppBundle\Entity\CarriereJoueur;
 use AppBundle\Entity\Licencie;
+use AppBundle\Entity\StatsJoueur;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -83,6 +84,11 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
                         ->setSousCategorie($licence['subCategory'])
                         ->setSaison(substr($licence['startSeason'],0,4) . '-' . substr($licence['endSeason'],0,4));
                     $licencie->addCarriere($carriere);
+                }
+
+                if ($licencie->isJoueur()){
+                    $stats = new StatsJoueur();
+                    $licencie->setStats($stats);
                 }
 
                 $em->persist($licencie);
