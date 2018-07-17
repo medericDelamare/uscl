@@ -77,12 +77,29 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
                 $em->flush();
 
+                $carriereParSaison = [];
+
                 foreach ($joueur['permits'] as $licence){
+                    $carriereParSaison[substr($licence['startSeason'],0,4) . '-' . substr($licence['endSeason'],0,4)][$licence['club']['name']][]=$licence['subCategory'];
+                }
+
+                foreach ($carriereParSaison as $annee => $clubArray){
                     $carriere = new CarriereJoueur();
                     $carriere
-                        ->setClub($licence['club']['name'])
-                        ->setSousCategorie($licence['subCategory'])
-                        ->setSaison(substr($licence['startSeason'],0,4) . '-' . substr($licence['endSeason'],0,4));
+                        ->setSaison($annee);
+                    foreach ($clubArray as $club => $categArray){
+                        $carriere
+                            ->setClub($club);
+                        foreach ($categArray as $key => $categ){
+                            if ($carriere->getSousCategorie()){
+                                $carriere
+                                    ->setSousCategorie($carriere->getSousCategorie() . ' - '  . $categ);
+                            } else {
+                                $carriere
+                                    ->setSousCategorie($categ);
+                            }
+                        }
+                    }
                     $licencie->addCarriere($carriere);
                 }
 
@@ -90,7 +107,6 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
                     $stats = new StatsJoueur();
                     $licencie->setStats($stats);
                 }
-
                 $em->persist($licencie);
                 $em->flush();
             }
