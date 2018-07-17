@@ -61,7 +61,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
                     ->setPrenom($joueur['firstName'])
                     ->setNationalite($joueur['nationality'])
                     ->setDateDeNaissance(\DateTime::createFromFormat('Y-m-d', $simpleDate[0]))
-                    ->setLieuDeNaissance($joueur['birthday']['birthPlace'])
+                    ->setLieuDeNaissance(ucfirst($joueur['birthday']['birthPlace']))
                     ->setAdresse($joueur['address']['city'])
                     ->setPhoto($joueur['photo']['link'])
                     ->setTelephoneDomicile($fixe)
