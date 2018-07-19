@@ -103,7 +103,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
                     $licencie->addCarriere($carriere);
                 }
 
-                if ($licencie->isJoueur()){
+                if ($licencie->isJoueur() && !$licencie->getStats()){
                     $stats = new StatsJoueur();
                     $licencie->setStats($stats);
                 }
