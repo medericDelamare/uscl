@@ -7,7 +7,7 @@ services:
             calls:
                 - [ setKernel, ["@kernel"]]
 
-    admin.club:
+    admin.bureau:
             class: AppBundle\Admin\BureauAdmin
             arguments: [~, AppBundle\Entity\Bureau, ~]
             tags:
@@ -52,3 +52,8 @@ services:
                 arguments: [~, AppBundle\Entity\Equipe, ~]
                 tags:
                     - { name: sonata.admin, manager_type: orm, label: equipe.plural, group: "club"}
+    admin.club:
+            class: AppBundle\Admin\ClubAdmin
+            arguments: [~, AppBundle\Entity\Club, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: club.plural, group: "club"}
