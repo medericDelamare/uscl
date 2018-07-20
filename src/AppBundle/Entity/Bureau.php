@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Entity()
  */
-class Club
+class Bureau
 {
     /**
      * @var int
@@ -140,7 +140,7 @@ class Club
 
     /**
      * @param Dirigeant $president
-     * @return Club
+     * @return Bureau
      */
     public function setPresident($president)
     {
@@ -158,7 +158,7 @@ class Club
 
     /**
      * @param Dirigeant $vicePresident1
-     * @return Club
+     * @return Bureau
      */
     public function setVicePresident1($vicePresident1)
     {
@@ -176,7 +176,7 @@ class Club
 
     /**
      * @param Dirigeant $vicePresident2
-     * @return Club
+     * @return Bureau
      */
     public function setVicePresident2($vicePresident2)
     {
@@ -194,7 +194,7 @@ class Club
 
     /**
      * @param Dirigeant $vicePresident3
-     * @return Club
+     * @return Bureau
      */
     public function setVicePresident3($vicePresident3)
     {
@@ -212,7 +212,7 @@ class Club
 
     /**
      * @param Dirigeant $secretaire
-     * @return Club
+     * @return Bureau
      */
     public function setSecretaire($secretaire)
     {
@@ -230,7 +230,7 @@ class Club
 
     /**
      * @param Dirigeant $tresorier
-     * @return Club
+     * @return Bureau
      */
     public function setTresorier($tresorier)
     {
@@ -248,7 +248,7 @@ class Club
 
     /**
      * @param Dirigeant $responsableJeunes
-     * @return Club
+     * @return Bureau
      */
     public function setResponsableJeunes($responsableJeunes)
     {
@@ -266,7 +266,7 @@ class Club
 
     /**
      * @param Dirigeant $responsableSeniors
-     * @return Club
+     * @return Bureau
      */
     public function setResponsableSeniors($responsableSeniors)
     {
@@ -284,7 +284,7 @@ class Club
 
     /**
      * @param Dirigeant $responsableA
-     * @return Club
+     * @return Bureau
      */
     public function setResponsableA($responsableA)
     {
@@ -302,7 +302,7 @@ class Club
 
     /**
      * @param Dirigeant $responsableB
-     * @return Club
+     * @return Bureau
      */
     public function setResponsableB($responsableB)
     {
@@ -320,7 +320,7 @@ class Club
 
     /**
      * @param Dirigeant $responsableU18
-     * @return Club
+     * @return Bureau
      */
     public function setResponsableU18($responsableU18)
     {
@@ -338,7 +338,7 @@ class Club
 
     /**
      * @param Dirigeant $responsableU15
-     * @return Club
+     * @return Bureau
      */
     public function setResponsableU15($responsableU15)
     {
@@ -356,7 +356,7 @@ class Club
 
     /**
      * @param Dirigeant $responsableU13
-     * @return Club
+     * @return Bureau
      */
     public function setResponsableU13($responsableU13)
     {
@@ -374,7 +374,7 @@ class Club
 
     /**
      * @param Dirigeant $responsableU11
-     * @return Club
+     * @return Bureau
      */
     public function setResponsableU11($responsableU11)
     {
@@ -392,7 +392,7 @@ class Club
 
     /**
      * @param Dirigeant $responsableU9
-     * @return Club
+     * @return Bureau
      */
     public function setResponsableU9($responsableU9)
     {
@@ -410,7 +410,7 @@ class Club
 
     /**
      * @param Dirigeant $responsableU7
-     * @return Club
+     * @return Bureau
      */
     public function setResponsableU7($responsableU7)
     {
@@ -428,7 +428,7 @@ class Club
 
     /**
      * @param Dirigeant $responsableFutsal
-     * @return Club
+     * @return Bureau
      */
     public function setResponsableFutsal($responsableFutsal)
     {

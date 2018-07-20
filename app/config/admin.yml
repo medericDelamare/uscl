@@ -8,8 +8,8 @@ services:
                 - [ setKernel, ["@kernel"]]
 
     admin.club:
-            class: AppBundle\Admin\ClubAdmin
-            arguments: [~, AppBundle\Entity\Club, ~]
+            class: AppBundle\Admin\BureauAdmin
+            arguments: [~, AppBundle\Entity\Bureau, ~]
             tags:
                 - { name: sonata.admin, manager_type: orm, label: Club, group: "club"}
 
