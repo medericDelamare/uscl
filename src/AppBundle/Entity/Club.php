@@ -35,8 +35,8 @@ class Club
     private $logo;
 
     /**
-     * @var ArrayCollection
-     * @ORM\Column(type="array")
+     * @var NomParse[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\NomParse", mappedBy="club")
      */
     private $nomsParse;
 
@@ -85,7 +85,7 @@ class Club
     }
 
     /**
-     * @return ArrayCollection
+     * @return NomParse[]
      */
     public function getNomsParse()
     {
@@ -93,12 +93,17 @@ class Club
     }
 
     /**
-     * @param ArrayCollection $nomsParse
+     * @param NomParse[] $nomsParse
      * @return Club
      */
     public function setNomsParse($nomsParse)
     {
         $this->nomsParse = $nomsParse;
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getNom() ? $this->getNom() : '';
     }
 }

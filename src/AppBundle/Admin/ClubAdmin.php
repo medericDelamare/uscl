@@ -4,27 +4,27 @@
 namespace AppBundle\Admin;
 
 
+use AppBundle\Entity\Club;
+use Doctrine\DBAL\Types\ArrayType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\CoreBundle\Form\Type\CollectionType;
+use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
 
 class ClubAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('joueur', 'sonata_type_model')
-            ->add('saison')
-            ->add('sousCategorie')
-            ->add('club');
+            ->add('nom')
+            ->add('logo');
     }
     protected function configureListFields(ListMapper $listMapper)
     {
 
         $listMapper
-            ->addIdentifier('joueur')
-            ->add('saison')
-            ->add('sousCategorie')
-            ->add('club');
+            ->addIdentifier('nom')
+            ->add('logo');
     }
 }

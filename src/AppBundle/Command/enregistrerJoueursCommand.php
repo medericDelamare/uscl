@@ -6,6 +6,7 @@ namespace AppBundle\Command;
 
 use AppBundle\Entity\CarriereJoueur;
 use AppBundle\Entity\Licencie;
+use AppBundle\Entity\NomParse;
 use AppBundle\Entity\StatsJoueur;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -14,6 +15,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class enregistrerJoueursCommand extends ContainerAwareCommand
 {
+
+    private $logs = [];
+
+
     protected function configure()
     {
         $this
@@ -85,11 +90,20 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
                 foreach ($carriereParSaison as $annee => $clubArray){
                     $carriere = new CarriereJoueur();
+
                     $carriere
                         ->setSaison($annee);
                     foreach ($clubArray as $club => $categArray){
+                        $entityClub = $em->getRepository(NomParse::class)->findOneByNom($club);
+
+
+                        if (is_null($entityClub)){
+                            $this->logs[] = $club;
+                        }
+
                         $carriere
-                            ->setClub($club);
+                            ->setClub($entityClub)
+                            ->setClubParse($club);
                         foreach ($categArray as $key => $categ){
                             if ($carriere->getSousCategorie()){
                                 $carriere
@@ -113,6 +127,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
         }
 
 
+        dump(array_unique($this->logs));
         $output->writeln('<comment>Il y a ' . $nbCreation . ' créations et '. $nbMaj .' MAJ ---</comment>');
 
         $now = new \DateTime();

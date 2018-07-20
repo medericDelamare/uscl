@@ -48,8 +48,13 @@ class CarriereJoueur
      * @var string
      * @ORM\Column(type="string", nullable=false)
      */
-    private $club;
+    private $clubParse;
 
+    /**
+     * @var Club
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Club")
+     */
+    private $club;
     /**
      * @return int
      */
@@ -115,18 +120,18 @@ class CarriereJoueur
     /**
      * @return string
      */
-    public function getClub()
+    public function getClubParse()
     {
-        return $this->club;
+        return $this->clubParse;
     }
 
     /**
-     * @param string $club
+     * @param string $clubParse
      * @return CarriereJoueur
      */
-    public function setClub($club)
+    public function setClubParse($clubParse)
     {
-        $this->club = $club;
+        $this->clubParse = $clubParse;
         return $this;
     }
 
@@ -145,6 +150,24 @@ class CarriereJoueur
     public function setLicencie($licencie)
     {
         $this->licencie = $licencie;
+        return $this;
+    }
+
+    /**
+     * @return Club
+     */
+    public function getClub()
+    {
+        return $this->club;
+    }
+
+    /**
+     * @param Club $club
+     * @return CarriereJoueur
+     */
+    public function setClub($club)
+    {
+        $this->club = $club;
         return $this;
     }
 }
