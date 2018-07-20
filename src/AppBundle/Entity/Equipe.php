@@ -55,6 +55,13 @@ class Equipe
     /** @ORM\Embedded(class = "AppBundle\Entity\StatsEquipe") */
     private $stats;
 
+    /**
+     * @var Club
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Club")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $club;
+
     public function __construct()
     {
         $this->stats = new StatsEquipe();
@@ -181,5 +188,21 @@ class Equipe
         return $this->nomParse . ' ' . $this->categorie;
     }
 
+    /**
+     * @return Club
+     */
+    public function getClub()
+    {
+        return $this->club;
+    }
 
+    /**
+     * @param Club $club
+     * @return Equipe
+     */
+    public function setClub($club)
+    {
+        $this->club = $club;
+        return $this;
+    }
 }
