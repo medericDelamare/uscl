@@ -35,7 +35,11 @@
                 {% for equipe in equipes %}
                     <tr>
                         <td>{{ loop.index }}</td>
-                        <td>{{ equipe.nomParse }}</td>
+                        {% if equipe.club %}
+                            <td><img class="img-carriere" src="{{ equipe.club.logo }}"> - {{ equipe.club.nom }}</td>
+                        {% else %}
+                            <td>{{ equipe.nomParse }}</td>
+                        {% endif %}
                         <td>{{ equipe.stats.journees }}</td>
                         <td>{{ equipe.stats.points }}</td>
                         <td>{{ equipe.stats.victoires }}</td>
@@ -57,9 +61,17 @@
                 {% for rencontre in rencontres %}
                     <tr>
                         <td>{{ rencontre.date|date("d/m/Y") }}</td>
-                        <td>{{ rencontre.equipeDomicile.nomParse }}</td>
+                        {% if rencontre.equipeDomicile.club %}
+                            <td><img class="img-carriere" src="{{ rencontre.equipeDomicile.club.logo }}"> - {{ rencontre.equipeDomicile.club.nom }}</td>
+                        {% else %}
+                            <td>{{ rencontre.equipeDomicile.nomParse }}</td>
+                        {% endif %}
                         <td>{{ rencontre.score }}</td>
-                        <td>{{ rencontre.equipeExterieure.nomParse }}</td>
+                        {% if rencontre.equipeExterieure.club %}
+                            <td><img class="img-carriere" src="{{ rencontre.equipeExterieure.club.logo }}"> - {{ rencontre.equipeExterieure.club.nom }}</td>
+                        {% else %}
+                            <td>{{ rencontre.equipeExterieure.nomParse }}</td>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </table>

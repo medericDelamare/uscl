@@ -128,7 +128,13 @@
                     {% for carriere in joueur.carriere %}
                         <tr>
                             <td>{{ carriere.saison }}</td>
-                            <td>{{ carriere.club }}</td>
+                            <td>
+                            {% if carriere.club %}
+                                <img class = 'img-carriere' src="{{ carriere.club.logo }}"> - {{ carriere.club.nom }}
+                            {% else %}
+                                {{ carriere.clubParse }}
+                            {% endif %}
+                            </td>
                             <td>{{ carriere.SousCategorie }}</td>
                         </tr>
                     {% endfor %}

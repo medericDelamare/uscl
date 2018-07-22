@@ -99,10 +99,12 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
                         if (is_null($entityClub)){
                             $this->logs[] = $club;
+                        } else {
+                            $carriere
+                                ->setClub($entityClub->getClub());
                         }
 
                         $carriere
-                            ->setClub($entityClub)
                             ->setClubParse($club);
                         foreach ($categArray as $key => $categ){
                             if ($carriere->getSousCategorie()){
