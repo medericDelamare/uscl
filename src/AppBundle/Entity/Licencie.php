@@ -127,10 +127,27 @@ class Licencie
      */
     private $stats;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\StatsRencontre", mappedBy="joueurs")
+     */
+    private $statsRencontresJoueurs;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\StatsRencontre", mappedBy="cartonsJaunes")
+     */
+    private $statsRencontresCartonsJaunes;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\StatsRencontre", mappedBy="cartonsRouges")
+     */
+    private $statsRencontresCartonsRouges;
 
     public function __construct()
     {
         $this->carriere = new ArrayCollection();
+        $this->statsRencontresJoueurs = new ArrayCollection();
+        $this->statsRencontresCartonsJaunes = new ArrayCollection();
+        $this->statsRencontresCartonsRouges = new ArrayCollection();
     }
 
     /**
@@ -454,6 +471,60 @@ class Licencie
     public function setStats($stats)
     {
         $this->stats = $stats;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatsRencontresJoueurs()
+    {
+        return $this->statsRencontresJoueurs;
+    }
+
+    /**
+     * @param mixed $statsRencontresJoueurs
+     * @return Licencie
+     */
+    public function setStatsRencontresJoueurs($statsRencontresJoueurs)
+    {
+        $this->statsRencontresJoueurs = $statsRencontresJoueurs;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatsRencontresCartonsJaunes()
+    {
+        return $this->statsRencontresCartonsJaunes;
+    }
+
+    /**
+     * @param mixed $statsRencontresCartonsJaunes
+     * @return Licencie
+     */
+    public function setStatsRencontresCartonsJaunes($statsRencontresCartonsJaunes)
+    {
+        $this->statsRencontresCartonsJaunes = $statsRencontresCartonsJaunes;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatsRencontresCartonsRouges()
+    {
+        return $this->statsRencontresCartonsRouges;
+    }
+
+    /**
+     * @param mixed $statsRencontresCartonsRouges
+     * @return Licencie
+     */
+    public function setStatsRencontresCartonsRouges($statsRencontresCartonsRouges)
+    {
+        $this->statsRencontresCartonsRouges = $statsRencontresCartonsRouges;
         return $this;
     }
 }
