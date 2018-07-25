@@ -89,13 +89,12 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
                 }
 
                 foreach ($carriereParSaison as $annee => $clubArray){
-                    $carriere = new CarriereJoueur();
-
-                    $carriere
-                        ->setSaison($annee);
                     foreach ($clubArray as $club => $categArray){
-                        $entityClub = $em->getRepository(NomParse::class)->findOneByNom($club);
+                        $carriere = new CarriereJoueur();
 
+                        $carriere
+                            ->setSaison($annee);
+                        $entityClub = $em->getRepository(NomParse::class)->findOneByNom($club);
 
                         if (is_null($entityClub)){
                             $this->logs[] = $club;
@@ -115,8 +114,9 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
                                     ->setSousCategorie($categ);
                             }
                         }
+
+                        $licencie->addCarriere($carriere);
                     }
-                    $licencie->addCarriere($carriere);
                 }
 
                 if ($licencie->isJoueur() && !$licencie->getStats()){
