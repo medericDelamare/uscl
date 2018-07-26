@@ -6,9 +6,15 @@
         {% else %}
             <td class="equipeGauche">{{ calendrierDetail.equipeDomicile.nomParse }}</td>
         {% endif %}
-        <td class="score">{{ calendrierDetail.score }}</td>
+
+        {% if calendrierDetail.stats %}
+            <td class="score"><a href="{{ path('rencontre', { 'id': calendrierDetail.id}) }}">{{ calendrierDetail.score }} </a></td>
+        {% else %}
+            <td class="score">{{ calendrierDetail.score }}</td>
+        {% endif %}
+
         {% if calendrierDetail.equipeExterieure.club %}
-            <td class="equipeDroite"><img class="img-carriere" src="{{ calendrierDetail.equipeExterieure.club.logo }}"> -{{ calendrierDetail.equipeExterieure.club.nom }}</td>
+            <td class="equipeDroite"><img class="img-carriere" src="{{ calendrierDetail.equipeExterieure.club.logo }}"> - { { calendrierDetail.equipeExterieure.club.nom }}</td>
         {% else %}
             <td class="equipeDroite">{{ calendrierDetail.equipeExterieure.nomParse }}</td>
         {% endif %}
