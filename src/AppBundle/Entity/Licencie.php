@@ -527,4 +527,9 @@ class Licencie
         $this->statsRencontresCartonsRouges = $statsRencontresCartonsRouges;
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->nom . ' ' . $this->getPrenom();
+    }
 }

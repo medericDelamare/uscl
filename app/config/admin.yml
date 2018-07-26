@@ -63,3 +63,15 @@ services:
             arguments: [~, AppBundle\Entity\NomParse, ~]
             tags:
                 - { name: sonata.admin, manager_type: orm, label: nomParse.plural, group: "club"}
+
+    admin.statsRencontre:
+        class: AppBundle\Admin\RencontreAdmin
+        arguments: [~, AppBundle\Entity\StatsRencontre, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: statsRencontre.plural, group: "club"}
+
+    admin.buteur:
+        class: AppBundle\Admin\ButeurAdmin
+        arguments: [~, AppBundle\Entity\Buteur, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: buteur.plural, group: "club"}

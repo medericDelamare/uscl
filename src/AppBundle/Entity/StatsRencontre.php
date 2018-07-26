@@ -157,4 +157,9 @@ class StatsRencontre
         $this->rencontre = $rencontre;
         return $this;
     }
+
+    public function addButeur(Buteur $buteur){
+        $this->buteurs->add($buteur);
+        $buteur->setStatsRencontres($this);
+    }
 }
