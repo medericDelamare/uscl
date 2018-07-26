@@ -48,7 +48,7 @@ class StatsRencontre
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Buteur", mappedBy="statsRencontres")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Buteur", mappedBy="statsRencontres", cascade={"persist"})
      */
     private $buteurs;
 
@@ -136,8 +136,12 @@ class StatsRencontre
      */
     public function setButeurs($buteurs)
     {
+        /** @var Buteur $buteur */
+        foreach ($buteurs as $buteur){
+            $buteur->setStatsRencontres($this);
+        }
+
         $this->buteurs = $buteurs;
-        return $this;
     }
 
     /**
@@ -161,5 +165,6 @@ class StatsRencontre
     public function addButeur(Buteur $buteur){
         $this->buteurs->add($buteur);
         $buteur->setStatsRencontres($this);
+        return $this;
     }
 }

@@ -19,8 +19,9 @@ class RencontreAdmin extends AbstractAdmin
             ->add('cartonsJaunes')
             ->add('cartonsRouges')
             ->add('buteurs', 'sonata_type_collection', [
+                'by_reference' => false,
                 'label' => false,
-                'btn_add' => 'Ajouter un bloc'
+                'btn_add' => 'Ajouter un buteur'
             ],[
                 'edit' => 'inline',
                 'inline' => 'table',

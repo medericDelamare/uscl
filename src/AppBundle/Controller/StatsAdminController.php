@@ -39,7 +39,7 @@ class StatsAdminController extends Controller{
             ->add('test', 'sonata_type_collection', [
                 'entry_type' => ButeurType::class,
                 'label' => false,
-                'btn_add' => 'Ajouter un bloc'
+                'btn_add' => 'Ajouter un buteur',
             ],[
                 'edit' => 'inline',
                 'inline' => 'table',
