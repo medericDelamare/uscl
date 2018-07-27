@@ -57,6 +57,8 @@ services:
             arguments: [~, AppBundle\Entity\Club, ~]
             tags:
                 - { name: sonata.admin, manager_type: orm, label: club.plural, group: "club"}
+            calls:
+                - [ setTemplate, [edit, SonataAdminBundle:Club:customEdit.html.twig]]
 
     admin.nomParse:
             class: AppBundle\Admin\NomParseAdmin

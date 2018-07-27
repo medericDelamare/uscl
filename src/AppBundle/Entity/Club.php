@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Xmon\ColorPickerTypeBundle\Validator\Constraints as XmonAssertColor;
 /**
  * Class Club
  * @package AppBundle\Entity
@@ -39,6 +39,19 @@ class Club
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\NomParse", mappedBy="club")
      */
     private $nomsParse;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     * @XmonAssertColor\HexColor()
+     */
+    private $couleurPrincipale;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $couleurSecondaire;
 
     /**
      * @return int
@@ -99,6 +112,42 @@ class Club
     public function setNomsParse($nomsParse)
     {
         $this->nomsParse = $nomsParse;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCouleurPrincipale()
+    {
+        return $this->couleurPrincipale;
+    }
+
+    /**
+     * @param string $couleurPrincipale
+     * @return Club
+     */
+    public function setCouleurPrincipale($couleurPrincipale)
+    {
+        $this->couleurPrincipale = $couleurPrincipale;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCouleurSecondaire()
+    {
+        return $this->couleurSecondaire;
+    }
+
+    /**
+     * @param string $couleurSecondaire
+     * @return Club
+     */
+    public function setCouleurSecondaire($couleurSecondaire)
+    {
+        $this->couleurSecondaire = $couleurSecondaire;
         return $this;
     }
 
