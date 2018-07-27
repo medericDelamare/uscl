@@ -1,1 +1,69 @@
 {% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li><a href="index.php">Accueil</a></li>
+        <li class="active">{{ rencontre }}</li>
+    </ol>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                {% if  rencontre.equipeDomicile.club %}
+                    {{ rencontre.equipeDomicile.club.logo }}
+                {% endif %}
+                <h2 class="text-center">{{ rencontre.equipeDomicile.nomParse }}</h2>
+            </div>
+            <div class="col-md-2">
+                <h2 class="text-center">{{ rencontre.score }}</h2>
+            </div>
+            <div class="col-md-5">
+                {% if  rencontre.equipeExterieure.club %}
+                    {{ rencontre.equipeExterieure.club.logo }}
+                {% endif %}
+                <h2 class="text-center">{{ rencontre.equipeExterieure.nomParse }}</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Joueurs de l'USCL ayant participé à ce match</div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            {% for joueur in rencontre.stats.joueurs %}
+                                <li class="list-group-item "><a href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nomComplet }}</a><span class="badge badge-primary">{{ loop.index }}</span></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Faits de matchs pouyr l'USCL</div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            {% for but in rencontre.stats.buteurs %}
+                                {% if but.passeur %}
+                                    <li class="list-group-item "><img src="{{ asset('pictures/icons/soccer-ball.png') }}"><a href="{{ path('profile', {'id': but.buteur.id}) }}">{{ but.buteur }}</a> ( <a href="{{ path('profile', {'id': but.passeur.id}) }}">{{ but.passeur }}</a> )</li>
+                                {% else %}
+                                    <li class="list-group-item "><img src="{{ asset('pictures/icons/soccer-ball.png') }}"><a href="{{ path('profile', {'id': but.buteur.id}) }}">{{ but.buteur }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% for joueur in rencontre.stats.cartonsJaunes%}
+                                <li class="list-group-item "><img src="{{ asset('pictures/icons/yellow-card.png') }}"><a href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nomComplet }}</a></li>
+                            {% endfor %}
+                            {% for joueur in rencontre.stats.cartonsRouges%}
+                                <li class="list-group-item "><img src="{{ asset('pictures/icons/red-card.png') }}"><a href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nomComplet }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

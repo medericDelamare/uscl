@@ -528,6 +528,10 @@ class Licencie
         return $this;
     }
 
+    public function getNomComplet(){
+        return $this->getNom()  .  ' ' . $this->getPrenom();
+    }
+
     public function __toString()
     {
         return $this->nom . ' ' . $this->getPrenom();
