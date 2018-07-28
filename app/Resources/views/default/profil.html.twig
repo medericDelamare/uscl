@@ -145,7 +145,12 @@
         </div>
         <h2 class="sousTitreProfil">Faits de matchs cette saison</h2>
         <div class="table-responsive">
-            <table class="table">
+            <table class="table" id="faits-match">
+                <thead>
+                    <td>Date</td>
+                    <td>Fait de match</td>
+                </thead>
+                <tbody>
                 {% for cartonsJaunes in joueur.statsRencontresCartonsJaunes%}
                     <tr>
                         <td>{{ cartonsJaunes.rencontre.date|date("d/m/Y")  }}</td>
@@ -176,7 +181,25 @@
                         <td><img src="{{ asset('pictures/icons/soccer.png') }}"> A délivré une passe décisive lors de <a href="{{ path('rencontre', {'id': passeur.statsRencontres.rencontre.id}) }}">{{ passeur.statsRencontres.rencontre  }}</a></td>
                     </tr>
                 {% endfor %}
+                </tbody>
+
             </table>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/1.10.19/sorting/date-eu.js"></script>
+
+    <script >
+        $('#faits-match').DataTable( {
+            "paging": false,
+            "bInfo" : false,
+            "searching" : false,
+            columnDefs: [
+                {type: 'date-eu-desc', targets: 0 }
+            ]
+        } );
+    </script>
 {% endblock %}

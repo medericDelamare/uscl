@@ -14,7 +14,7 @@
         {% endif %}
 
         {% if calendrierDetail.equipeExterieure.club %}
-            <td class="equipeDroite"><img class="img-carriere" src="{{ calendrierDetail.equipeExterieure.club.logo }}"> - { { calendrierDetail.equipeExterieure.club.nom }}</td>
+            <td class="equipeDroite"><img class="img-carriere" src="{{ calendrierDetail.equipeExterieure.club.logo }}"> - {{ calendrierDetail.equipeExterieure.club.nom }}</td>
         {% else %}
             <td class="equipeDroite">{{ calendrierDetail.equipeExterieure.nomParse }}</td>
         {% endif %}
