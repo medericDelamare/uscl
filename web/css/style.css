@@ -502,3 +502,7 @@ ul {
 .badge-primary{
     background-color: #0050a1;
 }
+
+.logo-rencontre-detail{
+    max-height: 85px;
+}

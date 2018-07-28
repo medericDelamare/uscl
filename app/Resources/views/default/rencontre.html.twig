@@ -9,61 +9,86 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-5">
-                {% if  rencontre.equipeDomicile.club %}
-                    {{ rencontre.equipeDomicile.club.logo }}
-                {% endif %}
-                <h2 class="text-center">{{ rencontre.equipeDomicile.nomParse }}</h2>
+            <div class="col-md-6" id="equipeDomicile">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        {% if  rencontre.equipeDomicile.club %}
+                            <img class="media-object logo-rencontre-detail" src="{{ asset('pictures/logos/' ~ rencontre.equipeDomicile.club.logo) }}">
+                        {% endif %}
+                    </div>
+                    <div class="media-body">
+                        <h2 class="text-center">{{ rencontre.equipeDomicile.nomParse }}</h2>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-2">
-                <h2 class="text-center">{{ rencontre.score }}</h2>
-            </div>
-            <div class="col-md-5">
-                {% if  rencontre.equipeExterieure.club %}
-                    {{ rencontre.equipeExterieure.club.logo }}
-                {% endif %}
-                <h2 class="text-center">{{ rencontre.equipeExterieure.nomParse }}</h2>
+            <div class="col-md-6" id="equipeExterieure">
+                    <div class="media-body">
+                        <h2 class="text-center">{{ rencontre.equipeExterieure.nomParse }}</h2>
+                    </div>
+                    <div class="media-right">
+                        {% if  rencontre.equipeExterieure.club %}
+                            <img class="media-object logo-rencontre-detail" src="{{ asset('pictures/logos/' ~ rencontre.equipeExterieure.club.logo) }}">
+                        {% endif %}
+                    </div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="text-center">
+                <h1 class="">{{ rencontre.score }}</h1>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Joueurs de l'USCL ayant participé à ce match</div>
-                    <div class="panel-body">
-                        <ul class="list-group">
-                            {% for joueur in rencontre.stats.joueurs %}
-                                <li class="list-group-item "><a href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nomComplet }}</a><span class="badge badge-primary">{{ loop.index }}</span></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+                <h2 class="sousTitreProfil">Joueurs de l'USCL</h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        {% for joueur in rencontre.stats.joueurs %}
+                            <tr>
+                                <td class=""><span class="badge badge-primary">{{ loop.index }}</span> <a href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nomComplet }}</a></td>
+                            </tr>
+                        {% endfor %}
+                    </table>
                 </div>
-
             </div>
             <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Faits de matchs pouyr l'USCL</div>
-                    <div class="panel-body">
-                        <ul class="list-group">
-                            {% for but in rencontre.stats.buteurs %}
+                <h2 class="sousTitreProfil">Faits de matchs</h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        {% for but in rencontre.stats.buteurs %}
+                            <tr>
                                 {% if but.passeur %}
-                                    <li class="list-group-item "><img src="{{ asset('pictures/icons/soccer-ball.png') }}"><a href="{{ path('profile', {'id': but.buteur.id}) }}">{{ but.buteur }}</a> ( <a href="{{ path('profile', {'id': but.passeur.id}) }}">{{ but.passeur }}</a> )</li>
+                                    <td class=" "><img src="{{ asset('pictures/icons/soccer-ball.png') }}"><a href="{{ path('profile', {'id': but.buteur.id}) }}">{{ but.buteur }}</a> ( <a href="{{ path('profile', {'id': but.passeur.id}) }}">{{ but.passeur }}</a> )</td>
                                 {% else %}
-                                    <li class="list-group-item "><img src="{{ asset('pictures/icons/soccer-ball.png') }}"><a href="{{ path('profile', {'id': but.buteur.id}) }}">{{ but.buteur }}</a></li>
+                                    <td class=" "><img src="{{ asset('pictures/icons/soccer-ball.png') }}"><a href="{{ path('profile', {'id': but.buteur.id}) }}">{{ but.buteur }}</a></td>
                                 {% endif %}
-                            {% endfor %}
-                            {% for joueur in rencontre.stats.cartonsJaunes%}
-                                <li class="list-group-item "><img src="{{ asset('pictures/icons/yellow-card.png') }}"><a href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nomComplet }}</a></li>
-                            {% endfor %}
-                            {% for joueur in rencontre.stats.cartonsRouges%}
-                                <li class="list-group-item "><img src="{{ asset('pictures/icons/red-card.png') }}"><a href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nomComplet }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+                            </tr>
+                        {% endfor %}
+                        {% for joueur in rencontre.stats.cartonsJaunes%}
+                            <tr>
+                                <td class=""><img src="{{ asset('pictures/icons/yellow-card.png') }}"><a href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nomComplet }}</a></td>
+                            </tr>
+                        {% endfor %}
+                        {% for joueur in rencontre.stats.cartonsRouges%}
+                            <tr>
+                                <td class=""><img src="{{ asset('pictures/icons/red-card.png') }}"><a href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nomComplet }}</a></td>
+                            </tr>
+                        {% endfor %}
+                    </table>
                 </div>
-
             </div>
         </div>
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $( document ).ready(function() {
+            $("#equipeDomicile").css("background-color", "#{{ rencontre.equipeDomicile.club.couleurPrincipale|raw }}" )
+            $("#equipeDomicile").css("color", "#{{ rencontre.equipeDomicile.club.couleurSecondaire|raw }}" )
+            $("#equipeExterieure").css("background-color", "#{{ rencontre.equipeExterieure.club.couleurPrincipale|raw }}" )
+            $("#equipeExterieure").css("color", "#{{ rencontre.equipeExterieure.club.couleurSecondaire|raw }}" )
+        });
+    </script>
 
 {% endblock %}
