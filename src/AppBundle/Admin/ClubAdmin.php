@@ -21,8 +21,12 @@ class ClubAdmin extends AbstractAdmin
         $formMapper
             ->add('nom')
             ->add('logo')
-            ->add('couleurPrincipale', ColorPickerType::class)
-            ->add('couleurSecondaire', ColorPickerType::class);
+            ->add('couleurPrincipale', ColorPickerType::class, [
+                'required' => false
+            ])
+            ->add('couleurSecondaire', ColorPickerType::class, [
+                'required' => false
+            ]);
     }
     protected function configureListFields(ListMapper $listMapper)
     {
