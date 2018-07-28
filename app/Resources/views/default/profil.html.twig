@@ -55,7 +55,9 @@
                                 <div class="text-right">Poste :</div>
                             </div>
                             <div class="col-xs-6">
-                                <div class="text-left">{{ joueur.stats.poste.nom }}</div>
+                                {% if joueur.stats.poste %}
+                                    <div class="text-left">{{joueur.stats.poste.nom }}</div>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row">
@@ -91,20 +93,20 @@
                         <div class="row saison-actuelle-profil">Saison 2018-2019 avec l'USCL :</div>
                         <div class="row">
                             <div class="fc_inf_stats">
-                                <p>{{ joueur.stats.nbMatchs }}</p>
+                                <p>{{ joueur.statsRencontresJoueurs|length}}</p>
                                 <span>MATCHS<br>JOUÉS</span>
                             </div>
                             <div class="fc_inf_stats">
-                                <p>{{ joueur.stats.buts }}</p>
+                                <p>{{ joueur.buteurs|length}}</p>
                                 <span>BUTS<br>MARQUÉS</span>
                             </div>
                             <div class="fc_inf_stats">
-                                <p>{{ joueur.stats.passes }}</p>
+                                <p>{{ joueur.passeurs|length}}</p>
                                 <span>PASSES<br>DECISIVES</span>
                             </div>
                             <div class="fc_inf_stats_cr">
-                                <p><span class="carton_jaune">&nbsp;</span> {{ joueur.stats.cartonsJaunes }}</p>
-                                <p><span class="carton_rouge">&nbsp;</span> {{ joueur.stats.cartonsRouges }}</p>
+                                <p><span class="carton_jaune">&nbsp;</span> {{ joueur.statsRencontresCartonsJaunes|length}}</p>
+                                <p><span class="carton_rouge">&nbsp;</span> {{ joueur.statsRencontresCartonsRouges|length }}</p>
                             </div>
                         </div>
                     </div>
@@ -141,6 +143,40 @@
                 </tbody>
             </table>
         </div>
-        <h2 class="sousTitreProfil">Stats au cours des dernières saisons</h2>
+        <h2 class="sousTitreProfil">Faits de matchs cette saison</h2>
+        <div class="table-responsive">
+            <table class="table">
+                {% for cartonsJaunes in joueur.statsRencontresCartonsJaunes%}
+                    <tr>
+                        <td>{{ cartonsJaunes.rencontre.date|date("d/m/Y")  }}</td>
+                        <td><img src="{{ asset('pictures/icons/yellow-card.png') }}"> A pris un carton jaune lors de <a href="{{ path('rencontre', {'id': cartonsJaunes.rencontre.id}) }}">{{ cartonsJaunes.rencontre  }}</a></td>
+                    </tr>
+                {% endfor %}
+                {% for cartonsRouges in joueur.statsRencontresCartonsRouges%}
+                    <tr>
+                        <td>{{ cartonsRouges.rencontre.date|date("d/m/Y")  }}</td>
+                        <td><img src="{{ asset('pictures/icons/red-card.png') }}"> A pris un carton rouge lors de <a href="{{ path('rencontre', {'id': cartonsRouges.rencontre.id}) }}">{{ cartonsRouges.rencontre  }}</a></td>
+                    </tr>
+                {% endfor %}
+                {% for rencontre in joueur.statsRencontresJoueurs %}
+                    <tr>
+                        <td>{{ rencontre.rencontre.date|date("d/m/Y")  }}</td>
+                        <td><img src="{{ asset('pictures/icons/strategy.png') }}"> A joué lors de <a href="{{ path('rencontre', {'id': rencontre.rencontre.id}) }}">{{ rencontre.rencontre  }}</a></td>
+                    </tr>
+                {% endfor %}
+                {% for buteur in joueur.buteurs%}
+                    <tr>
+                        <td>{{ buteur.statsRencontres.rencontre.date|date("d/m/Y")  }}</td>
+                        <td><img src="{{ asset('pictures/icons/soccer-ball.png') }}"> A marqué lors de <a href="{{ path('rencontre', {'id': buteur.statsRencontres.rencontre.id}) }}">{{ buteur.statsRencontres.rencontre  }}</a></td>
+                    </tr>
+                {% endfor %}
+                {% for passeur in joueur.passeurs%}
+                    <tr>
+                        <td>{{ passeur.statsRencontres.rencontre.date|date("d/m/Y")  }}</td>
+                        <td><img src="{{ asset('pictures/icons/soccer.png') }}"> A délivré une passe décisive lors de <a href="{{ path('rencontre', {'id': passeur.statsRencontres.rencontre.id}) }}">{{ passeur.statsRencontres.rencontre  }}</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
 {% endblock %}

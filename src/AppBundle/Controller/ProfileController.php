@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Joueur;
 use AppBundle\Entity\Licencie;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,6 +28,9 @@ class ProfileController extends Controller
         $birthDate = $joueur->getDateDeNaissance();
         $to   = new \DateTime('today');
         $age = $birthDate->diff($to)->y;
+
+
+
         return $this->render(':default:profil.html.twig', [
             'joueur' => $joueur,
             'age' => $age,

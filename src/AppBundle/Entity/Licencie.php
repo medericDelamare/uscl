@@ -142,12 +142,27 @@ class Licencie
      */
     private $statsRencontresCartonsRouges;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Buteur", mappedBy="buteur")
+     */
+    private $buteurs;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Buteur", mappedBy="passeur")
+     */
+    private $passeurs;
+
+
     public function __construct()
     {
         $this->carriere = new ArrayCollection();
         $this->statsRencontresJoueurs = new ArrayCollection();
         $this->statsRencontresCartonsJaunes = new ArrayCollection();
         $this->statsRencontresCartonsRouges = new ArrayCollection();
+        $this->buteurs = new ArrayCollection();
+        $this->passeurs = new ArrayCollection();
     }
 
     /**
@@ -530,6 +545,42 @@ class Licencie
 
     public function getNomComplet(){
         return $this->getNom()  .  ' ' . $this->getPrenom();
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getButeurs()
+    {
+        return $this->buteurs;
+    }
+
+    /**
+     * @param ArrayCollection $buteurs
+     * @return Licencie
+     */
+    public function setButeurs($buteurs)
+    {
+        $this->buteurs = $buteurs;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPasseurs()
+    {
+        return $this->passeurs;
+    }
+
+    /**
+     * @param ArrayCollection $passeurs
+     * @return Licencie
+     */
+    public function setPasseurs($passeurs)
+    {
+        $this->passeurs = $passeurs;
+        return $this;
     }
 
     public function __toString()
