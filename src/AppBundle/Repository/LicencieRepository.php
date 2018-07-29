@@ -13,8 +13,11 @@ class LicencieRepository extends EntityRepository
 
         $categories = [];
         switch ($category){
+            case 'Veterans':
+                $categories = ['Libre / Vétéran'];
+                break;
             case 'Senior':
-                $categories = ['Libre / Vétéran', 'Libre / Senior', 'Libre / Senior U20 (- 20 ans)', 'Libre / U19 (- 19 ans)'];
+                $categories = ['Libre / Senior', 'Libre / Senior U20 (- 20 ans)', 'Libre / U19 (- 19 ans)'];
                 break;
             case 'U18':
                 $categories = ['Libre / U18 (- 18 ans)', 'Libre / U17 (- 17 ans)', 'Libre / U16 (- 16 ans)'];
