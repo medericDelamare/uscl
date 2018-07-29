@@ -72,6 +72,11 @@ class Rencontre
     private $date;
 
     /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\StatsRencontre", mappedBy="rencontre")
+     */
+    private $stats;
+
+    /**
      * @return int
      */
     public function getId()
@@ -221,5 +226,28 @@ class Rencontre
     {
         $this->date = $date;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStats()
+    {
+        return $this->stats;
+    }
+
+    /**
+     * @param mixed $stats
+     * @return Rencontre
+     */
+    public function setStats($stats)
+    {
+        $this->stats = $stats;
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getEquipeDomicile()->getNomParse() . ' - ' . $this->getEquipeExterieure()->getNomParse() . ' ( ' . $this->getEquipeDomicile()->getDivision() . ' )';
     }
 }

@@ -10,7 +10,7 @@
 
     <div class="container">
         <h1 class = "page-header">{{ category }} -<small> {{ nb_joueurs }} Joueurs</small></h1>
-        <table class="table table-striped">
+        <table class="table">
             <thead>
             <tr>
                 <th>Nom</th>
@@ -31,10 +31,10 @@
                     <td><strong><a class="nom-effectif" href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nom }}</a></strong></td>
                     <td>{{ joueur.prenom }}</td>
                     <td data-order={{ joueur.stats.poste.position }}>{{ joueur.stats.poste.nom }}</td>
-                    <td>{{ joueur.stats.buts }}</td>
-                    <td>{{ joueur.stats.passes }}</td>
-                    <td>{{ joueur.stats.cartonsJaunes }}</td>
-                    <td>{{ joueur.stats.cartonsRouges }}</td>
+                    <td>{{ joueur.buteurs|length }}</td>
+                    <td>{{ joueur.passeurs|length }}</td>
+                    <td>{{ joueur.statsRencontresCartonsJaunes|length }}</td>
+                    <td>{{ joueur.statsRencontresCartonsRouges|length }}</td>
                     {% if is_granted('ROLE_ADMIN') %}
                         <td>{{ joueur.telephonePortable }}</td>
                     {% endif %}

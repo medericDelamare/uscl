@@ -127,10 +127,42 @@ class Licencie
      */
     private $stats;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\StatsRencontre", mappedBy="joueurs")
+     */
+    private $statsRencontresJoueurs;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\StatsRencontre", mappedBy="cartonsJaunes")
+     */
+    private $statsRencontresCartonsJaunes;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\StatsRencontre", mappedBy="cartonsRouges")
+     */
+    private $statsRencontresCartonsRouges;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Buteur", mappedBy="buteur")
+     */
+    private $buteurs;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Buteur", mappedBy="passeur")
+     */
+    private $passeurs;
+
 
     public function __construct()
     {
         $this->carriere = new ArrayCollection();
+        $this->statsRencontresJoueurs = new ArrayCollection();
+        $this->statsRencontresCartonsJaunes = new ArrayCollection();
+        $this->statsRencontresCartonsRouges = new ArrayCollection();
+        $this->buteurs = new ArrayCollection();
+        $this->passeurs = new ArrayCollection();
     }
 
     /**
@@ -455,5 +487,104 @@ class Licencie
     {
         $this->stats = $stats;
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatsRencontresJoueurs()
+    {
+        return $this->statsRencontresJoueurs;
+    }
+
+    /**
+     * @param mixed $statsRencontresJoueurs
+     * @return Licencie
+     */
+    public function setStatsRencontresJoueurs($statsRencontresJoueurs)
+    {
+        $this->statsRencontresJoueurs = $statsRencontresJoueurs;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatsRencontresCartonsJaunes()
+    {
+        return $this->statsRencontresCartonsJaunes;
+    }
+
+    /**
+     * @param mixed $statsRencontresCartonsJaunes
+     * @return Licencie
+     */
+    public function setStatsRencontresCartonsJaunes($statsRencontresCartonsJaunes)
+    {
+        $this->statsRencontresCartonsJaunes = $statsRencontresCartonsJaunes;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatsRencontresCartonsRouges()
+    {
+        return $this->statsRencontresCartonsRouges;
+    }
+
+    /**
+     * @param mixed $statsRencontresCartonsRouges
+     * @return Licencie
+     */
+    public function setStatsRencontresCartonsRouges($statsRencontresCartonsRouges)
+    {
+        $this->statsRencontresCartonsRouges = $statsRencontresCartonsRouges;
+        return $this;
+    }
+
+    public function getNomComplet(){
+        return $this->getNom()  .  ' ' . $this->getPrenom();
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getButeurs()
+    {
+        return $this->buteurs;
+    }
+
+    /**
+     * @param ArrayCollection $buteurs
+     * @return Licencie
+     */
+    public function setButeurs($buteurs)
+    {
+        $this->buteurs = $buteurs;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPasseurs()
+    {
+        return $this->passeurs;
+    }
+
+    /**
+     * @param ArrayCollection $passeurs
+     * @return Licencie
+     */
+    public function setPasseurs($passeurs)
+    {
+        $this->passeurs = $passeurs;
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom . ' ' . $this->getPrenom();
     }
 }

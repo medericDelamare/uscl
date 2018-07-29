@@ -43,6 +43,7 @@ twig:
     strict_variables: '%kernel.debug%'
     form_themes:
         - 'SonataCoreBundle:Form:datepicker.html.twig'
+        - 'XmonColorPickerTypeBundle:Form:fields.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -72,10 +73,10 @@ swiftmailer:
     host: '%mailer_host%'
     username: '%mailer_user%'
     password: '%mailer_password%'
-    port: '%mailer_port%'
     spool: { type: memory }
 
-
+assetic:
+    bundles:        [ 'XmonColorPickerTypeBundle' ]
 
 
 fos_user:

@@ -494,3 +494,15 @@ ul {
 .img-carriere{
     width: 20px;
 }
+
+.vue-detaillee-equipe-detaillee{
+    text-align: right;
+}
+
+.badge-primary{
+    background-color: #0050a1;
+}
+
+.logo-rencontre-detail{
+    max-height: 85px;
+}
