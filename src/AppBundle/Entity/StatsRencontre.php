@@ -23,6 +23,7 @@ class StatsRencontre
     private $id;
 
     /**
+     * @var Rencontre
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Rencontre", inversedBy="stats")
      * @ORM\JoinColumn(name="rencontre_id", referencedColumnName="id")
      */
@@ -145,7 +146,7 @@ class StatsRencontre
     }
 
     /**
-     * @return mixed
+     * @return Rencontre
      */
     public function getRencontre()
     {

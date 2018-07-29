@@ -472,7 +472,7 @@ class Licencie
     }
 
     /**
-     * @return mixed
+     * @return StatsJoueur
      */
     public function getStats()
     {

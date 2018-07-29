@@ -271,4 +271,16 @@ class StatsJoueur
         $this->licencie = $licencie;
         return $this;
     }
+
+    public function incrementButA(){
+        $this->butsA = $this->butsA + 1;
+    }
+
+    public function incrementButB(){
+        $this->butsB = $this->butsB + 1;
+    }
+
+    public function incrementButCoupe(){
+        $this->butsCoupe = $this->butsCoupe + 1;
+    }
 }
