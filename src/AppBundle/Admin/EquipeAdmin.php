@@ -26,6 +26,7 @@ class EquipeAdmin extends AbstractAdmin
                     'U15' => 'U15',
                     'U13' => 'U13',
                     'Veterans' => 'veterans',
+                    'Coupe de France' => 'coupeDeFrance',
                 ]
             ]);
     }

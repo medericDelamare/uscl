@@ -51,6 +51,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: statsRencontre.plural, group: "club"}
 
+    admin.rencontre:
+        class: AppBundle\Admin\RencontreAdmin
+        arguments: [~, AppBundle\Entity\Rencontre, ~]
+        tags:
+          - { name: sonata.admin, manager_type: orm, label: Rencontres, group: "club"}
+
     admin.buteur:
         class: AppBundle\Admin\ButAdmin
         arguments: [~, AppBundle\Entity\But, ~]

@@ -248,6 +248,6 @@ class Rencontre
 
     public function __toString()
     {
-        return $this->getEquipeDomicile()->getNomParse() . ' - ' . $this->getEquipeExterieure()->getNomParse() . ' ( ' . $this->getEquipeDomicile()->getDivision() . ' )';
+        return $this->getEquipeDomicile() ? $this->getEquipeDomicile()->getNomParse() . ' - ' . $this->getEquipeExterieure()->getNomParse() . ' ( ' . $this->getEquipeDomicile()->getDivision() . ' )' : 'Rencontre';
     }
 }
