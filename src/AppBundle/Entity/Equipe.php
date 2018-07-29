@@ -58,7 +58,7 @@ class Equipe
     /**
      * @var Club
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Club")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $club;
 

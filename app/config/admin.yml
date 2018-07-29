@@ -21,6 +21,11 @@ services:
             calls:
                 - [ setTemplate, [add, SonataAdminBundle:Stats:stats.html.twig]]
 
+    admin.bureau:
+                class: AppBundle\Admin\BureauAdmin
+                arguments: [~, AppBundle\Entity\Bureau, ~]
+                tags:
+                    - { name: sonata.admin, manager_type: orm, label: Bureau, group: "club"}
     admin.equipe:
                 class: AppBundle\Admin\EquipeAdmin
                 arguments: [~, AppBundle\Entity\Equipe, ~]
