@@ -32,8 +32,7 @@ class RencontreAdmin extends AbstractAdmin
     {
 
         $listMapper
-            ->addIdentifier('id')
-            ->add('rencontre')
+            ->addIdentifier('rencontre')
         ;
     }
 }

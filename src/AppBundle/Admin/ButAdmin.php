@@ -15,6 +15,9 @@ class ButAdmin extends AbstractAdmin
         $formMapper
             ->add('buteur')
             ->add('passeur')
+            ->add('penalty', null, [
+                'label' => 'Sur penalty'
+            ])
         ;
     }
     protected function configureListFields(ListMapper $listMapper)

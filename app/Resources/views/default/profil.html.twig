@@ -172,7 +172,7 @@
                 {% for but in joueur.buts%}
                     <tr>
                         <td>{{ but.statsRencontres.rencontre.date|date("d/m/Y")  }}</td>
-                        <td><img src="{{ asset('pictures/icons/soccer-ball.png') }}"> A marqué lors de <a href="{{ path('rencontre', {'id': but.statsRencontres.rencontre.id}) }}">{{ but.statsRencontres.rencontre  }}</a></td>
+                        <td><img src="{{ asset('pictures/icons/soccer-ball.png') }}"> A marqué lors de <a href="{{ path('rencontre', {'id': but.statsRencontres.rencontre.id}) }}">{{ but.statsRencontres.rencontre  }}</a>{% if but.penalty %} sur penalty {% endif %}</td>
                     </tr>
                 {% endfor %}
                 {% for passe in joueur.passes%}

@@ -58,6 +58,8 @@
                             <tr>
                                 {% if but.passeur %}
                                     <td class=" "><img src="{{ asset('pictures/icons/soccer-ball.png') }}"><a href="{{ path('profile', {'id': but.buteur.id}) }}">{{ but.buteur }}</a> ( <a href="{{ path('profile', {'id': but.passeur.id}) }}">{{ but.passeur }}</a> )</td>
+                                {% elseif but.penalty %}
+                                    <td class=" "><img src="{{ asset('pictures/icons/soccer-ball.png') }}"><a href="{{ path('profile', {'id': but.buteur.id}) }}">{{ but.buteur }}</a> (SP)</td>
                                 {% else %}
                                     <td class=" "><img src="{{ asset('pictures/icons/soccer-ball.png') }}"><a href="{{ path('profile', {'id': but.buteur.id}) }}">{{ but.buteur }}</a></td>
                                 {% endif %}
@@ -84,7 +86,7 @@
 {% block javascripts %}
     <script>
         $( document ).ready(function() {
-            
+
         });
     </script>
 

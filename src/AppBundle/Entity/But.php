@@ -43,6 +43,12 @@ class But
     private $passeur;
 
     /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $penalty;
+
+    /**
      * @return int
      */
     public function getId()
@@ -101,6 +107,24 @@ class But
     public function setPasseur($passeur)
     {
         $this->passeur = $passeur;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPenalty()
+    {
+        return $this->penalty;
+    }
+
+    /**
+     * @param bool $penalty
+     * @return But
+     */
+    public function setPenalty($penalty)
+    {
+        $this->penalty = $penalty;
         return $this;
     }
 }
