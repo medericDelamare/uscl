@@ -54,7 +54,7 @@
                 <h2 class="sousTitreProfil">Faits de matchs</h2>
                 <div class="table-responsive">
                     <table class="table">
-                        {% for but in rencontre.stats.buteurs %}
+                        {% for but in rencontre.stats.buts %}
                             <tr>
                                 {% if but.passeur %}
                                     <td class=" "><img src="{{ asset('pictures/icons/soccer-ball.png') }}"><a href="{{ path('profile', {'id': but.buteur.id}) }}">{{ but.buteur }}</a> ( <a href="{{ path('profile', {'id': but.passeur.id}) }}">{{ but.passeur }}</a> )</td>
@@ -84,10 +84,7 @@
 {% block javascripts %}
     <script>
         $( document ).ready(function() {
-            $("#equipeDomicile").css("background-color", "#{{ rencontre.equipeDomicile.club.couleurPrincipale|raw }}" )
-            $("#equipeDomicile").css("color", "#{{ rencontre.equipeDomicile.club.couleurSecondaire|raw }}" )
-            $("#equipeExterieure").css("background-color", "#{{ rencontre.equipeExterieure.club.couleurPrincipale|raw }}" )
-            $("#equipeExterieure").css("color", "#{{ rencontre.equipeExterieure.club.couleurSecondaire|raw }}" )
+            
         });
     </script>
 

@@ -2,7 +2,7 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Entity\Buteur;
+use AppBundle\Entity\But;
 use AppBundle\Entity\Joueur;
 use AppBundle\Entity\Licencie;
 use AppBundle\Entity\Rencontre;

@@ -6,12 +6,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Buteur
+ * Class But
  * @package AppBundle\Entity
  *
- * @ORM\Entity(repositoryClass="AppBundle\Repository\RencontreRepository")
+ * @ORM\Entity()
  */
-class Buteur
+class But
 {
     /**
      * @var int
@@ -23,7 +23,7 @@ class Buteur
 
     /**
      * @var StatsRencontre
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\StatsRencontre", inversedBy="buteurs")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\StatsRencontre", inversedBy="buts")
      * @ORM\JoinColumn(nullable=false)
      */
     private $statsRencontres;
@@ -60,7 +60,7 @@ class Buteur
 
     /**
      * @param StatsRencontre $statsRencontres
-     * @return Buteur
+     * @return But
      */
     public function setStatsRencontres($statsRencontres)
     {
@@ -78,7 +78,7 @@ class Buteur
 
     /**
      * @param Licencie $buteur
-     * @return Buteur
+     * @return But
      */
     public function setButeur($buteur)
     {
@@ -96,7 +96,7 @@ class Buteur
 
     /**
      * @param Licencie $passeur
-     * @return Buteur
+     * @return But
      */
     public function setPasseur($passeur)
     {

@@ -97,11 +97,11 @@
                                 <span>MATCHS<br>JOUÉS</span>
                             </div>
                             <div class="fc_inf_stats">
-                                <p>{{ joueur.buteurs|length}}</p>
+                                <p>{{ joueur.buts|length}}</p>
                                 <span>BUTS<br>MARQUÉS</span>
                             </div>
                             <div class="fc_inf_stats">
-                                <p>{{ joueur.passeurs|length}}</p>
+                                <p>{{ joueur.passes|length}}</p>
                                 <span>PASSES<br>DECISIVES</span>
                             </div>
                             <div class="fc_inf_stats_cr">
@@ -169,16 +169,16 @@
                         <td><img src="{{ asset('pictures/icons/strategy.png') }}"> A joué lors de <a href="{{ path('rencontre', {'id': rencontre.rencontre.id}) }}">{{ rencontre.rencontre  }}</a></td>
                     </tr>
                 {% endfor %}
-                {% for buteur in joueur.buteurs%}
+                {% for but in joueur.buts%}
                     <tr>
-                        <td>{{ buteur.statsRencontres.rencontre.date|date("d/m/Y")  }}</td>
-                        <td><img src="{{ asset('pictures/icons/soccer-ball.png') }}"> A marqué lors de <a href="{{ path('rencontre', {'id': buteur.statsRencontres.rencontre.id}) }}">{{ buteur.statsRencontres.rencontre  }}</a></td>
+                        <td>{{ but.statsRencontres.rencontre.date|date("d/m/Y")  }}</td>
+                        <td><img src="{{ asset('pictures/icons/soccer-ball.png') }}"> A marqué lors de <a href="{{ path('rencontre', {'id': but.statsRencontres.rencontre.id}) }}">{{ but.statsRencontres.rencontre  }}</a></td>
                     </tr>
                 {% endfor %}
-                {% for passeur in joueur.passeurs%}
+                {% for passe in joueur.passes%}
                     <tr>
-                        <td>{{ passeur.statsRencontres.rencontre.date|date("d/m/Y")  }}</td>
-                        <td><img src="{{ asset('pictures/icons/soccer.png') }}"> A délivré une passe décisive lors de <a href="{{ path('rencontre', {'id': passeur.statsRencontres.rencontre.id}) }}">{{ passeur.statsRencontres.rencontre  }}</a></td>
+                        <td>{{ passe.statsRencontres.rencontre.date|date("d/m/Y")  }}</td>
+                        <td><img src="{{ asset('pictures/icons/soccer.png') }}"> A délivré une passe décisive lors de <a href="{{ path('rencontre', {'id': passe.statsRencontres.rencontre.id}) }}">{{ passeur.statsRencontres.rencontre  }}</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

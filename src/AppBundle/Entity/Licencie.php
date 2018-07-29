@@ -144,15 +144,15 @@ class Licencie
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Buteur", mappedBy="buteur")
+     * @ORM\OneToMany(targetEntity="But", mappedBy="buteur")
      */
-    private $buteurs;
+    private $buts;
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Buteur", mappedBy="passeur")
+     * @ORM\OneToMany(targetEntity="But", mappedBy="passeur")
      */
-    private $passeurs;
+    private $passes;
 
 
     public function __construct()
@@ -161,8 +161,8 @@ class Licencie
         $this->statsRencontresJoueurs = new ArrayCollection();
         $this->statsRencontresCartonsJaunes = new ArrayCollection();
         $this->statsRencontresCartonsRouges = new ArrayCollection();
-        $this->buteurs = new ArrayCollection();
-        $this->passeurs = new ArrayCollection();
+        $this->buts = new ArrayCollection();
+        $this->passes = new ArrayCollection();
     }
 
     /**
@@ -550,36 +550,36 @@ class Licencie
     /**
      * @return ArrayCollection
      */
-    public function getButeurs()
+    public function getButs()
     {
-        return $this->buteurs;
+        return $this->buts;
     }
 
     /**
-     * @param ArrayCollection $buteurs
+     * @param ArrayCollection $buts
      * @return Licencie
      */
-    public function setButeurs($buteurs)
+    public function setButs($buts)
     {
-        $this->buteurs = $buteurs;
+        $this->buts = $buts;
         return $this;
     }
 
     /**
      * @return ArrayCollection
      */
-    public function getPasseurs()
+    public function getPasses()
     {
-        return $this->passeurs;
+        return $this->passes;
     }
 
     /**
-     * @param ArrayCollection $passeurs
+     * @param ArrayCollection $passes
      * @return Licencie
      */
-    public function setPasseurs($passeurs)
+    public function setPasses($passes)
     {
-        $this->passeurs = $passeurs;
+        $this->passes = $passes;
         return $this;
     }
 

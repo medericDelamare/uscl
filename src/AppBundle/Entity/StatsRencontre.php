@@ -49,16 +49,16 @@ class StatsRencontre
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Buteur", mappedBy="statsRencontres", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="But", mappedBy="statsRencontres", cascade={"persist"})
      */
-    private $buteurs;
+    private $buts;
 
     public function __construct()
     {
         $this->joueurs = new ArrayCollection();
         $this->cartonsJaunes = new ArrayCollection();
         $this->cartonsRouges = new ArrayCollection();
-        $this->buteurs = new ArrayCollection();
+        $this->buts = new ArrayCollection();
     }
 
     /**
@@ -126,23 +126,23 @@ class StatsRencontre
     /**
      * @return ArrayCollection
      */
-    public function getButeurs()
+    public function getButs()
     {
-        return $this->buteurs;
+        return $this->buts;
     }
 
     /**
-     * @param ArrayCollection $buteurs
+     * @param ArrayCollection $buts
      * @return StatsRencontre
      */
-    public function setButeurs($buteurs)
+    public function setButs($buts)
     {
-        /** @var Buteur $buteur */
-        foreach ($buteurs as $buteur){
+        /** @var But $buteur */
+        foreach ($buts as $buteur){
             $buteur->setStatsRencontres($this);
         }
 
-        $this->buteurs = $buteurs;
+        $this->buts = $buts;
     }
 
     /**
@@ -163,9 +163,9 @@ class StatsRencontre
         return $this;
     }
 
-    public function addButeur(Buteur $buteur){
-        $this->buteurs->add($buteur);
-        $buteur->setStatsRencontres($this);
+    public function addBut(But $but){
+        $this->buts->add($but);
+        $but->setStatsRencontres($this);
         return $this;
     }
 }

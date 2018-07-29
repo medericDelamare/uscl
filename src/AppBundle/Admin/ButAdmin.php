@@ -8,7 +8,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class ButeurAdmin extends AbstractAdmin
+class ButAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {

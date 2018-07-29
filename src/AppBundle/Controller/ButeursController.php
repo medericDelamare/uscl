@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Entity\Buteur;
+use AppBundle\Entity\But;
 use AppBundle\Entity\Joueur;
 use AppBundle\Entity\Licencie;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -35,7 +35,7 @@ class ButeursController extends Controller
      */
     public function showAction()
     {
-        $buteurs = $this->getDoctrine()->getRepository(Buteur::class)->findAll();
+        $buteurs = $this->getDoctrine()->getRepository(But::class)->findAll();
 
         $buteursSenior=[];
         $buteursVeterans=[];
