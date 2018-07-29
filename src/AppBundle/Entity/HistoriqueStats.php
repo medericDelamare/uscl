@@ -27,12 +27,6 @@ class HistoriqueStats
     private $saison;
 
     /**
-     * @var Joueur
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Joueur", inversedBy="historiqueStats")
-     */
-    private $joueur;
-
-    /**
      * @var integer
      * @ORM\Column(type="integer", nullable=true)
      */
@@ -62,24 +56,6 @@ class HistoriqueStats
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return Joueur
-     */
-    public function getJoueur()
-    {
-        return $this->joueur;
-    }
-
-    /**
-     * @param Joueur $joueur
-     * @return HistoriqueStats
-     */
-    public function setJoueur($joueur)
-    {
-        $this->joueur = $joueur;
-        return $this;
     }
 
     /**

@@ -21,12 +21,6 @@ class CarriereJoueur
     private $id;
 
     /**
-     * @var Joueur
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Joueur", inversedBy="carriere")
-     */
-    private $joueur;
-
-    /**
      * @var Licencie
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Licencie", inversedBy="carriere")
      */
@@ -61,24 +55,6 @@ class CarriereJoueur
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return Joueur
-     */
-    public function getJoueur()
-    {
-        return $this->joueur;
-    }
-
-    /**
-     * @param Joueur $joueur
-     * @return CarriereJoueur
-     */
-    public function setJoueur($joueur)
-    {
-        $this->joueur = $joueur;
-        return $this;
     }
 
     /**
