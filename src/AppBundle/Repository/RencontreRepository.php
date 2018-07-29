@@ -25,13 +25,15 @@ class RencontreRepository extends EntityRepository
     public function getDerniereJournee($categorie){
         $dernireJournee = $this->createQueryBuilder('r')
             ->select('r.journee')
-            ->join(Equipe::class, 'd')
+            ->join(Equipe::class, 'd', 'WITH', 'd.id = r.equipeDomicile')
             ->where('d.categorie = :categorie')
             ->orderBy('r.date', 'DESC')
             ->setParameter('categorie', $categorie)
             ->setMaxResults(1)
             ->getQuery()
             ->getSingleScalarResult();
+
+        dump($categorie,$dernireJournee);
 
         $rencontres = $this->createQueryBuilder('r')
             ->join('r.equipeDomicile', 'd', 'WITH', 'd.id = r.equipeDomicile')
@@ -48,7 +50,7 @@ class RencontreRepository extends EntityRepository
     public function getAgenda($categorie){
         $prochaineJournee = $this->createQueryBuilder('r')
             ->select('r.journee')
-            ->join(Equipe::class, 'd')
+            ->join(Equipe::class, 'd', 'WITH', 'd.id = r.equipeDomicile')
             ->where('d.categorie = :categorie')
             ->andWhere('r.score IS NULL')
             ->orderBy('r.date', 'ASC')
@@ -68,7 +70,7 @@ class RencontreRepository extends EntityRepository
 
     public function getCalendrierParCategorie($categorie){
         return $this->createQueryBuilder('r')
-            ->join(Equipe::class, 'd')
+            ->join(Equipe::class, 'd', 'WITH', 'd.id = r.equipeDomicile')
             ->where('d.categorie = :categorie')
             ->orderBy('r.date', 'ASC')
             ->setParameter('categorie', $categorie)

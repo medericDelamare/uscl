@@ -124,7 +124,6 @@ class LicencieAdmin extends AbstractAdmin
             ->addIdentifier('nom')
             ->add('prenom')
             ->add('categorie')
-            ->add('buts')
             ->add('stats.poste')
             ->add('numeroLicence');
     }

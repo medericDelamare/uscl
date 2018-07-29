@@ -29,7 +29,6 @@ class StatsController extends Controller
         $distinctEquipes = $this->getDoctrine()->getRepository(Equipe::class)->findByCategorieOrderByNomParse($category);
         $classementParJournee = $this->getDoctrine()->getRepository(StatsParJournee::class)->findByCategOrderByJournee($category);
 
-
         $classementTriParEquipe = [];
         /** @var StatsParJournee $classementInfos */
         foreach ($classementParJournee as $classementInfos){
