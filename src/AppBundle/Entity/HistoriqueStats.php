@@ -21,6 +21,13 @@ class HistoriqueStats
     private $id;
 
     /**
+     * @var Licencie
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Licencie", inversedBy="historiqueStats")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $licencie;
+
+    /**
      * @var string
      * @ORM\Column(type="string")
      */
@@ -148,5 +155,21 @@ class HistoriqueStats
         return $this;
     }
 
+    /**
+     * @return Licencie
+     */
+    public function getLicencie()
+    {
+        return $this->licencie;
+    }
 
+    /**
+     * @param Licencie $licencie
+     * @return HistoriqueStats
+     */
+    public function setLicencie($licencie)
+    {
+        $this->licencie = $licencie;
+        return $this;
+    }
 }

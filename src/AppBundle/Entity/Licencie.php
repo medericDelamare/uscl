@@ -154,6 +154,13 @@ class Licencie
      */
     private $passes;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\HistoriqueStats", mappedBy="licencie")
+     *
+     */
+    private $historiqueStats;
+
 
     public function __construct()
     {
@@ -163,6 +170,7 @@ class Licencie
         $this->statsRencontresCartonsRouges = new ArrayCollection();
         $this->buts = new ArrayCollection();
         $this->passes = new ArrayCollection();
+        $this->historiqueStats = new ArrayCollection();
     }
 
     /**
