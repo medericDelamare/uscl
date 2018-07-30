@@ -30,10 +30,42 @@ class ProfileController extends Controller
         $age = $birthDate->diff($to)->y;
 
 
+        $saisons = [];
+        foreach ($joueur->getHistoriqueStats() as $historiqueStat){
+            $saisons[] = $historiqueStat->getSaison();
+        }
+        array_push($saisons, '18/19');
+        $buts = [];
+        foreach ($joueur->getHistoriqueStats() as $historiqueStat){
+            $buts[] = $historiqueStat->getNbButs();
+        }
+        array_push($buts, count($joueur->getButs()));
+        $passes = [];
+        foreach ($joueur->getHistoriqueStats() as $historiqueStat){
+            $passes[] = $historiqueStat->getNbPasses();
+        }
+        array_push($passes,count($joueur->getPasses()));
+        $cartonsJ = [];
+        foreach ($joueur->getHistoriqueStats() as $historiqueStat) {
+            $cartonsJ[] = $historiqueStat->getNbCartonsJaunes();
+        }
+        array_push($cartonsJ, count($joueur->getStatsRencontresCartonsJaunes()));
+        $cartonsR = [];
+        foreach ($joueur->getHistoriqueStats() as $historiqueStat){
+            $cartonsR[] = $historiqueStat->getNbCartonsRouges();
+        }
+        array_push($cartonsR, count($joueur->getStatsRencontresCartonsRouges()));
+
+
 
         return $this->render(':default:profil.html.twig', [
             'joueur' => $joueur,
             'age' => $age,
+            'saisons' => $saisons,
+            'cartonsJ' => $cartonsJ,
+            'cartonsR' => $cartonsR,
+            'buts' => $buts,
+            'passes' => $passes
         ]);
     }
 }

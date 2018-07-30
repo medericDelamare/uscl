@@ -185,6 +185,8 @@
 
             </table>
         </div>
+        <h2 class="sousTitreProfil">Statistiques personnelles</h2>
+        <canvas id="myChart"></canvas>
     </div>
 {% endblock %}
 
@@ -201,5 +203,77 @@
                 {type: 'date-eu-desc', targets: 0 }
             ]
         } );
+    </script>
+
+    <script>
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var saisons = {{ saisons|json_encode|raw }}
+        var buts = {{ buts|json_encode }}
+        var passes = {{ passes|json_encode }}
+        var cartonsJ = {{ cartonsJ|json_encode }}
+        var cartonsR = {{ cartonsR|json_encode }}
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: saisons,
+                datasets: [{
+                    spanGaps: true,
+                    label: 'Buts',
+                    data: buts,
+                    borderWidth: 2,
+                    backgroundColor: [],
+                    lineTension: 0.1,
+                    fill: false,
+                    borderColor: "rgb(58, 83, 155)"
+                },{
+                    label: 'Passes Décisisves',
+                    data: passes,
+                    borderWidth: 2,
+                    backgroundColor: [],
+                    lineTension: 0.1,
+                    fill: false,
+                    borderColor: "rgb(38, 196, 236)"
+                },{
+                    label: 'Cartons Jaunes',
+                    data: cartonsJ,
+                    borderWidth: 2,
+                    backgroundColor: [],
+                    lineTension: 0.1,
+                    fill: false,
+                    borderColor: "rgb(255,255,0)"
+                },{
+                    label: 'Cartons Rouges',
+                    data: cartonsR,
+                    borderWidth: 2,
+                    backgroundColor: [],
+                    lineTension: 0.1,
+                    fill: false,
+                    borderColor: "	rgb(240,128,128)"
+                }]
+            },
+            options: {
+                legend: {
+                    display: true
+                },
+                scales: {
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Quantité'
+                        },
+                        ticks: {
+                            beginAtZero:true,
+                            min: 0,
+                        }
+                    }],
+                    xAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Année'
+                        }
+                    }]
+                }
+            }
+        });
     </script>
 {% endblock %}
