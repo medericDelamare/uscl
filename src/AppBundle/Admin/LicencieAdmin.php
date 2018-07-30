@@ -105,7 +105,19 @@ class LicencieAdmin extends AbstractAdmin
                         'disabled'  => true,
                     ])
                 ->end()
-            ->end();
+            ->end()
+            ->tab('historique')
+                ->add('historiqueStats', 'sonata_type_collection', [
+                    'by_reference' => false,
+                    'label' => false,
+                    'btn_add' => 'Ajouter une année'
+                ],[
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                ])
+            ->end()
+
+        ;
 
     }
 

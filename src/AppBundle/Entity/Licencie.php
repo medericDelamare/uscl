@@ -156,7 +156,7 @@ class Licencie
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\HistoriqueStats", mappedBy="licencie")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\HistoriqueStats", mappedBy="licencie", cascade={"persist"})
      *
      */
     private $historiqueStats;
@@ -591,8 +591,40 @@ class Licencie
         return $this;
     }
 
+    /**
+     * @return ArrayCollection
+     */
+    public function getHistoriqueStats()
+    {
+        return $this->historiqueStats;
+    }
+
+    /**
+     * @param ArrayCollection $historiqueStats
+     * @return Licencie
+     */
+    public function setHistoriqueStats($historiqueStats)
+    {
+        /** @var HistoriqueStats $historiqueStat */
+        foreach ($historiqueStats as $historiqueStat){
+            $historiqueStat->setLicencie($this);
+        }
+
+        $this->historiqueStats = $historiqueStats;
+    }
+
+    /**
+     * @param HistoriqueStats $historiqueStats
+     * @return Licencie
+     */
+    public function addHistoriqueStat(HistoriqueStats $historiqueStats){
+        $this->historiqueStats->add($historiqueStats);
+        $historiqueStats->setLicencie($this);
+        return $this;
+    }
+
     public function __toString()
     {
-        return $this->nom . ' ' . $this->getPrenom();
+        return $this->getNomComplet();
     }
 }

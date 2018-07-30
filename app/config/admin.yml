@@ -62,3 +62,9 @@ services:
         arguments: [~, AppBundle\Entity\But, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: buteur.plural, group: "club"}
+
+    admin.historique_stats:
+        class: AppBundle\Admin\HistoriqueStatsAdmin
+        arguments: [~, AppBundle\Entity\HistoriqueStats, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Historique Stats, group: "joueurs"}
