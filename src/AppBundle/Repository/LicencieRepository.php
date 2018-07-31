@@ -39,4 +39,17 @@ class LicencieRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+
+    public function findBirthday(){
+        $now = new \DateTime();
+        return $this->createQueryBuilder('j')
+            ->where('DAY(j.dateDeNaissance) = :day')
+            ->andWhere('MONTH(j.dateDeNaissance) = :month')
+            ->setParameters(['day'=>$now->format('d'), 'month' => $now->format('m')])
+            ->getQuery()
+            ->getResult();
+
+
+    }
 }

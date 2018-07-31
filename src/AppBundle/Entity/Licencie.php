@@ -272,7 +272,7 @@ class Licencie
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getDateDeNaissance()
     {
@@ -452,7 +452,7 @@ class Licencie
     }
 
     /**
-     * @return CarriereJoueur[]
+     * @return ArrayCollection
      */
     public function getCarriere()
     {

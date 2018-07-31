@@ -4,6 +4,7 @@ namespace AppBundle\Command;
 
 
 use AppBundle\Entity\Joueur;
+use AppBundle\Entity\Licencie;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -25,7 +26,7 @@ class AnniversaireFacebookCommand extends ContainerAwareCommand
 
         // Getting doctrine manager
         $em = $this->getContainer()->get('doctrine')->getManager();
-        $joueurs = $em->getRepository(Joueur::class)->findByBirthdayNow();
+        $joueurs = $em->getRepository(Licencie::class)->findBirthday();
 
         $message = null;
         $noms = null;
@@ -34,30 +35,24 @@ class AnniversaireFacebookCommand extends ContainerAwareCommand
         $now = new \DateTime();
 
         if (count($joueurs) == 1 ){
-            /** @var Joueur $joueur */
-            foreach ($joueurs as $joueur){
-                $infos = $noms . $joueur->getPrenom() . ' ' . $joueur->getNom() . ' ( ' . $joueur->getCategorie()->getNom();
-                $age = $now->format('Y') - $joueur->getDateNaissance()->format('Y');
-                $message = '🎂Alerte anniversaire🎂'.PHP_EOL .  PHP_EOL.'L\'USCL souhaite un joyeux anniversaire à ' . $infos . ' ) qui fête aujourd\'hui ses ' . $age . ' ans'.PHP_EOL.PHP_EOL.'⚽🔵⚪';
-            }
+            /** @var Licencie $joueur */
+            $joueur = array_shift($joueurs);
+            $infos = $noms . $joueur->getPrenom() . ' ' . $joueur->getNom() . ' ( ' . $joueur->getCarriere()->first()->getSousCategorie() . ' )';
+            $age = $now->format('Y') - $joueur->getDateDeNaissance()->format('Y');
+            $categ = $joueur->getCarriere()->first()->getSaison();
+            $message = '🎂Alerte anniversaire🎂'.PHP_EOL .  PHP_EOL.'L\'USCL souhaite un joyeux anniversaire à ' . $infos . ' qui fête aujourd\'hui ses ' . $age . ' ans'.PHP_EOL.PHP_EOL.'⚽🔵⚪';
 
         } elseif (count($joueurs) > 1){
-            $lastJoueur = end($joueurs);
-            /** @var Joueur $joueur */
+            /** @var Licencie $joueur */
+            $messageJoueurs = '';
+
             foreach ($joueurs as $joueur){
-                if ($joueur === $lastJoueur){
-                    $noms = $noms . 'et ' . $joueur->getPrenom() . ' ' . $joueur->getNom() . ' ( ' . $joueur->getCategorie()->getNom() . ' ) ';
-                    $dernierAge = $now->format('Y') - $joueur->getDateNaissance()->format('Y') . ' ans';
-                    $age = $age . ' et ' .$dernierAge;
-                } else{
-                    $noms = $noms . $joueur->getPrenom() . ' ' . $joueur->getNom() . ' ( ' . $joueur->getCategorie()->getNom() . ' ), ';
-                    $age = $age . $now->format('Y') - $joueur->getDateNaissance()->format('Y') . ' ans,';
-                }
-
-                $message = 'Alerte anniversaire'.PHP_EOL .  PHP_EOL.'L\'USCL souhaite un joyeux anniversaire à ' . $noms . ' ) qui fête respectivement leurs ' . $age . ' ans'.PHP_EOL.PHP_EOL.'⚽🔵⚪';
-
+                $age = $now->format('Y') - $joueur->getDateDeNaissance()->format('Y');
+                $messageJoueurs = $messageJoueurs . PHP_EOL .  PHP_EOL . $joueur->getNomComplet() . ' ( ' . $joueur->getCarriere()->first()->getSousCategorie() . ' ) pour ses ' . $age . ' ans';
             }
+            $message = '🎂Alerte anniversaire🎂'.PHP_EOL .  PHP_EOL.'L\'USCL souhaite un joyeux anniversaire à :' . $messageJoueurs . PHP_EOL . PHP_EOL . '⚽🔵⚪';
         }
+
         $this->getContainer()->get('app_core.facebook')->poster($message);
 
         // Showing when the script is over
