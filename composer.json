@@ -32,7 +32,8 @@
         "symfony/symfony": "3.2.*",
         "twbs/bootstrap": "^3.3",
         "twig/twig": "^1.0||^2.0",
-        "xmon/color-picker-type-bundle": "^1.0"
+        "xmon/color-picker-type-bundle": "^1.0",
+        "yectep/phpspreadsheet-bundle": "^0.0.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
@@ -56,7 +57,7 @@
     },
     "config": {
         "platform": {
-            "php": "5.5.9"
+            "php": "5.6"
         },
         "sort-packages": true
     },
