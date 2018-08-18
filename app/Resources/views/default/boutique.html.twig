@@ -21,17 +21,16 @@
             <div class="col-md-3">
                 <p class="lead">Boutique USCL</p>
                 <div class="list-group">
-                    <a href="#" class="list-group-item">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
+                    <a href="#" data-nomcateg="jdm" class="list-group-item">Jour de match</a>
+                    <a href="#" data-nomcateg="entrainement" class="list-group-item">Entraînement</a>
+                    <a href="#" data-nomcateg="accessoires" class="list-group-item">Underwear/accesoires</a>
+                    <a href="#" data-nomcateg="dirigeant" class="list-group-item">Dirigeants</a>
                 </div>
             </div>
 
-            <div class="col-md-9">
-
-                <div class="row">
-
-                    {% for produit in produits %}
+            <div class="col-md-9" id="jdm">
+                <div class="row" >
+                    {% for produit in jourDeMatch %}
                         <div class="col-sm-4 col-lg-4 col-md-4">
                             <div class="thumbnail">
                                 <img src="{{ asset(produit.photo) }}" alt="">
@@ -94,14 +93,210 @@
                             </div>
                         </div>
                     {% endfor %}
-
-
                 </div>
-
             </div>
+            <div class="col-md-9" id="entrainement">
+                <div class="row">
+                    {% for produit in entrainement %}
+                        <div class="col-sm-4 col-lg-4 col-md-4">
+                            <div class="thumbnail">
+                                <img src="{{ asset(produit.photo) }}" alt="">
+                                <div class="caption">
+                                    <div class="row">
+                                        <div class="nom col-md-12" data-reference="{{ produit.reference }}" data-nike="{{ produit.nomNike }}"><h4>{{ produit.nom }}</h4></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="prix col-md-12"><h4 class="zizi pull-right">{{ produit.prix }} €</h4></div>
+                                    </div>
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}1" value="S" name="radioInline" checked="">
+                                                    <label for="inlineRadio{{ loop.index }}1">S</label>
+                                                </div>
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}2" value="M" name="radioInline">
+                                                    <label for="inlineRadio{{ loop.index }}2">M</label>
+                                                </div>
 
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}3" value="L" name="radioInline">
+                                                    <label for="inlineRadio{{ loop.index }}3">L</label>
+                                                </div>
+
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}4" value="XL" name="radioInline">
+                                                    <label for="inlineRadio{{ loop.index }}4">XL</label>
+                                                </div>
+
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}5" value="XXL" name="radioInline">
+                                                    <label for="inlineRadio{{ loop.index }}5">XXL</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-10">
+                                                <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)"></input>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-10">
+                                                {% if(produit.logoObligatoire) %}
+                                                    <input id="logo" type="checkbox" disabled checked data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
+                                                {% else %}
+                                                    <input id="logo" type="checkbox" checked data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-10">
+                                                <button type="button" class="btn btn-primary ajout">Ajouter à la commande</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-9" id="accessoires">
+                <div class="row">
+                    {% for produit in accessoires %}
+                        <div class="col-sm-4 col-lg-4 col-md-4">
+                            <div class="thumbnail">
+                                <img src="{{ asset(produit.photo) }}" alt="">
+                                <div class="caption">
+                                    <div class="row">
+                                        <div class="nom col-md-12" data-reference="{{ produit.reference }}" data-nike="{{ produit.nomNike }}"><h4>{{ produit.nom }}</h4></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="prix col-md-12"><h4 class="zizi pull-right">{{ produit.prix }} €</h4></div>
+                                    </div>
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}1" value="S" name="radioInline" checked="">
+                                                    <label for="inlineRadio{{ loop.index }}1">S</label>
+                                                </div>
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}2" value="M" name="radioInline">
+                                                    <label for="inlineRadio{{ loop.index }}2">M</label>
+                                                </div>
+
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}3" value="L" name="radioInline">
+                                                    <label for="inlineRadio{{ loop.index }}3">L</label>
+                                                </div>
+
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}4" value="XL" name="radioInline">
+                                                    <label for="inlineRadio{{ loop.index }}4">XL</label>
+                                                </div>
+
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}5" value="XXL" name="radioInline">
+                                                    <label for="inlineRadio{{ loop.index }}5">XXL</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-10">
+                                                <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)"></input>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-10">
+                                                {% if(produit.logoObligatoire) %}
+                                                    <input id="logo" type="checkbox" disabled checked data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
+                                                {% else %}
+                                                    <input id="logo" type="checkbox" checked data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-10">
+                                                <button type="button" class="btn btn-primary ajout">Ajouter à la commande</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-9" id="dirigeant">
+                <div class="row">
+                    {% for produit in dirigeant %}
+                        <div class="col-sm-4 col-lg-4 col-md-4">
+                            <div class="thumbnail">
+                                <img src="{{ asset(produit.photo) }}" alt="">
+                                <div class="caption">
+                                    <div class="row">
+                                        <div class="nom col-md-12" data-reference="{{ produit.reference }}" data-nike="{{ produit.nomNike }}"><h4>{{ produit.nom }}</h4></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="prix col-md-12"><h4 class="zizi pull-right">{{ produit.prix }} €</h4></div>
+                                    </div>
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}1" value="S" name="radioInline" checked="">
+                                                    <label for="inlineRadio{{ loop.index }}1">S</label>
+                                                </div>
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}2" value="M" name="radioInline">
+                                                    <label for="inlineRadio{{ loop.index }}2">M</label>
+                                                </div>
+
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}3" value="L" name="radioInline">
+                                                    <label for="inlineRadio{{ loop.index }}3">L</label>
+                                                </div>
+
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}4" value="XL" name="radioInline">
+                                                    <label for="inlineRadio{{ loop.index }}4">XL</label>
+                                                </div>
+
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio{{ loop.index }}5" value="XXL" name="radioInline">
+                                                    <label for="inlineRadio{{ loop.index }}5">XXL</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-10">
+                                                <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)"></input>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-10">
+                                                {% if(produit.logoObligatoire) %}
+                                                    <input id="logo" type="checkbox" disabled checked data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
+                                                {% else %}
+                                                    <input id="logo" type="checkbox" checked data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-10">
+                                                <button type="button" class="btn btn-primary ajout">Ajouter à la commande</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-
     </div>
 
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -112,25 +307,42 @@
                     <h4 class="modal-title" id="myModalLabel">Ma commande</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="table-responsive">
-                        <table id="recapitulatif_commande" class="table">
-                            <thead>
-                                <tr>
-                                    <td>Référence</td>
-                                    <td>Nom du produit</td>
-                                    <td>Taille</td>
-                                    <td>Logo Club</td>
-                                    <td>Initiales</td>
-                                    <td>Prix</td>
-                                    <td>Action</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select id="licencie" class="form-control col-md-4">
+                                <option value="null">--</option>
+                                {% for licencie in licencies %}
+                                    <option value="{{ licencie.nom }}-{{ licencie.prenom }}">{{ licencie.nom }} {{ licencie.prenom }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="mail" type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                        </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table id="recapitulatif_commande" class="table">
+                                    <thead>
+                                    <tr>
+                                        <td>Référence</td>
+                                        <td>Nom du produit</td>
+                                        <td>Taille</td>
+                                        <td>Logo Club</td>
+                                        <td>Initiales</td>
+                                        <td>Prix</td>
+                                        <td>Action</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                 <div class="modal-footer">
                     <div class="prix pull-left">
                         <span>Total de votre commande</span>
@@ -138,7 +350,7 @@
                         <span id="monnaie-modal">€</span>
                     </div>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                    <button type="button" id="send" class="btn btn-primary">Valider la commande</button>
+                    <button type="button" disabled id="send" class="btn btn-primary">Valider la commande</button>
                 </div>
             </div>
         </div>
@@ -151,14 +363,30 @@
     <script src="{{ asset('js/bootstrap-notify.min.js') }}"></script>
     <script>
         $(function() {
-            $('#toggle-one').bootstrapToggle();
+            $('#entrainement').hide();
+            $('#accessoires').hide();
+            $('#dirigeant').hide();
         })
     </script>
     <script>
+        $( document ).ready(function() {
+            console.log( "ready!" );
+        });
         var array = [];
+        var licencie = null;
+        var email = null;
         $(function() {
 
+            $('.list-group-item').click(function () {
+                $('#jdm').hide();
+                $('#entrainement').hide();
+                $('#accessoires').hide();
+                $('#dirigeant').hide();
+                $('#'+$(this).data('nomcateg')).show();
+            })
+
             $('.ajout').click(function() {
+
                 var prix = ($(this).parents('.caption').find('.prix').text().replace('€',''));
                 var total = parseFloat($('#valeur').text()) + parseFloat(prix);
                 var nom = $(this).parents('.caption').find('.nom').text();
@@ -206,6 +434,7 @@
 
 
         })
+
         $('#recapitulatif_commande').on('click', 'input[type="button"]', function(e){
             $(this).closest('tr').remove();
             var prix = ($('#valeur').text().replace('€',''));
@@ -216,20 +445,41 @@
             $('#valeur-modal').replaceWith('<span id="valeur-modal">'+total+'</span>');
         })
 
+
+
+        $('#licencie').change(function () {
+            if($(this).val() != "null" && $('#mail').val().length !== 0){
+                $('#send').removeAttr("disabled");
+            }
+            if($(this).val() == "null"){
+                $('#send').attr("disabled", true);
+            }
+        })
+
+        $('#mail').keyup(function () {
+            if($(this).val().length !== 0 && $('#licencie').val() != "null"){
+                $('#send').removeAttr("disabled");
+            }
+            if($(this).val().length === 0){
+                $('#send').attr("disabled",true);
+            }
+        })
+
         $('#send').click(function () {
+            licencie = $('#licencie').val();
+            email = $('#mail').val();
+            alert(email);
             $.ajax({
                 type: 'POST',
                 url: '{{ path('boutique-send') }}',
-                data: { abc: array },
+                data: { abc: array, licencie:licencie, mail:email },
                 success: function(msg){
                     location.href = '/USCL/web/app_dev.php/boutique/liste';
                 },
                 error: function(XmlHttpRequest,textStatus, errorThrown){
-
                     alert("Failed! ");
                 },
-                complete: function(xhr)
-                {
+                complete: function(msg){
                     location.href = '/USCL/web/app_dev.php/boutique/liste';
                 }
             });

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Joueur;
+use AppBundle\Entity\Licencie;
 use AppBundle\Entity\Produit;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -17,10 +18,18 @@ class BoutiqueController extends  Controller
      */
     public function showAction()
     {
-        $produits = $this->getDoctrine()->getRepository(Produit::class)->findAll();
+        $produitsJDM = $this->getDoctrine()->getRepository(Produit::class)->findByCategorie(1);
+        $produitsEntrainement = $this->getDoctrine()->getRepository(Produit::class)->findByCategorie(2);
+        $produitsAccessoires = $this->getDoctrine()->getRepository(Produit::class)->findByCategorie(3);
+        $produitsDirigeant = $this->getDoctrine()->getRepository(Produit::class)->findByCategorie(4);
+        $licencies = $this->getDoctrine()->getRepository(Licencie::class)->findAll();
 
         return $this->render(':default:boutique.html.twig', [
-            'produits'=>$produits
+            'jourDeMatch'=> $produitsJDM,
+            'entrainement'=> $produitsEntrainement,
+            'accessoires'=> $produitsAccessoires,
+            'dirigeant'=> $produitsDirigeant,
+            'licencies' =>$licencies
         ]);
     }
 
@@ -33,7 +42,7 @@ class BoutiqueController extends  Controller
 
         $now = new \DateTime();
         $nomFichier = 'NOM-prenom-' . $now->format('d-m-Y') .'.xlsx';
-
+        dump($request->request);
         $existingXlsx->getActiveSheet()->setCellValue('B1', $now->format('d/m/Y'));
 
         foreach ($request->request->get('abc') as $item => $value){
@@ -68,13 +77,23 @@ class BoutiqueController extends  Controller
                 $existingXlsx->getActiveSheet()->setCellValue('H'.$ligne, 'Initiales');
                 $existingXlsx->getActiveSheet()->setCellValue('I'.$ligne, $value['initiales']);
             }
+            $existingXlsx->getActiveSheet()->setCellValue('J'.$ligne, $request->request->get('licencie'));
         }
 
         $writerXlsx = $this->get('phpoffice.spreadsheet')->createWriter($existingXlsx, 'Xlsx');
         $writerXlsx->save($this->get('kernel')->getRootDir() . '\Resources\documents\commande-'.$nomFichier);
-        $produits = $this->getDoctrine()->getRepository(Produit::class)->findAll();
+        $produitsJDM = $this->getDoctrine()->getRepository(Produit::class)->findByCategorie(1);
+        $produitsEntrainement = $this->getDoctrine()->getRepository(Produit::class)->findByCategorie(2);
+        $produitsAccessoires = $this->getDoctrine()->getRepository(Produit::class)->findByCategorie(3);
+        $produitsDirigeant = $this->getDoctrine()->getRepository(Produit::class)->findByCategorie(4);
+        $licencies = $this->getDoctrine()->getRepository(Licencie::class)->findAll();
+
         return $this->render(':default:boutique.html.twig', [
-            'produits'=>$produits
+            'jourDeMatch'=> $produitsJDM,
+            'entrainement'=> $produitsEntrainement,
+            'accessoires'=> $produitsAccessoires,
+            'dirigeant'=> $produitsDirigeant,
+            'licencies' =>$licencies
         ]);
     }
 }
