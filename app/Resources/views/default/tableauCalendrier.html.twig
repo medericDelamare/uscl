@@ -1,0 +1,22 @@
+{% for calendrierDetail in equipes %}
+    <tr>
+        <td>{{ calendrierDetail.date|date("d/m/Y") }}</td>
+        {% if calendrierDetail.equipeDomicile.club %}
+            <td class="equipeGauche"><img class="img-carriere" src="{{ asset('pictures/logos/' ~ calendrierDetail.equipeDomicile.club.logo) }}"> -{{ calendrierDetail.equipeDomicile.club.nom }}</td>
+        {% else %}
+            <td class="equipeGauche">{{ calendrierDetail.equipeDomicile.nomParse }}</td>
+        {% endif %}
+
+        {% if calendrierDetail.stats %}
+            <td class="score"><a href="{{ path('rencontre', { 'id': calendrierDetail.id}) }}">{{ calendrierDetail.score }} </a></td>
+        {% else %}
+            <td class="score">{{ calendrierDetail.score }}</td>
+        {% endif %}
+
+        {% if calendrierDetail.equipeExterieure.club %}
+            <td class="equipeDroite"><img class="img-carriere" src="{{ asset('pictures/logos/' ~ calendrierDetail.equipeExterieure.club.logo) }}"> - {{ calendrierDetail.equipeExterieure.club.nom }}</td>
+        {% else %}
+            <td class="equipeDroite">{{ calendrierDetail.equipeExterieure.nomParse }}</td>
+        {% endif %}
+    </tr>
+{% endfor %}

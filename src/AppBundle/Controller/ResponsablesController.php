@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Entity\Club;
+use AppBundle\Entity\Bureau;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,10 +17,10 @@ class ResponsablesController extends Controller
      */
     public function showAction(Request $request)
     {
-        $club = $this->getDoctrine()->getManager()->getRepository(Club::class)->find(1);
+        $bureau = $this->getDoctrine()->getManager()->getRepository(Bureau::class)->find(1);
 
         return $this->render(':default:responsablesCategories.html.twig', [
-            'club' => $club
+            'bureau' => $bureau
         ]);
     }
 }

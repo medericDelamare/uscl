@@ -16,7 +16,8 @@ class StatsParJourneeRepository extends EntityRepository
 {
     public function findByCategOrderByJournee($categ){
         return $this->createQueryBuilder('c')
-            ->where('c.category = :categ')
+            ->join('c.equipe', 'e', 'WITH', 'e.id = c.equipe')
+            ->where('e.categorie = :categ')
             ->orderBy('c.journee', 'ASC')
             ->setParameter('categ', $categ)
             ->getQuery()
@@ -44,5 +45,14 @@ class StatsParJourneeRepository extends EntityRepository
             ->distinct()
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    public function findByCategorie($categorie){
+        return $this->createQueryBuilder('s')
+            ->join('s.equipe','e','WITH', 'e.id = s.equipe')
+            ->where('e.categorie = :categorie')
+            ->setParameter('categorie',$categorie)
+            ->getQuery()
+            ->execute();
     }
 }

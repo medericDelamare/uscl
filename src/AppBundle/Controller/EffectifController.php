@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Joueur;
+use AppBundle\Entity\Licencie;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,18 +23,11 @@ class EffectifController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $gardiens = $em->getRepository(Joueur::class)->findByCategoryAndPost($category, 'gardien');
-        $defenseurs = $em->getRepository(Joueur::class)->findByCategoryAndPost($category, 'defenseur');
-        $milieux = $em->getRepository(Joueur::class)->findByCategoryAndPost($category, 'milieu');
-        $attaquants = $em->getRepository(Joueur::class)->findByCategoryAndPost($category, 'attaquant');
-        $nbJoueurs = count($gardiens) + count($defenseurs) + count($milieux) + count($attaquants);
+        $joueurs = $em->getRepository(Licencie::class)->findByCategoryOrderByPoste($category);
         return $this->render('default/effectif.html.twig', [
-            'gardiens' => $gardiens,
-            'defenseurs' => $defenseurs,
-            'milieux' => $milieux,
-            'attaquants' => $attaquants,
+            'joueurs' => $joueurs,
             'category' => $category,
-            'nb_joueurs' => $nbJoueurs
+            'nb_joueurs' => count($joueurs)
         ]);
 
     }

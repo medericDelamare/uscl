@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Entity\Club;
+use AppBundle\Entity\Bureau;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,13 +17,13 @@ class BureauController extends Controller
      */
     public function showAction(Request $request)
     {
-        $club = $this->getDoctrine()->getManager()->getRepository(Club::class)->find(1);
+        $bureau = $this->getDoctrine()->getManager()->getRepository(Bureau::class)->find(1);
 
 
 
         // replace this example code with whatever you need
         return $this->render(':default:bureau.html.twig', [
-            'club' => $club
+            'bureau' => $bureau
         ]);
     }
 }

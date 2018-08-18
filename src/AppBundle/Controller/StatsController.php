@@ -3,13 +3,16 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Equipe;
 use AppBundle\Entity\HistoriqueClassement;
+use AppBundle\Entity\Rencontre;
 use AppBundle\Entity\StatsParJournee;
 use AppBundle\Service\Category\CategoryFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DomCrawler\Crawler;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class StatsController extends Controller
 {
@@ -19,40 +22,44 @@ class StatsController extends Controller
      */
     public function showAction($category)
     {
-        $factory = CategoryFactory::getInstance($this->getDoctrine()->getManager());
-        $instance = $factory->createInstance($category);
-
-        $historiques = $this->getDoctrine()->getManager()->getRepository(HistoriqueClassement::class)->findAll();
-        foreach ($historiques as $historique){
-            $annees[] = $historique->getAnnee();
-            $points[] = $historique->getNbPoints();
-            $positions[] = $historique->getPosition();
-        }
+        $equipes = $this->getDoctrine()->getRepository(Equipe::class)->getClassementByCategorie($category);
+        $rencontres = $this->getDoctrine()->getRepository(Rencontre::class)->getDerniereJournee($category);
+        $agendas = $this->getDoctrine()->getRepository(Rencontre::class)->getAgenda($category);
+        $calendrier = $this->getDoctrine()->getRepository(Rencontre::class)->getCalendrierParCategorie($category);
+        $distinctEquipes = $this->getDoctrine()->getRepository(Equipe::class)->findByCategorieOrderByNomParse($category);
+        $classementParJournee = $this->getDoctrine()->getRepository(StatsParJournee::class)->findByCategOrderByJournee($category);
 
         $classementTriParEquipe = [];
-        /** @var StatsParJournee $classement */
-        foreach ($instance->getClassementParJournee() as $classementInfos){
-            $classementTriParEquipe[$classementInfos->getEquipe()][] = $classementInfos->getPlace();
+        /** @var StatsParJournee $classementInfos */
+        foreach ($classementParJournee as $classementInfos){
+            $classementTriParEquipe[$classementInfos->getEquipe()->getNomParse()][] = $classementInfos->getPlace();
         }
 
-        $nbjournees = [];
+        $nbJournees = [];
         for ($i = 1; $i<= (count($classementTriParEquipe)-1)*2 ; $i++){
-            $nbjournees[] = $i;
+            $nbJournees[] = $i;
+        }
+
+
+        $cormeilles = null;
+
+        /** @var Equipe $equipe */
+        foreach ($distinctEquipes as $equipe){
+            if (strstr($equipe->getNomParse(),'CORM')){
+                $cormeilles = $equipe;
+            }
         }
 
         return $this->render(':default:statistiques.html.twig', [
-            'agendas' => $instance->getAgenda() ,
-            'resultats' => $instance->getResults(),
-            'classement' => $instance->getClassement(),
-            'calendrier' => $instance->getCalendrier(),
             'categorie' => $category,
-            'annees' => $annees,
-            'points' => $points,
-            'positions' => $positions,
+            'equipes' => $equipes,
+            'rencontres' => $rencontres,
+            'agendas' => $agendas,
+            'calendrier' => $calendrier,
+            'equipeListe' => $distinctEquipes,
+            'cormeilles' => $cormeilles,
             'classement_par_journee' => $classementTriParEquipe,
-            'nb_journees' => $nbjournees,
-            'category' => $category,
-            'division' => $instance->getDivision()
+            'nb_journees' => $nbJournees
         ]);
     }
 
@@ -80,5 +87,18 @@ class StatsController extends Controller
 
         $em->flush();
         return $this->showAction($category);
+    }
+
+    /**
+     * @param Equipe $equipe
+     * @Route("/get-calendrier-par-equipe/{equipe}", name="calendrier-par-equipe")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function getCalendrierParEquipe(Equipe $equipe){
+        $equipes = $this->getDoctrine()->getRepository(Rencontre::class)->getCalendrierParEquipe($equipe);
+
+        return $this->render(':default:tableauCalendrier.html.twig',[
+            'equipes' => $equipes
+        ]);
     }
 }

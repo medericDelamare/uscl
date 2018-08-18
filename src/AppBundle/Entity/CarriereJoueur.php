@@ -21,10 +21,10 @@ class CarriereJoueur
     private $id;
 
     /**
-     * @var Joueur
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Joueur", inversedBy="carriere")
+     * @var Licencie
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Licencie", inversedBy="carriere")
      */
-    private $joueur;
+    private $licencie;
 
     /**
      * @var string
@@ -42,32 +42,19 @@ class CarriereJoueur
      * @var string
      * @ORM\Column(type="string", nullable=false)
      */
-    private $club;
+    private $clubParse;
 
+    /**
+     * @var Club
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Club")
+     */
+    private $club;
     /**
      * @return int
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return Joueur
-     */
-    public function getJoueur()
-    {
-        return $this->joueur;
-    }
-
-    /**
-     * @param Joueur $joueur
-     * @return CarriereJoueur
-     */
-    public function setJoueur($joueur)
-    {
-        $this->joueur = $joueur;
-        return $this;
     }
 
     /**
@@ -109,13 +96,49 @@ class CarriereJoueur
     /**
      * @return string
      */
+    public function getClubParse()
+    {
+        return $this->clubParse;
+    }
+
+    /**
+     * @param string $clubParse
+     * @return CarriereJoueur
+     */
+    public function setClubParse($clubParse)
+    {
+        $this->clubParse = $clubParse;
+        return $this;
+    }
+
+    /**
+     * @return Licencie
+     */
+    public function getLicencie()
+    {
+        return $this->licencie;
+    }
+
+    /**
+     * @param Licencie $licencie
+     * @return CarriereJoueur
+     */
+    public function setLicencie($licencie)
+    {
+        $this->licencie = $licencie;
+        return $this;
+    }
+
+    /**
+     * @return Club
+     */
     public function getClub()
     {
         return $this->club;
     }
 
     /**
-     * @param string $club
+     * @param Club $club
      * @return CarriereJoueur
      */
     public function setClub($club)

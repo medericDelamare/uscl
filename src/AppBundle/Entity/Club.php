@@ -1,9 +1,11 @@
 <?php
 
+
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Xmon\ColorPickerTypeBundle\Validator\Constraints as XmonAssertColor;
 /**
  * Class Club
  * @package AppBundle\Entity
@@ -21,106 +23,35 @@ class Club
     private $id;
 
     /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
+     * @var string
+     * @ORM\Column(type="string", nullable=false, unique=true)
      */
-    private $president;
+    private $nom;
 
     /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
+     * @var string
+     * @ORM\Column(type="string", nullable=false)
      */
-    private $vicePresident1;
+    private $logo;
 
     /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
+     * @var NomParse[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\NomParse", mappedBy="club")
      */
-    private $vicePresident2;
+    private $nomsParse;
 
     /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     * @XmonAssertColor\HexColor()
      */
-    private $vicePresident3;
+    private $couleurPrincipale;
 
     /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $secretaire;
-
-    /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
-     */
-    private $tresorier;
-
-    /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
-     */
-    private $responsableJeunes;
-
-    /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
-     */
-    private $responsableSeniors;
-
-    /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
-     */
-    private $responsableA;
-
-    /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
-     */
-    private $responsableB;
-
-    /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
-     */
-    private $responsableU18;
-
-    /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
-     */
-    private $responsableU15;
-
-    /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
-     */
-    private $responsableU13;
-
-    /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
-     */
-    private $responsableU11;
-
-    /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
-     */
-    private $responsableU9;
-
-    /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
-     */
-    private $responsableU7;
-
-    /**
-     * @var Dirigeant
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Dirigeant")
-     */
-    private $responsableFutsal;
+    private $couleurSecondaire;
 
     /**
      * @return int
@@ -131,308 +62,97 @@ class Club
     }
 
     /**
-     * @return Dirigeant
+     * @return string
      */
-    public function getPresident()
+    public function getNom()
     {
-        return $this->president;
+        return $this->nom;
     }
 
     /**
-     * @param Dirigeant $president
+     * @param string $nom
      * @return Club
      */
-    public function setPresident($president)
+    public function setNom($nom)
     {
-        $this->president = $president;
+        $this->nom = $nom;
         return $this;
     }
 
     /**
-     * @return Dirigeant
+     * @return string
      */
-    public function getVicePresident1()
+    public function getLogo()
     {
-        return $this->vicePresident1;
+        return $this->logo;
     }
 
     /**
-     * @param Dirigeant $vicePresident1
+     * @param string $logo
      * @return Club
      */
-    public function setVicePresident1($vicePresident1)
+    public function setLogo($logo)
     {
-        $this->vicePresident1 = $vicePresident1;
+        $this->logo = $logo;
         return $this;
     }
 
     /**
-     * @return Dirigeant
+     * @return NomParse[]
      */
-    public function getVicePresident2()
+    public function getNomsParse()
     {
-        return $this->vicePresident2;
+        return $this->nomsParse;
     }
 
     /**
-     * @param Dirigeant $vicePresident2
+     * @param NomParse[] $nomsParse
      * @return Club
      */
-    public function setVicePresident2($vicePresident2)
+    public function setNomsParse($nomsParse)
     {
-        $this->vicePresident2 = $vicePresident2;
+        $this->nomsParse = $nomsParse;
         return $this;
     }
 
     /**
-     * @return Dirigeant
+     * @return string
      */
-    public function getVicePresident3()
+    public function getCouleurPrincipale()
     {
-        return $this->vicePresident3;
+        return $this->couleurPrincipale;
     }
 
     /**
-     * @param Dirigeant $vicePresident3
+     * @param string $couleurPrincipale
      * @return Club
      */
-    public function setVicePresident3($vicePresident3)
+    public function setCouleurPrincipale($couleurPrincipale)
     {
-        $this->vicePresident3 = $vicePresident3;
+        $this->couleurPrincipale = $couleurPrincipale;
         return $this;
     }
 
     /**
-     * @return Dirigeant
+     * @return string
      */
-    public function getSecretaire()
+    public function getCouleurSecondaire()
     {
-        return $this->secretaire;
+        return $this->couleurSecondaire;
     }
 
     /**
-     * @param Dirigeant $secretaire
+     * @param string $couleurSecondaire
      * @return Club
      */
-    public function setSecretaire($secretaire)
+    public function setCouleurSecondaire($couleurSecondaire)
     {
-        $this->secretaire = $secretaire;
+        $this->couleurSecondaire = $couleurSecondaire;
         return $this;
     }
 
-    /**
-     * @return Dirigeant
-     */
-    public function getTresorier()
+    public function __toString()
     {
-        return $this->tresorier;
-    }
-
-    /**
-     * @param Dirigeant $tresorier
-     * @return Club
-     */
-    public function setTresorier($tresorier)
-    {
-        $this->tresorier = $tresorier;
-        return $this;
-    }
-
-    /**
-     * @return Dirigeant
-     */
-    public function getResponsableJeunes()
-    {
-        return $this->responsableJeunes;
-    }
-
-    /**
-     * @param Dirigeant $responsableJeunes
-     * @return Club
-     */
-    public function setResponsableJeunes($responsableJeunes)
-    {
-        $this->responsableJeunes = $responsableJeunes;
-        return $this;
-    }
-
-    /**
-     * @return Dirigeant
-     */
-    public function getResponsableSeniors()
-    {
-        return $this->responsableSeniors;
-    }
-
-    /**
-     * @param Dirigeant $responsableSeniors
-     * @return Club
-     */
-    public function setResponsableSeniors($responsableSeniors)
-    {
-        $this->responsableSeniors = $responsableSeniors;
-        return $this;
-    }
-
-    /**
-     * @return Dirigeant
-     */
-    public function getResponsableA()
-    {
-        return $this->responsableA;
-    }
-
-    /**
-     * @param Dirigeant $responsableA
-     * @return Club
-     */
-    public function setResponsableA($responsableA)
-    {
-        $this->responsableA = $responsableA;
-        return $this;
-    }
-
-    /**
-     * @return Dirigeant
-     */
-    public function getResponsableB()
-    {
-        return $this->responsableB;
-    }
-
-    /**
-     * @param Dirigeant $responsableB
-     * @return Club
-     */
-    public function setResponsableB($responsableB)
-    {
-        $this->responsableB = $responsableB;
-        return $this;
-    }
-
-    /**
-     * @return Dirigeant
-     */
-    public function getResponsableU18()
-    {
-        return $this->responsableU18;
-    }
-
-    /**
-     * @param Dirigeant $responsableU18
-     * @return Club
-     */
-    public function setResponsableU18($responsableU18)
-    {
-        $this->responsableU18 = $responsableU18;
-        return $this;
-    }
-
-    /**
-     * @return Dirigeant
-     */
-    public function getResponsableU15()
-    {
-        return $this->responsableU15;
-    }
-
-    /**
-     * @param Dirigeant $responsableU15
-     * @return Club
-     */
-    public function setResponsableU15($responsableU15)
-    {
-        $this->responsableU15 = $responsableU15;
-        return $this;
-    }
-
-    /**
-     * @return Dirigeant
-     */
-    public function getResponsableU13()
-    {
-        return $this->responsableU13;
-    }
-
-    /**
-     * @param Dirigeant $responsableU13
-     * @return Club
-     */
-    public function setResponsableU13($responsableU13)
-    {
-        $this->responsableU13 = $responsableU13;
-        return $this;
-    }
-
-    /**
-     * @return Dirigeant
-     */
-    public function getResponsableU11()
-    {
-        return $this->responsableU11;
-    }
-
-    /**
-     * @param Dirigeant $responsableU11
-     * @return Club
-     */
-    public function setResponsableU11($responsableU11)
-    {
-        $this->responsableU11 = $responsableU11;
-        return $this;
-    }
-
-    /**
-     * @return Dirigeant
-     */
-    public function getResponsableU9()
-    {
-        return $this->responsableU9;
-    }
-
-    /**
-     * @param Dirigeant $responsableU9
-     * @return Club
-     */
-    public function setResponsableU9($responsableU9)
-    {
-        $this->responsableU9 = $responsableU9;
-        return $this;
-    }
-
-    /**
-     * @return Dirigeant
-     */
-    public function getResponsableU7()
-    {
-        return $this->responsableU7;
-    }
-
-    /**
-     * @param Dirigeant $responsableU7
-     * @return Club
-     */
-    public function setResponsableU7($responsableU7)
-    {
-        $this->responsableU7 = $responsableU7;
-        return $this;
-    }
-
-    /**
-     * @return Dirigeant
-     */
-    public function getResponsableFutsal()
-    {
-        return $this->responsableFutsal;
-    }
-
-    /**
-     * @param Dirigeant $responsableFutsal
-     * @return Club
-     */
-    public function setResponsableFutsal($responsableFutsal)
-    {
-        $this->responsableFutsal = $responsableFutsal;
-        return $this;
+        return $this->getNom() ? $this->getNom() : '';
     }
 }

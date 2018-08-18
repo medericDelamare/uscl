@@ -34,6 +34,11 @@ class AppKernel extends Kernel
             // Then add SonataAdminBundle
             new Sonata\AdminBundle\SonataAdminBundle(),
 
+            new Xmon\ColorPickerTypeBundle\XmonColorPickerTypeBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new Yectep\PhpSpreadsheetBundle\PhpSpreadsheetBundle(),
+
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

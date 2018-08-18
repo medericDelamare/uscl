@@ -1,59 +1,38 @@
 <?php
 
+
 namespace AppBundle\Admin;
 
 
+use AppBundle\Entity\Club;
+use Doctrine\DBAL\Types\ArrayType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\CoreBundle\Form\Type\CollectionType;
+use Sonata\CoreBundle\Form\Type\ColorSelectorType;
+use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
+use Xmon\ColorPickerTypeBundle\Form\Type\ColorPickerType;
 
 class ClubAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('president')
-            ->add('vicePresident1')
-            ->add('vicePresident2')
-            ->add('vicePresident3')
-            ->add('secretaire')
-            ->add('tresorier')
-            ->add('responsableJeunes')
-            ->add('responsableSeniors')
-            ->add('responsableA')
-            ->add('responsableB')
-            ->add('responsableU18')
-            ->add('responsableU15')
-            ->add('responsableU13')
-            ->add('responsableU11')
-            ->add('responsableU9')
-            ->add('responsableU7');
+            ->add('nom')
+            ->add('logo')
+            ->add('couleurPrincipale', ColorPickerType::class, [
+                'required' => false
+            ])
+            ->add('couleurSecondaire', ColorPickerType::class, [
+                'required' => false
+            ]);
     }
-
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
-    {
-
-    }
-
     protected function configureListFields(ListMapper $listMapper)
     {
+
         $listMapper
-            ->addIdentifier('president')
-            ->add('vicePresident1')
-            ->add('vicePresident2')
-            ->add('vicePresident3')
-            ->add('secretaire')
-            ->add('tresorier')
-            ->add('responsableJeunes')
-            ->add('responsableSeniors')
-            ->add('responsableA')
-            ->add('responsableB')
-            ->add('responsableU18')
-            ->add('responsableU15')
-            ->add('responsableU13')
-            ->add('responsableU11')
-            ->add('responsableU9')
-            ->add('responsableU7');
+            ->addIdentifier('nom')
+            ->add('logo');
     }
 }

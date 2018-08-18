@@ -2,3 +2,13 @@ joueur:
   plural: Joueurs
 import:
   plural: Imports
+equipe:
+  plural: Equipes
+club:
+  plural: Club
+nomParse:
+  plural: Noms Parses
+statsRencontre:
+  plural: Statistiques Rencontre
+buteur:
+  plural: Buteurs

@@ -4,9 +4,12 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Entity\Joueur;
+use AppBundle\Entity\Licencie;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Class ProfileController
@@ -19,40 +22,45 @@ class ProfileController extends Controller
      * @Template()
      */
     public function profileShowAction($id){
-        $joueur = $this->getDoctrine()->getManager()->getRepository(Joueur::class)->find($id);
+        $joueur = $this->getDoctrine()->getManager()->getRepository(Licencie::class)->find($id);
+
+        /** @var \DateTime $birthDate */
+        $birthDate = $joueur->getDateDeNaissance();
+        $to   = new \DateTime('today');
+        $age = $birthDate->diff($to)->y;
+
 
         $saisons = [];
         foreach ($joueur->getHistoriqueStats() as $historiqueStat){
             $saisons[] = $historiqueStat->getSaison();
         }
-        array_unshift($saisons, '17/18');
-
+        array_push($saisons, '18/19');
         $buts = [];
         foreach ($joueur->getHistoriqueStats() as $historiqueStat){
             $buts[] = $historiqueStat->getNbButs();
         }
-        array_unshift($buts, $joueur->getButs());
-
+        array_push($buts, count($joueur->getButs()));
         $passes = [];
         foreach ($joueur->getHistoriqueStats() as $historiqueStat){
             $passes[] = $historiqueStat->getNbPasses();
         }
-        array_unshift($passes, $joueur->getPasses());
-
+        array_push($passes,count($joueur->getPasses()));
         $cartonsJ = [];
         foreach ($joueur->getHistoriqueStats() as $historiqueStat) {
             $cartonsJ[] = $historiqueStat->getNbCartonsJaunes();
         }
-        array_unshift($cartonsJ, $joueur->getCartonsJaunes());
-
+        array_push($cartonsJ, count($joueur->getStatsRencontresCartonsJaunes()));
         $cartonsR = [];
         foreach ($joueur->getHistoriqueStats() as $historiqueStat){
             $cartonsR[] = $historiqueStat->getNbCartonsRouges();
         }
-        array_unshift($cartonsR, $joueur->getCartonsRouges());
+        array_push($cartonsR, count($joueur->getStatsRencontresCartonsRouges()));
+
+
 
         return $this->render(':default:profil.html.twig', [
             'joueur' => $joueur,
+            'age' => $age,
             'saisons' => $saisons,
             'cartonsJ' => $cartonsJ,
             'cartonsR' => $cartonsR,
