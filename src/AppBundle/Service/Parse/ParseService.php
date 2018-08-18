@@ -171,6 +171,20 @@ class ParseService
                         $this->em->persist($equipeExt);
                         $this->em->persist($equipeDom);
                         $this->em->flush();
+                    } else{
+                        $rencontre = new Rencontre();
+                        $rencontre
+                            ->setEquipeDomicile($equipeDom)
+                            ->setEquipeExterieure($equipeExt)
+                            ->setDate($date)
+                            ->setJournee($journee);
+                        if ($equipeDom == null || $equipeExt == null){
+                            dump($equipe1, $equipe2); die;
+                        }
+                        $this->em->persist($equipeExt);
+                        $this->em->persist($equipeDom);
+                        $this->em->persist($rencontre);
+                        $this->em->flush();
                     }
                 }
             }

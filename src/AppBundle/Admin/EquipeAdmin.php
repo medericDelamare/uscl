@@ -28,7 +28,9 @@ class EquipeAdmin extends AbstractAdmin
                     'Veterans' => 'veterans',
                     'Coupe de France' => 'coupeDeFrance',
                 ]
-            ]);
+            ])
+            ->add('club')
+        ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -41,6 +43,7 @@ class EquipeAdmin extends AbstractAdmin
         $listMapper
             ->addIdentifier('nom_parse')
             ->add('categorie')
+            ->add('club')
         ;
     }
 }

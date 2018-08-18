@@ -27,13 +27,12 @@ class RencontreRepository extends EntityRepository
             ->select('r.journee')
             ->join(Equipe::class, 'd', 'WITH', 'd.id = r.equipeDomicile')
             ->where('d.categorie = :categorie')
+            ->andWhere('r.score IS NOT NULL')
             ->orderBy('r.date', 'DESC')
             ->setParameter('categorie', $categorie)
             ->setMaxResults(1)
             ->getQuery()
-            ->getSingleScalarResult();
-
-        dump($categorie,$dernireJournee);
+            ->getOneOrNullResult();
 
         $rencontres = $this->createQueryBuilder('r')
             ->join('r.equipeDomicile', 'd', 'WITH', 'd.id = r.equipeDomicile')
@@ -57,7 +56,7 @@ class RencontreRepository extends EntityRepository
             ->setParameter('categorie', $categorie)
             ->setMaxResults(1)
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getSingleScalarResult();
 
         $agendas = $rencontres = $this->createQueryBuilder('r')
             ->where('r.journee = :derniereJournee')
