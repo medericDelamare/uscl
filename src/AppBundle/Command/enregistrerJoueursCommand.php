@@ -55,9 +55,9 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
                 $simpleDate = explode('T',$joueur['birthday']['date']);
 
-                array_key_exists('Mobile personnel', $joueur['contacts']) ? $mobile = $joueur['contacts']['Mobile personnel'] :$mobile = null;
-                array_key_exists('Email principal', $joueur['contacts']) ? $email = $joueur['contacts']['Email principal'] : $email = null;
-                array_key_exists('Téléphone domicile', $joueur['contacts']) ? $fixe = $joueur['contacts']['Téléphone domicile'] : $fixe = null;
+                array_key_exists('Mobile personnel', $joueur['contacts']) ? $mobile = $joueur['contacts']['Mobile personnel'][0] :$mobile = null;
+                array_key_exists('Email principal', $joueur['contacts']) ? $email = $joueur['contacts']['Email principal'][0] : $email = null;
+                array_key_exists('Téléphone domicile', $joueur['contacts']) ? $fixe = $joueur['contacts']['Téléphone domicile'][0] : $fixe = null;
 
                 $licencie
                     ->setNumeroLicence((integer)$joueur['id'])
