@@ -30,7 +30,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
     {
         $now = new \DateTime();
         $output->writeln('<comment>End : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
-        $curl_request = curl_init("http://37.187.1.105:84/api/users/2018");
+        $curl_request = curl_init("http://37.187.1.105/api/users/2018");
 
         curl_setopt($curl_request, CURLOPT_HEADER, 0);
         curl_setopt($curl_request, CURLOPT_RETURNTRANSFER, 1);
