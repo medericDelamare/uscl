@@ -466,7 +466,7 @@ ul {
     font-weight: 100;
 }
 
-.text-right{
+.blanc{
     color: white;
 }
 
@@ -488,7 +488,7 @@ ul {
 }
 
 .img-carriere{
-    width: 20px;
+    width: 30px;
 }
 
 .vue-detaillee-equipe-detaillee{
@@ -756,4 +756,12 @@ input:checked + .slider:before {
 
 .prix{
     font-size: 20px;
+}
+
+.equipeDroite{
+    text-align: right;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
 }
