@@ -248,6 +248,8 @@ class Rencontre
 
     public function __toString()
     {
-        return $this->getEquipeDomicile() ? $this->getEquipeDomicile()->getNomParse() . ' - ' . $this->getEquipeExterieure()->getNomParse() . ' ( ' . $this->getEquipeDomicile()->getDivision() . ' )' : 'Rencontre';
+        $categoryFormat = ucfirst($this->getEquipeDomicile()->getCategorie());
+        $categoryFormat = preg_replace('/(?=(?<!^)[[:upper:]])/', ' ', $categoryFormat);
+        return $this->getEquipeDomicile() ? $this->getEquipeDomicile()->getNomParse() . ' - ' . $this->getEquipeExterieure()->getNomParse() . ' ( ' . $categoryFormat . ' )' : 'Rencontre';
     }
 }

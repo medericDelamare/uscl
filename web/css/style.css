@@ -765,3 +765,37 @@ input:checked + .slider:before {
 .table > tbody > tr > td {
     vertical-align: middle;
 }
+
+.gros-chiffres{
+    font-size: 80px;
+    color: #9ca7ba;
+}
+
+.grey{
+    color: #9ca7ba;
+}
+
+@media(max-width:767px){
+    .gros-chiffres {font-size:30px;}
+}
+
+
+.vertical-align{
+    vertical-align: middle;
+}
+.row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+    flex-wrap: wrap;
+}
+.row > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+.moyen-chiffres{
+    font-size: 40px;
+    color: #9ca7ba;
+}
