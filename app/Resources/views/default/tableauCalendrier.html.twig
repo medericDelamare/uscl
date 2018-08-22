@@ -1,20 +1,24 @@
 {% for calendrierDetail in equipes %}
-    <tr>
-        <td>{{ calendrierDetail.date|date("d/m/Y") }}</td>
+    <tr class="align-middle">
+        <td class="col-xs-3 col-lg-1">{{ calendrierDetail.date|date("d/m/Y") }}</td>
         {% if calendrierDetail.equipeDomicile.club %}
-            <td class="equipeGauche"><img class="img-carriere" src="{{ asset('pictures/logos/' ~ calendrierDetail.equipeDomicile.club.logo) }}"> -{{ calendrierDetail.equipeDomicile.club.nom }}</td>
+            <td class="col-xs-3 col-lg-5 equipeGauche"><img class="img-carriere" src="{{ asset('pictures/logos/' ~ calendrierDetail.equipeDomicile.club.logo) }}"><span class="hidden-xs"> -{{ calendrierDetail.equipeDomicile.club.nom }}</span></td>
         {% else %}
             <td class="equipeGauche">{{ calendrierDetail.equipeDomicile.nomParse }}</td>
         {% endif %}
 
         {% if calendrierDetail.stats %}
-            <td class="score"><a href="{{ path('rencontre', { 'id': calendrierDetail.id}) }}">{{ calendrierDetail.score }} </a></td>
+            <td class="col-xs-3 col-lg-1 score"><a href="{{ path('rencontre', { 'id': calendrierDetail.id}) }}">{{ calendrierDetail.score }} </a></td>
         {% else %}
-            <td class="score">{{ calendrierDetail.score }}</td>
+            {% if calendrierDetail.score %}
+                <td class="score">{{ calendrierDetail.score }}</td>
+            {% else %}
+                <td class="col-xs-3 col-lg-1 text-center score">VS</td>
+            {% endif %}
         {% endif %}
 
         {% if calendrierDetail.equipeExterieure.club %}
-            <td class="equipeDroite"><img class="img-carriere" src="{{ asset('pictures/logos/' ~ calendrierDetail.equipeExterieure.club.logo) }}"> - {{ calendrierDetail.equipeExterieure.club.nom }}</td>
+            <td class="col-xs-3 col-lg-5 equipeDroite"><span class="hidden-xs">{{ calendrierDetail.equipeExterieure.club.nom }} - </span><img class="img-carriere" src="{{ asset('pictures/logos/' ~ calendrierDetail.equipeExterieure.club.logo) }}"></td>
         {% else %}
             <td class="equipeDroite">{{ calendrierDetail.equipeExterieure.nomParse }}</td>
         {% endif %}
