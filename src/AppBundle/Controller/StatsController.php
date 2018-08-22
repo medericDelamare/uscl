@@ -58,6 +58,15 @@ class StatsController extends Controller
             case 'seniorB':
                 $division = 'Departemental 4';
                 $groupe = 'A';
+                break;
+            case 'veteranA':
+                $division = 'CRITERIUM DU MATIN';
+                $groupe = 'H';
+                break;
+            case 'veteranB':
+                $division = 'CRITERIUM DU MATIN';
+                $groupe = 'G';
+                break;
         }
 
         $categoryFormat = ucfirst($category);

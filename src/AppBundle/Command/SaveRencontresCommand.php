@@ -16,7 +16,7 @@ class SaveRencontresCommand extends ContainerAwareCommand
         $now = new \DateTime();
         $output->writeln('<comment>Start : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
         $parseService = $this->getContainer()->get('parse.parse_scores');
-        $parseService->getStats('https://eure.fff.fr/competitions/?id=351217&poule=1&phase=1&type=ch&tab=calendar', 'seniorA');
+        $parseService->getStats('https://eure.fff.fr/competitions/?id=351219&poule=8&phase=1&type=ch&tab=calendar', 'veteranA');
         $now = new \DateTime();
         $output->writeln('<comment>End : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
     }
