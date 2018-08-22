@@ -49,7 +49,8 @@ class RencontreRepository extends EntityRepository
     public function getAgenda($categorie){
         $prochaineJournee = $this->createQueryBuilder('r')
             ->select('r.journee')
-            ->join(Equipe::class, 'd', 'WITH', 'd.id = r.equipeDomicile')
+            ->join('r.equipeDomicile', 'd', 'WITH', 'd.id = r.equipeDomicile')
+            ->leftJoin('r.equipeExterieure', 'e', 'WITH', 'e.id = r.equipeExterieure')
             ->where('d.categorie = :categorie')
             ->andWhere('r.score IS NULL')
             ->orderBy('r.date', 'ASC')
@@ -59,8 +60,11 @@ class RencontreRepository extends EntityRepository
             ->getSingleScalarResult();
 
         $agendas = $rencontres = $this->createQueryBuilder('r')
+            ->join('r.equipeDomicile', 'd', 'WITH', 'd.id = r.equipeDomicile')
             ->where('r.journee = :derniereJournee')
+            ->andWhere('d.categorie = :categorie')
             ->setParameter('derniereJournee', $prochaineJournee)
+            ->setParameter('categorie', $categorie)
             ->getQuery()
             ->getResult();
 
