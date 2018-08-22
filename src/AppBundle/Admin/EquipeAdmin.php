@@ -25,8 +25,14 @@ class EquipeAdmin extends AbstractAdmin
                     'U18' => 'U18',
                     'U15' => 'U15',
                     'U13' => 'U13',
-                    'Veterans' => 'veterans',
+                    'Veterans A' => 'veteranA',
+                    'Veterans B' => 'veteranB',
                     'Coupe de France' => 'coupeDeFrance',
+                    'Coupe de Normandie' => 'coupeDeNormandie',
+                    'Coupe de l\'Eure' => 'coupeEure',
+                    'Coupe U18' => 'coupeU18',
+                    'Coupe U15' => 'coupeU15',
+                    'Coupe Veterans' => 'coupeVeterans',
                 ]
             ])
             ->add('club')

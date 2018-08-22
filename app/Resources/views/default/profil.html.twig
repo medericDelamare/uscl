@@ -13,14 +13,14 @@
     <div class="container zonePlay">
         <div class="media">
             <div class="media-left">
-                <img src="{{ joueur.photo }}" alt="Florian THAUVIN">
+                <img src="{{ joueur.photo }}" alt="{{ joueur.photo }}">
             </div>
             <div class="media-body">
                 <div class="row">
                     <div class="col-md-5">
                         <div class="row">
                             <div class="col-xs-6">
-                                <div class="text-right">Pays : </div>
+                                <div class="text-right blanc">Pays : </div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="text-left">France</div>
@@ -28,15 +28,15 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-6">
-                                <div class="text-right">Age : </div>
+                                <div class="text-right blanc">Age : </div>
                             </div>
                             <div class="col-xs-6">
-                                <div class="text-left">{{ age }} ans</div>
+                                <div class="text-left blanc">{{ age }} ans</div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-6">
-                                <div class="text-right">Date de naissance :</div>
+                                <div class="text-right blanc">Date de naissance :</div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="text-left">{{ joueur.dateDeNaissance|date("d/m/Y") }}</div>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-6">
-                                <div class="text-right">Lieu de naissance :</div>
+                                <div class="text-right blanc">Lieu de naissance :</div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="text-left">{{ joueur.lieuDeNaissance }}</div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-6">
-                                <div class="text-right">Poste :</div>
+                                <div class="text-right blanc">Poste :</div>
                             </div>
                             <div class="col-xs-6">
                                 {% if joueur.stats.poste %}
@@ -62,7 +62,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-6">
-                                <div class="text-right">Educateur :</div>
+                                <div class="text-right blanc">Educateur :</div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="text-left">
@@ -76,7 +76,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-6">
-                                <div class="text-right">Dirigeant :</div>
+                                <div class="text-right blanc">Dirigeant :</div>
                             </div>
                             <div class="col-xs-6">
                                 <div class="text-left">

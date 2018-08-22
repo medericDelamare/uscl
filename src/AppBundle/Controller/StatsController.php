@@ -50,8 +50,21 @@ class StatsController extends Controller
             }
         }
 
+        switch ($category){
+            case 'seniorA':
+                $division = 'Departemental 3';
+                $groupe = 'A';
+                break;
+            case 'seniorB':
+                $division = 'Departemental 4';
+                $groupe = 'A';
+        }
+
+        $categoryFormat = ucfirst($category);
+        $categoryFormat = preg_replace('/(?=(?<!^)[[:upper:]])/', ' ', $categoryFormat);
+
         return $this->render(':default:statistiques.html.twig', [
-            'categorie' => $category,
+            'categorie' => $categoryFormat,
             'equipes' => $equipes,
             'rencontres' => $rencontres,
             'agendas' => $agendas,
@@ -59,7 +72,9 @@ class StatsController extends Controller
             'equipeListe' => $distinctEquipes,
             'cormeilles' => $cormeilles,
             'classement_par_journee' => $classementTriParEquipe,
-            'nb_journees' => $nbJournees
+            'nb_journees' => $nbJournees,
+            'division' => $division,
+            'groupe' => $groupe,
         ]);
     }
 

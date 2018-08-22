@@ -17,7 +17,7 @@
                 <h2 class="page-header">Les mots du président</h2>
             </div>
             <div class="col-md-4 text-center">
-                <img src="{{ asset('pictures/profiles/default.png') }}" class="img-circle col-md-12" alt="Responsive image">
+                <img src="{{ asset('pictures/default.png') }}" class="img-circle col-md-12" alt="Responsive image">
             </div>
             <div class="col-md-8">
                 <p class="text-justify">« L'année passée a été l'occasion une nouvelle fois pour nos jeunes de briller dans leur championnats respectifs et de présenter une image positive de notre club. Fort de ces résultats nous allons continuer à développer notre école de football, passage obligé pour envisager l'avenir avec sérénité. Encore merci et félicitation à tous ceux qui oeuvrent de près ou de loin au bon fonctionnement de ces catégories. </br></br>
@@ -51,7 +51,7 @@
                         <ul class="list-group">
                             <li class="list-group-item justify-content-between">
                                 Vétérans
-                                <span class="badge badge-primary badge-pill">1</span>
+                                <span class="badge badge-primary badge-pill">2</span>
                             </li>
                             <li class="list-group-item justify-content-between">
                                 Seniors
@@ -118,39 +118,6 @@
             </div>
             <div class="col-md-4 col-sm-6">
                     <img class="img-responsive img-portfolio img-hover" src="{{ asset('pictures/index/6.jpg') }}" alt="">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <h2 class="page-header">Derniers résultats</h2>
-                <table class="table">
-                    {% if resultats is not empty %}
-                        {% for resultat in resultats%}
-                            <tr>
-                                <td colspan="3" class="text-center"><strong>{{ resultat['competition'] }}</strong> - <small><em>{{ resultat['date'] }}</em></small></td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">{{ resultat['equipe1'] }}</td>
-                                <td class="text-center">{{ resultat['score'] }}</td>
-                                <td class="text-center">{{ resultat['equipe2'] }}</td>
-                            </tr>
-                        {% endfor %}
-                    {% endif %}
-                </table>
-            </div>
-            <div class="col-lg-6">
-                <h2 class="page-header">Prochaines rencontres</h2>
-                <table class="table">
-                    {% for match in prochainsMatchs%}
-                        <tr>
-                            <td colspan="2" class="text-center"><strong>{{ match['competition'] }}</strong> - <small><em>{{ match['date'] }}</em></small></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">{{ match['equipe1'] }}</td>
-                            <td class="text-center">{{ match['equipe2'] }}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
             </div>
         </div>
     </div>
