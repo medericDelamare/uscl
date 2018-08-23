@@ -783,17 +783,6 @@ input:checked + .slider:before {
 .vertical-align{
     vertical-align: middle;
 }
-.row {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display:         flex;
-    flex-wrap: wrap;
-}
-.row > [class*='col-'] {
-    display: flex;
-    flex-direction: column;
-}
 
 .moyen-chiffres{
     font-size: 40px;
