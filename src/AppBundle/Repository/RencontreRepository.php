@@ -22,6 +22,18 @@ class RencontreRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function getRencontreByEquipeAndCategorie($equipe1, $equipe2, $categorie){
+        return $this->createQueryBuilder('r')
+            ->join('r.equipeDomicile', 'd', 'WITH', 'd.id = r.equipeDomicile')
+            ->leftJoin('r.equipeExterieure', 'e', 'WITH', 'e.id = r.equipeExterieure')
+            ->where('d.categorie = :categorie')
+            ->andWhere('d.nomParse = :equipe1')
+            ->andWhere('e.nomParse = :equipe2')
+            ->setParameters(['categorie' => $categorie, 'equipe1' => $equipe1, 'equipe2' => $equipe2])
+            ->getQuery()
+            ->getResult();
+    }
+
     public function getDerniereJournee($categorie){
         $dernireJournee = $this->createQueryBuilder('r')
             ->select('r.journee')
@@ -38,11 +50,11 @@ class RencontreRepository extends EntityRepository
             ->join('r.equipeDomicile', 'd', 'WITH', 'd.id = r.equipeDomicile')
             ->where('r.journee = :derniereJournee')
             ->andWhere('d.categorie = :categorie')
-            ->setParameter('derniereJournee', $dernireJournee)
+            ->setParameter('derniereJournee', $dernireJournee['journee'])
             ->setParameter('categorie', $categorie)
             ->getQuery()
             ->getResult();
-
+        
         return $rencontres;
     }
 

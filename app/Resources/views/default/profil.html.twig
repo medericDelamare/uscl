@@ -134,7 +134,7 @@
                             <div class="visible-xs col-xs-4">
                                 <div class="media">
                                     <div class="media-left">
-                                        <div class="media-object carton_jaune gros-chiffres">{{ joueur.buts|length}}</div>
+                                        <div class="media-object carton_jaune gros-chiffres">{{ joueur.statsRencontresCartonsJaunes|length}}</div>
                                     </div>
                                     <div class="media-body media-middle">
                                         <img class="visiible xs" src="{{ asset('pictures/icons/yellow-card.png') }}">
@@ -144,7 +144,7 @@
                             <div class="visible-xs col-xs-4">
                                 <div class="media">
                                     <div class="media-left">
-                                        <div class="media-object carton_jaune gros-chiffres">{{ joueur.buts|length}}</div>
+                                        <div class="media-object carton_jaune gros-chiffres">{{ joueur.statsRencontresCartonsRouges|length}}</div>
                                     </div>
                                     <div class="media-body media-middle">
                                         <img class="visiible xs" src="{{ asset('pictures/icons/red-card.png') }}">
@@ -155,7 +155,7 @@
                                 <row>
                                     <div class="media">
                                         <div class="media-left">
-                                            <div class="media-object carton_jaune moyen-chiffres">{{ joueur.buts|length}}</div>
+                                            <div class="media-object carton_jaune moyen-chiffres">{{ joueur.statsRencontresCartonsJaunes|length}}</div>
                                         </div>
                                         <div class="media-body media-middle">
                                             <img class="visiible xs" src="{{ asset('pictures/icons/yellow-card.png') }}">
@@ -165,7 +165,7 @@
                                 <row>
                                     <div class="media">
                                         <div class="media-left">
-                                            <div class="media-object carton_jaune moyen-chiffres">{{ joueur.buts|length}}</div>
+                                            <div class="media-object carton_jaune moyen-chiffres">{{ joueur.statsRencontresCartonsRouges|length}}</div>
                                         </div>
                                         <div class="media-body media-middle">
                                             <img class="visiible xs" src="{{ asset('pictures/icons/red-card.png') }}">
@@ -252,7 +252,7 @@
                             {% for passe in joueur.passes%}
                                 <tr>
                                     <td>{{ passe.statsRencontres.rencontre.date|date("d/m/Y")  }}</td>
-                                    <td><img src="{{ asset('pictures/icons/soccer.png') }}"> A délivré une passe décisive lors de <a href="{{ path('rencontre', {'id': passe.statsRencontres.rencontre.id}) }}">{{ passeur.statsRencontres.rencontre  }}</a></td>
+                                    <td><img src="{{ asset('pictures/icons/soccer.png') }}"> A délivré une passe décisive lors de <a href="{{ path('rencontre', {'id': passe.statsRencontres.rencontre.id}) }}">{{ passe.statsRencontres.rencontre  }}</a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
