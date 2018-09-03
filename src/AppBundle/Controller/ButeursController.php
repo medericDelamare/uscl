@@ -49,34 +49,34 @@ class ButeursController extends Controller
                 $buteursSenior[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
             } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesSeniorB)){
                 $buteur->getButeur()->getStats()->incrementButB();
-                $buteursSenior[] = $buteur->getButeur();
+                $buteursSenior[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
             } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesSeniorCoupe)){
                 $buteur->getButeur()->getStats()->incrementButCoupe();
-                $buteursSenior[] = $buteur->getButeur();
+                $buteursSenior[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
             } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesVeteransA)){
                 $buteur->getButeur()->getStats()->incrementButA();
-                $buteursVeterans[] = $buteur->getButeur();
+                $buteursVeterans[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
             } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesVeteransB)){
                 $buteur->getButeur()->getStats()->incrementButB();
-                $buteursVeterans[] = $buteur->getButeur();
+                $buteursVeterans[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
             } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesVeteransCoupe)){
                 $buteur->getButeur()->getStats()->incrementButCoupe();
-                $buteursVeterans[] = $buteur->getButeur();
+                $buteursVeterans[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
             } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesU18)){
                 $buteur->getButeur()->getStats()->incrementButA();
-                $buteursU18[] = $buteur->getButeur();
+                $buteursU18[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
             } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesU18Coupe)){
                 $buteur->getButeur()->getStats()->incrementButCoupe();
-                $buteursU18[] = $buteur->getButeur();
+                $buteursU18[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
             } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesU15)){
                 $buteur->getButeur()->getStats()->incrementButA();
-                $buteursU15[] = $buteur->getButeur();
+                $buteursU15[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
             } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesU15Coupe)){
                 $buteur->getButeur()->getStats()->incrementButCoupe();
-                $buteursU15[] = $buteur->getButeur();
+                $buteursU15[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
             }
         }
-
+        
         return $this->render(':default:buteurs.html.twig', [
             'seniors' => $buteursSenior,
             'veterans' => $buteursVeterans,
