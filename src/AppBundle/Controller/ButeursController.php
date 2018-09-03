@@ -76,7 +76,7 @@ class ButeursController extends Controller
                 $buteursU15[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
             }
         }
-        
+
         return $this->render(':default:buteurs.html.twig', [
             'seniors' => $buteursSenior,
             'veterans' => $buteursVeterans,
