@@ -63,13 +63,13 @@
                     <tr>
                         <td>{{ rencontre.date|date("d/m/Y") }}</td>
                         {% if rencontre.equipeDomicile.club %}
-                            <td><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ rencontre.equipeDomicile.club.logo) }}"><span class="hidden-xs"> - {{ rencontre.equipeDomicile.club.nom }}</span></td>
+                            <td class="col-xs-3  col-lg-5"><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ rencontre.equipeDomicile.club.logo) }}"><span class="hidden-xs"> - {{ rencontre.equipeDomicile.club.nom }}</span></td>
                         {% else %}
                             <td>{{ rencontre.equipeDomicile.nomParse }}</td>
                         {% endif %}
                         <td>{{ rencontre.score }}</td>
                         {% if rencontre.equipeExterieure.club %}
-                            <td><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ rencontre.equipeExterieure.club.logo) }}"><span class="hidden-xs"> - {{ rencontre.equipeExterieure.club.nom }}</span></td>
+                            <td class="col-xs-3  col-lg-5 text-right"><span class="hidden-xs">{{ rencontre.equipeExterieure.club.nom }} - </span><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ rencontre.equipeExterieure.club.logo) }}"></td>
                         {% else %}
                             <td>{{ rencontre.equipeExterieure.nomParse }}</td>
                         {% endif %}
@@ -92,7 +92,7 @@
                         {% endif %}
                         <td class="col-xs-3  col-lg-1 text-center score">VS</td>
                         {% if agenda.equipeExterieure.club %}
-                            <td class="col-xs-3  col-lg-5 text-right"><span class="hidden-xs">{{ agenda.equipeExterieure.club.nom }}</span> - <img class="img-carriere" src="{{ asset('pictures/Logos/' ~ agenda.equipeExterieure.club.logo) }}"></td>
+                            <td class="col-xs-3  col-lg-5 text-right"><span class="hidden-xs">{{ agenda.equipeExterieure.club.nom }} - </span><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ agenda.equipeExterieure.club.logo) }}"></td>
                         {% else %}
                             <td>{{ agenda.equipeExterieure.nomParse }}</td>
                         {% endif %}
