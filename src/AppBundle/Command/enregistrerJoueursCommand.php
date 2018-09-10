@@ -42,8 +42,12 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
         $nbCreation = 0;
         $nbMaj = 0;
+
+        $nouveauJoueur = false;
+
         foreach ($data as $joueur) {
-            if (($joueur['permits'][0]['state'] == 'Validée' && $joueur['permits'][0]['club']['id'] == 550717 && substr($joueur['permits'][0]['startSeason'],0,4) == "2018") ||
+            if ((count($joueur['permits']) == 1) ||
+                ($joueur['permits'][0]['state'] == 'Validée' && $joueur['permits'][0]['club']['id'] == 550717 && substr($joueur['permits'][0]['startSeason'],0,4) == "2018") ||
                 ($joueur['permits'][1]['state'] == 'Validée' && $joueur['permits'][1]['club']['id'] == 550717 && substr($joueur['permits'][1]['startSeason'],0,4) == "2018")){
                 $doctrine = $this->getContainer()->get('doctrine');
                 $em = $doctrine->getManager();
