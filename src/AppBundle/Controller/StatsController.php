@@ -67,6 +67,22 @@ class StatsController extends Controller
                 $division = 'CRITERIUM DU MATIN';
                 $groupe = 'G';
                 break;
+            case 'U18':
+                $division = 'Departemental 3';
+                $groupe = 'A';
+                break;
+            case 'U15':
+                $division = 'Departemental 3';
+                $groupe = 'A';
+                break;
+            case 'U13A':
+                $division = 'Departemental 4';
+                $groupe = 'A';
+                break;
+            case 'U13B':
+                $division = 'Departemental 4';
+                $groupe = 'B';
+                break;
         }
 
         $categoryFormat = ucfirst($category);

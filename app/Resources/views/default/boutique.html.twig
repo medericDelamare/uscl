@@ -468,7 +468,6 @@
         $('#send').click(function () {
             licencie = $('#licencie').val();
             email = $('#mail').val();
-            alert(email);
             $.ajax({
                 type: 'POST',
                 url: '{{ path('boutique-send') }}',

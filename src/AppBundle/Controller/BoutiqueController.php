@@ -42,7 +42,6 @@ class BoutiqueController extends  Controller
 
         $now = new \DateTime();
         $nomFichier = 'NOM-prenom-' . $now->format('d-m-Y') .'.xlsx';
-        dump($request->request);
         $existingXlsx->getActiveSheet()->setCellValue('B1', $now->format('d/m/Y'));
 
         foreach ($request->request->get('abc') as $item => $value){
@@ -87,6 +86,18 @@ class BoutiqueController extends  Controller
         $produitsAccessoires = $this->getDoctrine()->getRepository(Produit::class)->findByCategorie(3);
         $produitsDirigeant = $this->getDoctrine()->getRepository(Produit::class)->findByCategorie(4);
         $licencies = $this->getDoctrine()->getRepository(Licencie::class)->findAll();
+
+
+        $message = new \Swift_Message();
+        $message->attach(\Swift_Attachment::fromPath($this->get('kernel')->getRootDir() . '\Resources\documents\commande-'.$nomFichier));
+        $message
+            ->setSubject('Boutique USCL')
+            ->setFrom('delamare.mederic@gmail.com')
+            ->setTo('contact@uscl-foot.fr')
+            ->setBody($this->render(':default:mail_boutique.html.twig'),'text/html')
+        ;
+
+        $this->get('mailer')->send($message);
 
         return $this->render(':default:boutique.html.twig', [
             'jourDeMatch'=> $produitsJDM,
