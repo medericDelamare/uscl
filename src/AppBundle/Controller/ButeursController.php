@@ -17,8 +17,8 @@ class ButeursController extends Controller
     private $categoriesSeniorB = ['seniorB'];
     private $categoriesSeniorCoupe = ['coupeDeFrance'];
 
-    private $categoriesVeteransA = ['veteransA'];
-    private $categoriesVeteransB = ['veteransB'];
+    private $categoriesVeteransA = ['veteranA'];
+    private $categoriesVeteransB = ['veteranB'];
     private $categoriesVeteransCoupe = ['veteransCoupe'];
 
     private $categoriesU18 = [];

@@ -72,7 +72,7 @@
                                 <tbody>
                                 {% for veteran in veterans %}
                                     <tr>
-                                        <td><a href="{{ path('profile', {'id': senior.id}) }}">{{ senior.nom }} {{ senior.prenom }}</td>
+                                        <td><a href="{{ path('profile', {'id': veteran.id}) }}">{{ veteran.nom }} {{ veteran.prenom }}</td>
                                         <td>{{ veteran.stats.butsA }}</td>
                                         <td>{{ veteran.stats.butsB }}</td>
                                         <td>{{ veteran.stats.butsCoupe }}</td>
