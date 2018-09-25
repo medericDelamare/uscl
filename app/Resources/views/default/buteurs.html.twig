@@ -145,7 +145,7 @@
                                 <tbody>
                                 {% for U15Infos in U15 %}
                                     <tr>
-                                        <td><a href="{{ path('profile', {'id': U18Infos.id}) }}">{{ U18Infos.nom }} {{ U18Infos.prenom }}</td>
+                                        <td><a href="{{ path('profile', {'id': U15Infos.id}) }}">{{ U15Infos.nom }} {{ U15Infos.prenom }}</td>
                                         <td>{{ U15Infos.stats.butA }}</td>
                                         <td>{{ U15Infos.stats.butCoupe }}</td>
                                         <td>{{ U15Infos.stats.butCoupe + U18Infos.stats.butA  }}</td>
