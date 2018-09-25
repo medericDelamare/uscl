@@ -34,6 +34,7 @@ class EquipeAdmin extends AbstractAdmin
                     'Coupe U18' => 'coupeU18',
                     'Coupe U15' => 'coupeU15',
                     'Coupe Veterans' => 'coupeVeterans',
+                    'Coupe Des Reserves' => 'coupeReserves',
                 ]
             ])
             ->add('club')
