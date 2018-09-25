@@ -69,15 +69,25 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-10">
-                                                <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)"></input>
+                                        {% if (produit.initiales) %}
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)"></input>
+                                                </div>
                                             </div>
-                                        </div>
+                                        {% else %}
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)" disabled></input>
+                                                </div>
+                                            </div>
+                                        {% endif %}
                                         <div class="form-group">
                                             <div class="col-sm-10">
                                                 {% if(produit.logoObligatoire) %}
                                                     <input id="logo" type="checkbox" disabled checked data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
+                                                {% elseif(produit.logo == false) %}
+                                                    <input id="logo" type="checkbox" disabled data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
                                                 {% else %}
                                                     <input id="logo" type="checkbox" checked data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
                                                 {% endif %}
@@ -112,48 +122,54 @@
                                         <div class="form-group">
                                             <div class="col-sm-12">
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}1" value="S" name="radioInline" checked="">
-                                                    <label for="inlineRadio{{ loop.index }}1">S</label>
+                                                    <input type="radio" id="inlineRadio1{{ loop.index  }}1" value="S" name="radioInline" checked="">
+                                                    <label for="inlineRadio1{{ loop.index }}1">S</label>
                                                 </div>
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}2" value="M" name="radioInline">
-                                                    <label for="inlineRadio{{ loop.index }}2">M</label>
-                                                </div>
-
-                                                <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}3" value="L" name="radioInline">
-                                                    <label for="inlineRadio{{ loop.index }}3">L</label>
+                                                    <input type="radio" id="inlineRadio1{{ loop.index }}2" value="M" name="radioInline">
+                                                    <label for="inlineRadio1{{ loop.index }}2">M</label>
                                                 </div>
 
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}4" value="XL" name="radioInline">
-                                                    <label for="inlineRadio{{ loop.index }}4">XL</label>
+                                                    <input type="radio" id="inlineRadio1{{ loop.index }}3" value="L" name="radioInline">
+                                                    <label for="inlineRadio1{{ loop.index }}3">L</label>
                                                 </div>
 
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}5" value="XXL" name="radioInline">
-                                                    <label for="inlineRadio{{ loop.index }}5">XXL</label>
+                                                    <input type="radio" id="inlineRadio1{{ loop.index }}4" value="XL" name="radioInline">
+                                                    <label for="inlineRadio1{{ loop.index }}4">XL</label>
+                                                </div>
+
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio1{{ loop.index }}5" value="XXL" name="radioInline">
+                                                    <label for="inlineRadio1{{ loop.index }}5">XXL</label>
                                                 </div>
                                             </div>
                                         </div>
                                         {% if (produit.initiales) %}
-                                        <div class="form-group">
-                                            <div class="col-sm-10">
-                                                <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)"></input>
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)"></input>
+                                                </div>
                                             </div>
-                                        </div>
+                                        {% else %}
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)" disabled></input>
+                                                </div>
+                                            </div>
                                         {% endif %}
-                                        {% if (produit.logo) %}
                                         <div class="form-group">
                                             <div class="col-sm-10">
                                                 {% if(produit.logoObligatoire) %}
                                                     <input id="logo" type="checkbox" disabled checked data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
+                                                {% elseif(produit.logo == false) %}
+                                                    <input id="logo" type="checkbox" disabled data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
                                                 {% else %}
                                                     <input id="logo" type="checkbox" checked data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
                                                 {% endif %}
                                             </div>
                                         </div>
-                                        {% endif %}
                                         <div class="form-group">
                                             <div class="col-sm-10">
                                                 <button type="button" class="btn btn-primary ajout">Ajouter à la commande</button>
@@ -183,39 +199,49 @@
                                         <div class="form-group">
                                             <div class="col-sm-12">
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}1" value="S" name="radioInline" checked="">
-                                                    <label for="inlineRadio{{ loop.index }}1">S</label>
+                                                    <input type="radio" id="inlineRadio2{{ loop.index }}1" value="S" name="radioInline" checked="">
+                                                    <label for="inlineRadio2{{ loop.index }}1">S</label>
                                                 </div>
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}2" value="M" name="radioInline">
-                                                    <label for="inlineRadio{{ loop.index }}2">M</label>
-                                                </div>
-
-                                                <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}3" value="L" name="radioInline">
-                                                    <label for="inlineRadio{{ loop.index }}3">L</label>
+                                                    <input type="radio" id="inlineRadio2{{ loop.index }}2" value="M" name="radioInline">
+                                                    <label for="inlineRadio2{{ loop.index }}2">M</label>
                                                 </div>
 
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}4" value="XL" name="radioInline">
-                                                    <label for="inlineRadio{{ loop.index }}4">XL</label>
+                                                    <input type="radio" id="inlineRadio2{{ loop.index }}3" value="L" name="radioInline">
+                                                    <label for="inlineRadio2{{ loop.index }}3">L</label>
                                                 </div>
 
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}5" value="XXL" name="radioInline">
-                                                    <label for="inlineRadio{{ loop.index }}5">XXL</label>
+                                                    <input type="radio" id="inlineRadio2{{ loop.index }}4" value="XL" name="radioInline">
+                                                    <label for="inlineRadio2{{ loop.index }}4">XL</label>
+                                                </div>
+
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio2{{ loop.index }}5" value="XXL" name="radioInline">
+                                                    <label for="inlineRadio2{{ loop.index }}5">XXL</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-10">
-                                                <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)"></input>
+                                        {% if (produit.initiales) %}
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)"></input>
+                                                </div>
                                             </div>
-                                        </div>
+                                        {% else %}
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)" disabled></input>
+                                                </div>
+                                            </div>
+                                        {% endif %}
                                         <div class="form-group">
                                             <div class="col-sm-10">
                                                 {% if(produit.logoObligatoire) %}
                                                     <input id="logo" type="checkbox" disabled checked data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
+                                                {% elseif(produit.logo == false) %}
+                                                    <input id="logo" type="checkbox" disabled data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
                                                 {% else %}
                                                     <input id="logo" type="checkbox" checked data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
                                                 {% endif %}
@@ -250,39 +276,49 @@
                                         <div class="form-group">
                                             <div class="col-sm-12">
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}1" value="S" name="radioInline" checked="">
-                                                    <label for="inlineRadio{{ loop.index }}1">S</label>
+                                                    <input type="radio" id="inlineRadio3{{ loop.index }}1" value="S" name="radioInline" checked="">
+                                                    <label for="inlineRadio3{{ loop.index }}1">S</label>
                                                 </div>
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}2" value="M" name="radioInline">
-                                                    <label for="inlineRadio{{ loop.index }}2">M</label>
-                                                </div>
-
-                                                <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}3" value="L" name="radioInline">
-                                                    <label for="inlineRadio{{ loop.index }}3">L</label>
+                                                    <input type="radio" id="inlineRadio3{{ loop.index }}2" value="M" name="radioInline">
+                                                    <label for="inlineRadio3{{ loop.index }}2">M</label>
                                                 </div>
 
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}4" value="XL" name="radioInline">
-                                                    <label for="inlineRadio{{ loop.index }}4">XL</label>
+                                                    <input type="radio" id="inlineRadio3{{ loop.index }}3" value="L" name="radioInline">
+                                                    <label for="inlineRadio3{{ loop.index }}3">L</label>
                                                 </div>
 
                                                 <div class="radio radio-primary radio-inline">
-                                                    <input type="radio" id="inlineRadio{{ loop.index }}5" value="XXL" name="radioInline">
-                                                    <label for="inlineRadio{{ loop.index }}5">XXL</label>
+                                                    <input type="radio" id="inlineRadio3{{ loop.index }}4" value="XL" name="radioInline">
+                                                    <label for="inlineRadio3{{ loop.index }}4">XL</label>
+                                                </div>
+
+                                                <div class="radio radio-primary radio-inline">
+                                                    <input type="radio" id="inlineRadio3{{ loop.index }}5" value="XXL" name="radioInline">
+                                                    <label for="inlineRadio3{{ loop.index }}5">XXL</label>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-10">
-                                                <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)"></input>
+                                        {% if (produit.initiales) %}
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)"></input>
+                                                </div>
                                             </div>
-                                        </div>
+                                        {% else %}
+                                            <div class="form-group">
+                                                <div class="col-sm-10">
+                                                    <input id='initiales' class="form-control" maxlength="2" id="text" name="text" placeholder="Initiales (2,50 €)" disabled></input>
+                                                </div>
+                                            </div>
+                                        {% endif %}
                                         <div class="form-group">
                                             <div class="col-sm-10">
                                                 {% if(produit.logoObligatoire) %}
                                                     <input id="logo" type="checkbox" disabled checked data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
+                                                {% elseif(produit.logo == false) %}
+                                                    <input id="logo" type="checkbox" disabled data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
                                                 {% else %}
                                                     <input id="logo" type="checkbox" checked data-toggle="toggle" data-on="Logo (3€)" data-off="Sans Logo" data-onstyle="primary" data-offstyle="danger">
                                                 {% endif %}
@@ -445,6 +481,11 @@
 
         })
 
+        function validateEmail($email) {
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            return emailReg.test( $email );
+        }
+
         $('#recapitulatif_commande').on('click', 'input[type="button"]', function(e){
             $(this).closest('tr').remove();
             var prix = ($('#valeur').text().replace('€',''));
@@ -467,7 +508,7 @@
         })
 
         $('#mail').keyup(function () {
-            if($(this).val().length !== 0 && $('#licencie').val() != "null"){
+            if(validateEmail($(this).val()) && $(this).val().length !== 0 && $('#licencie').val() != "null"){
                 $('#send').removeAttr("disabled");
             }
             if($(this).val().length === 0){
@@ -493,6 +534,8 @@
                 }
             });
         })
+
+
 
     </script>
 {% endblock %}

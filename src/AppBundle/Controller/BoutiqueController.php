@@ -41,7 +41,7 @@ class BoutiqueController extends  Controller
         $existingXlsx   = $this->get('phpoffice.spreadsheet')->createSpreadsheet($this->get('kernel')->getRootDir() . '\Resources\documents\bonDeCommande.xlsx');
 
         $now = new \DateTime();
-        $nomFichier = 'NOM-prenom-' . $now->format('d-m-Y') .'.xlsx';
+        $nomFichier = $request->request->get('licencie') . $now->format('d-m-Y') .'.xlsx';
         $existingXlsx->getActiveSheet()->setCellValue('B1', $now->format('d/m/Y'));
 
         foreach ($request->request->get('abc') as $item => $value){
