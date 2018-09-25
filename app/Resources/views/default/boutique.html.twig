@@ -524,13 +524,13 @@
                 url: '{{ path('boutique-send') }}',
                 data: { abc: array, licencie:licencie, mail:email },
                 success: function(msg){
-                    location.href = '/USCL/web/app_dev.php/boutique/liste';
+                    location.href = 'http://uscl-foot.fr/boutique/liste';
                 },
                 error: function(XmlHttpRequest,textStatus, errorThrown){
-                    alert("Failed! ");
+                    alert("Echec! ");
                 },
                 complete: function(msg){
-                    location.href = '/USCL/web/app_dev.php/boutique/liste';
+                    location.href = 'http://uscl-foot.fr/boutique/liste';
                 }
             });
         })

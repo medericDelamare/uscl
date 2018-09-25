@@ -38,7 +38,7 @@ class BoutiqueController extends  Controller
      * @Template()
      */
     public function sendAction(Request $request){
-        $existingXlsx   = $this->get('phpoffice.spreadsheet')->createSpreadsheet($this->get('kernel')->getRootDir() . '\Resources\documents\bonDeCommande.xlsx');
+        $existingXlsx   = $this->get('phpoffice.spreadsheet')->createSpreadsheet($this->get('kernel')->getRootDir() . '/Resources/documents/bonDeCommande.xlsx');
 
         $now = new \DateTime();
         $nomFichier = $request->request->get('licencie') . $now->format('d-m-Y') .'.xlsx';
@@ -80,7 +80,7 @@ class BoutiqueController extends  Controller
         }
 
         $writerXlsx = $this->get('phpoffice.spreadsheet')->createWriter($existingXlsx, 'Xlsx');
-        $writerXlsx->save($this->get('kernel')->getRootDir() . '\Resources\documents\commande-'.$nomFichier);
+        $writerXlsx->save($this->get('kernel')->getRootDir() . '/Resources/documents/commande-'.$nomFichier);
         $produitsJDM = $this->getDoctrine()->getRepository(Produit::class)->findByCategorie(1);
         $produitsEntrainement = $this->getDoctrine()->getRepository(Produit::class)->findByCategorie(2);
         $produitsAccessoires = $this->getDoctrine()->getRepository(Produit::class)->findByCategorie(3);
@@ -89,7 +89,7 @@ class BoutiqueController extends  Controller
 
 
         $message = new \Swift_Message();
-        $message->attach(\Swift_Attachment::fromPath($this->get('kernel')->getRootDir() . '\Resources\documents\commande-'.$nomFichier));
+        $message->attach(\Swift_Attachment::fromPath($this->get('kernel')->getRootDir() . '/Resources/documents/commande-'.$nomFichier));
         $message
             ->setSubject('Boutique USCL')
             ->setFrom('contact@uscl-foot.fr')
