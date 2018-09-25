@@ -46,6 +46,7 @@ class BoutiqueController extends  Controller
 
         foreach ($request->request->get('abc') as $item => $value){
             $ligne = 8+$item;
+            var_dump($value['reference']);
             $existingXlsx->getActiveSheet()->setCellValue('A'.$ligne, $value['reference']);
             $existingXlsx->getActiveSheet()->setCellValue('B'.$ligne, $value['nomProduit']);
             switch ($value['taille']){

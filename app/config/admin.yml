@@ -68,3 +68,8 @@ services:
         arguments: [~, AppBundle\Entity\HistoriqueStats, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Historique Stats, group: "joueurs"}
+    admin.boutique:
+        class: AppBundle\Admin\ProduitAdmin
+        arguments: [~, AppBundle\Entity\Produit, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Boutique, group: "club"}

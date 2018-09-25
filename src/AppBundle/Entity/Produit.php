@@ -64,6 +64,18 @@ class Produit
     private $logoObligatoire;
 
     /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $logo;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $initiales;
+
+    /**
      * @return int
      */
     public function getId()
@@ -195,5 +207,46 @@ class Produit
     {
         $this->nomNike = $nomNike;
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * @param bool $logo
+     * @return Produit
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isInitiales()
+    {
+        return $this->initiales;
+    }
+
+    /**
+     * @param bool $initiales
+     * @return Produit
+     */
+    public function setInitiales($initiales)
+    {
+        $this->initiales = $initiales;
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getNom() ? $this->getNom() . ' - ' . $this->getReference() : 'produit';
     }
 }
