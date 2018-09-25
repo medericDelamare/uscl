@@ -9,6 +9,43 @@ use Doctrine\ORM\EntityRepository;
 
 class LicencieRepository extends EntityRepository
 {
+
+    public function findFootballAnimation(){
+        $u7Categories = ['Libre / U7 (- 7 ans)','Libre / U7 F (- 7 ans F)'];
+        $u9Categories = ['Libre / U8 (- 8 ans)','Libre / U9 (- 9 ans)'];
+        $u11Categories = ['Libre / U10 (- 10 ans)', 'Libre / U11 (- 11 ans)'];
+
+        $footballAnimation = [];
+        $u7 = $this->createQueryBuilder('j')
+            ->where('j.categorie IN (:categories)')
+            ->orderBy('j.categorie')
+            ->setParameter('categories', $u7Categories)
+            ->getQuery()
+            ->getResult();
+
+        $footballAnimation['u7'] = $u7;
+
+        $u9 = $this->createQueryBuilder('j')
+            ->where('j.categorie IN (:categories)')
+            ->orderBy('j.categorie')
+            ->setParameter('categories', $u9Categories)
+            ->getQuery()
+            ->getResult();
+
+        $footballAnimation['u9'] = $u9;
+
+        $u11 = $this->createQueryBuilder('j')
+            ->where('j.categorie IN (:categories)')
+            ->orderBy('j.categorie')
+            ->setParameter('categories', $u11Categories)
+            ->getQuery()
+            ->getResult();
+
+        $footballAnimation['u11'] = $u11;
+        return $footballAnimation;
+
+    }
+
     public function findByCategoryOrderByPoste($category){
 
         $categories = [];
