@@ -46,7 +46,6 @@ class BoutiqueController extends  Controller
 
         foreach ($request->request->get('abc') as $item => $value){
             $ligne = 8+$item;
-            var_dump($value['reference']);
             $existingXlsx->getActiveSheet()->setCellValue('A'.$ligne, $value['reference']);
             $existingXlsx->getActiveSheet()->setCellValue('B'.$ligne, $value['nomProduit']);
             switch ($value['taille']){
@@ -93,8 +92,8 @@ class BoutiqueController extends  Controller
         $message->attach(\Swift_Attachment::fromPath($this->get('kernel')->getRootDir() . '\Resources\documents\commande-'.$nomFichier));
         $message
             ->setSubject('Boutique USCL')
-            ->setFrom('delamare.mederic@gmail.com')
-            ->setTo('contact@uscl-foot.fr')
+            ->setFrom('contact@uscl-foot.fr')
+            ->setTo([$request->request->get('mail'),'delamare.mederic@gmail.com'])
             ->setBody($this->render(':default:mail_boutique.html.twig'),'text/html')
         ;
 
