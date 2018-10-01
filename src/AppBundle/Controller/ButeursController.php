@@ -19,7 +19,7 @@ class ButeursController extends Controller
 
     private $categoriesVeteransA = ['veteranA'];
     private $categoriesVeteransB = ['veteranB'];
-    private $categoriesVeteransCoupe = ['veteransCoupe'];
+    private $categoriesVeteransCoupe = ['coupeVeterans'];
 
     private $categoriesU18 = ['U18'];
     private $categoriesU18Coupe = ['coupeU18'];
