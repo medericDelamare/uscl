@@ -63,7 +63,7 @@ class LicencieRepository extends EntityRepository
                 $categories = ['Libre / U15 (- 15 ans)', 'Libre / U14 (- 14 ans)'];
                 break;
             case 'U13':
-                $categories = ['Libre / U13 F (- 13 ans F)', 'Libre / U13 (- 13 ans)', 'Libre / U12 F (- 12 ans F)', 'Libre / U12 (- 12 ans)'];
+                $categories = ['Libre / U14 F (- 14 ans F)', 'Libre / U13 F (- 13 ans F)', 'Libre / U13 (- 13 ans)', 'Libre / U12 F (- 12 ans F)', 'Libre / U12 (- 12 ans)'];
                 break;
         }
 
