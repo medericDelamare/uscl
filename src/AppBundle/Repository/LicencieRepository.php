@@ -11,7 +11,7 @@ class LicencieRepository extends EntityRepository
 {
 
     public function findFootballAnimation(){
-        $u7Categories = ['Libre / U7 (- 7 ans)','Libre / U7 F (- 7 ans F)'];
+        $u7Categories = ['Libre / U6 (- 6 ans)', 'Libre / U7 (- 7 ans)','Libre / U7 F (- 7 ans F)'];
         $u9Categories = ['Libre / U8 (- 8 ans)','Libre / U9 (- 9 ans)'];
         $u11Categories = ['Libre / U10 (- 10 ans)', 'Libre / U11 (- 11 ans)'];
 
