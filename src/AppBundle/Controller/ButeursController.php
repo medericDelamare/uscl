@@ -27,6 +27,10 @@ class ButeursController extends Controller
     private $categoriesU15 = ['U15'];
     private $categoriesU15Coupe = ['coupeU15'];
 
+    private $categoriesU13A = ['U13A'];
+    private $categoriesU13B = ['U13B'];
+    private $categoriesU13Coupe = ['coupeU13'];
+
 
 
     /**
@@ -74,6 +78,15 @@ class ButeursController extends Controller
             } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesU15Coupe)){
                 $buteur->getButeur()->getStats()->incrementButCoupe();
                 $buteursU15[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
+            } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesU13A)){
+                $buteur->getButeur()->getStats()->incrementButA();
+                $buteursU13[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
+            } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesU13B)){
+                $buteur->getButeur()->getStats()->incrementButB();
+                $buteursU13[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
+            } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesU13Coupe)){
+                $buteur->getButeur()->getStats()->incrementButCoupe();
+                $buteursU13[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
             }
         }
 
@@ -81,7 +94,8 @@ class ButeursController extends Controller
             'seniors' => $buteursSenior,
             'veterans' => $buteursVeterans,
             'U18' => $buteursU18,
-            'U15' => $buteursU15
+            'U15' => $buteursU15,
+            'U13'=> $buteursU13
         ]);
     }
 }

@@ -9,6 +9,8 @@
         <h1 class="page-header">Buteurs</h1>
 
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+
             <div class="panel panel-uscl">
                 <div class="panel-heading" role="tab" id="headingOne">
                     <h4 class="panel-title">
@@ -97,7 +99,7 @@
                     <div class="panel-body">
                         <h1>Classements des buteurs<small> 	U18</small></h1>
                         <div class = "row">
-                            <table class = "text-center tableauButeur table-striped col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
+                            <table class = "text-center tableauButeur3Colonnes table-striped col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
                                 <thead>
                                     <tr>
                                         <th class = "text-center">Nom</th>
@@ -133,7 +135,7 @@
                     <div class="panel-body">
                         <h1>Classements des buteurs<small> 	U15</small></h1>
                         <div class = "row">
-                            <table class = "text-center tableauButeur table-striped col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
+                            <table class = "text-center tableauButeur3Colonnes table-striped col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
                                 <thead>
                                     <tr>
                                         <th class = "text-center">Nom</th>
@@ -157,6 +159,44 @@
                     </div>
                 </div>
             </div>
+            <div class="panel panel-uscl">
+                <div class="panel-heading" role="tab" id="headingFive">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Buteurs U13
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                    <div class="panel-body">
+                        <h1>Classements des buteurs<small> 	Seniors</small></h1>
+                        <div class = "row">
+                            <table id="buteurs-veterans" class = "text-center tableauButeur table-striped col-md-offset-2 col-md-8 col-xs-offset-2 col-xs-8">
+                                <thead>
+                                <tr>
+                                    <th class = "text-center">Nom</th>
+                                    <th class = "text-center">Buts en A</th>
+                                    <th class = "text-center">Buts en B</th>
+                                    <th class = "text-center">Buts en Coupe</th>
+                                    <th class = "text-center">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for U13Infos in U13 %}
+                                    <tr>
+                                        <td><a href="{{ path('profile', {'id': U13Infos.id}) }}">{{ U13Infos.nom }} {{ U13Infos.prenom }}</td>
+                                        <td>{{ U13Infos.stats.butsA }}</td>
+                                        <td>{{ U13Infos.stats.butsB }}</td>
+                                        <td>{{ U13Infos.stats.butsCoupe }}</td>
+                                        <td>{{ U13Infos.stats.butsA + U13Infos.stats.butsB + U13Infos.stats.butsCoupe }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -169,6 +209,19 @@
     <script >
         $('.tableauButeur').DataTable( {
             "order": [[ 4, "desc" ]],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
+            },
+            "autoWidth": false,
+            "paging": false,
+            "bInfo" : false,
+            "searching" : false
+        } );
+    </script>
+
+    <script >
+        $('.tableauButeur3Colonnes').DataTable( {
+            "order": [[ 3, "desc" ]],
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
             },
