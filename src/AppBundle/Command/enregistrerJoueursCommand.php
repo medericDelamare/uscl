@@ -34,6 +34,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
         curl_setopt($curl_request, CURLOPT_HEADER, 0);
         curl_setopt($curl_request, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl_request,CURLOPT_SSL_VERIFYPEER, false);
 
         $result = curl_exec($curl_request);
         curl_close($curl_request);
