@@ -32,7 +32,8 @@ class StatsRencontreAdmin extends AbstractAdmin
     {
 
         $listMapper
-            ->addIdentifier('rencontre')
+            ->addIdentifier('id')
+            ->add('rencontre')
         ;
     }
 }
