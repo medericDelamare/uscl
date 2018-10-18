@@ -99,29 +99,15 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
                     foreach ($clubArray as $club => $categArray){
                         $carriere = new CarriereJoueur();
 
-                        $carriere
-                            ->setSaison($annee);
+                        $carriere->setSaison($annee);
+
                         $entityClub = $em->getRepository(NomParse::class)->findOneByNom($club);
+                        is_null($entityClub) ? $this->logs[] = $club : $carriere->setClub($entityClub->getClub());
 
-                        if (is_null($entityClub)){
-                            $this->logs[] = $club;
-                        } else {
-                            $carriere
-                                ->setClub($entityClub->getClub());
-                        }
-
-                        $carriere
-                            ->setClubParse($club);
+                        $carriere->setClubParse($club);
                         foreach ($categArray as $key => $categ){
-                            if ($carriere->getSousCategorie()){
-                                $carriere
-                                    ->setSousCategorie($carriere->getSousCategorie() . ' - '  . $categ);
-                            } else {
-                                $carriere
-                                    ->setSousCategorie($categ);
-                            }
+                            $carriere->getSousCategorie() ? $carriere->setSousCategorie($carriere->getSousCategorie() . ' - '  . $categ) : $carriere->setSousCategorie($categ);
                         }
-
                         $licencie->addCarriere($carriere);
                     }
                 }
@@ -130,6 +116,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
                     $stats = new StatsJoueur();
                     $licencie->setStats($stats);
                 }
+                
                 $em->persist($licencie);
                 $em->flush();
             }
