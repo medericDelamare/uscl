@@ -50,9 +50,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
         $nouveauJoueur = false;
 
         foreach ($data as $joueur) {
-            if ((count($joueur['permits']) == 1) ||
-                ($joueur['permits'][0]['state'] == 'Validée' && $joueur['permits'][0]['club']['id'] == 550717 && substr($joueur['permits'][0]['startSeason'],0,4) == "2018") ||
-                ($joueur['permits'][1]['state'] == 'Validée' && $joueur['permits'][1]['club']['id'] == 550717 && substr($joueur['permits'][1]['startSeason'],0,4) == "2018")){
+            if ($this->hasLicenceValide($joueur['permits'])){
                 $doctrine = $this->getContainer()->get('doctrine');
                 $em = $doctrine->getManager();
 
@@ -207,5 +205,13 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
         return false;
     }
 
+    private function hasLicenceValide($licences){
+        foreach ($licences as $licence) {
+            if ($this->isValidee($licence) && $this->isSaisonCourante($licence) && $this->isCormeillesId($licence)){
+                return true;
+            }
+        }
 
+        return false;
+    }
 }
