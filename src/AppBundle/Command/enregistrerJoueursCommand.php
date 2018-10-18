@@ -18,6 +18,9 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
     private $logs = [];
 
+    const NUMERO_CLUB = '550717';
+    const START_SEASON = '2018';
+
 
     protected function configure()
     {
@@ -144,7 +147,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
     private function isJoueur($joueur){
         foreach ($joueur['permits'] as $licence){
-            if ('2018' ==  substr($licence['startSeason'],0,4) && strpos($licence['subCategory'],'Libre') !== false){
+            if ($this->isValidee($licence) && $this->isSaisonCourante($licence) && $this->isCormeillesId($licence) && strpos($licence['subCategory'],'Libre') !== false){
                 return true;
             }
         }
@@ -154,7 +157,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
     private function isDirigeant($joueur){
         foreach ($joueur['permits'] as $licence){
-            if ('2018' ==  substr($licence['startSeason'],0,4) && strpos($licence['subCategory'],'Dirigeant') !== false){
+            if ($this->isValidee($licence) && $this->isSaisonCourante($licence) && $this->isCormeillesId($licence) && strpos($licence['subCategory'],'Dirigeant') !== false ){
                 return true;
             }
         }
@@ -164,7 +167,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
     private function isEducateur($joueur){
         foreach ($joueur['permits'] as $licence){
-            if ('2018' ==  substr($licence['startSeason'],0,4) && strpos($licence['subCategory'],'Educateur') !== false){
+            if ($this->isValidee($licence) && $this->isSaisonCourante($licence) &&  $this->isCormeillesId($licence) && strpos($licence['subCategory'],'Educateur') !== false ){
                 return true;
             }
         }
@@ -179,4 +182,30 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
             }
         }
     }
+
+    private function isValidee($licence){
+        if ($licence['state'] == 'Validée'){
+            return true;
+        }
+
+        return false;
+    }
+
+    private function isCormeillesId($licence){
+        if ($licence['club']['id'] == self::NUMERO_CLUB){
+            return true;
+        }
+
+        return false;
+    }
+
+    private function isSaisonCourante($licence){
+        if (substr($licence['startSeason'],0,4) == self::START_SEASON){
+            return true;
+        }
+
+        return false;
+    }
+
+
 }
