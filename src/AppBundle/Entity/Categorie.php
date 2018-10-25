@@ -54,6 +54,6 @@ class Categorie
 
     public function __toString()
     {
-        return $this->getNom();
+        return $this->getNom() ? $this->getNom() : 'Categorie';
     }
 }
