@@ -51,4 +51,9 @@ class Categorie
         $this->nom = $nom;
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 }

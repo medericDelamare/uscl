@@ -73,3 +73,13 @@ services:
         arguments: [~, AppBundle\Entity\Produit, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Boutique, group: "club"}
+    admin.categorie:
+        class: AppBundle\Admin\CategorieAdmin
+        arguments: [~, AppBundle\Entity\Categorie, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Categorie, group: "club"}
+    admin.sous-categorie:
+        class: AppBundle\Admin\SousCategorieAdmin
+        arguments: [~, AppBundle\Entity\SousCategorie, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Sous-Categorie, group: "club"}
