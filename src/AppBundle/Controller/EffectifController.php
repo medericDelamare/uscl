@@ -21,11 +21,17 @@ class EffectifController extends Controller
      */
     public function listByCategoryAction($category)
     {
-
         $em = $this->getDoctrine()->getManager();
-
         if ($category == 'Football-animation'){
-            $joueurs = $em->getRepository(Licencie::class)->findFootballAnimation();
+            $u7 = $em->getRepository(Licencie::class)->findByCategory('U7');
+            $u9 = $em->getRepository(Licencie::class)->findByCategory('U9');
+            $u11 = $em->getRepository(Licencie::class)->findByCategory('U11');
+
+            $joueurs = [
+                'u7' => $u7,
+                'u9' => $u9,
+                'u11' => $u11
+            ];
             return $this->render('default/effectifFootballAnimation.html.twig', [
                 'joueursParCategorie' => $joueurs,
                 'category' => $category,
