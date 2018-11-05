@@ -62,8 +62,10 @@ class Equipe
      */
     private $club;
 
-    public function __construct()
+    public function __construct($categorie = null, $nomParse)
     {
+        $this->nomParse = $nomParse;
+        $this->categorie = $categorie;
         $this->stats = new StatsEquipe();
     }
 
