@@ -102,6 +102,14 @@ class ParseService
                         'categorie' => $category
                     ]);
 
+                    if (!$equipeDom){
+                        $equipeDom = new Equipe($category,$equipe1);
+                    }
+
+                    if (!$equipeExt){
+                        $equipeExt = new Equipe($category,$equipe2);
+                    }
+
                     // Si il y a un score
                     if (($crawRencontre->filter('.number')->count() > 0)) {
                         $scoreParse = $crawRencontre->filter('.score_match')->html();
@@ -270,6 +278,10 @@ class ParseService
             case 'decembre':
                 $dateSplit[6] = "12";
                 break;
+        }
+
+        if (count($dateSplit) < 10) {
+            return '03/11/1992 06:00';
         }
 
         $heure = explode('H',$dateSplit[9]);
