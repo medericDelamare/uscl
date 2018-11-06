@@ -5,15 +5,24 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Xmon\ColorPickerTypeBundle\Validator\Constraints as XmonAssertColor;
 /**
  * Class Club
  * @package AppBundle\Entity
  *
  * @ORM\Entity()
+ * @ORM\HasLifecycleCallbacks()
  */
 class Club
 {
+    const SERVER_PATH_TO_IMAGE_FOLDER =  '/../../../web/pictures/Logos';
+
+    /**
+     * Unmapped property to handle file uploads
+     */
+    private $file;
+
     /**
      * @var int
      * @ORM\Column(type="integer")
@@ -52,6 +61,12 @@ class Club
      * @ORM\Column(type="string", nullable=true)
      */
     private $couleurSecondaire;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated;
 
     /**
      * @return int
@@ -155,4 +170,79 @@ class Club
     {
         return $this->getNom() ? $this->getNom() : '';
     }
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param \DateTime $updated
+     * @return Club
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+        return $this;
+    }
+
+    /**
+     * Manages the copying of the file to the relevant place on the server
+     */
+    public function upload()
+    {
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        $this->getFile()->move(
+            __DIR__ . self::SERVER_PATH_TO_IMAGE_FOLDER,
+            $this->getFile()->getClientOriginalName()
+        );
+
+        $this->logo = $this->getFile()->getClientOriginalName();
+        $this->setFile(null);
+    }
+
+    /**
+     * Lifecycle callback to upload the file to the server
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function lifecycleFileUpload()
+    {
+        $this->upload();
+    }
+
+    /**
+     * Updates the hash value to force the preUpdate and postUpdate events to fire
+     */
+    public function refreshUpdated()
+    {
+        $this->setUpdated(new \DateTime());
+    }
+
 }
