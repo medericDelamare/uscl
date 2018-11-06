@@ -5,10 +5,13 @@ namespace AppBundle\Command;
 
 
 use AppBundle\Entity\CarriereJoueur;
+use AppBundle\Entity\Categorie;
 use AppBundle\Entity\Licencie;
 use AppBundle\Entity\NomParse;
+use AppBundle\Entity\SousCategorie;
 use AppBundle\Entity\StatsJoueur;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -52,6 +55,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
         foreach ($data as $joueur) {
             if ($this->hasLicenceValide($joueur['permits'])){
                 $doctrine = $this->getContainer()->get('doctrine');
+                /** @var EntityManager $em */
                 $em = $doctrine->getManager();
 
                 if (!$licencie = $em->getRepository(Licencie::class)->findOneByNumeroLicence((integer)$joueur['id'])){
@@ -65,6 +69,14 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
                 array_key_exists('Mobile personnel', $joueur['contacts']) ? $mobile = $joueur['contacts']['Mobile personnel'][0] :$mobile = null;
                 array_key_exists('Email principal', $joueur['contacts']) ? $email = $joueur['contacts']['Email principal'][0] : $email = null;
                 array_key_exists('Téléphone domicile', $joueur['contacts']) ? $fixe = $joueur['contacts']['Téléphone domicile'][0] : $fixe = null;
+
+
+                if ($this->getCategorie($joueur) != null && !$sousCategorie = $em->getRepository(SousCategorie::class)->findOneByNom($this->getCategorie($joueur))){
+                    $sousCategorie = new SousCategorie();
+                    $sousCategorie->setNom($this->getCategorie($joueur));
+                    $em->persist($sousCategorie);
+                    $em->flush();
+                }
 
                 $licencie
                     ->setNumeroLicence((integer)$joueur['id'])
