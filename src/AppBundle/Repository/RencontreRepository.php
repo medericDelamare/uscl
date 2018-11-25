@@ -69,13 +69,13 @@ class RencontreRepository extends EntityRepository
             ->setParameter('categorie', $categorie)
             ->setMaxResults(1)
             ->getQuery()
-            ->getSingleScalarResult();
+            ->getOneOrNullResult();
 
         $agendas = $rencontres = $this->createQueryBuilder('r')
             ->join('r.equipeDomicile', 'd', 'WITH', 'd.id = r.equipeDomicile')
             ->where('r.journee = :derniereJournee')
             ->andWhere('d.categorie = :categorie')
-            ->setParameter('derniereJournee', $prochaineJournee)
+            ->setParameter('derniereJournee', $prochaineJournee['journee'])
             ->setParameter('categorie', $categorie)
             ->getQuery()
             ->getResult();
