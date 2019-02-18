@@ -221,18 +221,19 @@ body {
     opacity: 0.8;
 }
 
-.navbar-inverse {
+.navbar-blue {
     background-color: rgba(0, 80, 161, 0.5);
     border-color: #080808;
     border: 0;
+    position: absolute;
 }
 
-.navbar-inverse .navbar-nav>li>a
+.navbar-blue .navbar-nav>li>a
 {
     color: #ffffff;
 }
 
-.navbar-inverse .navbar-brand {
+.navbar-blue .navbar-brand {
     color: #ffffff;
 }
 
