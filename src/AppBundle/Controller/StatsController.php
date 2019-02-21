@@ -83,6 +83,22 @@ class StatsController extends Controller
                 $division = 'Departemental 4';
                 $groupe = 'B';
                 break;
+            case 'U18-phase2':
+                $division = 'Departemental 3';
+                $groupe = 'A';
+                break;
+            case 'U15-phase2':
+                $division = 'Departemental 3';
+                $groupe = 'A';
+                break;
+            case 'U13A-phase2':
+                $division = 'Departemental 4';
+                $groupe = 'A';
+                break;
+            case 'U13B-phase2':
+                $division = 'Departemental 4';
+                $groupe = 'B';
+                break;
         }
 
         $categoryFormat = ucfirst($category);
