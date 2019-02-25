@@ -225,7 +225,8 @@ body {
     background-color: rgba(0, 80, 161, 0.5);
     border-color: #080808;
     border: 0;
-    position: absolute;
+    width: 100%;
+    height: 50px;
 }
 
 .navbar-blue .navbar-nav>li>a
@@ -326,11 +327,11 @@ body {
     color: #333;
 }
 
-.panel-uscl{
+.card²-uscl{
     border-color: #0050A1;
 }
 
-.panel-uscl>.panel-heading {
+.card-uscl>.card-header {
     color: #fff;
     background-color: #0050A1;
     border-color: #0050A1;
@@ -345,7 +346,8 @@ body {
 }
 
 .breadcrumb{
-    padding-top: 50px;
+    margin-top: 50px;
+    border-radius: 0px;
 }
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
