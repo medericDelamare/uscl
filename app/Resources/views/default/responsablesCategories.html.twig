@@ -1,217 +1,184 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Responsables par catégorie</li>
+        </ol>
+    </nav>
 
-<ol class="breadcrumb">
-    <li><a href="index.php">Accueil</a></li>
-    <li class="active">Résponsables par équipe</li>
-</ol>
-
-<div class="container">
-    <h1 class = "page-header">Résponsables par catégories</h1>
-    <div class="row margin-bottom">
+    <div class="container">
+    <h1 class = "sous-titre">Résponsables par catégories</h1>
+    <div class="row mb-4">
         <div class="col-sm-6">
-            <div class="panel panel-uscl">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Séniors A</h3>
+            <div class="card card-uscl">
+                <div class="card-header">
+                    <h3 class="panel-title">Senior A</h3>
                 </div>
-                <div class="panel-body row">
-                    <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
-                            <img src="{{ bureau.responsableSeniorA.photo }}" class="img-rounded" alt="Responsive image">
-                        </div>
-                    </div>
-                    <div class="row">
+                <div class="card-body">
+                    <div class="container">
                         <div class="text-center">
-                            <h4>{{ bureau.responsableSeniorA.nomComplet }}</h4>
+                            <img src="{{ bureau.responsableSeniorA.photo }}" class="rounded" alt="{{ bureau.responsableSeniorA.nomComplet }}">
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="text-center">
-                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ bureau.responsableSeniorA.email }}</h4>
-                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ bureau.responsableSeniorA.telephonePortable}}</h4>
+                            <h6 class="text-center">{{ bureau.responsableSeniorA.nomComplet }}</h6>
+                        </div>
+                        <div class="text-center">
+                            <h6><i class="fa fa-envelope" aria-hidden="true"></i> <a  href="mail-to:{{ bureau.responsableSeniorA.email }}">{{ bureau.responsableSeniorA.email }}</a> </h6>
+                            <h6><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{{ bureau.responsableSeniorA.telephonePortable }}">{{ bureau.responsableSeniorA.telephonePortable }}</a></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="panel panel-uscl">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Séniors B</h3>
+            <div class="card card-uscl">
+                <div class="card-header">
+                    <h3 class="panel-title">Senior B</h3>
                 </div>
-                <div class="panel-body row">
-                    <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
-                            <img src="{{ bureau.responsableSeniorB.photo }}" class="img-rounded" alt="{{ bureau.responsableSeniorB.nomComplet }}">
-                        </div>
-                    </div>
-                    <div class="row">
+                <div class="card-body">
+                    <div class="container">
                         <div class="text-center">
-                            <h4>{{ bureau.responsableSeniorB.nomComplet }}</h4>
+                            <img src="{{ bureau.responsableSeniorB.photo }}" class="rounded" alt="{{ bureau.responsableSeniorB.nomComplet }}">
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="text-center">
-                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ bureau.responsableSeniorB.email }}</h4>
-                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ bureau.responsableSeniorB.telephonePortable}}</h4>
+                            <h6 class="text-center">{{ bureau.responsableSeniorB.nomComplet }}</h6>
+                        </div>
+                        <div class="text-center">
+                            <h6><i class="fa fa-envelope" aria-hidden="true"></i> <a  href="mail-to:{{ bureau.responsableSeniorB.email }}">{{ bureau.responsableSeniorB.email }}</a> </h6>
+                            <h6><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{{ bureau.responsableSeniorB.telephonePortable }}">{{ bureau.responsableSeniorB.telephonePortable }}</a></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row margin-bottom">
-        <div class="col-sm-4 margin-bottom">
-            <div class="panel panel-uscl">
-                <div class="panel-heading">
+    <div class="row mb-4">
+        <div class="col-sm-4">
+            <div class="card card-uscl">
+                <div class="card-header">
                     <h3 class="panel-title">U18</h3>
                 </div>
-                <div class="panel-body row">
-                    <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
-                            <img src="{{ bureau.responsableU18.photo }}" class="img-rounded" alt="{{ bureau.responsableU18.nom }}">
-                        </div>
-                    </div>
-                    <div class="row">
+                <div class="card-body">
+                    <div class="container">
                         <div class="text-center">
-                            <h4>{{ bureau.responsableU18.nomComplet }}</h4>
+                            <img src="{{ bureau.responsableU18.photo }}" class="rounded" alt="{{ bureau.responsableU18.nomComplet }}">
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="text-center">
-                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ bureau.responsableU18.email }}</h4>
-                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ bureau.responsableU18.telephonePortable }}</h4>
+                            <h6 class="text-center">{{ bureau.responsableU18.nomComplet }}</h6>
+                        </div>
+                        <div class="text-center">
+                            <h6><i class="fa fa-envelope" aria-hidden="true"></i> <a  href="mail-to:{{ bureau.responsableU18.email }}">{{ bureau.responsableU18.email }}</a> </h6>
+                            <h6><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{{ bureau.responsableU18.telephonePortable }}">{{ bureau.responsableU18.telephonePortable }}</a></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="col-sm-4 margin-bottom">
-            <div class="panel panel-uscl">
-                <div class="panel-heading">
+        <div class="col-sm-4">
+            <div class="card card-uscl">
+                <div class="card-header">
                     <h3 class="panel-title">U15</h3>
                 </div>
-                <div class="panel-body row">
-                    <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
-                            <img src="{{ bureau.responsabeU15.photo }}" class="img-rounded" alt="{{ bureau.responsabeU15.nomComplet}}">
-                        </div>
-                    </div>
-                    <div class="row">
+                <div class="card-body">
+                    <div class="container">
                         <div class="text-center">
-                            <h4>{{ bureau.responsabeU15.nomComplet }}</h4>
+                            <img src="{{ bureau.responsabeU15.photo }}" class="rounded" alt="{{ bureau.responsabeU15.nomComplet }}">
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="text-center">
-                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ bureau.responsabeU15.email }}</h4>
-                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ bureau.responsabeU15.telephonePortable }}</h4>
+                            <h6 class="text-center">{{ bureau.responsabeU15.nomComplet }}</h6>
+                        </div>
+                        <div class="text-center">
+                            <h6><i class="fa fa-envelope" aria-hidden="true"></i> <a  href="mail-to:{{ bureau.responsabeU15.email }}">{{ bureau.responsabeU15.email }}</a> </h6>
+                            <h6><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{{ bureau.responsabeU15.telephonePortable }}">{{ bureau.responsabeU15.telephonePortable }}</a></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="col-sm-4 margin-bottom">
-            <div class="panel panel-uscl">
-                <div class="panel-heading">
+        <div class="col-sm-4">
+            <div class="card card-uscl">
+                <div class="card-header">
                     <h3 class="panel-title">U13</h3>
                 </div>
-                <div class="panel-body row">
-                    <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
-                            <img src="{{ bureau.responsableU13.photo }}" class="img-rounded" alt="{{ bureau.responsableU13.nomComplet }}">
-                        </div>
-                    </div>
-                    <div class="row">
+                <div class="card-body">
+                    <div class="container">
                         <div class="text-center">
-                            <h4>{{ bureau.responsableU13.nomComplet }}</h4>
+                            <img src="{{ bureau.responsableU13.photo }}" class="rounded" alt="{{ bureau.responsableU13.nomComplet }}">
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="text-center">
-                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ bureau.responsableU13.email }}</h4>
-                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ bureau.responsableU13.nomComplet }}</h4>
+                            <h6 class="text-center">{{ bureau.responsableU13.nomComplet }}</h6>
+                        </div>
+                        <div class="text-center">
+                            <h6><i class="fa fa-envelope" aria-hidden="true"></i> <a  href="mail-to:{{ bureau.responsableU13.email }}">{{ bureau.responsableU13.email }}</a> </h6>
+                            <h6><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{{ bureau.responsableU13.telephonePortable }}">{{ bureau.responsableU13.telephonePortable }}</a></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row margin-bottom">
-        <div class="col-sm-4 margin-bottom">
-            <div class="panel panel-uscl">
-                <div class="panel-heading">
+    <div class="row mb-4">
+        <div class="col-sm-4">
+            <div class="card card-uscl">
+                <div class="card-header">
                     <h3 class="panel-title">U11</h3>
                 </div>
-                <div class="panel-body row">
-                    <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
-                            <img src="{{ bureau.responsableU11.photo }}" class="img-rounded" alt="{{ bureau.responsableU11.nomComplet }}">
-                        </div>
-                    </div>
-                    <div class="row">
+                <div class="card-body">
+                    <div class="container">
                         <div class="text-center">
-                            <h4>{{ bureau.responsableU11.nomComplet }}</h4>
+                            <img src="{{ bureau.responsableU11.photo }}" class="rounded" alt="{{ bureau.responsableU11.nomComplet }}">
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="text-center">
-                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ bureau.responsableU11.email }}</h4>
-                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ bureau.responsableU11.telephonePortable}}</h4>
+                            <h6 class="text-center">{{ bureau.responsableU11.nomComplet }}</h6>
+                        </div>
+                        <div class="text-center">
+                            <h6><i class="fa fa-envelope" aria-hidden="true"></i> <a  href="mail-to:{{ bureau.responsableU11.email }}">{{ bureau.responsableU11.email }}</a> </h6>
+                            <h6><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{{ bureau.responsableU11.telephonePortable }}">{{ bureau.responsableU11.telephonePortable }}</a></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-4 margin-bottom">
-            <div class="panel panel-uscl">
-                <div class="panel-heading">
+        <div class="col-sm-4">
+            <div class="card card-uscl">
+                <div class="card-header">
                     <h3 class="panel-title">U9</h3>
                 </div>
-                <div class="panel-body row">
-                    <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
-                            <img src="{{ bureau.responsableU9.photo }}" class="img-rounded" alt="{{ bureau.responsableU9.nomComplet }}">
-                        </div>
-                    </div>
-                    <div class="row">
+                <div class="card-body">
+                    <div class="container">
                         <div class="text-center">
-                            <h4>{{ bureau.responsableU9.nomComplet }}</h4>
+                            <img src="{{ bureau.responsableU9.photo }}" class="rounded" alt="{{ bureau.responsableU9.nomComplet }}">
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="text-center">
-                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ bureau.responsableU9.email }}</h4>
-                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ bureau.responsableU9.telephonePortable }}</h4>
+                            <h6 class="text-center">{{ bureau.responsableU9.nomComplet }}</h6>
+                        </div>
+                        <div class="text-center">
+                            <h6><i class="fa fa-envelope" aria-hidden="true"></i> <a  href="mail-to:{{ bureau.responsableU9.email }}">{{ bureau.responsableU9.email }}</a> </h6>
+                            <h6><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{{ bureau.responsableU9.telephonePortable }}">{{ bureau.responsableU9.telephonePortable }}</a></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-4 margin-bottom">
-            <div class="panel panel-uscl">
-                <div class="panel-heading">
+        <div class="col-sm-4">
+            <div class="card card-uscl">
+                <div class="card-header">
                     <h3 class="panel-title">U7</h3>
                 </div>
-                <div class="panel-body row">
-                    <div class="row">
-                        <div class="col-sm-offset-4 col-sm-4 col-xs-offset-4 col-xs-4 text-center">
-                            <img src="{{ bureau.responsableU7.photo }}" class="img-rounded" alt="{{ bureau.responsableU7.nomComplet }}">
-                        </div>
-                    </div>
-                    <div class="row">
+                <div class="card-body">
+                    <div class="container">
                         <div class="text-center">
-                            <h4>{{ bureau.responsableU7.nomComplet }}</h4>
+                            <img src="{{ bureau.responsableU7.photo }}" class="rounded" alt="{{ bureau.responsableU7.nomComplet }}">
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="text-center">
-                            <h4><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ bureau.responsableU7.email }}</h4>
-                            <h4><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ bureau.responsableU7.telephonePortable }}</h4>
+                            <h6 class="text-center">{{ bureau.responsableU7.nomComplet }}</h6>
+                        </div>
+                        <div class="text-center">
+                            <h6><i class="fa fa-envelope" aria-hidden="true"></i> <a  href="mail-to:{{ bureau.responsableU7.email }}">{{ bureau.responsableU7.email }}</a> </h6>
+                            <h6><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{{ bureau.responsableU7.telephonePortable }}">{{ bureau.responsableU7.telephonePortable }}</a></h6>
                         </div>
                     </div>
                 </div>
