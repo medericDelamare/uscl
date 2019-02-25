@@ -4,80 +4,87 @@
     <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 {% endblock %}
 {% block body %}
-<ol class="breadcrumb">
-    <li><a href="index.php">Accueil</a></li>
-    <li>Statistiques</li>
-    <li class="active">{{ categorie }}</li>
-</ol>
+<nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
+            <li class="breadcrumb-item " aria-current="page">Statistiques</li>
+            <li class="breadcrumb-item active" aria-current="page">Senior A</li>
+        </ol>
+    </nav>
 
-<div class="container my-custom-container">
-    <h1 class="page-header">Statistiques {{ division }}<small> Groupe {{ groupe }}</small></h1>
+
+<div class="container-fluid">
+    <h1 class="sous-titre">Statistiques {{ division }}<small> Groupe {{ groupe }}</small></h1>
     <div class="row">
-        <div class="col-sm-12 col-lg-5 col-lg-offset-1">
-            <h2 class="page-header">Classement</h2>
-            <table class="resultats table table-condensed classement">
-                <thead>
-                <tr>
-                    <td>Pl</td>
-                    <td>Equipe</td>
-                    <td>J</td>
-                    <td>Pts</td>
-                    <td>G</td>
-                    <td>N</td>
-                    <td>D</td>
-                    <td>F</td>
-                    <td>BP</td>
-                    <td>BC</td>
-                    <td>P</td>
-                    <td>Diff</td>
-                </tr>
-                </thead>
-                <tbody>
-                {% for equipe in equipes %}
-                    <tr>
-                        <td>{{ loop.index }}</td>
-                        {% if equipe.club %}
-                            <td><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ equipe.club.logo) }}"><span class="hidden-xs"> - {{ equipe.club.nom }}</span></td>
-                        {% else %}
-                            <td>{{ equipe.nomParse }}</td>
-                        {% endif %}
-                        <td>{{ equipe.stats.journees }}</td>
-                        <td>{{ equipe.stats.points }}</td>
-                        <td>{{ equipe.stats.victoires }}</td>
-                        <td>{{ equipe.stats.nuls }}</td>
-                        <td>{{ equipe.stats.defaites }}</td>
-                        <td>{{ equipe.stats.forfaits }}</td>
-                        <td>{{ equipe.stats.butsPour }}</td>
-                        <td>{{ equipe.stats.butsContre }}</td>
-                        <td>{{ equipe.stats.penalites }}</td>
-                        <td>{{ equipe.stats.difference }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+        <div class="col-lg-5 offset-lg-1">
+            <h2>Classement</h2>
+            <div class="table-responsive classement">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Equipe</th>
+                            <th scope="col">Pts</th>
+                            <th scope="col">Jo</th>
+                            <th scope="col">G</th>
+                            <th scope="col">N</th>
+                            <th scope="col">D</th>
+                            <th scope="col">F</th>
+                            <th scope="col">BP</th>
+                            <th scope="col">BC</th>
+                            <th scope="col">P</th>
+                            <th scope="col">Diff</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for equipe in equipes %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            {% if equipe.club %}
+                                <td><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ equipe.club.logo) }}"><span class="hidden-xs"> - {{ equipe.club.nom }}</span></td>
+                            {% else %}
+                                <td>{{ equipe.nomParse }}</td>
+                            {% endif %}
+                            <td class="font-weight-bold">{{ equipe.stats.points }}</td>
+                            <td>{{ equipe.stats.journees }}</td>
+                            <td>{{ equipe.stats.victoires }}</td>
+                            <td>{{ equipe.stats.nuls }}</td>
+                            <td>{{ equipe.stats.defaites }}</td>
+                            <td>{{ equipe.stats.forfaits }}</td>
+                            <td>{{ equipe.stats.butsPour }}</td>
+                            <td>{{ equipe.stats.butsContre }}</td>
+                            <td>{{ equipe.stats.penalites }}</td>
+                            <td>{{ equipe.stats.difference }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col-sm-12 col-lg-5" >
-            <h2 class="page-header">Résultats de la dernière journée</h2>
-            <table class="resultats table table-condensed classement">
-                {% for rencontre in rencontres %}
-                    <tr>
-                        <td>{{ rencontre.date|date("d/m/Y") }}</td>
-                        {% if rencontre.equipeDomicile.club %}
-                            <td class="col-xs-3  col-lg-5"><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ rencontre.equipeDomicile.club.logo) }}"><span class="hidden-xs"> - {{ rencontre.equipeDomicile.club.nom }}</span></td>
-                        {% else %}
-                            <td>{{ rencontre.equipeDomicile.nomParse }}</td>
-                        {% endif %}
-                        <td>{{ rencontre.score }}</td>
-                        {% if rencontre.equipeExterieure.club %}
-                            <td class="col-xs-3  col-lg-5 text-right"><span class="hidden-xs">{{ rencontre.equipeExterieure.club.nom }} - </span><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ rencontre.equipeExterieure.club.logo) }}"></td>
-                        {% else %}
-                            <td>{{ rencontre.equipeExterieure.nomParse }}</td>
-                        {% endif %}
-                    </tr>
-                {% endfor %}
-            </table>
+        <div class="col-lg-5">
+            <h2>Résultats</h2>
+            <div class="table-responsive resultats">
+                <table class="table table-sm">
+                    {% for rencontre in rencontres %}
+                        <tr>
+                            <td>{{ rencontre.date|date("d/m/Y") }}</td>
+                            {% if rencontre.equipeDomicile.club %}
+                                <td ><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ rencontre.equipeDomicile.club.logo) }}"><span class="hidden-xs"> - {{ rencontre.equipeDomicile.club.nom }}</span></td>
+                            {% else %}
+                                <td>{{ rencontre.equipeDomicile.nomParse }}</td>
+                            {% endif %}
+                            <td><span class="text-nowrap">{{ rencontre.score }}</span></td>
+                            {% if rencontre.equipeExterieure.club %}
+                                <td class="text-right"><span class="hidden-xs">{{ rencontre.equipeExterieure.club.nom }} - </span><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ rencontre.equipeExterieure.club.logo) }}"></td>
+                            {% else %}
+                                <td>{{ rencontre.equipeExterieure.nomParse }}</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
     </div>
-</div>
     <div class="row">
         <div class="col-sm-12 col-lg-5 col-lg-offset-1">
             <h2 class="page-header">Rencontres de la semaine</h2>
@@ -113,12 +120,6 @@
             </table>
     </div>
 </div>
-<div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <h2 class="page-header">Classement par journée</h2>
-            <canvas id="classementParJournee"></canvas>
-        </div>
-    </div>
 
 {% endblock %}
 

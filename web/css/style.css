@@ -805,3 +805,11 @@ input:checked + .slider:before {
     padding: 10px 0 10px 15px;
     margin-bottom: 20px;
 }
+
+.classement{
+    font-size: 14px;
+}
+
+.resultats{
+    font-size: 14px;
+}
