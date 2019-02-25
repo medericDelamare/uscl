@@ -19,14 +19,12 @@
                     <i class="fa fa-users" aria-hidden="true"></i> Effectifs
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ path('statistiques', {'category': 'seniorA'} ) }}">Seniors A</a>
-                    <a class="dropdown-item" href="{{ path('statistiques', {'category': 'seniorB'} ) }}">Seniors B</a>
-                    <a class="dropdown-item" href="{{ path('statistiques', {'category': 'veteranA'} ) }}">Veterans A</a>
-                    <a class="dropdown-item" href="{{ path('statistiques', {'category': 'veteranB'} ) }}">Veterans B</a>
-                    <a class="dropdown-item" href="{{ path('statistiques', {'category': 'U18'} ) }}">U18</a>
-                    <a class="dropdown-item" href="{{ path('statistiques', {'category': 'U15'} ) }}">U15</a>
-                    <a class="dropdown-item" href="{{ path('statistiques', {'category': 'U13A'} ) }}">U13 A</a>
-                    <a class="dropdown-item" href="{{ path('statistiques', {'category': 'U13B'} ) }}">U13 B</a>
+                    <a class="dropdown-item" href="{{ path('effectif', {'category': 'Veteran'} ) }}">Veterans</a>
+                    <a class="dropdown-item" href="{{ path('effectif', {'category': 'Senior'} ) }}">Seniors</a>
+                    <a class="dropdown-item" href="{{ path('effectif', {'category': 'U18'} ) }}">U18</a>
+                    <a class="dropdown-item" href="{{ path('effectif', {'category': 'U15'} ) }}">U15</a>
+                    <a class="dropdown-item" href="{{ path('effectif', {'category': 'U13'} ) }}">U13</a>
+                    <a class="dropdown-item" href="{{ path('effectif', {'category': 'Football-animation'} ) }}">Football d'animation</a>
                 </div>
             </li>
             <li class="nav-item dropdown">

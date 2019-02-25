@@ -3,10 +3,13 @@
     <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 {% endblock %}
 {% block body %}
-    <ol class="breadcrumb">
-        <li><a href="index.php">Accueil</a></li>
-        <li class="active">Club</li>
-    </ol>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
+            <li class="breadcrumb-item " aria-current="page">Effectif</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ category }}</li>
+        </ol>
+    </nav>
 
     <div class="container">
         <h1 class = "page-header">{{ category }} -<small> {{ nb_joueurs }} Joueurs</small></h1>
