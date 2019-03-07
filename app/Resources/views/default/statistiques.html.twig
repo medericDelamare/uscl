@@ -41,7 +41,7 @@
                         <tr>
                             <td>{{ loop.index }}</td>
                             {% if equipe.club %}
-                                <td><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ equipe.club.logo) }}"><span class="hidden-xs"> - {{ equipe.club.nom }}</span></td>
+                                <td><img class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ equipe.club.logo) }}"><span class="d-none d-sm-inline-block">{{ equipe.club.nom }}</span></td>
                             {% else %}
                                 <td>{{ equipe.nomParse }}</td>
                             {% endif %}
@@ -69,13 +69,14 @@
                         <tr>
                             <td>{{ rencontre.date|date("d/m/Y") }}</td>
                             {% if rencontre.equipeDomicile.club %}
-                                <td ><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ rencontre.equipeDomicile.club.logo) }}"><span class="hidden-xs"> - {{ rencontre.equipeDomicile.club.nom }}</span></td>
+                                <td ><img class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ rencontre.equipeDomicile.club.logo) }}"><span class="d-none d-sm-inline-block">{{ rencontre.equipeDomicile.club.nom }}</span></td>
                             {% else %}
                                 <td>{{ rencontre.equipeDomicile.nomParse }}</td>
                             {% endif %}
                             <td><span class="text-nowrap">{{ rencontre.score }}</span></td>
                             {% if rencontre.equipeExterieure.club %}
-                                <td class="text-right"><span class="hidden-xs">{{ rencontre.equipeExterieure.club.nom }} - </span><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ rencontre.equipeExterieure.club.logo) }}"></td>
+                                <td class="text-right"><span class="d-none d-sm-inline-block">{{ rencontre.equipeExterieure.club.nom }}</span><img class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ rencontre.equipeExterieure.club.logo) }}">
+                                </td>
                             {% else %}
                                 <td>{{ rencontre.equipeExterieure.nomParse }}</td>
                             {% endif %}
@@ -86,38 +87,44 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12 col-lg-5 col-lg-offset-1">
-            <h2 class="page-header">Rencontres de la semaine</h2>
-            <table class="resultats table table-condensed classement">
-                {% for agenda in agendas %}
-                    <tr>
-                        <td class="col-xs-3 col-lg-1">{{ agenda.date|date("d/m/Y") }}</td>
-                        {% if agenda.equipeDomicile.club %}
-                            <td class="col-xs-3  col-lg-5"><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ agenda.equipeDomicile.club.logo) }}"><span class="hidden-xs"> - {{ agenda.equipeDomicile.club.nom }}</span></td>
-                        {% else %}
-                            <td>{{ agenda.equipeDomicile.nomParse }}</td>
-                        {% endif %}
-                        <td class="col-xs-3  col-lg-1 text-center score">VS</td>
-                        {% if agenda.equipeExterieure.club %}
-                            <td class="col-xs-3  col-lg-5 text-right"><span class="hidden-xs">{{ agenda.equipeExterieure.club.nom }} - </span><img class="img-carriere" src="{{ asset('pictures/Logos/' ~ agenda.equipeExterieure.club.logo) }}"></td>
-                        {% else %}
-                            <td>{{ agenda.equipeExterieure.nomParse }}</td>
-                        {% endif %}
-                    </tr>
-                {% endfor %}
-            </table>
+        <div class="col-lg-5 offset-lg-1">
+            <h2>Rencontres de la semaine</h2>
+            <div class="table-responsive resultats">
+                <table class="table table-sm">
+                    {% for rencontre in agendas %}
+                        <tr>
+                            <td>{{ rencontre.date|date("d/m/Y") }}</td>
+                            {% if rencontre.equipeDomicile.club %}
+                                <td ><img class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ rencontre.equipeDomicile.club.logo) }}"><span class="d-none d-sm-inline-block">{{ rencontre.equipeDomicile.club.nom }}</span></td>
+                            {% else %}
+                                <td>{{ rencontre.equipeDomicile.nomParse }}</td>
+                            {% endif %}
+                            <td><span class="text-nowrap">{{ rencontre.score }}</span></td>
+                            {% if rencontre.equipeExterieure.club %}
+                                <td class="text-right"><span class="d-none d-sm-inline-block">{{ rencontre.equipeExterieure.club.nom }}</span><img class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ rencontre.equipeExterieure.club.logo) }}">
+                                </td>
+                            {% else %}
+                                <td>{{ rencontre.equipeExterieure.nomParse }}</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
-        <div class="col-sm-12 col-lg-5">
+        <div class="col-lg-5">
             <h2 class="page-header">Calendrier</h2>
             <select class="form-control"  id="selectEquipe">
                 {% for equipe in equipeListe %}
                     <option value={{ equipe.id }} data-href="{{ path('calendrier-par-equipe', {'equipe': equipe.id}) }}">{{ equipe.nomParse }}</option>
                 {% endfor %}
             </select>
-            <table id="calendrier" class="resultats table table-condensed classement calendrier">
-                <tbody id="resultAjaxCalendrier">
-                </tbody>
-            </table>
+            <div class="table-responsive resultats">
+                <table id="calendrier" class="table table-sm">
+                    <tbody id="resultAjaxCalendrier">
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 
