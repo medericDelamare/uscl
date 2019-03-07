@@ -813,3 +813,7 @@ input:checked + .slider:before {
 .resultats{
     font-size: 14px;
 }
+
+.btn-uscl, .btn-uscl:hover{
+    color: #FFFFFF;
+}

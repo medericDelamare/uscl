@@ -1,37 +1,37 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <ol class="breadcrumb">
-        <li><a href="index.php">Accueil</a></li>
-        <li class="active">Club</li>
-    </ol>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Buteur</li>
+        </ol>
+    </nav>
 
     <div class="container">
-        <h1 class="page-header">Buteurs</h1>
-
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-
-            <div class="panel panel-uscl">
-                <div class="panel-heading" role="tab" id="headingOne">
-                    <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            Buteurs Seniors
-                        </a>
-                    </h4>
+        <h1 class="sous-titre">Buteurs</h1>
+        <div id="accordion">
+            <div class="card card-uscl">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link btn-uscl" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Seniors
+                        </button>
+                    </h5>
                 </div>
-                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
                         <h1>Classements des buteurs<small> 	Seniors</small></h1>
-                        <div class = "row">
-                            <table id="buteurs-seniors" class = "text-center tableauButeur table table-responsive">
+                        <div class = "table-responsive">
+                            <table id="buteurs-seniors" class = "text-center tableauButeur table table-sm">
                                 <thead>
-                                    <tr>
-                                        <th class = "text-center">Nom</th>
-                                        <th class = "text-center">Buts en A</th>
-                                        <th class = "text-center">Buts en B</th>
-                                        <th class = "text-center">Buts en Coupe</th>
-                                        <th class = "text-center">Total</th>
-                                    </tr>
+                                <tr>
+                                    <th class = "text-center">Nom</th>
+                                    <th class = "text-center">Buts en A</th>
+                                    <th class = "text-center">Buts en B</th>
+                                    <th class = "text-center">Buts en Coupe</th>
+                                    <th class = "text-center">Total</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                 {% for senior in seniors %}
@@ -49,27 +49,27 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-uscl">
-                <div class="panel-heading" role="tab" id="headingTwo">
-                    <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Buteurs Veterans
-                        </a>
-                    </h4>
+            <div class="card card-uscl">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed btn-uscl" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Vétérans
+                        </button>
+                    </h5>
                 </div>
-                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                    <div class="panel-body">
-                        <h1>Classements des buteurs<small> 	Seniors</small></h1>
-                        <div class = "row">
-                            <table id="buteurs-veterans" class = "text-center tableauButeur table table-responsive">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <h1>Classements des buteurs<small> 	Veterans</small></h1>
+                        <div class = "table-responsive">
+                            <table id="buteurs-veterans" class = "text-center tableauButeur table table-sm">
                                 <thead>
-                                    <tr>
-                                        <th class = "text-center">Nom</th>
-                                        <th class = "text-center">Buts en A</th>
-                                        <th class = "text-center">Buts en B</th>
-                                        <th class = "text-center">Buts en Coupe</th>
-                                        <th class = "text-center">Total</th>
-                                    </tr>
+                                <tr>
+                                    <th class = "text-center">Nom</th>
+                                    <th class = "text-center">Buts en A</th>
+                                    <th class = "text-center">Buts en B</th>
+                                    <th class = "text-center">Buts en Coupe</th>
+                                    <th class = "text-center">Total</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                 {% for veteran in veterans %}
@@ -87,26 +87,26 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-uscl">
-                <div class="panel-heading" role="tab" id="headingThree">
-                    <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                            Buteurs U18
-                        </a>
-                    </h4>
+            <div class="card card-uscl">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed btn-uscl" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            U18
+                        </button>
+                    </h5>
                 </div>
-                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                    <div class="panel-body">
-                        <h1>Classements des buteurs<small> 	U18</small></h1>
-                        <div class = "row">
-                            <table class = "text-center tableauButeur3Colonnes table table-responsive">
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class = "table-responsive">
+                            <h1>Classements des buteurs<small> 	U18</small></h1>
+                            <table class = "text-center tableauButeur3Colonnes table table-sm">
                                 <thead>
-                                    <tr>
-                                        <th class = "text-center">Nom</th>
-                                        <th class = "text-center">Buts en championnat</th>
-                                        <th class = "text-center">Buts en coupe</th>
-                                        <th class = "text-center">Nombre de buts</th>
-                                    </tr>
+                                <tr>
+                                    <th class = "text-center">Nom</th>
+                                    <th class = "text-center">Buts en championnat</th>
+                                    <th class = "text-center">Buts en coupe</th>
+                                    <th class = "text-center">Nombre de buts</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                 {% for U18Infos in U18 %}
@@ -123,26 +123,26 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-uscl">
-                <div class="panel-heading" role="tab" id="headingFour">
-                    <h4 class="panel-title">
-                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                            Buteurs U15
-                        </a>
-                    </h4>
+            <div class="card card-uscl">
+                <div class="card-header" id="headingFour">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed btn-uscl" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            U15
+                        </button>
+                    </h5>
                 </div>
-                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                    <div class="panel-body">
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body">
                         <h1>Classements des buteurs<small> 	U15</small></h1>
-                        <div class = "row">
-                            <table class = "text-center tableauButeur3Colonnes table table-responsive">
+                        <div class = "table-responsive">
+                            <table class = "text-center tableauButeur3Colonnes table table-sm">
                                 <thead>
-                                    <tr>
-                                        <th class = "text-center">Nom</th>
-                                        <th class = "text-center">Buts en championnat</th>
-                                        <th class = "text-center">Buts en coupe</th>
-                                        <th class = "text-center">Nombre de buts</th>
-                                    </tr>
+                                <tr>
+                                    <th class = "text-center">Nom</th>
+                                    <th class = "text-center">Buts en championnat</th>
+                                    <th class = "text-center">Buts en coupe</th>
+                                    <th class = "text-center">Nombre de buts</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                 {% for U15Infos in U15 %}
@@ -159,19 +159,19 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-uscl">
-                <div class="panel-heading" role="tab" id="headingFive">
-                    <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Buteurs U13
-                        </a>
-                    </h4>
+            <div class="card card-uscl">
+                <div class="card-header" id="headingFive">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed btn-uscl" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            U13
+                        </button>
+                    </h5>
                 </div>
-                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                    <div class="panel-body">
-                        <h1>Classements des buteurs<small> 	Seniors</small></h1>
-                        <div class = "row">
-                            <table id="buteurs-veterans" class = "text-center tableauButeur table table-responsive">
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+                    <div class="card-body">
+                        <h1>Classements des buteurs<small> 	U13</small></h1>
+                        <div class = "table-responsive">
+                            <table id="buteurs-veterans" class = "text-center tableauButeur table table-sm">
                                 <thead>
                                 <tr>
                                     <th class = "text-center">Nom</th>
