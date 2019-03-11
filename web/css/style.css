@@ -221,8 +221,12 @@ body {
     opacity: 0.8;
 }
 
+.bg-uscl{
+    background-color: rgba(0, 80, 161);
+}
+
 .navbar-blue {
-    background-color: rgba(0, 80, 161, 0.5);
+
     border-color: #080808;
     border: 0;
     width: 100%;
