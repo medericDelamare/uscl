@@ -180,12 +180,51 @@ body {
 
 .business-header {
     height: 400px;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    background-size: contain;
+    -o-background-size: cover !important;
+    padding-top: 50px !important;
+}
+
+.business-header-index{
     background: url('../pictures/home.jpg') center center no-repeat scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-    padding-top: 50px;
+}
+
+.business-header-bureau{
+    background: url('../pictures/bueau.jpg') center center no-repeat scroll;
+    background-position: top !important;
+    width: 100%;
+}
+
+.business-header-eff{
+    background: url('../pictures/effectifs.jpg') center center no-repeat scroll;
+    background-position: top !important;
+    width: 100%;
+}
+
+.business-header-contact{
+    background: url('../pictures/contact.jpg') center center no-repeat scroll;
+    background-position: top !important;
+    width: 100%;
+}
+
+.business-header-stats{
+    background: url('../pictures/stats.jpg') center center no-repeat scroll;
+    background-position: top !important;
+    width: 100%;
+}
+
+.business-header-stade{
+    background: url('../pictures/stade.png') center center no-repeat scroll;
+    background-position: top !important;
+    width: 100%;
+}
+
+.business-header-buteurs{
+    background: url('../pictures/buteurs.jpg') center center no-repeat scroll;
+    background-position: top !important;
+    width: 100%;
 }
 
 .tagline {
@@ -352,7 +391,6 @@ body {
 }
 
 .breadcrumb{
-    margin-top: 50px;
     border-radius: 0px;
 }
 

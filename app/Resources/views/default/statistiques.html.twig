@@ -4,6 +4,15 @@
     <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 {% endblock %}
 {% block body %}
+<header class="business-header business-header-stats">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="tagline"></h1>
+            </div>
+        </div>
+    </div>
+</header>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
@@ -11,8 +20,6 @@
         <li class="breadcrumb-item active" aria-current="page">Senior A</li>
     </ol>
 </nav>
-
-
 <div class="container-fluid">
     <h1 class="sous-titre">Statistiques {{ division }}<small> Groupe {{ groupe }}</small></h1>
     <div class="row">
