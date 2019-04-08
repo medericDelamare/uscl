@@ -107,4 +107,18 @@ class RencontreRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getLastFiveRencontreByEquipe($equipe){
+        return $this->createQueryBuilder('r')
+            ->join('r.equipeDomicile', 'd', 'WITH', 'd.id = r.equipeDomicile')
+            ->leftJoin('r.equipeExterieure', 'e', 'WITH', 'e.id = r.equipeExterieure')
+            ->where('d.id = :equipe')
+            ->orWhere('e.id = :equipe')
+            ->andWhere('r.score IS NOT NULL')
+            ->orderBy('r.date', 'DESC')
+            ->setParameter('equipe', $equipe)
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult();
+    }
 }

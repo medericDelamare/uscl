@@ -77,6 +77,18 @@ class Rencontre
     private $stats;
 
     /**
+     * @var integer
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $scoreDom;
+
+    /**
+     * @var integer
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $scoreExt;
+
+    /**
      * @return int
      */
     public function getId()
@@ -188,6 +200,7 @@ class Rencontre
      */
     public function setScore($score)
     {
+        list($this->scoreDom, $this->scoreExt) = explode('-', $score);
         $this->score = $score;
         return $this;
     }
@@ -243,6 +256,42 @@ class Rencontre
     public function setStats($stats)
     {
         $this->stats = $stats;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getScoreDom()
+    {
+        return $this->scoreDom;
+    }
+
+    /**
+     * @param int $scoreDom
+     * @return Rencontre
+     */
+    public function setScoreDom($scoreDom)
+    {
+        $this->scoreDom = $scoreDom;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getScoreExt()
+    {
+        return $this->scoreExt;
+    }
+
+    /**
+     * @param int $scoreExt
+     * @return Rencontre
+     */
+    public function setScoreExt($scoreExt)
+    {
+        $this->scoreExt = $scoreExt;
         return $this;
     }
 

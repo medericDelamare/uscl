@@ -22,12 +22,13 @@ class StatsController extends Controller
      */
     public function showAction($category)
     {
-        $equipes = $this->getDoctrine()->getRepository(Equipe::class)->getClassementByCategorie($category);
+        $equipes = $this->getLastResults($this->getDoctrine()->getRepository(Equipe::class)->getClassementByCategorie($category));
         $rencontres = $this->getDoctrine()->getRepository(Rencontre::class)->getDerniereJournee($category);
         $agendas = $this->getDoctrine()->getRepository(Rencontre::class)->getAgenda($category);
         $calendrier = $this->getDoctrine()->getRepository(Rencontre::class)->getCalendrierParCategorie($category);
         $distinctEquipes = $this->getDoctrine()->getRepository(Equipe::class)->findByCategorieOrderByNomParse($category);
         $classementParJournee = $this->getDoctrine()->getRepository(StatsParJournee::class)->findByCategOrderByJournee($category);
+
 
         $classementTriParEquipe = [];
         /** @var StatsParJournee $classementInfos */
@@ -144,6 +145,40 @@ class StatsController extends Controller
 
         $em->flush();
         return $this->showAction($category);
+    }
+
+    /**
+     * @param Equipe[] $equipes
+     */
+    private function getLastResults($equipes){
+        $eq =[];
+        foreach ($equipes as $equipe){
+            $rencontres = $this->getDoctrine()->getRepository(Rencontre::class)->getLastFiveRencontreByEquipe($equipe);
+            $results = [];
+            /** @var Rencontre $rencontre */
+            foreach ($rencontres as $rencontre){
+                if ($equipe->getId() == $rencontre->getEquipeDomicile()->getId()){
+                    if ($rencontre->getScoreDom() > $rencontre->getScoreExt()){
+                        $results[] = 'v';
+                    } elseif ($rencontre->getScoreDom() < $rencontre->getScoreExt()){
+                        $results[] = 'd';
+                    } else {
+                        $results[] = 'n';
+                    }
+                } elseif ($equipe->getId() == $rencontre->getEquipeExterieure()->getId()){
+                    if ($rencontre->getScoreDom() > $rencontre->getScoreExt()){
+                        $results[] = 'd';
+                    } elseif ($rencontre->getScoreDom() < $rencontre->getScoreExt()){
+                        $results[] = 'v';
+                    } else {
+                        $results[] = 'n';
+                    }
+                }
+            }
+            $equipe->setLastFiveResults(array_reverse($results));
+            $eq[] = $equipe;
+        }
+        return $eq;
     }
 
     /**
