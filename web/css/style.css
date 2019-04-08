@@ -209,11 +209,50 @@ body {
     width: 100%;
 }
 
-.business-header-stats{
+.business-header-seniorA{
     background: url('../pictures/stats.jpg') center center no-repeat scroll;
     background-position: top !important;
     width: 100%;
 }
+
+.business-header-seniorB{
+    background: url('../pictures/seniorB.jpg') center center no-repeat scroll;
+    background-position: top !important;
+    width: 100%;
+}
+
+.business-header-U18{
+    background: url('../pictures/U18.jpg') center center no-repeat scroll;
+    background-position: top !important;
+    width: 100%;
+}
+
+.business-header-U15{
+    background: url('../pictures/stats.jpg') center center no-repeat scroll;
+    background-position: top !important;
+    width: 100%;
+}
+
+.business-header-U13A{
+    background: url('../pictures/U13A.jpg') center center no-repeat scroll;
+    background-position: top !important;
+    width: 100%;
+}
+
+.business-header-U13B{
+    background: url('../pictures/U13B.jpg') center center no-repeat scroll;
+    background-position: top !important;
+    width: 100%;
+}
+
+.business-header-veteranA,
+.business-header-veteranB{
+    background: url('../pictures/veteransA.JPG') center center no-repeat scroll;
+    background-position: top !important;
+    width: 100%;
+}
+
+
 
 .business-header-stade{
     background: url('../pictures/stade.png') center center no-repeat scroll;

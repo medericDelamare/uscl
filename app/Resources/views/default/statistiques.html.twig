@@ -4,7 +4,7 @@
     <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 {% endblock %}
 {% block body %}
-<header class="business-header business-header-stats">
+<header class="business-header {{ class }}">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -17,7 +17,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
         <li class="breadcrumb-item " aria-current="page">Statistiques</li>
-        <li class="breadcrumb-item active" aria-current="page">Senior A</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ categorie }}</li>
     </ol>
 </nav>
 <div class="container-fluid">

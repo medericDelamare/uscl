@@ -105,6 +105,7 @@ class StatsController extends Controller
         $categoryFormat = preg_replace('/(?=(?<!^)[[:upper:]])/', ' ', $categoryFormat);
 
         return $this->render(':default:statistiques.html.twig', [
+            'class' => 'business-header-' . $category,
             'categorie' => $categoryFormat,
             'equipes' => $equipes,
             'rencontres' => $rencontres,
