@@ -15,40 +15,55 @@
             <li class="breadcrumb-item active" aria-current="page">Buteur</li>
         </ol>
     </nav>
-    <div class="container">
+    <div class="container-fluid">
         <h1 class="sous-titre">Buteurs</h1>
-        <div id="accordion">
-            <div class="card card-uscl">
-                <div class="card-header" id="headingOne">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link btn-uscl" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Seniors
-                        </button>
-                    </h5>
-                </div>
-
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body">
-                        <h1>Classements des buteurs<small> 	Seniors</small></h1>
-                        <div class = "table-responsive">
-                            <table id="buteurs-seniors" class = "text-center tableauButeur table table-sm">
+        <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-seniors" role="tab"
+                   aria-controls="pills-seniors" aria-selected="true">Seniors</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-veterans" role="tab"
+                   aria-controls="pills-veterans" aria-selected="false">Vétérans</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-U18" role="tab"
+                   aria-controls="pills-U18" aria-selected="false">U18</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-U15" role="tab"
+                   aria-controls="pills-U15" aria-selected="false">U15</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-U13" role="tab"
+                   aria-controls="pills-U15" aria-selected="false">U13</a>
+            </li>
+        </ul>
+        <div class="row">
+            <div class="tab-content col-12" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-seniors" role="tabpanel"
+                     aria-labelledby="pills-home-tab">
+                    <div class="col-12 offset-md-2 col-md-8">
+                        <h2>Buteurs Seniors</h2>
+                        <div class="table-responsive">
+                            <table class="table table-sm tableauButeur">
                                 <thead>
                                 <tr>
-                                    <th class = "text-center">Nom</th>
-                                    <th class = "text-center">Buts en A</th>
-                                    <th class = "text-center">Buts en B</th>
-                                    <th class = "text-center">Buts en Coupe</th>
-                                    <th class = "text-center">Total</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Buts en A</th>
+                                    <th scope="col">Buts en B</th>
+                                    <th scope="col">Buts en Coupe</th>
+                                    <th scope="col">Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for senior in seniors %}
+                                {% for buteur in seniors %}
                                     <tr>
-                                        <td><a href="{{ path('profile', {'id': senior.id}) }}">{{ senior.nom }} {{ senior.prenom }}</td>
-                                        <td>{{ senior.stats.butsA }}</td>
-                                        <td>{{ senior.stats.butsB }}</td>
-                                        <td>{{ senior.stats.butsCoupe }}</td>
-                                        <td>{{ senior.stats.butsA + senior.stats.butsB + senior.stats.butsCoupe }}</td>
+                                        <td>{{ buteur.nomComplet }}</td>
+                                        <td>{{ buteur.stats.butsA }}</td>
+                                        <td>{{ buteur.stats.butsB }}</td>
+                                        <td>{{ buteur.stats.butsCoupe }}</td>
+                                        <td>{{ buteur.stats.butsA + buteur.stats.butsB + buteur.stats.butsCoupe }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -56,37 +71,28 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card card-uscl">
-                <div class="card-header" id="headingTwo">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed btn-uscl" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Vétérans
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                    <div class="card-body">
-                        <h1>Classements des buteurs<small> 	Veterans</small></h1>
-                        <div class = "table-responsive">
-                            <table id="buteurs-veterans" class = "text-center tableauButeur table table-sm">
+                <div class="tab-pane fade" id="pills-veterans" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="col-12 offset-md-2 col-md-8">
+                        <h2>Buteurs Vétérans</h2>
+                        <div class="table-responsive">
+                            <table class="table table-sm tableauButeur">
                                 <thead>
                                 <tr>
-                                    <th class = "text-center">Nom</th>
-                                    <th class = "text-center">Buts en A</th>
-                                    <th class = "text-center">Buts en B</th>
-                                    <th class = "text-center">Buts en Coupe</th>
-                                    <th class = "text-center">Total</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Buts en A</th>
+                                    <th scope="col">Buts en B</th>
+                                    <th scope="col">Buts en Coupe</th>
+                                    <th scope="col">Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for veteran in veterans %}
+                                {% for buteur in veterans %}
                                     <tr>
-                                        <td><a href="{{ path('profile', {'id': veteran.id}) }}">{{ veteran.nom }} {{ veteran.prenom }}</td>
-                                        <td>{{ veteran.stats.butsA }}</td>
-                                        <td>{{ veteran.stats.butsB }}</td>
-                                        <td>{{ veteran.stats.butsCoupe }}</td>
-                                        <td>{{ veteran.stats.butsA + veteran.stats.butsB + veteran.stats.butsCoupe }}</td>
+                                        <td>{{ buteur.nomComplet }}</td>
+                                        <td>{{ buteur.stats.butsA }}</td>
+                                        <td>{{ buteur.stats.butsB }}</td>
+                                        <td>{{ buteur.stats.butsCoupe }}</td>
+                                        <td>{{ buteur.stats.butsA + buteur.stats.butsB + buteur.stats.butsCoupe }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -94,35 +100,26 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card card-uscl">
-                <div class="card-header" id="headingThree">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed btn-uscl" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            U18
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                    <div class="card-body">
-                        <div class = "table-responsive">
-                            <h1>Classements des buteurs<small> 	U18</small></h1>
-                            <table class = "text-center tableauButeur3Colonnes table table-sm">
+                <div class="tab-pane fade" id="pills-U18" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="col-12 offset-md-2 col-md-8">
+                        <h2>Buteurs U18</h2>
+                        <div class="table-responsive">
+                            <table class="table table-sm tableauButeur3Colonnes">
                                 <thead>
                                 <tr>
-                                    <th class = "text-center">Nom</th>
-                                    <th class = "text-center">Buts en championnat</th>
-                                    <th class = "text-center">Buts en coupe</th>
-                                    <th class = "text-center">Nombre de buts</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Buts en A</th>
+                                    <th scope="col">Buts en Coupe</th>
+                                    <th scope="col">Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for U18Infos in U18 %}
+                                {% for buteur in U18 %}
                                     <tr>
-                                        <td><a href="{{ path('profile', {'id': U18Infos.id}) }}">{{ U18Infos.nom }} {{ U18Infos.prenom }}</td>
-                                        <td>{{ U18Infos.stats.butsA }}</td>
-                                        <td>{{ U18Infos.stats.butsCoupe }}</td>
-                                        <td>{{ U18Infos.stats.butsCoupe + U18Infos.stats.butsA  }}</td>
+                                        <td>{{ buteur.nomComplet }}</td>
+                                        <td>{{ buteur.stats.butsA }}</td>
+                                        <td>{{ buteur.stats.butsCoupe }}</td>
+                                        <td>{{ buteur.stats.butsA + buteur.stats.butsCoupe }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -130,35 +127,26 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card card-uscl">
-                <div class="card-header" id="headingFour">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed btn-uscl" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            U15
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                    <div class="card-body">
-                        <h1>Classements des buteurs<small> 	U15</small></h1>
-                        <div class = "table-responsive">
-                            <table class = "text-center tableauButeur3Colonnes table table-sm">
+                <div class="tab-pane fade" id="pills-U15" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="col-12 offset-md-2 col-md-8">
+                        <h2>Buteurs U15</h2>
+                        <div class="table-responsive">
+                            <table class="table table-sm tableauButeur3Colonnes">
                                 <thead>
                                 <tr>
-                                    <th class = "text-center">Nom</th>
-                                    <th class = "text-center">Buts en championnat</th>
-                                    <th class = "text-center">Buts en coupe</th>
-                                    <th class = "text-center">Nombre de buts</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Buts en A</th>
+                                    <th scope="col">Buts en Coupe</th>
+                                    <th scope="col">Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for U15Infos in U15 %}
+                                {% for buteur in U15 %}
                                     <tr>
-                                        <td><a href="{{ path('profile', {'id': U15Infos.id}) }}">{{ U15Infos.nom }} {{ U15Infos.prenom }}</td>
-                                        <td>{{ U15Infos.stats.butsA }}</td>
-                                        <td>{{ U15Infos.stats.butsCoupe }}</td>
-                                        <td>{{ U15Infos.stats.butsCoupe + U15Infos.stats.butsA  }}</td>
+                                        <td>{{ buteur.nomComplet }}</td>
+                                        <td>{{ buteur.stats.butsA }}</td>
+                                        <td>{{ buteur.stats.butsCoupe }}</td>
+                                        <td>{{ buteur.stats.butsA + buteur.stats.butsCoupe }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -166,37 +154,28 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card card-uscl">
-                <div class="card-header" id="headingFive">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed btn-uscl" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            U13
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                    <div class="card-body">
-                        <h1>Classements des buteurs<small> 	U13</small></h1>
-                        <div class = "table-responsive">
-                            <table id="buteurs-veterans" class = "text-center tableauButeur table table-sm">
+                <div class="tab-pane fade" id="pills-U13" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="col-12 offset-md-2 col-md-8">
+                        <h2>Buteurs U13</h2>
+                        <div class="table-responsive">
+                            <table class="table table-sm tableauButeur">
                                 <thead>
                                 <tr>
-                                    <th class = "text-center">Nom</th>
-                                    <th class = "text-center">Buts en A</th>
-                                    <th class = "text-center">Buts en B</th>
-                                    <th class = "text-center">Buts en Coupe</th>
-                                    <th class = "text-center">Total</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Buts en A</th>
+                                    <th scope="col">Buts en B</th>
+                                    <th scope="col">Buts en Coupe</th>
+                                    <th scope="col">Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for U13Infos in U13 %}
+                                {% for buteur in U13 %}
                                     <tr>
-                                        <td><a href="{{ path('profile', {'id': U13Infos.id}) }}">{{ U13Infos.nom }} {{ U13Infos.prenom }}</td>
-                                        <td>{{ U13Infos.stats.butsA }}</td>
-                                        <td>{{ U13Infos.stats.butsB }}</td>
-                                        <td>{{ U13Infos.stats.butsCoupe }}</td>
-                                        <td>{{ U13Infos.stats.butsA + U13Infos.stats.butsB + U13Infos.stats.butsCoupe }}</td>
+                                        <td>{{ buteur.nomComplet }}</td>
+                                        <td>{{ buteur.stats.butsA }}</td>
+                                        <td>{{ buteur.stats.butsB }}</td>
+                                        <td>{{ buteur.stats.butsCoupe }}</td>
+                                        <td>{{ buteur.stats.butsA + buteur.stats.butsCoupe }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -214,29 +193,29 @@
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/plug-ins/1.10.19/sorting/date-eu.js"></script>
 
-    <script >
-        $('.tableauButeur').DataTable( {
-            "order": [[ 4, "desc" ]],
+    <script>
+        $('.tableauButeur').DataTable({
+            "order": [[4, "desc"]],
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
             },
             "autoWidth": false,
             "paging": false,
-            "bInfo" : false,
-            "searching" : false
-        } );
+            "bInfo": false,
+            "searching": false
+        });
     </script>
 
-    <script >
-        $('.tableauButeur3Colonnes').DataTable( {
-            "order": [[ 3, "desc" ]],
+    <script>
+        $('.tableauButeur3Colonnes').DataTable({
+            "order": [[3, "desc"]],
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
             },
             "autoWidth": false,
             "paging": false,
-            "bInfo" : false,
-            "searching" : false
-        } );
+            "bInfo": false,
+            "searching": false
+        });
     </script>
 {% endblock %}
