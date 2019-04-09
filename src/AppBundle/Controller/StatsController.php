@@ -107,6 +107,7 @@ class StatsController extends Controller
 
         return $this->render(':default:statistiques.html.twig', [
             'class' => 'business-header-' . $category,
+            'tableClass' => 'classement-' . $category,
             'categorie' => $categoryFormat,
             'equipes' => $equipes,
             'rencontres' => $rencontres,
