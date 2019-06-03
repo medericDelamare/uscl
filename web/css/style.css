@@ -523,6 +523,7 @@ ul {
 .zonePlay {
     background: #0050a1;
     padding: 2%;
+    box-shadow: 2px 2px 11px rgba(0,0,0,0.7);
 }
 
 .fc_inf_stats {
@@ -1261,3 +1262,33 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     transition: all .25s;
 }
 
+
+.stat {
+    text-align:center;
+}
+.highlight {
+    color:#111;
+    padding:5px 0;
+    font-weight:bold;
+    display:block;
+    overflow:hidden;
+    margin-bottom:0;
+    font-size:48px;
+}
+.stat i {
+    color:#f7c221;
+}
+.milestone-details {
+    font-weight:bold;
+    font-size:14px;
+    color:white;
+}
+
+.profil-font {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.image-profil{
+    width: 100px;
+}
