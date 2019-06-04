@@ -11,6 +11,12 @@ body {
 }
 
 
+@font-face {
+    font-family: "Pinceau";
+    src: url("fonts/CFPinceau.ttf");
+}
+
+
 .stats {
     font-size: 30px;
     font-weight: bold;
@@ -1291,4 +1297,19 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .image-profil{
     width: 100px;
+}
+
+.logo-rencontre-semaine{
+    width: 45%;
+}
+
+.vs-rencontre-semaine{
+    font-family: "Pinceau";
+    color: #0050a1;
+    font-size: 70px;
+}
+
+.nom-club-rencontre-semaine{
+    font-family: "Pinceau";
+    font-size: 22px;
 }

@@ -86,6 +86,20 @@ class RencontreRepository extends EntityRepository
         return $agendas;
     }
 
+    public function getWeekGames(){
+        $agendas = $rencontres = $this->createQueryBuilder('r')
+            ->join('r.equipeDomicile', 'd', 'WITH', 'd.id = r.equipeDomicile')
+            ->leftJoin('r.equipeExterieure', 'e', 'WITH', 'e.id = r.equipeExterieure')
+            ->where('r.date < :semaine')
+            ->andWhere('r.date > :dateCourante')
+            ->andWhere('d.club = 1 OR e.club = 1')
+            ->setParameter('dateCourante', new \DateTime())
+            ->setParameter('semaine', new \DateTime('+1 week'))
+            ->getQuery()
+            ->getResult();
+        return $agendas;
+    }
+
     public function getCalendrierParCategorie($categorie){
         return $this->createQueryBuilder('r')
             ->join(Equipe::class, 'd', 'WITH', 'd.id = r.equipeDomicile')
