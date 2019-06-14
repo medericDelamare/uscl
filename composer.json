@@ -31,6 +31,7 @@
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "3.2.*",
         "twbs/bootstrap": "^3.3",
+        "twig/extensions": "^1.5",
         "twig/twig": "^1.0||^2.0",
         "xmon/color-picker-type-bundle": "^1.0",
         "yectep/phpspreadsheet-bundle": "^0.0.4"
