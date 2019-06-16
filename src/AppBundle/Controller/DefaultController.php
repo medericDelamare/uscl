@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\CarriereJoueur;
+use AppBundle\Entity\NombreLicenciesParAnnee;
 use AppBundle\Entity\Rencontre;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -18,6 +19,7 @@ class DefaultController extends Controller
     {
         $weekGames = $this->getDoctrine()->getRepository(Rencontre::class)->getWeekGames();
         $nombreLicenceActuel = $this->getDoctrine()->getRepository(CarriereJoueur::class)->nbLicencie();
+        $statsLicencies = $this->getDoctrine()->getRepository(NombreLicenciesParAnnee::class)->getAllOrderByAnneeDebut();
 
         /**
          * @var Rencontre $game
@@ -31,13 +33,23 @@ class DefaultController extends Controller
             $game->getEquipeDomicile()->setCategorie($categoryFormat);
         }
 
-        $anneeEnCours = substr($this->container->getParameter('debut_annee'),2) . '/' . substr($this->container->getParameter('fin_annee'),2);
+        $annees = [];
+        $nbLicencies = [];
+        /**
+         * @var NombreLicenciesParAnnee $stat
+         */
+        foreach ($statsLicencies as $stat){
+            $annees[] = $stat->getAnneeDepart() . '/' . $stat->getAnneeFin();
+            $nbLicencies[] = $stat->getNombreLicencies();
+        }
 
+        $annees[] = $this->container->getParameter('debut_annee') . '/' . $this->container->getParameter('fin_annee');
+        $nbLicencies[] = $nombreLicenceActuel;
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
             'weekGames' => $weekGames,
-            'nbLicencieActuel' => $nombreLicenceActuel,
-            'anneeEnCours' => $anneeEnCours,
+            'annees' => $annees,
+            'nbLicencies' => $nbLicencies,
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
