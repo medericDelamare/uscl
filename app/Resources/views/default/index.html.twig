@@ -226,13 +226,14 @@
     <script src='{{ asset('vendor/fullcalendar/dist/locale/fr.js') }}'></script>
     <script>
         var ctx = document.getElementById("myChart").getContext('2d');
-
+        var saison = {{ anneeEnCours|json_encode|raw }}
+        var nbActuel = {{ nbLicencieActuel|json_encode|raw }}
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['10/11', '11/12', '12/13', '13/14', '14/15', '15/16', '16/17', '17/18'],
+                labels: ['10/11', '11/12', '12/13', '13/14', '14/15', '15/16', '16/17', '17/18', saison],
                 datasets: [{
-                    data: [143, 131, 149, 157, 191, 208, 231, 225],
+                    data: [143, 131, 149, 157, 191, 208, 231, 225, nbActuel],
                     borderWidth: 2,
                     backgroundColor: [],
                     lineTension: 0.1,
