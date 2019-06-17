@@ -297,6 +297,11 @@ body {
     width: 100%;
 }
 
+
+.business-header-document {
+    background: url('../pictures/documents.jpg') center center no-repeat scroll;
+}
+
 .tagline {
     text-shadow: 2px 2px 2px #000;
     color: #fff;

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <header class="business-header business-header-document">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="tagline"></h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container mt-4">
+        <h1 class="sous-titre">Documents</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Nom</td>
+                        <td>Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in files %}
+                        <tr>
+                            <td>{{ file }}</td>
+                            <td>
+                                <a href="{{ path('document-download', {'nom': file, 'telecharger': false} ) }}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                    Visualiser
+                                </a>
+                                <a href="{{ path('document-download', {'nom': file, 'telecharger': true} ) }}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                    Télécharger
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
