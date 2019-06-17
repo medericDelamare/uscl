@@ -65,7 +65,7 @@
                                 <tr class="classement-tr">
                                     <td>{{ loop.index }}</td>
                                     {% if equipe.club %}
-                                        <td><img class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ equipe.club.logo) }}"><span class="d-none d-lg-inline-block">{{ equipe.nomParse }}</span></td>
+                                        <td><img data-toggle="tooltip" data-placement="top" title="{{ equipe.nomParse }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ equipe.club.logo) }}"><span class="d-none d-lg-inline-block">{{ equipe.nomParse }}</span></td>
                                     {% else %}
                                         <td>{{ equipe.nomParse }}</td>
                                     {% endif %}
@@ -105,7 +105,7 @@
                                     <td>{{ resultat.date|date("m/d/Y H:i") }}</td>
                                     {% if resultat.equipeDomicile.club %}
                                         <td>
-                                            <img class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ resultat.equipeDomicile.club.logo) }}">
+                                            <img data-toggle="tooltip" data-placement="top" title="{{ resultat.equipeDomicile.nomParse }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ resultat.equipeDomicile.club.logo) }}">
                                             <span class="d-none d-lg-inline-block">{{ resultat.equipeDomicile.nomParse }}</span>
                                         </td>
                                     {% else %}
@@ -115,7 +115,7 @@
                                     {% if resultat.equipeExterieure.club %}
                                         <td class="text-right">
                                             <span class="d-none d-lg-inline-block">{{ resultat.equipeExterieure.nomParse }}</span>
-                                            <img class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ resultat.equipeExterieure.club.logo) }}">
+                                            <img data-toggle="tooltip" data-placement="top" title="{{ resultat.equipeExterieure.nomParse }}" class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ resultat.equipeExterieure.club.logo) }}">
                                         </td>
                                     {% else %}
                                         <td>{{ resultat.equipeExterieure.nomParse }}</td>
@@ -136,7 +136,7 @@
                                     <td>{{ resultat.date|date("m/d/Y H:i") }}</td>
                                     {% if resultat.equipeDomicile.club %}
                                         <td>
-                                            <img class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ resultat.equipeDomicile.club.logo) }}">
+                                            <img data-toggle="tooltip" data-placement="top" title="{{ resultat.equipeDomicile.nomParse }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ resultat.equipeDomicile.club.logo) }}">
                                             <span class="d-none d-lg-inline-block">{{ resultat.equipeDomicile.nomParse }}</span>
                                         </td>
                                     {% else %}
@@ -146,7 +146,7 @@
                                     {% if resultat.equipeExterieure.club %}
                                         <td class="text-right">
                                             <span class="d-none d-lg-inline-block">{{ resultat.equipeExterieure.nomParse }}</span>
-                                            <img class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ resultat.equipeExterieure.club.logo) }}">
+                                            <img data-toggle="tooltip" data-placement="top" title="{{ resultat.equipeExterieure.nomParse }}" class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ resultat.equipeExterieure.club.logo) }}">
                                         </td>
                                     {% else %}
                                         <td>{{ resultat.equipeExterieure.nomParse }}</td>
@@ -210,5 +210,7 @@
                 }
             });
         }
+
+
     </script>
 {% endblock %}

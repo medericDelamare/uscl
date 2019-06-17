@@ -28,11 +28,6 @@
             gtag('config', 'UA-134070461-1');
         </script>
         <script src="/uscl/web/vendor/jquery/dist/jquery.min.js"></script>
-        <script>
-            $( document ).ready(function() {
-                console.log( "ready!" );
-            });
-        </script>
     </head>
     <body>
         {{ include(':default:navbar.html.twig') }}
@@ -44,6 +39,7 @@
 
         <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
         <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
@@ -66,6 +62,10 @@
                         sticky.classList.remove('fixed');
                 });
             }
+
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
         </script>
         {% block javascripts %}{% endblock %}
 

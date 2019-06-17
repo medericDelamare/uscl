@@ -2,7 +2,7 @@
     <tr class="align-middle">
         <td >{{ calendrierDetail.date|date("d/m/Y") }}</td>
         {% if calendrierDetail.equipeDomicile.club %}
-            <td class="equipeGauche"><img class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ calendrierDetail.equipeDomicile.club.logo) }}"><span class="d-none d-sm-inline-block">{{ calendrierDetail.equipeDomicile.nomParse }}</span></td>
+            <td class="equipeGauche"><img data-toggle="tooltip" data-placement="top" title="{{ calendrierDetail.equipeDomicile.nomParse }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ calendrierDetail.equipeDomicile.club.logo) }}"><span class="d-none d-sm-inline-block">{{ calendrierDetail.equipeDomicile.nomParse }}</span></td>
         {% else %}
             <td class="equipeGauche">{{ calendrierDetail.equipeDomicile.nomParse }}</td>
         {% endif %}
@@ -18,7 +18,7 @@
         {% endif %}
 
         {% if calendrierDetail.equipeExterieure.club %}
-            <td class="equipeDroite"><span class="d-none d-sm-inline-block">{{ calendrierDetail.equipeExterieure.nomParse }}</span><img class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ calendrierDetail.equipeExterieure.club.logo) }}"></td>
+            <td class="equipeDroite"><span class="d-none d-sm-inline-block">{{ calendrierDetail.equipeExterieure.nomParse }}</span><img data-toggle="tooltip" data-placement="top" title="{{ calendrierDetail.equipeExterieure.nomParse }}" class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ calendrierDetail.equipeExterieure.club.logo) }}"></td>
         {% else %}
             <td class="equipeDroite">{{ calendrierDetail.equipeExterieure.nomParse }}</td>
         {% endif %}
