@@ -21,6 +21,11 @@ services:
             arguments:
                     entityManager: "@doctrine.orm.entity_manager"
 
+    app.generation_image_controller:
+      class: AppBundle\Controller\GenerationImageController
+      calls:
+        - [setContainer, ["@service_container"]]
+
     app_core.facebook:
        # notre classe
        class: AppBundle\Service\ReseauxSociaux\FacebookService

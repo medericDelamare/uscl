@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Rencontre
  * @package AppBundle\Entity
  *
- * @ORM\Entity(repositoryClass="AppBundle\Repository\RencontreRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\StatsRencontreRepository")
  */
 class StatsRencontre
 {
@@ -52,6 +52,12 @@ class StatsRencontre
      * @ORM\OneToMany(targetEntity="But", mappedBy="statsRencontres", cascade={"persist"})
      */
     private $buts;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", options={"default":"0"})
+     */
+    private $imageGeneree = false;
 
     public function __construct()
     {
@@ -168,4 +174,24 @@ class StatsRencontre
         $but->setStatsRencontres($this);
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    public function isImageGeneree()
+    {
+        return $this->imageGeneree;
+    }
+
+    /**
+     * @param bool $imageGeneree
+     * @return StatsRencontre
+     */
+    public function setImageGeneree($imageGeneree)
+    {
+        $this->imageGeneree = $imageGeneree;
+        return $this;
+    }
+
+
 }

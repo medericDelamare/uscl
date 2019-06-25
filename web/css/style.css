@@ -16,6 +16,11 @@ body {
     src: url("fonts/CFPinceau.ttf");
 }
 
+@font-face {
+    font-family: "DINPro";
+    src: url("fonts/DINPro.otf");
+}
+
 
 .stats {
     font-size: 30px;
@@ -1316,4 +1321,67 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .nom-club-rencontre-semaine{
     font-size: 22px;
+}
+
+.body-score{
+    font-family: "DINPro";
+    height: 1170px;
+    width: 2048px;
+    background: url('../pictures/fond_uscl.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.score-page-score{
+    font-size: 150px;
+    color: white;
+}
+
+.score-page-logo{
+    width: 200px;
+}
+
+.score-page-buteur,
+.score-page-passeur{
+    font-size: 30px;
+    color: white;
+}
+
+.score-page-ballon,
+.score-page-cible{
+    width: 20px;
+}
+
+.titre-passeur-buteur{
+    color: #FCC016;
+}
+
+.container-date-score-page{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 72px;
+    width: 193px;
+}
+
+.date-score-page{
+    color: #113758;
+    font-size: 60px;
+    line-height: 60px;
+    font-weight: bold;
+}
+
+.jour-date-score-page{
+    font-size: 130px;
+    line-height: 130px;
+}
+
+.mois-date-score-page{
+
+}
+
+.categorie-score-page{
+    font-size: 90px;
 }

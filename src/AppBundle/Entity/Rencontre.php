@@ -88,6 +88,7 @@ class Rencontre
      */
     private $scoreExt;
 
+
     /**
      * @return int
      */
@@ -242,7 +243,7 @@ class Rencontre
     }
 
     /**
-     * @return mixed
+     * @return StatsRencontre
      */
     public function getStats()
     {

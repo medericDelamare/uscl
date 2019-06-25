@@ -95,3 +95,9 @@ fos_user:
     registration:
         form:
             type: AppBundle\Form\RegistrationType
+
+knp_snappy:
+    image:
+        enabled:    true
+        binary:     "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\""
+        options:    []
