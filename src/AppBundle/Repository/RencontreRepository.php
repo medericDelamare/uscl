@@ -47,14 +47,16 @@ class RencontreRepository extends EntityRepository
             ->getResult();
     }
 
-    public function getDerniereJournee($categorie){
-        $dernireJournee = $this->createQueryBuilder('r')
+    public function getDerniereJournee($categorie, $debutSaison, $finSaison){
+        $derniereJournee = $this->createQueryBuilder('r')
             ->select('r.journee')
             ->join(Equipe::class, 'd', 'WITH', 'd.id = r.equipeDomicile')
             ->where('d.categorie = :categorie')
             ->andWhere('r.score IS NOT NULL')
+            ->andWhere('r.date > :debutSaison')
+            ->andwhere('r.date < :finSaison')
             ->orderBy('r.date', 'DESC')
-            ->setParameter('categorie', $categorie)
+            ->setParameters(['categorie'=> $categorie, 'debutSaison' => $debutSaison, 'finSaison' => $finSaison])
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
@@ -63,8 +65,9 @@ class RencontreRepository extends EntityRepository
             ->join('r.equipeDomicile', 'd', 'WITH', 'd.id = r.equipeDomicile')
             ->where('r.journee = :derniereJournee')
             ->andWhere('d.categorie = :categorie')
-            ->setParameter('derniereJournee', $dernireJournee['journee'])
-            ->setParameter('categorie', $categorie)
+            ->andWhere('r.date > :debutSaison')
+            ->andwhere('r.date < :finSaison')
+            ->setParameters(['categorie'=> $categorie, 'debutSaison' => $debutSaison, 'finSaison' => $finSaison,'derniereJournee' => $derniereJournee['journee']])
             ->getQuery()
             ->getResult();
         
@@ -100,12 +103,14 @@ class RencontreRepository extends EntityRepository
         return $agendas;
     }
 
-    public function getCalendrierParCategorie($categorie){
+    public function getCalendrierParCategorie($categorie, $debutSaison, $finSaison){
         return $this->createQueryBuilder('r')
             ->join(Equipe::class, 'd', 'WITH', 'd.id = r.equipeDomicile')
             ->where('d.categorie = :categorie')
+            ->andWhere('r.date > :debutSaison')
+            ->andwhere('r.date < :finSaison')
             ->orderBy('r.date', 'ASC')
-            ->setParameter('categorie', $categorie)
+            ->setParameters(['categorie'=> $categorie, 'debutSaison' => $debutSaison, 'finSaison' => $finSaison])
             ->getQuery()
             ->getResult();
     }

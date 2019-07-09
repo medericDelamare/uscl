@@ -68,6 +68,13 @@ class Equipe
      */
     private $lastFiveResults;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     *
+     */
+    private $saison;
+
     public function __construct($categorie = null, $nomParse)
     {
         $this->lastFiveResults = new ArrayCollection();
@@ -238,12 +245,25 @@ class Equipe
      * @return ArrayCollection
      */
     public function addLastFiveResult($resultString){
-        dump($this->lastFiveResults);
         $this->lastFiveResults->add($resultString);
         return $this->lastFiveResults;
     }
 
+    /**
+     * @return string
+     */
+    public function getSaison()
+    {
+        return $this->saison;
+    }
 
-
-
+    /**
+     * @param string $saison
+     * @return Equipe
+     */
+    public function setSaison($saison)
+    {
+        $this->saison = $saison;
+        return $this;
+    }
 }

@@ -183,20 +183,28 @@
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script >
         $(document).ready( function () {
-            var cormeillesRoute = "{{ path('calendrier-par-equipe', {'equipe': cormeilles.id}) }}";
-            var nomParse = '{{ cormeilles.nomParse|raw }}';
-            $("#selectEquipe option").each(function(){
-                if ($(this).text() == nomParse)
-                    $(this).attr("selected","selected");
-            });
-            refreshClassement(cormeillesRoute, nomParse);
+            var cormeillesId = {{ cormeilles_id|json_encode|raw }};
+            var cormeillesNomParse = {{ cormeilles_nom|json_encode|raw }};
+            var route = {{ base_rul|json_encode|raw }} + '/get-calendrier-par-equipe/';
 
 
-            $('#selectEquipe').change(function () {
-                var route = $('#selectEquipe').find(":selected").attr('data-href');
-                var equipeCourante = ($('#selectEquipe').find(":selected").html());
-                refreshClassement(route, equipeCourante);
-            })
+            if (cormeillesId !== null){
+                var cormeillesRoute = route + cormeillesId;
+
+                $("#selectEquipe option").each(function(){
+                    if ($(this).text() == cormeillesNomParse)
+                        $(this).attr("selected","selected");
+                });
+                refreshClassement(cormeillesRoute, cormeillesNomParse);
+
+
+                $('#selectEquipe').change(function () {
+                    var route = $('#selectEquipe').find(":selected").attr('data-href');
+                    var equipeCourante = ($('#selectEquipe').find(":selected").html());
+                    refreshClassement(route, equipeCourante);
+                })
+            }
+
         } );
 
 

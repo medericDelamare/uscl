@@ -13,6 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DomCrawler\Crawler;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class StatsController extends Controller
 {
@@ -20,13 +21,20 @@ class StatsController extends Controller
      * @Route("/statistiques/{category}", name="statistiques")
      * @Template()
      */
-    public function showAction($category)
+    public function showAction(Request $request, $category)
     {
-        $equipes = $this->getLastResults($this->getDoctrine()->getRepository(Equipe::class)->getClassementByCategorie($category));
-        $rencontres = $this->getDoctrine()->getRepository(Rencontre::class)->getDerniereJournee($category);
+        $anneDebutSaison = $this->getParameter('debut_annee');
+        $debutSaison = $anneDebutSaison . '-08-15';
+        $anneeFinSaison = $this->getParameter('fin_annee');
+        $finSaison = $anneeFinSaison . '-08-15';
+        $saison = $anneDebutSaison . '-' . $anneeFinSaison;
+
+
+        $equipes = $this->getLastResults($this->getDoctrine()->getRepository(Equipe::class)->getClassementByCategorie($category, $saison));
+        $rencontres = $this->getDoctrine()->getRepository(Rencontre::class)->getDerniereJournee($category, $debutSaison, $finSaison);
         $agendas = $this->getDoctrine()->getRepository(Rencontre::class)->getAgenda($category);
-        $calendrier = $this->getDoctrine()->getRepository(Rencontre::class)->getCalendrierParCategorie($category);
-        $distinctEquipes = $this->getDoctrine()->getRepository(Equipe::class)->findByCategorieOrderByNomParse($category);
+        $calendrier = $this->getDoctrine()->getRepository(Rencontre::class)->getCalendrierParCategorie($category, $debutSaison, $finSaison);
+        $distinctEquipes = $this->getDoctrine()->getRepository(Equipe::class)->findByCategorieOrderByNomParse($category, $saison);
         $classementParJournee = $this->getDoctrine()->getRepository(StatsParJournee::class)->findByCategOrderByJournee($category);
 
 
@@ -42,12 +50,14 @@ class StatsController extends Controller
         }
 
 
-        $cormeilles = null;
+        $cormeillesId = null;
+        $cormeillesNomParse = null;
 
         /** @var Equipe $equipe */
         foreach ($distinctEquipes as $equipe){
             if (strstr($equipe->getNomParse(),'CORM')){
-                $cormeilles = $equipe;
+                $cormeillesId = $equipe->getId();
+                $cormeillesNomParse = $equipe->getNomParse();
             }
         }
 
@@ -114,11 +124,13 @@ class StatsController extends Controller
             'agendas' => $agendas,
             'calendrier' => $calendrier,
             'equipeListe' => $distinctEquipes,
-            'cormeilles' => $cormeilles,
+            'cormeilles_id' => $cormeillesId,
+            'cormeilles_nom' => $cormeillesNomParse,
             'classement_par_journee' => $classementTriParEquipe,
             'nb_journees' => $nbJournees,
             'division' => $division,
             'groupe' => $groupe,
+            'base_rul' => $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath()
         ]);
     }
 
