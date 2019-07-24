@@ -3,6 +3,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -62,8 +63,21 @@ class Equipe
      */
     private $club;
 
+    /**
+     * @var ArrayCollection
+     */
+    private $lastFiveResults;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     *
+     */
+    private $saison;
+
     public function __construct($categorie = null, $nomParse)
     {
+        $this->lastFiveResults = new ArrayCollection();
         $this->nomParse = $nomParse;
         $this->categorie = $categorie;
         $this->stats = new StatsEquipe();
@@ -205,6 +219,51 @@ class Equipe
     public function setClub($club)
     {
         $this->club = $club;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getLastFiveResults()
+    {
+        return $this->lastFiveResults;
+    }
+
+    /**
+     * @param ArrayCollection $lastFiveResults
+     * @return Equipe
+     */
+    public function setLastFiveResults($lastFiveResults)
+    {
+        $this->lastFiveResults = $lastFiveResults;
+        return $this;
+    }
+
+    /**
+     * @param $resultString
+     * @return ArrayCollection
+     */
+    public function addLastFiveResult($resultString){
+        $this->lastFiveResults->add($resultString);
+        return $this->lastFiveResults;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSaison()
+    {
+        return $this->saison;
+    }
+
+    /**
+     * @param string $saison
+     * @return Equipe
+     */
+    public function setSaison($saison)
+    {
+        $this->saison = $saison;
         return $this;
     }
 }

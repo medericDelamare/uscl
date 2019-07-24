@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ baseHttp ~ asset('css/style.css') }}">
+</head>
+<body class="body-score">
+<div class="container h-100">
+    <div class="pt-5">
+        <h1 class="text-center text-white categorie-score-page">{{ categorie }}</h1>
+        <h3 class="text-center text-white">Journée {{ rencontre.journee }}</h3>
+
+    </div>
+
+
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="h-100 text-center">
+                <img class="score-page-logo mr-4" src="{{ baseHttp ~ asset('pictures/Logos/' ~ rencontre.equipeDomicile.club.logo) }}">
+                <div class="score-page-score d-inline-block vertical-align">{{ rencontre.score }}</div>
+                <img class="score-page-logo ml-4" src="{{ baseHttp ~ asset('pictures/Logos/' ~ rencontre.equipeExterieure.club.logo) }}">
+            </div>
+        </div>
+    </div>
+    <div class="d-table text-center w-100 mt-5 p-4">
+        <div class="d-table-row">
+            {% if buts['buteurs'] is defined %}
+                <div class="d-table-cell w-50">
+                    <h3 class="titre-passeur-buteur">Buteurs : </h3>
+                    <ul>
+                        {% for buteur,buts in buts['buteurs'] %}
+                            <li class="score-page-buteur font-weight-bold">
+                                {{ buteur }} {% if buts|length > 1 %}(x{{ buts|length }}){% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            {% if buts['passeurs'] is defined %}
+                <div class="d-table-cell w-50 border-left">
+                    <h3 class="titre-passeur-buteur">Passeurs : </h3>
+                    <ul>
+                        {% for passeur,passes in buts['passeurs'] %}
+                            <li class="score-page-buteur font-weight-bold">
+                                {{ passeur }} {% if passes|length > 1 %}(x{{ passes|length }}){% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+</div>
+<div class="container-date-score-page">
+    <div class="text-center">
+        <span class="date-score-page jour-date-score-page">{{ rencontre.date|date("d") }}</span><br>
+        <span class="date-score-page">{{ rencontre.date|localizeddate('none', 'none', 'fr', null, 'MMM') }}</span><br>
+        <span class="date-score-page">{{ rencontre.date|date("Y") }}</span>
+
+    </div>
+</div>
+</body>
+</html>

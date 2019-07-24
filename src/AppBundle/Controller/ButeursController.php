@@ -39,7 +39,7 @@ class ButeursController extends Controller
      */
     public function showAction()
     {
-        $buteurs = $this->getDoctrine()->getRepository(But::class)->findAll();
+        $buteurs = $this->getDoctrine()->getRepository(But::class)->findAllByCurrentYear($this->container->getParameter('debut_annee') . '-08-15', $this->container->getParameter('fin_annee').'-08-15');
 
         $buteursSenior=[];
         $buteursVeterans=[];
