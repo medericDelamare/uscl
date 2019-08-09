@@ -46,6 +46,24 @@ class ProfileController extends Controller
         $v=0;
         $n=0;
         $d=0;
+
+        $lasts = array_slice($joueur->getStatsRencontresJoueurs()->toArray(),-5);
+        $fiveLastsResults = [];
+        foreach ($lasts as $stats){
+            if ($stats->getRencontre()->getScoreDom() != null && $stats->getRencontre()->getScoreDom() == $stats->getRencontre()->getScoreExt()){
+                $fiveLastsResults[] = 'N';
+            }
+            else if ($stats->getRencontre()->getEquipeDomicile()->getClub()->getNom() == "USCL" && $stats->getRencontre()->getScoreDom() > $stats->getRencontre()->getScoreExt()){
+                $fiveLastsResults[] = 'V';
+            }
+            else if ($stats->getRencontre()->getEquipeExterieure()->getClub()->getNom() == "USCL" && $stats->getRencontre()->getScoreDom() < $stats->getRencontre()->getScoreExt()){
+                $fiveLastsResults[] = 'V';
+            }
+            else{
+                $fiveLastsResults[] = 'D';
+            }
+        }
+
         foreach ($joueur->getStatsRencontresJoueurs() as $stats) {
             if ($stats->getRencontre()->getScoreDom() != null && $stats->getRencontre()->getScoreDom() == $stats->getRencontre()->getScoreExt()){
                 $n++;
@@ -65,7 +83,8 @@ class ProfileController extends Controller
             'joueur' => $joueur,
             'age' => $age,
             'saisons' => $saisons,
-            'vnd' => [$v,$n,$d]
+            'vnd' => [$v,$n,$d],
+            'lastResults' => $fiveLastsResults
         ]);
     }
 }

@@ -106,7 +106,22 @@
     <div class="container">
         <div class="row">
             <div class="col-4">
+                <h3>Statistiques rencontres</h3>
                 <canvas id="myChart"></canvas>
+            </div>
+            <div class="col-4">
+                <h3>5 dernières rencontres</h3>
+                <div class="w-100 h-100 d-flex align-items-center">
+                    {% for result in lastResults %}
+                        {% if result == 'N' %}
+                            <span class="bg-n numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
+                        {% elseif result == 'V' %}
+                            <span class="bg-v numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
+                        {% elseif result == 'D' %}
+                            <span class="bg-d numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
