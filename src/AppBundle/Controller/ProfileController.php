@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Joueur;
 use AppBundle\Entity\Licencie;
+use AppBundle\Entity\StatsRencontre;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -22,6 +23,9 @@ class ProfileController extends Controller
      * @Template()
      */
     public function profileShowAction($id){
+        /**
+         * @var Licencie $joueur
+         */
         $joueur = $this->getDoctrine()->getManager()->getRepository(Licencie::class)->find($id);
 
         /** @var \DateTime $birthDate */
@@ -35,37 +39,33 @@ class ProfileController extends Controller
             $saisons[] = $historiqueStat->getSaison();
         }
         array_push($saisons, '18/19');
-        $buts = [];
-        foreach ($joueur->getHistoriqueStats() as $historiqueStat){
-            $buts[] = $historiqueStat->getNbButs();
-        }
-        array_push($buts, count($joueur->getButs()));
-        $passes = [];
-        foreach ($joueur->getHistoriqueStats() as $historiqueStat){
-            $passes[] = $historiqueStat->getNbPasses();
-        }
-        array_push($passes,count($joueur->getPasses()));
-        $cartonsJ = [];
-        foreach ($joueur->getHistoriqueStats() as $historiqueStat) {
-            $cartonsJ[] = $historiqueStat->getNbCartonsJaunes();
-        }
-        array_push($cartonsJ, count($joueur->getStatsRencontresCartonsJaunes()));
-        $cartonsR = [];
-        foreach ($joueur->getHistoriqueStats() as $historiqueStat){
-            $cartonsR[] = $historiqueStat->getNbCartonsRouges();
-        }
-        array_push($cartonsR, count($joueur->getStatsRencontresCartonsRouges()));
+        /**
+         * @var StatsRencontre $stats
+         */
 
-
+        $v=0;
+        $n=0;
+        $d=0;
+        foreach ($joueur->getStatsRencontresJoueurs() as $stats) {
+            if ($stats->getRencontre()->getScoreDom() != null && $stats->getRencontre()->getScoreDom() == $stats->getRencontre()->getScoreExt()){
+                $n++;
+            }
+            else if ($stats->getRencontre()->getEquipeDomicile()->getClub()->getNom() == "USCL" && $stats->getRencontre()->getScoreDom() > $stats->getRencontre()->getScoreExt()){
+                $v++;
+            }
+            else if ($stats->getRencontre()->getEquipeExterieure()->getClub()->getNom() == "USCL" && $stats->getRencontre()->getScoreDom() < $stats->getRencontre()->getScoreExt()){
+                $v++;
+            }
+            else{
+                $d++;
+            }
+        }
 
         return $this->render(':default:profil.html.twig', [
             'joueur' => $joueur,
             'age' => $age,
             'saisons' => $saisons,
-            'cartonsJ' => $cartonsJ,
-            'cartonsR' => $cartonsR,
-            'buts' => $buts,
-            'passes' => $passes
+            'vnd' => [$v,$n,$d]
         ]);
     }
 }

@@ -128,7 +128,7 @@ class Licencie
     private $stats;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\StatsRencontre", mappedBy="joueurs")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\StatsRencontre", mappedBy="joueurs", fetch="EAGER")
      */
     private $statsRencontresJoueurs;
 
