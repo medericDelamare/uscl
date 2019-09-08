@@ -88,6 +88,12 @@ class Rencontre
      */
     private $scoreExt;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=false)
+     */
+    private $idScorenco;
+
 
     /**
      * @return int
@@ -293,6 +299,24 @@ class Rencontre
     public function setScoreExt($scoreExt)
     {
         $this->scoreExt = $scoreExt;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdScorenco()
+    {
+        return $this->idScorenco;
+    }
+
+    /**
+     * @param string $idScorenco
+     * @return Rencontre
+     */
+    public function setIdScorenco($idScorenco)
+    {
+        $this->idScorenco = $idScorenco;
         return $this;
     }
 

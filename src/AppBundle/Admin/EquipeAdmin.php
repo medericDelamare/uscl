@@ -42,6 +42,7 @@ class EquipeAdmin extends AbstractAdmin
                 ]
             ])
             ->add('club')
+            ->add('codeScorenco')
         ;
     }
 
@@ -56,6 +57,7 @@ class EquipeAdmin extends AbstractAdmin
             ->addIdentifier('nom_parse')
             ->add('categorie')
             ->add('club')
+            ->add('codeScorenco')
         ;
     }
 }

@@ -51,4 +51,14 @@ class EquipeRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findByCategorieAndCodeScorenco($categorie, $code){
+        return $this->createQueryBuilder('e')
+            ->where('e.categorie = :categorie')
+            ->andWhere('e.codeScorenco = :score')
+            ->orderBy('e.nomParse')
+            ->setParameters(['categorie' => $categorie, 'score' => $code])
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

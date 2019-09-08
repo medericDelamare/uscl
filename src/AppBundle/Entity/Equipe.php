@@ -70,18 +70,24 @@ class Equipe
 
     /**
      * @var string
+     * @ORM\Column(type="string", nullable=false)
+     */
+    private $codeScorenco;
+
+    /**
+     * @var string
      * @ORM\Column(type="string", nullable=true)
      *
      */
     private $saison;
 
-    public function __construct($categorie = null, $nomParse)
+    public function __construct()
     {
         $this->lastFiveResults = new ArrayCollection();
-        $this->nomParse = $nomParse;
-        $this->categorie = $categorie;
         $this->stats = new StatsEquipe();
     }
+
+
 
     /**
      * @return int
@@ -264,6 +270,24 @@ class Equipe
     public function setSaison($saison)
     {
         $this->saison = $saison;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCodeScorenco()
+    {
+        return $this->codeScorenco;
+    }
+
+    /**
+     * @param string $codeScorenco
+     * @return Equipe
+     */
+    public function setCodeScorenco($codeScorenco)
+    {
+        $this->codeScorenco = $codeScorenco;
         return $this;
     }
 }
