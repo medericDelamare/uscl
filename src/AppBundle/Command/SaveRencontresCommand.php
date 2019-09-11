@@ -8,6 +8,7 @@ use AppBundle\Model\Scorenco\Equipe;
 use AppBundle\Model\Scorenco\Journee;
 use AppBundle\Model\Scorenco\Match;
 use Doctrine\ORM\EntityManager;
+use PhpOffice\PhpSpreadsheet\Calculation\DateTime;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -31,7 +32,6 @@ class SaveRencontresCommand extends ContainerAwareCommand
         for ($i = 1; $i <= 22; $i++) {
             /** @var Championnat $championnat */
             $championnat = $scorencoService->getJourneeByUrl("https://scorenco.com/backend/v1/competitions/5d54b334cf4e61e60af60f32/events/?roundRank=" . $i);
-
             /** @var Journee $round */
             foreach ($championnat->getRounds() as $round) {
                 /** @var Match $event */
@@ -54,9 +54,9 @@ class SaveRencontresCommand extends ContainerAwareCommand
                     $rencontre
                         ->setJournee($round->getRank())
                         ->setIdScorenco($event->getId())
-                        ->setDate(new \DateTime($event->getDate()));
+                        ->setDate($this->getDate($event->getDate()));
 
-                    if ($teamDom->getScore()){
+                    if ($teamDom->getScore() !== null){
                         $rencontre->setScore($teamDom->getScore().'-' . $teamExt->getScore());
                         $rencontre->setScoreDom($teamDom->getScore());
                         $rencontre->setScoreExt($teamExt->getScore());
@@ -68,5 +68,11 @@ class SaveRencontresCommand extends ContainerAwareCommand
             }
         }
 
+    }
+
+    private function getDate($scorencoDate){
+        $datetime = new \DateTime($scorencoDate);
+        $datetime->setTimezone(new \DateTimeZone("Europe/Paris"));
+        return $datetime;
     }
 }
