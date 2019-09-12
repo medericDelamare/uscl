@@ -12,6 +12,10 @@ class Equipe
     private $name;
     private $score;
     private $result;
+    private $data;
+    private $rankingData;
+    private $rank;
+    private $lastResults;
 
     /**
      * @return mixed
@@ -136,6 +140,78 @@ class Equipe
     public function setResult($result)
     {
         $this->result = $result;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param mixed $data
+     * @return Equipe
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRankingData()
+    {
+        return $this->rankingData;
+    }
+
+    /**
+     * @param mixed $rankingData
+     * @return Equipe
+     */
+    public function setRankingData($rankingData)
+    {
+        $this->rankingData = $rankingData;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRank()
+    {
+        return $this->rank;
+    }
+
+    /**
+     * @param mixed $rank
+     * @return Equipe
+     */
+    public function setRank($rank)
+    {
+        $this->rank = $rank;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastResults()
+    {
+        return $this->lastResults;
+    }
+
+    /**
+     * @param mixed $lastResults
+     * @return Equipe
+     */
+    public function setLastResults($lastResults)
+    {
+        $this->lastResults = $lastResults;
         return $this;
     }
 }

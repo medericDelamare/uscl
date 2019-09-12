@@ -17,12 +17,12 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
         <li class="breadcrumb-item " aria-current="page">Statistiques</li>
-        <li class="breadcrumb-item active" aria-current="page">{{ categorie }}</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ infosCompetition.name }}</li>
     </ol>
 </nav>
 <div class="container-fluid">
-    <h1 class="sous-titre">Statistiques {{ division }}<small> Groupe {{ groupe }}</small></h1>
-    <ul class="nav nav-pills mb-3 d-flex justify-content-center"" id="pills-tab" role="tablist">
+    <h1 class="sous-titre">Statistiques {{ infosCompetition.name }}</small></h1>
+    <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-classement" role="tab" aria-controls="pills-home" aria-selected="true">Classement</a>
         </li>
@@ -55,34 +55,31 @@
                                 <th scope="col">F</th>
                                 <th scope="col">BP</th>
                                 <th scope="col">BC</th>
-                                <th scope="col">P</th>
                                 <th scope="col">Diff</th>
                                 <th scope="col">5 derniers matchs</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {% for equipe in equipes %}
+                            {% for equipe in classement.teams %}
                                 <tr class="classement-tr">
                                     <td>{{ loop.index }}</td>
-                                    {% if equipe.club %}
-                                        <td><img data-toggle="tooltip" data-placement="top" title="{{ equipe.nomParse }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ equipe.club.logo) }}"><span class="d-none d-lg-inline-block">{{ equipe.nomParse }}</span></td>
-                                    {% else %}
-                                        <td>{{ equipe.nomParse }}</td>
-                                    {% endif %}
-                                    <td class="font-weight-bold">{{ equipe.stats.points }}</td>
-                                    <td>{{ equipe.stats.journees }}</td>
-                                    <td>{{ equipe.stats.victoires }}</td>
-                                    <td>{{ equipe.stats.nuls }}</td>
-                                    <td>{{ equipe.stats.defaites }}</td>
-                                    <td>{{ equipe.stats.forfaits }}</td>
-                                    <td>{{ equipe.stats.butsPour }}</td>
-                                    <td>{{ equipe.stats.butsContre }}</td>
-                                    <td>{{ equipe.stats.penalites }}</td>
-                                    <td>{{ equipe.stats.difference }}</td>
+                                    <td>
+                                        <img data-toggle="tooltip" data-placement="top" title="{{ equipe.name }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ equipe.clubId ~ '.png') }}">
+                                        <span class="d-none d-lg-inline-block">{{ equipe.name }}</span>
+                                    </td>
+                                    <td class="font-weight-bold">{{ equipe.rankingData.points }}</td>
+                                    <td>{{ equipe.rankingData.journees }}</td>
+                                    <td>{{ equipe.rankingData.victoires }}</td>
+                                    <td>{{ equipe.rankingData.nuls }}</td>
+                                    <td>{{ equipe.rankingData.defaites }}</td>
+                                    <td>{{ equipe.rankingData.forfaits }}</td>
+                                    <td>{{ equipe.rankingData.butsP }}</td>
+                                    <td>{{ equipe.rankingData.butsC }}</td>
+                                    <td>{{ equipe.rankingData.diff }}</td>
                                     <td>
                                         <ul class="p-0 my-auto">
                                             <li class="result-li">
-                                                {% for result in equipe.lastFiveResults %}
+                                                {% for result in equipe.lastResults %}
                                                     <i class="fa fa-circle fa-circle-{{ result }}" aria-hidden="true"></i>
                                                 {% endfor %}
                                             </li>
@@ -100,26 +97,22 @@
                     <h2>Résultats</h2>
                     <div class="table-responsive">
                         <table class="table table-sm">
-                            {% for resultat in rencontres %}
+                            {% for resultat in rencontres.events %}
                                 <tr>
                                     <td>{{ resultat.date|date("m/d/Y H:i") }}</td>
-                                    {% if resultat.equipeDomicile.club %}
-                                        <td>
-                                            <img data-toggle="tooltip" data-placement="top" title="{{ resultat.equipeDomicile.nomParse }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ resultat.equipeDomicile.club.logo) }}">
-                                            <span class="d-none d-lg-inline-block">{{ resultat.equipeDomicile.nomParse }}</span>
-                                        </td>
+                                    <td>
+                                        <img data-toggle="tooltip" data-placement="top" title="{{ resultat.teams[0].name }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ resultat.teams[0].clubId ~ '.png') }}">
+                                        <span class="d-none d-lg-inline-block">{{ resultat.teams[0].name }}</span>
+                                    </td>
+                                    {% if resultat.teams[0].score is not null %}
+                                        <td class=" text-center score text-nowrap">{{ resultat.teams[0].score ~ '-' ~ resultat.teams[1].score }}</td>
                                     {% else %}
-                                        <td>{{ resultat.equipeDomicile.nomParse }}</td>
+                                        <td class="text-center score text-nowrap">VS</td>
                                     {% endif %}
-                                    <td>{{ resultat.score }}</td>
-                                    {% if resultat.equipeExterieure.club %}
-                                        <td class="text-right">
-                                            <span class="d-none d-lg-inline-block">{{ resultat.equipeExterieure.nomParse }}</span>
-                                            <img data-toggle="tooltip" data-placement="top" title="{{ resultat.equipeExterieure.nomParse }}" class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ resultat.equipeExterieure.club.logo) }}">
-                                        </td>
-                                    {% else %}
-                                        <td>{{ resultat.equipeExterieure.nomParse }}</td>
-                                    {% endif %}
+                                    <td class="text-right">
+                                        <span class="d-none d-lg-inline-block">{{ resultat.teams[1].name }}</span>
+                                        <img data-toggle="tooltip" data-placement="top" title="{{ resultat.teams[1].name }}" class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ resultat.teams[1].clubId ~ '.png') }}">
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </table>
@@ -131,26 +124,22 @@
                     <h2>Agenda</h2>
                     <div class="table-responsive">
                         <table class="table table-sm">
-                            {% for resultat in agendas %}
+                            {% for agenda in agendas.events %}
                                 <tr>
-                                    <td>{{ resultat.date|date("m/d/Y H:i") }}</td>
-                                    {% if resultat.equipeDomicile.club %}
-                                        <td>
-                                            <img data-toggle="tooltip" data-placement="top" title="{{ resultat.equipeDomicile.nomParse }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ resultat.equipeDomicile.club.logo) }}">
-                                            <span class="d-none d-lg-inline-block">{{ resultat.equipeDomicile.nomParse }}</span>
-                                        </td>
+                                    <td>{{ agenda.date|date("m/d/Y H:i") }}</td>
+                                    <td>
+                                        <img data-toggle="tooltip" data-placement="top" title="{{ agenda.teams[0].name }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ agenda.teams[0].clubId ~ '.png') }}">
+                                        <span class="d-none d-lg-inline-block">{{ agenda.teams[0].name }}</span>
+                                    </td>
+                                    {% if agenda.teams[0].score is not null %}
+                                        <td class=" text-center score text-nowrap">{{ agenda.teams[0].score ~ '-' ~ agenda.teams[1].score }}</td>
                                     {% else %}
-                                        <td>{{ resultat.equipeDomicile.nomParse }}</td>
+                                        <td class="text-center score text-nowrap">VS</td>
                                     {% endif %}
-                                    <td>-</td>
-                                    {% if resultat.equipeExterieure.club %}
-                                        <td class="text-right">
-                                            <span class="d-none d-lg-inline-block">{{ resultat.equipeExterieure.nomParse }}</span>
-                                            <img data-toggle="tooltip" data-placement="top" title="{{ resultat.equipeExterieure.nomParse }}" class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ resultat.equipeExterieure.club.logo) }}">
-                                        </td>
-                                    {% else %}
-                                        <td>{{ resultat.equipeExterieure.nomParse }}</td>
-                                    {% endif %}
+                                    <td class="text-right">
+                                        <span class="d-none d-lg-inline-block">{{ agenda.teams[1].name }}</span>
+                                        <img data-toggle="tooltip" data-placement="top" title="{{ agenda.teams[1].name }}" class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ agenda.teams[1].clubId ~ '.png') }}">
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </table>
@@ -161,10 +150,15 @@
                 <div class="col-12 offset-md-2 col-md-8" >
                     <h2 class="page-header">Calendrier</h2>
                     <select class="form-control"  id="selectEquipe">
-                        {% for equipe in equipeListe %}
-                            <option value={{ equipe.id }} data-href="{{ path('calendrier-par-equipe', {'equipe': equipe.id}) }}">{{ equipe.nomParse }}</option>
+                        {% for id, name in equipeListe %}
+                            <option value={{ id }} data-href="{{ path('calendrier-par-equipe', {'equipe': id}) }}">{{ name }}</option>
                         {% endfor %}
                     </select>
+                    <div id="loaderCalendrier" class="d-flex justify-content-center m-4">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
                     <div class="table-responsive resultats mt-5">
                         <table id="calendrier" class="table table-sm">
                             <tbody id="resultAjaxCalendrier">
@@ -179,46 +173,36 @@
 
 {% endblock %}
 
+
 {% block javascripts %}
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script >
+    <script>
+        var equipeId = $( "#selectEquipe" ).val();
+        var getUrl = window.location;
+        var baseUrl = getUrl.protocol + "//" + getUrl.host + "/";
+        var route = baseUrl + 'get-calendrier-par-equipe/';
+        var categorie = '{{ competitionId }}';
         $(document).ready( function () {
-            var cormeillesId = {{ cormeilles_id|json_encode|raw }};
-            var cormeillesNomParse = {{ cormeilles_nom|json_encode|raw }};
-            var route = {{ base_rul|json_encode|raw }} + '/get-calendrier-par-equipe/';
-
-
-            if (cormeillesId !== null){
-                var cormeillesRoute = route + cormeillesId;
-
-                $("#selectEquipe option").each(function(){
-                    if ($(this).text() == cormeillesNomParse)
-                        $(this).attr("selected","selected");
+            $('#loaderCalendrier').show();
+            refreshClassement(route, equipeId, categorie);
+            $('#selectEquipe').change(function () {
+                $('#loaderCalendrier').addClass('d-flex').removeClass('d-none');
+                equipeId = $( "#selectEquipe" ).val();
+                refreshClassement(route, equipeId,categorie);
+            })
+            function refreshClassement(route, equipeCourante, categorie){
+                console.log(categorie);
+                $.ajax({
+                    url: route + equipeCourante + '/' + categorie,
+                    type: "GET",
+                    success: function(data){
+                        $('#loaderCalendrier').removeClass('d-flex');
+                        $('#loaderCalendrier').addClass('d-none');
+                        $("#resultAjaxCalendrier").html(data);
+                    }
                 });
-                refreshClassement(cormeillesRoute, cormeillesNomParse);
-
-
-                $('#selectEquipe').change(function () {
-                    var route = $('#selectEquipe').find(":selected").attr('data-href');
-                    var equipeCourante = ($('#selectEquipe').find(":selected").html());
-                    refreshClassement(route, equipeCourante);
-                })
             }
-
-        } );
-
-
-
-        function refreshClassement(route, equipeCourante){
-            $.ajax({
-                url: route,
-                type: "GET",
-                success: function(data){
-                    $("#resultAjaxCalendrier").html(data);
-                }
-            });
-        }
-
-
+        });
     </script>
 {% endblock %}
+

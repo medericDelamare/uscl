@@ -81,7 +81,7 @@ class RencontreRepository extends EntityRepository
             ->andWhere('r.date > :dateCourante')
             ->andWhere('d.categorie LIKE :categorie')
             ->setParameter('categorie', $categorie)
-            ->setParameter('dateCourante', new \DateTime())
+            ->setParameter('dateCourante', new \DateTime( ))
             ->setParameter('semaine', new \DateTime('+1 week'))
             ->getQuery()
             ->getResult();
