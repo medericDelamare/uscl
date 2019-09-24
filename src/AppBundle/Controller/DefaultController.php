@@ -17,8 +17,9 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $saison = $anneDebutSaison = $this->getParameter('debut_annee') .'-' .$anneDebutSaison = $this->getParameter('fin_annee');
         $weekGames = $this->getDoctrine()->getRepository(Rencontre::class)->getWeekGames();
-        $nombreLicenceActuel = $this->getDoctrine()->getRepository(CarriereJoueur::class)->nbLicencie();
+        $nombreLicenceActuel = $this->getDoctrine()->getRepository(CarriereJoueur::class)->nbLicencie($saison);
         $statsLicencies = $this->getDoctrine()->getRepository(NombreLicenciesParAnnee::class)->getAllOrderByAnneeDebut();
 
         /**

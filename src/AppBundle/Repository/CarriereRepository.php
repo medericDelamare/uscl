@@ -12,11 +12,12 @@ use Doctrine\ORM\EntityRepository;
 
 class CarriereRepository extends EntityRepository
 {
-    public function nbLicencie(){
+    public function nbLicencie($saison){
         return $this->createQueryBuilder('c')
             ->select('count(c.id)')
-            ->where("c.saison LIKE '2018-2019'")
+            ->where("c.saison = :saison")
             ->andWhere("c.clubParse LIKE 'U.S. CORMEILLES - LIEUREY' ")
+            ->setParameter('saison', $saison)
             ->getQuery()
             ->getSingleScalarResult();
     }

@@ -191,7 +191,6 @@
                 refreshClassement(route, equipeId,categorie);
             })
             function refreshClassement(route, equipeCourante, categorie){
-                console.log(categorie);
                 $.ajax({
                     url: route + equipeCourante + '/' + categorie,
                     type: "GET",

@@ -12,10 +12,13 @@
             </div>
         </div>
     </header>
-    <ol class="breadcrumb">
-        <li><a href="index.php">Accueil</a></li>
-        <li class="active">Club</li>
-    </ol>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
+            <li class="breadcrumb-item " aria-current="page">Effectif</li>
+            <li class="breadcrumb-item active" aria-current="page">Football d'animation</li>
+        </ol>
+    </nav>
     <div class="container">
         <h1 class = "page-header">{{ category }} -<small> {{ nb_u7 + nb_u9 + nb_u11 }} Joueurs ({{ nb_u7 }} U7/{{ nb_u9 }} U9/{{ nb_u11 }} U11)</small></h1>
         <table class="table">

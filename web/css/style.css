@@ -411,6 +411,11 @@ body {
     color: white;
 }
 
+.badge-f {
+    background-color: #8A2BE2;
+    color: white;
+}
+
 .slide-image {
     width: 100%;
     padding-bottom: 15px;
