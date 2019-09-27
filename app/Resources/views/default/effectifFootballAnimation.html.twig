@@ -3,11 +3,22 @@
     <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 {% endblock %}
 {% block body %}
-    <ol class="breadcrumb">
-        <li><a href="index.php">Accueil</a></li>
-        <li class="active">Club</li>
-    </ol>
-
+    <header class="business-header business-header-eff">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="tagline"></h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
+            <li class="breadcrumb-item " aria-current="page">Effectif</li>
+            <li class="breadcrumb-item active" aria-current="page">Football d'animation</li>
+        </ol>
+    </nav>
     <div class="container">
         <h1 class = "page-header">{{ category }} -<small> {{ nb_u7 + nb_u9 + nb_u11 }} Joueurs ({{ nb_u7 }} U7/{{ nb_u9 }} U9/{{ nb_u11 }} U11)</small></h1>
         <table class="table">

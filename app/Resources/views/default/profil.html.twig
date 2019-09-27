@@ -1,75 +1,39 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {{ include(':default:head.html.twig') }}
-    <ol class="breadcrumb">
-        <li>Accueil</li>
-        <li>Profil</li>
-        <li class="active">{{ joueur.prenom }} {{ joueur.nom }}</li>
-    </ol>
 
+    <header class="business-header business-header-buteurs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="tagline"></h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
+            <li class="breadcrumb-item " aria-current="page">Profil</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ joueur.nom }}  {{ joueur.prenom }}</li>
+        </ol>
+    </nav>
 
-
-    <h1 class="text-center">{{ joueur.prenom }} {{ joueur.nom }}</h1>
     <div class="container zonePlay">
         <div class="media">
-            <div class="media-left">
-                <img src="{{ joueur.photo }}" alt="{{ joueur.photo }}">
-            </div>
-            <div class="media-body">
+            <img class="image-profil" src="{{ joueur.photo }}" alt="{{ joueur.photo }}">
+            <div class="media-body ml-3">
                 <div class="row">
-                    <div class="col-md-5 col-xs-12">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div class="visible-xs text-right blanc"><i class="fa fa-flag" aria-hidden="true"></i> : </div>
-                                <div class="hidden-xs text-right blanc">Pays : </div>
+                    <div class="col-md-4 col-12">
+                        <p class="text-white">{{ joueur.stats.poste }}</p>
+                        <hr class="bg-white">
+                        <p class="text-white">Né le {{ joueur.dateDeNaissance|date("d/m/Y") }} à {{ joueur.lieuDeNaissance }} ( {{ age }} ans )</p>
+                        <hr class="bg-white">
+                         <div class="row">
+                            <div class="col-6">
+                                <div class="text-white">Educateur :</div>
                             </div>
-                            <div class="col-xs-6">
-                                <div class="text-left">France</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div class="visible-xs text-right blanc"><i class="fa fa-birthday-cake" aria-hidden="true"></i> : </div>
-                                <div class="hidden-xs text-right blanc">Age : </div>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="text-left blanc">{{ age }} ans</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div class="visible-xs text-right blanc"><i class="fa fa-calendar" aria-hidden="true"></i> : </div>
-                                <div class="hidden-xs text-right blanc">Date de naissance :</div>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="text-left">{{ joueur.dateDeNaissance|date("d/m/Y") }}</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div class="visible-xs text-right blanc"><i class="fa fa-globe" aria-hidden="true"></i> : </div>
-                                <div class="hidden-xs text-right blanc">Lieu de naissance :</div>
-                            </div>
-                            <div class="col-xs-6">
-                                <div class="text-left">{{ joueur.lieuDeNaissance }}</div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div class="visible-xs text-right blanc"><i class="fa fa-users" aria-hidden="true"></i> : </div>
-                                <div class="hidden-xs text-right blanc">Poste :</div>
-                            </div>
-                            <div class="col-xs-6">
-                                {% if joueur.stats.poste %}
-                                    <div class="text-left">{{joueur.stats.poste.nom }}</div>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <div class="text-right blanc">Educateur :</div>
-                            </div>
-                            <div class="col-xs-6">
+                            <div class="col-6">
                                 <div class="text-left">
                                     {% if joueur.educateur %}
                                         <i id="check-vert" class="fa fa-check fa-lg"></i>
@@ -80,10 +44,10 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-6">
-                                <div class="text-right blanc">Dirigeant :</div>
+                            <div class="col-6">
+                                <div class="text-white">Dirigeant :</div>
                             </div>
-                            <div class="col-xs-6">
+                            <div class="col-6">
                                 <div class="text-left">
                                     {% if joueur.dirigeant %}
                                         <i id="check-vert" class="fa fa-check fa-lg"></i>
@@ -94,85 +58,44 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-7 col-xs-12">
-                        <div class="hidden-xs row saison-actuelle-profil"><h4>Saison 2018-2019 avec l'USCL :</h4></div>
-                        <div class="visible-xs row saison-actuelle-profil text-center"><h4>2018/2019 :</h4></div>
-                        <div class="row row-eq-height">
-                            <div class="col-lg-3 col-xs-4">
-                                <div class="media">
-                                    <div class="media-left media-top">
-                                        <div class="media-object gros-chiffres">{{ joueur.statsRencontresJoueurs|length}}</div>
-                                    </div>
-                                    <div class="media-body media-middle">
-                                        <div class="visible-xs"><img src="{{ asset('pictures/icons/strategy.png') }}"></div>
-                                        <h4 class="hidden-xs media-heading grey">Matchs joués</h4>
-                                    </div>
+                    <div class="col-md-8 col-12">
+                        <div class="d-none d-md-block row saison-actuelle-profil text-center mb-3"><h4>Saison 2018-2019 avec l'USCL</h4></div>
+                        <div class="d-block d-md-none row saison-actuelle-profil text-center mt-3"><h4>2018/2019 :</h4></div>
+                        <div class="row stat">
+                            <div class="col-4 offset-md-1 col-md-2">
+                                <div class="milestone-counter">
+                                    <img src="{{ asset('pictures/icons/strategy.png') }}">
+                                    <span class="stat-count highlight counter">{{ joueur.statsRencontresJoueurs|length }}</span>
+                                    <div class="d-none d-md-block milestone-details">Matchs joués</div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-xs-4">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <div class="media-object gros-chiffres">{{ joueur.buts|length}}</div>
-                                    </div>
-                                    <div class="media-body media-middle">
-                                        <div class="visible-xs"><img class="visiible xs" src="{{ asset('pictures/icons/soccer-ball.png') }}"></div>
-                                        <h4 class="hidden-xs media-heading grey">Buts marqués</h4>
-                                    </div>
+                            <div class="col-4 col-md-2">
+                                <div class="milestone-counter">
+                                    <img src="{{ asset('pictures/icons/soccer-ball.png') }}">
+                                    <span class="stat-count highlight counter">{{ joueur.buts|length }}</span>
+                                    <div class="d-none d-md-block milestone-details">Buts</div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-xs-4">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <div class="media-object gros-chiffres">{{ joueur.passes|length}}</div>
-                                    </div>
-                                    <div class="media-body media-middle">
-                                        <div class="visible-xs"><img class="visiible xs" src="{{ asset('pictures/icons/soccer.png') }}"></div>
-                                        <h4 class=" hidden-xs media-heading grey">Passes décisives</h4>
-                                    </div>
+                            <div class="col-4 col-md-2">
+                                <div class="milestone-counter">
+                                    <img src="{{ asset('pictures/icons/soccer.png') }}">
+                                    <span class="stat-count highlight counter">{{ joueur.passes|length }}</span>
+                                    <div class="d-none d-md-block milestone-details">Passes Décisives</div>
                                 </div>
                             </div>
-                            <div class="visible-xs col-xs-4">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <div class="media-object carton_jaune gros-chiffres">{{ joueur.statsRencontresCartonsJaunes|length}}</div>
-                                    </div>
-                                    <div class="media-body media-middle">
-                                        <img class="visiible xs" src="{{ asset('pictures/icons/yellow-card.png') }}">
-                                    </div>
+                            <div class="col-4 col-md-2">
+                                <div class="milestone-counter">
+                                    <img src="{{ asset('pictures/icons/yellow-card.png') }}">
+                                    <span class="stat-count highlight counter">{{ joueur.statsRencontresCartonsJaunes|length }}</span>
+                                    <div class="d-none d-md-block milestone-details">Cartons Jaunes</div>
                                 </div>
                             </div>
-                            <div class="visible-xs col-xs-4">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <div class="media-object carton_jaune gros-chiffres">{{ joueur.statsRencontresCartonsRouges|length}}</div>
-                                    </div>
-                                    <div class="media-body media-middle">
-                                        <img class="visiible xs" src="{{ asset('pictures/icons/red-card.png') }}">
-                                    </div>
+                            <div class="col-4 col-md-2">
+                                <div class="milestone-counter">
+                                    <img src="{{ asset('pictures/icons/red-card.png') }}">
+                                    <span class="stat-count highlight counter">{{ joueur.statsRencontresCartonsRouges|length }}</span>
+                                    <div class="d-none d-md-block milestone-details">Cartons Rouges</div>
                                 </div>
-                            </div>
-                            <div class="hidden-xs col-lg-3 col-xs-4">
-                                <row>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <div class="media-object carton_jaune moyen-chiffres">{{ joueur.statsRencontresCartonsJaunes|length}}</div>
-                                        </div>
-                                        <div class="media-body media-middle">
-                                            <img class="visiible xs" src="{{ asset('pictures/icons/yellow-card.png') }}">
-                                        </div>
-                                    </div>
-                                </row>
-                                <row>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <div class="media-object carton_jaune moyen-chiffres">{{ joueur.statsRencontresCartonsRouges|length}}</div>
-                                        </div>
-                                        <div class="media-body media-middle">
-                                            <img class="visiible xs" src="{{ asset('pictures/icons/red-card.png') }}">
-                                        </div>
-                                    </div>
-                                </row>
-
                             </div>
                         </div>
                     </div>
@@ -180,45 +103,79 @@
             </div>
         </div>
     </div>
-
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-xs-12">
-                <h2 class="sousTitreProfil">Carrière</h2>
-                <div class="table-responsive">
-                    <div class="pre-scrollable">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <td class="col-xs-4">Saison</td>
-                                <td class="col-xs-4">Club</td>
-                                <td class="col-xs-4">Catégorie</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for carriere in joueur.carriere %}
-                                <tr>
-                                    <td class="col-xs-4">{{ carriere.saison }}</td>
-                                    <td class="col-xs-4">
-                                        {% if carriere.club %}
-                                            <img class = 'img-carriere' src="{{ asset('pictures/Logos/' ~ carriere.club.logo) }}"> - {{ carriere.club.nom }}
-                                        {% else %}
-                                            {{ carriere.clubParse }}
-                                        {% endif %}
-                                    </td>
-                                    <td class="col-xs-4">{{ carriere.SousCategorie }}</td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+            <div class="col-4">
+                <h3>Statistiques rencontres</h3>
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="col-4">
+                <h3>5 dernières rencontres</h3>
+                <div class="w-100 h-100 d-flex align-items-center">
+                    {% for result in lastResults %}
+                        {% if result == 'N' %}
+                            <span class="bg-n numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
+                        {% elseif result == 'V' %}
+                            <span class="bg-v numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
+                        {% elseif result == 'D' %}
+                            <span class="bg-d numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="col-lg-6 col-md-6 col-xs-12">
-                <h2 class="sousTitreProfil">Faits de matchs cette saison</h2>
-                <div class="table-responsive">
-                    <div class="pre-scrollable">
+    <div class="container mt-4">
+        <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-carriere" role="tab"
+                   aria-controls="pills-seniors" aria-selected="true">Carrière</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-faits-matchs" role="tab"
+                   aria-controls="pills-veterans" aria-selected="false">Faits de match</a>
+            </li>
+        </ul>
+
+        <div class="row">
+            <div class="tab-content col-12" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-carriere" role="tabpanel"
+                     aria-labelledby="pills-home-tab">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table text-center">
+                                <thead>
+                                <tr>
+                                    <td>Saison</td>
+                                    <td>Club</td>
+                                    <td>Catégorie</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for carriere in joueur.carriere %}
+                                    <tr>
+                                        <td>{{ carriere.saison }}</td>
+                                        <td>
+                                            {% if carriere.club %}
+                                                <img class='img-carriere'
+                                                     src="{{ asset('pictures/Logos/' ~ carriere.club.logo) }}"> - {{ carriere.club.nom }}
+                                            {% else %}
+                                                {{ carriere.clubParse }}
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ carriere.SousCategorie }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="pills-faits-matchs" role="tabpanel"
+                     aria-labelledby="pills-home-tab">
+                    <div class="col-12">
+                        <div class="table-responsive">
                         <table class="table" id="faits-match">
                             <thead>
                             <td>Date</td>
@@ -260,18 +217,29 @@
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <h2 class="sousTitreProfil">Statistiques personnelles</h2>
-        <canvas id="myChart"></canvas>
     </div>
 {% endblock %}
 
 {% block javascripts %}
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="//cdn.datatables.net/plug-ins/1.10.19/sorting/date-eu.js"></script>
+
+    <script>
+        $('.counter').each(function () {
+            $(this).prop('Counter', 0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 2000,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+        });
+    </script>
 
     <script >
         $('#faits-match').DataTable( {
@@ -282,81 +250,27 @@
             "paging": false,
             "bInfo" : false,
             "searching" : false,
+            "order": [[ 0, "desc" ]],
             columnDefs: [
-                {type: 'date-eu-desc', targets: 0 }
+                {type: 'date-eu', targets: 0 }
             ]
         } );
     </script>
 
     <script>
         var ctx = document.getElementById("myChart").getContext('2d');
-        var saisons = {{ saisons|json_encode|raw }}
-        var buts = {{ buts|json_encode }}
-        var passes = {{ passes|json_encode }}
-        var cartonsJ = {{ cartonsJ|json_encode }}
-        var cartonsR = {{ cartonsR|json_encode }}
-        var myChart = new Chart(ctx, {
-            type: 'line',
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
             data: {
-                labels: saisons,
                 datasets: [{
-                    spanGaps: true,
-                    label: 'Buts',
-                    data: buts,
-                    borderWidth: 2,
-                    backgroundColor: [],
-                    lineTension: 0.1,
-                    fill: false,
-                    borderColor: "rgb(58, 83, 155)"
-                },{
-                    label: 'Passes Décisisves',
-                    data: passes,
-                    borderWidth: 2,
-                    backgroundColor: [],
-                    lineTension: 0.1,
-                    fill: false,
-                    borderColor: "rgb(38, 196, 236)"
-                },{
-                    label: 'Cartons Jaunes',
-                    data: cartonsJ,
-                    borderWidth: 2,
-                    backgroundColor: [],
-                    lineTension: 0.1,
-                    fill: false,
-                    borderColor: "rgb(255,255,0)"
-                },{
-                    label: 'Cartons Rouges',
-                    data: cartonsR,
-                    borderWidth: 2,
-                    backgroundColor: [],
-                    lineTension: 0.1,
-                    fill: false,
-                    borderColor: "	rgb(240,128,128)"
-                }]
+                    data: {{ vnd|json_encode }},
+                backgroundColor: ['#b5e7a0', '#ffef96', '#eca1a6']
+                }],
+                labels:['Victoires', 'Nuls', 'Défaites'],
             },
-            options: {
-                legend: {
-                    display: true
-                },
-                scales: {
-                    yAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Quantité'
-                        },
-                        ticks: {
-                            beginAtZero:true,
-                            min: 0,
-                        }
-                    }],
-                    xAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Année'
-                        }
-                    }]
-                }
-            }
         });
+
     </script>
+
+
 {% endblock %}

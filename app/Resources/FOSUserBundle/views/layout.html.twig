@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<ol class="breadcrumb">
-    <li><a href="index.php">Accueil</a></li>
-    <li>Connexion</li>
-</ol>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Connexion</li>
+    </ol>
+</nav>
 <div class="container">
     {% if app.request.hasPreviousSession %}
         {% for type, messages in app.session.flashbag.all() %}

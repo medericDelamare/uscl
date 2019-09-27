@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 class BoutiqueController extends  Controller
 {
     /**
-     * @Route("/boutique/liste", name="boutique-liste")
      * @Template()
      */
     public function showAction()
@@ -34,7 +33,6 @@ class BoutiqueController extends  Controller
     }
 
     /**
-     * @Route("/boutique/send", name="boutique-send")
      * @Template()
      */
     public function sendAction(Request $request){

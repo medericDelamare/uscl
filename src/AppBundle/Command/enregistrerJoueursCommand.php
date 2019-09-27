@@ -22,7 +22,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
     private $logs = [];
 
     const NUMERO_CLUB = '550717';
-    const START_SEASON = '2018';
+    const START_SEASON = '2019';
 
 
     protected function configure()
@@ -36,21 +36,24 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
     {
         $now = new \DateTime();
         $output->writeln('<comment>End : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
-        $curl_request = curl_init("https://fff-api.les-glandeurs.ovh/api/users/2018");
+        /*$curl_request = curl_init("https://fff-api.les-glandeurs.ovh/api/users/2018");
 
         curl_setopt($curl_request, CURLOPT_HEADER, 0);
         curl_setopt($curl_request, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl_request,CURLOPT_SSL_VERIFYPEER, false);
 
         $result = curl_exec($curl_request);
-        curl_close($curl_request);
+        curl_close($curl_request);*/
+        $json_data = file_get_contents($this->getContainer()->get('kernel')->getRootDir() . '/Resources/Documents/LicenciesJson/licencies-2019-09-10.json');
 
-        $data = json_decode($result, true);
+
+        $data = json_decode($json_data, true);
 
         $nbCreation = 0;
         $nbMaj = 0;
 
         $nouveauJoueur = false;
+
 
         foreach ($data as $joueur) {
             if ($this->hasLicenceValide($joueur['permits'])){
@@ -174,7 +177,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
     private function getCategorie($joueur){
         foreach ($joueur['permits'] as $licence){
-            if ('2018' ==  substr($licence['startSeason'],0,4) && strpos($licence['subCategory'],'Libre') !== false){
+            if ($this->getContainer()->getParameter('debut_annee') ==  substr($licence['startSeason'],0,4) && strpos($licence['subCategory'],'Libre') !== false){
                 return $licence['subCategory'];
             }
         }

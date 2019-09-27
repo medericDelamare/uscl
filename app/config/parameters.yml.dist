@@ -1,24 +1,32 @@
-# This file is a "template" of what your parameters.yml file should look like
-# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
-# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+# This file is auto-generated during the composer install
 parameters:
-    database_host: 127.0.0.1
-    database_port: ~
-    database_name: symfony
-    database_user: root
-    database_password: ~
-    # You should uncomment this if you want to use pdo_sqlite
-    #database_path: "%kernel.root_dir%/data.db3"
-
+    database_host: db
+    database_port: 3306
+    database_name: uscl
+    database_user: uscl
+    database_password: uscl
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: ~
-    mailer_password: ~
-
-    # A secret key that's used to generate certain security-related tokens
+    mailer_host: localhost
+    mailer_user: null
+    mailer_password: null
     secret: ThisTokenIsNotSoSecretChangeIt
-
     app_id: 997836653699165
     app_secret: 79b0ba738b65a330af7213ab69a42c4
     page_id: 134432930097257
     token: EAAOLhvNJoF0BABYSwAKfRZBzqruP7utpY1erPZAHIUo68QliWF6iLBOGPcMmuNipvYAUDagRkxg3DcVGrK6rqy9JNj4kLc78eGJNR04cPQHMbzm6TzW7cZBxg8r81mZCvZAEBiyhZCsRpU6gk8HYoPqgZAZBjDhKUdlwWFm4lqfUtAZDZD
+    debut_annee: 2019
+    fin_annee: 2020
+    teamId_veteran: 59a59ca11b42fc0b26f72c9c
+    competitionId_veteran: 5d54b33fcf4e61e60af60f34
+    competitionId_seniorA: 5d54b334cf4e61e60af60f32
+    teamId_seniorA: 59a59ca11b42fc0b26f72c96
+    competitionId_seniorB: 5d54b305cf4e61e60af60f2b
+    teamId_seniorB: 540f0b1db1752543a7460c34
+    teamId_U18: 561841e7c59eba0cff76d934
+    competitionId_U18: 5d831629cf4e61e60afb4147
+    teamId_U15: 5d831653cf4e61e60afb4150
+    competitionId_U15: 540f0b1db1752543a7460c37
+    teamId_U13A: 54287d9728688c1aa2c0b423
+    competitionId_U13A: 5d8316c6cf4e61e60afb4164
+    teamId_U13B: 59c2db2b680f775b6fd9b225
+    competitionId_U13B: 5d8316a4cf4e61e60afb415d

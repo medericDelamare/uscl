@@ -4,6 +4,10 @@ parameters:
     #parameter_name: value
 
 services:
+    twig.extension.intl:
+      class: Twig_Extensions_Extension_Intl
+      tags:
+        - { name: twig.extension }
     app.form.registration:
         class: AppBundle\Form\RegistrationType
         arguments: [%fos_user.model.user.class%]
@@ -16,6 +20,14 @@ services:
             class: AppBundle\Service\Parse\ParseService
             arguments:
                     entityManager: "@doctrine.orm.entity_manager"
+
+    scorenco.scorenco_service:
+      class: AppBundle\Service\Scorenco\ScorencoService
+
+    app.generation_image_controller:
+      class: AppBundle\Controller\GenerationImageController
+      calls:
+        - [setContainer, ["@service_container"]]
 
     app_core.facebook:
        # notre classe

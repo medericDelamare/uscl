@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\CarriereJoueur;
 use AppBundle\Entity\Joueur;
 use AppBundle\Entity\Licencie;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -21,11 +22,12 @@ class EffectifController extends Controller
      */
     public function listByCategoryAction($category)
     {
+        $saisonEnCours = $this->getParameter('debut_annee') . '-' .$this->getParameter('fin_annee');
         $em = $this->getDoctrine()->getManager();
         if ($category == 'Football-animation'){
-            $u7 = $em->getRepository(Licencie::class)->findByCategory('U7');
-            $u9 = $em->getRepository(Licencie::class)->findByCategory('U9');
-            $u11 = $em->getRepository(Licencie::class)->findByCategory('U11');
+            $u7 = $em->getRepository(CarriereJoueur::class)->findLicencieByCategoryAndsaison('U7',$saisonEnCours);
+            $u9 = $em->getRepository(CarriereJoueur::class)->findLicencieByCategoryAndsaison('U9',$saisonEnCours);
+            $u11 = $em->getRepository(CarriereJoueur::class)->findLicencieByCategoryAndsaison('U11',$saisonEnCours);
 
             $joueurs = [
                 'u7' => $u7,
@@ -40,7 +42,8 @@ class EffectifController extends Controller
                 'nb_u11' => count($joueurs['u11']),
             ]);
         } else{
-            $joueurs = $em->getRepository(Licencie::class)->findByCategoryOrderByPoste($category);
+            $joueurs = $em->getRepository(CarriereJoueur::class)
+                ->findLicencieBySaisonAndCategorie($category,$saisonEnCours);
             return $this->render('default/effectif.html.twig', [
                 'joueurs' => $joueurs,
                 'category' => $category,

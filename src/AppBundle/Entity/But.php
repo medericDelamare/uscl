@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class But
  * @package AppBundle\Entity
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ButRepository")
  */
 class But
 {
