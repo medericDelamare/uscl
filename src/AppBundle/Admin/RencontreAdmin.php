@@ -25,6 +25,7 @@ class RencontreAdmin extends AbstractAdmin
             ->add('journee')
             ->add('score')
             ->add('date')
+            ->add('idScorenco')
         ;
     }
     protected function configureListFields(ListMapper $listMapper)
