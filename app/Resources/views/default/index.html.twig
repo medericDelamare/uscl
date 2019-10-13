@@ -121,7 +121,7 @@
                     <h2 class="sous-titre">Les matchs de la semaine</h2>
                 </div>
                 {% for game in weekGames %}
-                    <div class="mb-5 col-lg-6 {% if loop.last and loop is odd %}offset-lg-3{% else %}{% endif %}">
+                    <div class="mb-5 col-lg-6 {% if loop.last and loop.index is odd  %}offset-lg-3{% else %}{% endif %}">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-12 text-center ">{{ game.equipeDomicile.categorie }}
