@@ -98,16 +98,16 @@
                     <div class="table-responsive">
                         <table class="table table-sm">
                             {% for resultat in rencontres.events %}
+                                <tr class="text-center header-result"><td colspan="4">{{ resultat.date|date("m/d/Y H:i") }}</td></tr>
                                 <tr>
-                                    <td>{{ resultat.date|date("m/d/Y H:i") }}</td>
                                     <td>
                                         <img data-toggle="tooltip" data-placement="top" title="{{ resultat.teams[0].name }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ resultat.teams[0].clubId ~ '.png') }}">
                                         <span class="d-none d-lg-inline-block">{{ resultat.teams[0].name }}</span>
                                     </td>
                                     {% if resultat.teams[0].score is not null %}
-                                        <td class=" text-center score text-nowrap">{{ resultat.teams[0].score ~ '-' ~ resultat.teams[1].score }}</td>
+                                        <td class=" text-center score text-nowrap font-weight-bold">{{ resultat.teams[0].score ~ '-' ~ resultat.teams[1].score }}</td>
                                     {% else %}
-                                        <td class="text-center score text-nowrap">VS</td>
+                                        <td class="text-center score text-nowrap font-weight-bold">VS</td>
                                     {% endif %}
                                     <td class="text-right">
                                         <span class="d-none d-lg-inline-block">{{ resultat.teams[1].name }}</span>

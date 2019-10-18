@@ -26,6 +26,7 @@ RUN apt-get update \
         pdo_mysql \
         xdebug \
         zip \
+        opcache \
     && pecl install apcu_bc-1.0.3 \
     && docker-php-source delete \
     && php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin --filename=composer \
