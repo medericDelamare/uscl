@@ -498,7 +498,7 @@ class Licencie
     }
 
     /**
-     * @return mixed
+     * @return ArrayCollection
      */
     public function getStatsRencontresJoueurs()
     {

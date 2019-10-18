@@ -47,7 +47,13 @@ class ProfileController extends Controller
         $n=0;
         $d=0;
 
-        $lasts = array_slice($joueur->getStatsRencontresJoueurs()->toArray(),-5);
+        $iterator = $joueur->getStatsRencontresJoueurs()->getIterator();
+
+        $iterator->uasort(function ($first, $second) {
+            return $first->getRencontre()->getDate() > $second->getRencontre()->getDate() ? 1 : -1;
+        });
+
+        $lasts = array_slice(iterator_to_array($iterator),-5);
         $fiveLastsResults = [];
         foreach ($lasts as $stats){
             if ($stats->getRencontre()->getScoreDom() != null && $stats->getRencontre()->getScoreDom() == $stats->getRencontre()->getScoreExt()){
