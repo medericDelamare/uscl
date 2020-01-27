@@ -7,7 +7,7 @@ namespace AppBundle\Model\Scorenco;
 class Resultat
 {
     private $id;
-    private $statuts;
+    private $status;
     private $gameStatus;
     private $date;
     private $url;
@@ -38,18 +38,18 @@ class Resultat
     /**
      * @return mixed
      */
-    public function getStatuts()
+    public function getStatus()
     {
-        return $this->statuts;
+        return $this->status;
     }
 
     /**
-     * @param mixed $statuts
+     * @param mixed $status
      * @return Resultat
      */
-    public function setStatuts($statuts)
+    public function setStatus($status)
     {
-        $this->statuts = $statuts;
+        $this->status = $status;
         return $this;
     }
 

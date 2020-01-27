@@ -123,15 +123,17 @@ class ScorencoService
             /** @var Resultat $result */
             $result = $serializer->deserialize(json_encode($result), Resultat::class, 'json');
 
-            /** @var Equipe $equipeDom */
-            $equipeDom = $serializer->deserialize(json_encode($result->getTeams()[0]), Equipe::class, 'json');
-            /** @var Equipe $equipeExt */
-            $equipeExt = $serializer->deserialize(json_encode($result->getTeams()[1]), Equipe::class, 'json');
+            if ($result->getGameStatus() == "normal" && $result->getStatus() == "finish"){
+                /** @var Equipe $equipeDom */
+                $equipeDom = $serializer->deserialize(json_encode($result->getTeams()[0]), Equipe::class, 'json');
+                /** @var Equipe $equipeExt */
+                $equipeExt = $serializer->deserialize(json_encode($result->getTeams()[1]), Equipe::class, 'json');
 
-            $lastResults[] = $this->getResultAcronym($teamId, $equipeDom, $equipeExt);
+                $lastResults[] = $this->getResultAcronym($teamId, $equipeDom, $equipeExt);
+            }
         }
 
-        return $lastResults;
+        return array_slice($lastResults, 0,5);
     }
 
     public function getCalendrierByEquipeAndCompetition($teamId, $competitionId)
