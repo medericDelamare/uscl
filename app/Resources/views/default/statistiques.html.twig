@@ -65,7 +65,7 @@
                                     <td>{{ loop.index }}</td>
                                     <td>
                                         <img data-toggle="tooltip" data-placement="top" title="{{ equipe.name }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ equipe.clubId ~ '.png') }}">
-                                        <span class="d-none d-lg-inline-block">{{ equipe.name }}</span>
+                                        <span class="d-none d-lg-inline-block">{{ equipe.name|upper }}</span>
                                     </td>
                                     <td class="font-weight-bold">{{ equipe.rankingData.points }}</td>
                                     <td>{{ equipe.rankingData.journees }}</td>
@@ -102,7 +102,7 @@
                                 <tr>
                                     <td>
                                         <img data-toggle="tooltip" data-placement="top" title="{{ resultat.teams[0].name }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ resultat.teams[0].clubId ~ '.png') }}">
-                                        <span class="d-none d-lg-inline-block">{{ resultat.teams[0].name }}</span>
+                                        <span class="d-none d-lg-inline-block">{{ resultat.teams[0].name|upper }}</span>
                                     </td>
                                     {% if resultat.teams[0].score is not null %}
                                         <td class=" text-center score text-nowrap font-weight-bold">{{ resultat.teams[0].score ~ '-' ~ resultat.teams[1].score }}</td>
@@ -110,7 +110,7 @@
                                         <td class="text-center score text-nowrap font-weight-bold">VS</td>
                                     {% endif %}
                                     <td class="text-right">
-                                        <span class="d-none d-lg-inline-block">{{ resultat.teams[1].name }}</span>
+                                        <span class="d-none d-lg-inline-block">{{ resultat.teams[1].name|upper }}</span>
                                         <img data-toggle="tooltip" data-placement="top" title="{{ resultat.teams[1].name }}" class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ resultat.teams[1].clubId ~ '.png') }}">
                                     </td>
                                 </tr>
@@ -129,7 +129,7 @@
                                     <td>{{ agenda.date|date("m/d/Y H:i") }}</td>
                                     <td>
                                         <img data-toggle="tooltip" data-placement="top" title="{{ agenda.teams[0].name }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ agenda.teams[0].clubId ~ '.png') }}">
-                                        <span class="d-none d-lg-inline-block">{{ agenda.teams[0].name }}</span>
+                                        <span class="d-none d-lg-inline-block">{{ agenda.teams[0].name|upper }}</span>
                                     </td>
                                     {% if agenda.teams[0].score is not null %}
                                         <td class=" text-center score text-nowrap">{{ agenda.teams[0].score ~ '-' ~ agenda.teams[1].score }}</td>
@@ -138,7 +138,7 @@
                                     {% endif %}
                                     <td class="text-right">
                                         <span class="d-none d-lg-inline-block">{{ agenda.teams[1].name }}</span>
-                                        <img data-toggle="tooltip" data-placement="top" title="{{ agenda.teams[1].name }}" class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ agenda.teams[1].clubId ~ '.png') }}">
+                                        <img data-toggle="tooltip" data-placement="top" title="{{ agenda.teams[1].name|upper }}" class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ agenda.teams[1].clubId ~ '.png') }}">
                                     </td>
                                 </tr>
                             {% endfor %}
