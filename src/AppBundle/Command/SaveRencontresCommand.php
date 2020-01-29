@@ -2,6 +2,7 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Entity\Club;
 use AppBundle\Entity\Rencontre;
 use AppBundle\Model\Scorenco\Championnat;
 use AppBundle\Model\Scorenco\Equipe;
@@ -35,26 +36,37 @@ class SaveRencontresCommand extends ContainerAwareCommand
         $competitionId = $this->getContainer()->getParameter("competitionId_" . $categorie);
 
         $nbEquipes = count($scorencoService->getDisctinctTeams("https://scorenco.com/backend/v1/competitions/" . $competitionId . "/rankings/"));
-
-        for ($i = 1; $i <= ($nbEquipes-1)*2; $i++) {
+        for ($i = 1; $i <= ($nbEquipes - 1) * 2; $i++) {
             /** @var Championnat $championnat */
-            $championnat = $scorencoService->getJourneeByUrl("https://scorenco.com/backend/v1/competitions/". $competitionId."/events/?roundRank=" . $i);
+            $championnat = $scorencoService->getJourneeByUrl("https://scorenco.com/backend/v1/competitions/" . $competitionId . "/events/?roundRank=" . $i);
             /** @var Journee $round */
             foreach ($championnat->getRounds() as $round) {
+
                 /** @var Match $event */
-                foreach ($round->getEvents() as $event){
-                    if (!$rencontre = $em->getRepository(Rencontre::class)->findOneByIdScorenco($event->getId())){
+                foreach ($round->getEvents() as $event) {
+                    if (!$rencontre = $em->getRepository(Rencontre::class)->findOneByIdScorenco($event->getId())) {
                         $rencontre = new Rencontre();
                     }
 
-                    $teamDom = $event->getTeams()[0];
-                    $teamExt = $event->getTeams()[1];
 
+                    /** @var Equipe $teamDom */
+                    $teamDom = $event->getTeams()[0];
+                    /** @var Equipe $teamExt */
+                    $teamExt = $event->getTeams()[1];
 
                     $equipeDom = $em->getRepository(\AppBundle\Entity\Equipe::class)->findByCategorieAndCodeScorenco($categorie, $teamDom->getTeamSlug());
                     $equipeExt = $em->getRepository(\AppBundle\Entity\Equipe::class)->findByCategorieAndCodeScorenco($categorie, $teamExt->getTeamSlug());
 
-                    if(!$rencontre->getIdScorenco()){
+
+                    if (!$equipeDom) {
+                        $equipeDom = $this->createEquipe($categorie, $teamDom, $em, $scorencoService);
+                    }
+
+                    if (!$equipeExt) {
+                        $equipeExt = $this->createEquipe($categorie, $teamExt, $em, $scorencoService);
+                    }
+
+                    if (!$rencontre->getIdScorenco()) {
                         $rencontre
                             ->setEquipeDomicile($equipeDom)
                             ->setEquipeExterieure($equipeExt);
@@ -65,8 +77,8 @@ class SaveRencontresCommand extends ContainerAwareCommand
                         ->setIdScorenco($event->getId())
                         ->setDate($this->getDate($event->getDate()));
 
-                    if ($teamDom->getScore() !== null){
-                        $rencontre->setScore($teamDom->getScore().'-' . $teamExt->getScore());
+                    if ($teamDom->getScore() !== null) {
+                        $rencontre->setScore($teamDom->getScore() . '-' . $teamExt->getScore());
                         $rencontre->setScoreDom($teamDom->getScore());
                         $rencontre->setScoreExt($teamExt->getScore());
                     }
@@ -76,12 +88,41 @@ class SaveRencontresCommand extends ContainerAwareCommand
                 }
             }
         }
-
     }
 
-    private function getDate($scorencoDate){
+    private function getDate($scorencoDate)
+    {
         $datetime = new \DateTime($scorencoDate);
         $datetime->setTimezone(new \DateTimeZone("Europe/Paris"));
         return $datetime;
+    }
+
+    private function createEquipe($categorie, $team, $em, $scorencoService){
+        $equipe = new \AppBundle\Entity\Equipe();
+        $equipe
+            ->setNom($team->getName())
+            ->setNomParse($team->getName())
+            ->setCodeScorenco($team->getTeamSlug())
+            ->setCategorie($categorie);
+
+        if (!$club = $em->getRepository(Club::class)->findOneByScorencoId($team->getClubId())) {
+            /** @var \AppBundle\Model\Scorenco\Club $clubInfos */
+            $clubInfos = $scorencoService->getClubInfoBySlug($team->getClubSlug());
+            /** @var Club $club */
+            $club = new Club();
+            $club
+                ->setNom($clubInfos->getName())
+                ->setScorencoId($clubInfos->getId())
+                ->setLogo('none.png');
+
+            $em->persist($club);
+            $em->flush($club);
+        }
+
+        $equipe->setClub($club);
+        $em->persist($equipe);
+        $em->flush($equipe);
+
+        return $equipe;
     }
 }

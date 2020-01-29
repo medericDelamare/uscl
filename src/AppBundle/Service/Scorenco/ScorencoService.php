@@ -11,6 +11,7 @@ namespace AppBundle\Service\Scorenco;
 
 use AppBundle\Model\Scorenco\Championnat;
 use AppBundle\Model\Scorenco\Classement;
+use AppBundle\Model\Scorenco\Club;
 use AppBundle\Model\Scorenco\Equipe;
 use AppBundle\Model\Scorenco\InformationsCompetition;
 use AppBundle\Model\Scorenco\Journee;
@@ -179,6 +180,21 @@ class ScorencoService
         return $this->getDayByNumber($competitionId, $nextDay);
     }
 
+    public function getClubInfoBySlug($clubSlug){
+        $client = new Client();
+        $response = $client->get("https://scorenco.com/backend/v1/clubs/sport/football/club/". $clubSlug ."/?gtbl=1&exclude=sponsors");
+
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        /** @var Club $club */
+        $club = $serializer->deserialize($response->getBody(), Club::class, 'json');
+
+        return $club;
+    }
+
     private function getLastDay($competitionId)
     {
         $client = new Client();
@@ -207,7 +223,6 @@ class ScorencoService
             ->orderBy(['officialDate' => 'ASC']);
         return $dates->matching($criteria)->last();
     }
-
 
     private function getNextDay($competitionId)
     {
