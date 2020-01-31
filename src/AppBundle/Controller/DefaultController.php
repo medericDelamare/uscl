@@ -19,7 +19,6 @@ class DefaultController extends Controller
     {
         $saison = $anneDebutSaison = $this->getParameter('debut_annee') .'-' .$anneDebutSaison = $this->getParameter('fin_annee');
         $weekGames = $this->getDoctrine()->getRepository(Rencontre::class)->getWeekGames();
-        $nombreLicenceActuel = $this->getDoctrine()->getRepository(CarriereJoueur::class)->nbLicencie($saison);
         $statsLicencies = $this->getDoctrine()->getRepository(NombreLicenciesParAnnee::class)->getAllOrderByAnneeDebut();
 
         /**
@@ -45,8 +44,7 @@ class DefaultController extends Controller
         }
 
         $annees[] = $this->container->getParameter('debut_annee') . '/' . $this->container->getParameter('fin_annee');
-        $nbLicencies[] = $nombreLicenceActuel;
-        // replace this example code with whatever you need
+
         return $this->render('default/index.html.twig', [
             'weekGames' => $weekGames,
             'annees' => $annees,
