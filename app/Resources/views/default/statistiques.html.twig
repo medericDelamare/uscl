@@ -182,8 +182,7 @@
         var equipeId = $( "#selectEquipe" ).val();
         var getUrl = window.location;
         var baseUrl = getUrl.protocol + "//" + getUrl.host + "/";
-        console.log(baseUrl);
-        var route = 'http://localhost/uscl/web/app_dev.php/' + 'get-calendrier-par-equipe/';
+        var route = baseUrl + 'get-calendrier-par-equipe/';
         var categorie = '{{ competitionId }}';
         $(document).ready( function () {
             $('#loaderCalendrier').show();
@@ -207,4 +206,3 @@
         });
     </script>
 {% endblock %}
-
