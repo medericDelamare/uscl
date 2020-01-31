@@ -69,6 +69,12 @@ class Club
     private $updated;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $scorencoId;
+
+    /**
      * @return int
      */
     public function getId()
@@ -243,6 +249,24 @@ class Club
     public function refreshUpdated()
     {
         $this->setUpdated(new \DateTime());
+    }
+
+    /**
+     * @return string
+     */
+    public function getScorencoId()
+    {
+        return $this->scorencoId;
+    }
+
+    /**
+     * @param string $scorencoId
+     * @return Club
+     */
+    public function setScorencoId($scorencoId)
+    {
+        $this->scorencoId = $scorencoId;
+        return $this;
     }
 
 }

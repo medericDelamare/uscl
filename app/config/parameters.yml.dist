@@ -24,8 +24,8 @@ parameters:
     teamId_seniorB: 540f0b1db1752543a7460c34
     teamId_U18: 561841e7c59eba0cff76d934
     competitionId_U18: 5d831629cf4e61e60afb4147
-    teamId_U15: 5d831653cf4e61e60afb4150
-    competitionId_U15: 540f0b1db1752543a7460c37
+    teamId_U15: 54287d9728688c1aa2c0b425
+    competitionId_U15: 5d831653cf4e61e60afb4150
     teamId_U13A: 54287d9728688c1aa2c0b423
     competitionId_U13A: 5d8316c6cf4e61e60afb4164
     teamId_U13B: 59c2db2b680f775b6fd9b225

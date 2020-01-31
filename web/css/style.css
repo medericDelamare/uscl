@@ -1411,3 +1411,42 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .bg-n{
     background-color: #ffef96;
 }
+
+.header-result{
+    background-color: #0050a1;
+    opacity: 0.5;
+    color: white;
+    font-style: italic;
+    line-height: 12px;
+}
+
+
+@media (max-width: 576px) {
+    .sous-titre{
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 576px) {
+    .sous-titre{
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    .sous-titre{
+        font-size: 25px;
+    }
+}
+
+@media (min-width: 992px) {
+    .sous-titre{
+        font-size: 30px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .sous-titre{
+        font-size: 40px;
+    }
+}
