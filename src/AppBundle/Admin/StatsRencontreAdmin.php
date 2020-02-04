@@ -16,21 +16,47 @@ class StatsRencontreAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+        if ($this->isCurrentRoute('create')) {
+            $formMapper
+                ->add('rencontre', EntityType::class,[
+                    'label' => 'Rencontre',
+                    'class' => Rencontre::class,
+                    'query_builder' => function (EntityRepository $er) {
+
+                        return $er->createQueryBuilder('r')
+                            ->join(Equipe::class, 'ed', 'WITH', 'ed.id = r.equipeDomicile')
+                            ->join(Equipe::class, 'ee', 'WITH', 'ee.id = r.equipeExterieure')
+                            ->leftJoin(StatsRencontre::class, 'sr', 'WITH', 'sr.rencontre = r.id')
+                            ->where('ed.club = 1 OR ee.club = 1')
+                            ->andWhere('r.date > \'2019-06-15\'')
+                            ->andWhere('r.date < \'2020-06-15\'')
+                            ->andWhere('sr.rencontre IS NULL')
+                            ;
+
+
+                    }
+                ]);
+        }
+        else {
+            $formMapper
+                ->add('rencontre', EntityType::class,[
+                    'label' => 'Rencontre',
+                    'class' => Rencontre::class,
+                    'query_builder' => function (EntityRepository $er) {
+
+                        return $er->createQueryBuilder('r')
+                            ->join(Equipe::class, 'ed', 'WITH', 'ed.id = r.equipeDomicile')
+                            ->join(Equipe::class, 'ee', 'WITH', 'ee.id = r.equipeExterieure')
+                            ->where('ed.club = 1 OR ee.club = 1')
+                            ->andWhere('r.date > \'2019-06-15\'')
+                            ->andWhere('r.date < \'2020-06-15\'')
+                            ;
+
+
+                    }
+                ]);
+        }
         $formMapper
-            ->add('rencontre', EntityType::class,[
-                'label' => 'Rencontre',
-                'class' => Rencontre::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('r')
-                        ->join(Equipe::class, 'ed', 'WITH', 'ed.id = r.equipeDomicile')
-                        ->join(Equipe::class, 'ee', 'WITH', 'ee.id = r.equipeExterieure')
-                        ->where('ed.club = 1 OR ee.club = 1')
-                        ->andWhere('r.date > \'2019-06-15\'')
-                        ->andWhere('r.date < \'2020-06-15\'');
-
-
-                }
-            ])
             ->add('joueurs')
             ->add('cartonsJaunes')
             ->add('cartonsRouges')
