@@ -27,6 +27,10 @@
                    aria-controls="pills-veterans" aria-selected="false">Vétérans</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-seniorsF" role="tab"
+                   aria-controls="pills-seniorsF" aria-selected="false">Seniors F</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-U18" role="tab"
                    aria-controls="pills-U18" aria-selected="false">U18</a>
             </li>
@@ -93,6 +97,33 @@
                                         <td>{{ buteur.stats.butsB }}</td>
                                         <td>{{ buteur.stats.butsCoupe }}</td>
                                         <td>{{ buteur.stats.butsA + buteur.stats.butsB + buteur.stats.butsCoupe }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-seniorsF" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="col-12 offset-md-2 col-md-8">
+                        <h2>Buteuses Seniors</h2>
+                        <div class="table-responsive">
+                            <table class="table table-sm tableauButeur">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Buts en A</th>
+                                    <th scope="col">Buts en Coupe</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for buteur in seniorsF %}
+                                    <tr>
+                                        <td><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nom }} {{ buteur.prenom }}</td>
+                                        <td>{{ buteur.stats.butsA }}</td>
+                                        <td>{{ buteur.stats.butsCoupe }}</td>
+                                        <td>{{ buteur.stats.butsA + buteur.stats.butsCoupe }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

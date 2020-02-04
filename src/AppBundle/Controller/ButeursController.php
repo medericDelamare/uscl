@@ -15,6 +15,7 @@ class ButeursController extends Controller
 
     private $categoriesSeniorA = ['seniorA'];
     private $categoriesSeniorB = ['seniorB'];
+    private $categoriesSeniorF = ['seniorF'];
     private $categoriesSeniorCoupe = ['coupeDeFrance', 'coupeDeNormandie', 'coupeEure', 'coupeReserves'];
 
     private $categoriesVeteransA = ['veteranA'];
@@ -42,6 +43,7 @@ class ButeursController extends Controller
         $buteurs = $this->getDoctrine()->getRepository(But::class)->findAllByCurrentYear($this->container->getParameter('debut_annee') . '-08-15', $this->container->getParameter('fin_annee').'-08-15');
 
         $buteursSenior=[];
+        $buteursSeniorF=[];
         $buteursVeterans=[];
         $buteursU18=[];
         $buteursU15=[];
@@ -87,11 +89,15 @@ class ButeursController extends Controller
             } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesU13Coupe)){
                 $buteur->getButeur()->getStats()->incrementButCoupe();
                 $buteursU13[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
+            } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(),$this->categoriesSeniorF)){
+                $buteur->getButeur()->getStats()->incrementButA();
+                $buteursSeniorF[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
             }
         }
 
         return $this->render(':default:buteurs.html.twig', [
             'seniors' => $buteursSenior,
+            'seniorsF' => $buteursSeniorF,
             'veterans' => $buteursVeterans,
             'U18' => $buteursU18,
             'U15' => $buteursU15,
