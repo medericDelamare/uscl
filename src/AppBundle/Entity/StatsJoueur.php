@@ -43,6 +43,16 @@ class StatsJoueur
 
     /**
      * @var integer
+     */
+    private $butsVeteranChampionnat = 0;
+
+    /**
+     * @var integer
+     */
+    private $butVeteranCoupe = 0;
+
+    /**
+     * @var integer
      * @ORM\Column(type="integer", nullable=true)
      */
     private $buts = 0;
@@ -263,6 +273,42 @@ class StatsJoueur
     }
 
     /**
+     * @return int
+     */
+    public function getButsVeteranChampionnat()
+    {
+        return $this->butsVeteranChampionnat;
+    }
+
+    /**
+     * @param int $butsVeteranChampionnat
+     * @return StatsJoueur
+     */
+    public function setButsVeteranChampionnat($butsVeteranChampionnat)
+    {
+        $this->butsVeteranChampionnat = $butsVeteranChampionnat;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getButVeteranCoupe()
+    {
+        return $this->butVeteranCoupe;
+    }
+
+    /**
+     * @param int $butVeteranCoupe
+     * @return StatsJoueur
+     */
+    public function setButVeteranCoupe($butVeteranCoupe)
+    {
+        $this->butVeteranCoupe = $butVeteranCoupe;
+        return $this;
+    }
+
+    /**
      * @param Licencie $licencie
      * @return StatsJoueur
      */
@@ -282,5 +328,13 @@ class StatsJoueur
 
     public function incrementButCoupe(){
         $this->butsCoupe = $this->butsCoupe + 1;
+    }
+
+    public function incrementButVeteranChampionnat(){
+        $this->butsVeteranChampionnat = $this->butsVeteranChampionnat + 1;
+    }
+
+    public function incrementButVeteranCoupe(){
+        $this->butVeteranCoupe = $this->butVeteranCoupe + 1;
     }
 }
