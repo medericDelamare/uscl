@@ -79,12 +79,11 @@
                     <div class="col-12 offset-md-2 col-md-8">
                         <h2>Buteurs Vétérans</h2>
                         <div class="table-responsive">
-                            <table class="table table-sm tableauButeur">
+                            <table class="table table-sm tableauButeur3Colonnes">
                                 <thead>
                                 <tr>
                                     <th scope="col">Nom</th>
                                     <th scope="col">Buts en A</th>
-                                    <th scope="col">Buts en B</th>
                                     <th scope="col">Buts en Coupe</th>
                                     <th scope="col">Total</th>
                                 </tr>
@@ -93,10 +92,9 @@
                                 {% for buteur in veterans %}
                                     <tr>
                                         <td><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nom }} {{ buteur.prenom }}</td>
-                                        <td>{{ buteur.stats.butsA }}</td>
-                                        <td>{{ buteur.stats.butsB }}</td>
-                                        <td>{{ buteur.stats.butsCoupe }}</td>
-                                        <td>{{ buteur.stats.butsA + buteur.stats.butsB + buteur.stats.butsCoupe }}</td>
+                                        <td>{{ buteur.stats.butsVeteranChampionnat }}</td>
+                                        <td>{{ buteur.stats.butVeteranCoupe }}</td>
+                                        <td>{{ buteur.stats.butsVeteranChampionnat + buteur.stats.butVeteranCoupe }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -108,7 +106,7 @@
                     <div class="col-12 offset-md-2 col-md-8">
                         <h2>Buteuses Seniors</h2>
                         <div class="table-responsive">
-                            <table class="table table-sm tableauButeur">
+                            <table class="table table-sm tableauButeur3Colonnes">
                                 <thead>
                                 <tr>
                                     <th scope="col">Nom</th>
