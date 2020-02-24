@@ -1,10 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<header class="business-header business-header-index">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="tagline"></h1>
+            </div>
+        </div>
+    </div>
+</header>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Connexion</li>
+        <li class="breadcrumb-item " aria-current="page"><a href="{{ path('homepage') }}">Accueil</a></li>
+        <li class="breadcrumb-item " aria-current="page">Statistiques</li>
     </ol>
 </nav>
 <div class="container">
