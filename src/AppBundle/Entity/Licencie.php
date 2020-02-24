@@ -643,6 +643,12 @@ class Licencie
         return $this;
     }
 
+    public function getAge(){
+        $birthDate = $this->getDateDeNaissance();
+        $to   = new \DateTime('today');
+        return $birthDate->diff($to)->y;
+    }
+
     public function __toString()
     {
         return $this->getNomComplet();

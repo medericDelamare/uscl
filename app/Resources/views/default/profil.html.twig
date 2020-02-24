@@ -27,7 +27,7 @@
                     <div class="col-md-4 col-12">
                         <p class="text-white">{{ joueur.stats.poste }}</p>
                         <hr class="bg-white">
-                        <p class="text-white">Né le {{ joueur.dateDeNaissance|date("d/m/Y") }} à {{ joueur.lieuDeNaissance }} ( {{ age }} ans )</p>
+                        <p class="text-white">Né le {{ joueur.dateDeNaissance|date("d/m/Y") }} à {{ joueur.lieuDeNaissance }} ( {{ joueur.age }} ans )</p>
                         <hr class="bg-white">
                          <div class="row">
                             <div class="col-6">
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="col-md-8 col-12">
-                        <div class="d-none d-md-block row saison-actuelle-profil text-center mb-3"><h4>Saison 2018-2019 avec l'USCL</h4></div>
+                        <div class="d-none d-md-block row saison-actuelle-profil text-center mb-3"><h4>Saison {{debut_annee}}-{{fin_annee}} avec l'USCL</h4></div>
                         <div class="d-block d-md-none row saison-actuelle-profil text-center mt-3"><h4>2018/2019 :</h4></div>
                         <div class="row stat">
                             <div class="col-4 offset-md-1 col-md-2">
@@ -103,24 +103,36 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
             <div class="offset-sm-2 col-sm-8 offset-md-0 col-md-4">
-                <h3>Statistiques rencontres</h3>
-                <canvas id="myChart"></canvas>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Statistiques rencontres</h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
             </div>
             <div class="offset-sm-2 col-sm-8 offset-md-0 col-md-4">
-                <h3>5 dernières rencontres</h3>
-                <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                    {% for result in lastResults %}
-                        {% if result == 'N' %}
-                            <span class="bg-n numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
-                        {% elseif result == 'V' %}
-                            <span class="bg-v numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
-                        {% elseif result == 'D' %}
-                            <span class="bg-d numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
-                        {% endif %}
-                    {% endfor %}
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h3>5 dernières rencontres</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+                            {% for result in lastResults %}
+                                {% if result == 'N' %}
+                                    <span class="bg-n numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
+                                {% elseif result == 'V' %}
+                                    <span class="bg-v numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
+                                {% elseif result == 'D' %}
+                                    <span class="bg-d numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
