@@ -26,6 +26,8 @@ services:
 
     app.statistiques_service:
       class: AppBundle\Service\StatistiquesService
+      arguments: ["@kernel"]
+
 
     app.generation_image_controller:
       class: AppBundle\Controller\GenerationImageController
