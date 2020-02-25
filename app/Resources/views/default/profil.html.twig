@@ -123,13 +123,15 @@
                     <div class="card-body">
                         <div class="w-100 h-100 d-flex align-items-center justify-content-center">
                             {% for result in lastResults %}
-                                {% if result == 'N' %}
-                                    <span class="bg-n numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
-                                {% elseif result == 'V' %}
-                                    <span class="bg-v numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
-                                {% elseif result == 'D' %}
-                                    <span class="bg-d numberCircle d-flex align-items-center justify-content-center">{{ result }}</span>
-                                {% endif %}
+                                {% for key, value in result %}
+                                    {% if key == 'N' %}
+                                        <span data-toggle="tooltip" data-placement="top" title="{{value}}" class="bg-n numberCircle d-flex align-items-center justify-content-center">{{ key }}</span>
+                                    {% elseif key == 'V' %}
+                                        <span data-toggle="tooltip" data-placement="top" title="{{value}}" class="bg-v numberCircle d-flex align-items-center justify-content-center">{{ key }}</span>
+                                    {% elseif key == 'D' %}
+                                        <span data-toggle="tooltip" data-placement="top" title="{{value}}" class="bg-d numberCircle d-flex align-items-center justify-content-center">{{ key }}</span>
+                                    {% endif %}
+                                {% endfor %}
                             {% endfor %}
                         </div>
                     </div>
