@@ -1017,6 +1017,7 @@ input:checked + .slider:before {
     line-height: 1.1em;
     padding: 10px 0 10px 15px;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .classement {
@@ -1455,4 +1456,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     .sous-titre{
         font-size: 40px;
     }
+}
+
+.logo-match-semaine{
+    width: 35px;
 }

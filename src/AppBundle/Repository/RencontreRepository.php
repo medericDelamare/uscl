@@ -98,6 +98,7 @@ class RencontreRepository extends EntityRepository
             ->andWhere('d.club = 1 OR e.club = 1')
             ->setParameter('dateCourante', new \DateTime())
             ->setParameter('semaine', new \DateTime('+1 week'))
+            ->orderBy('r.date', 'ASC')
             ->getQuery()
             ->getResult();
         return $agendas;

@@ -23,7 +23,8 @@
                 <h2 class="sous-titre">Les mots du président</h2>
             </div>
             <div class="col-md-4 text-center">
-                <img src="{{ asset('pictures/default.png') }}" class="rounded-circle col-6 col-md-12" alt="Responsive image">
+                <img src="{{ asset('pictures/default.png') }}" class="rounded-circle col-6 col-md-12"
+                     alt="Responsive image">
             </div>
             <div class="col-md-8">
                 <p class="text-justify">« L'année passée a été l'occasion une nouvelle fois pour nos jeunes de briller
@@ -31,8 +32,10 @@
                     résultats nous allons continuer à développer notre école de football, passage obligé pour envisager
                     l'avenir avec sérénité. Encore merci et félicitation à tous ceux qui oeuvrent de près ou de loin au
                     bon fonctionnement de ces catégories. </br></br>
-                    Pour les seniors, la saison passée a été particulièrement bonne notamment pour l'équipe B qui a terminée première de son groupe.
-                    Renforcés par quelques nouveaux joueurs sans beaucoup de départs, Frédéric Kaboudi, nouvel entraîeur et Maurizio Alpini auront
+                    Pour les seniors, la saison passée a été particulièrement bonne notamment pour l'équipe B qui a
+                    terminée première de son groupe.
+                    Renforcés par quelques nouveaux joueurs sans beaucoup de départs, Frédéric Kaboudi, nouvel entraîeur
+                    et Maurizio Alpini auront
                     l'ambition de jouer les premiers rôles et d'aller chercher une montée.<br><br>
                     Je remercie sincèrement tous les bénévoles qui par leur dévouement contribuent au bon fonctionnement
                     de notre association. Ils en font un lieu convivial où il fait bon se retrouver.<br><br>
@@ -48,7 +51,8 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4 class="p-4"><i class="fa fa-line-chart" aria-hidden="true"></i> Evolution du nombre de licenciés</h4>
+                        <h4 class="p-4"><i class="fa fa-line-chart" aria-hidden="true"></i> Evolution du nombre de
+                            licenciés</h4>
                     </div>
                     <div class="panel-body">
                         <canvas id="myChart"></canvas>
@@ -106,7 +110,8 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4 class="p-4"><i class="fa fa-calendar" aria-hidden="true"></i> Calendrier des entraînements </h4>
+                        <h4 class="p-4"><i class="fa fa-calendar" aria-hidden="true"></i> Calendrier des entraînements
+                        </h4>
                     </div>
                     <div class="panel-body">
                         <div id='calendar'></div>
@@ -121,41 +126,8 @@
                     <h2 class="sous-titre">Les matchs de la semaine</h2>
                 </div>
                 {% for game in weekGames %}
-                    <div class="mb-5 col-lg-6 {% if loop.last and loop.index is odd  %}offset-lg-3{% else %}{% endif %}">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-12 text-center ">{{ game.equipeDomicile.categorie }}
-                                    - {{ game.date|localizeddate('none', 'none', 'fr', null, 'EEEE d MMMM Y') }}</div>
-                            </div>
-                            <div class="row text-center">
-                                <div class="col-4 d-flex align-items-center">
-                                    <img src="{{ asset('pictures/Logos/' ~ game.equipeDomicile.club.logo) }}"
-                                         class="rounded mx-auto d-block logo-rencontre-semaine" alt="...">
-                                </div>
-
-                                <div class="col-4">
-                                    <div class="h-100 d-flex align-items-center justify-content-center vs-rencontre-semaine">
-                                        VS
-                                    </div>
-                                </div>
-
-                                <div class="col-4 d-flex align-items-center">
-                                    <img src="{{ asset('pictures/Logos/' ~ game.equipeExterieure.club.logo) }}"
-                                         class="rounded mx-auto d-block logo-rencontre-semaine" alt="...">
-                                </div>
-                            </div>
-                            <div class="row text-center">
-                                <div class="col-4">
-                                    <span class="nom-club-rencontre-semaine">{{ game.equipeDomicile.nomParse }}</span>
-                                </div>
-                                <div class="col-4 offset-4">
-                                    <span class="nom-club-rencontre-semaine">{{ game.equipeExterieure.nomParse }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% include 'default/match-card.html.twig' %}
                 {% endfor %}
-
             </div>
         {% endif %}
         <div class="row">
