@@ -24,6 +24,11 @@ services:
     scorenco.scorenco_service:
       class: AppBundle\Service\Scorenco\ScorencoService
 
+    app.statistiques_service:
+      class: AppBundle\Service\StatistiquesService
+      arguments: ["@kernel"]
+
+
     app.generation_image_controller:
       class: AppBundle\Controller\GenerationImageController
       calls:

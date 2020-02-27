@@ -44,6 +44,9 @@ twig:
     form_themes:
         - 'SonataCoreBundle:Form:datepicker.html.twig'
         - 'XmonColorPickerTypeBundle:Form:fields.html.twig'
+    globals:
+        debut_annee: %debut_annee%
+        fin_annee: %fin_annee%
 
 # Doctrine Configuration
 doctrine:
