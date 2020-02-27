@@ -50,6 +50,10 @@ body {
     border-top: 1px solid #DDDDDD;
 }
 
+.box-shadow{
+    box-shadow: 2px 2px 11px rgba(0,0,0,0.7);
+}
+
 .footer p {
     margin: 0;
 }
