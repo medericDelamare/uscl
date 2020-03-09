@@ -126,9 +126,11 @@
                     <h2 class="sous-titre">Les matchs de la semaine</h2>
                 </div>
                 <div class="col-12">
-                    <div class="card-deck">
+                    <div class="row">
                         {% for game in weekGames %}
-                            {% include 'default/match-card.html.twig' %}
+                            <div class="mt-2 mb-2 col-md-6 col-xl-4 ">
+                                {% include 'default/match-card.html.twig' %}
+                            </div>
                         {% endfor %}
                     </div>
                 </div>
