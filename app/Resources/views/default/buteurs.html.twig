@@ -35,178 +35,15 @@
                aria-controls="pills-U15" aria-selected="false">U13</a>
         </li>
     </ul>
-    <div class="container-fluid">
-        <h1 class="sous-titre">Buteurs</h1>
-
-        <div class="row">
+    <div class="container-fluid p-0">
+         <div class="row no-gutters">
             <div class="tab-content col-12" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-seniors" role="tabpanel"
-                     aria-labelledby="pills-home-tab">
-                    <div class="col-12 offset-md-2 col-md-8">
-                        <h2>Buteurs Seniors</h2>
-                        <div class="table-responsive">
-                            <table class="table table-sm tableauButeur">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Buts en A</th>
-                                    <th scope="col">Buts en B</th>
-                                    <th scope="col">Buts en Coupe</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for buteur in seniors %}
-                                    <tr>
-                                        <td><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nom }} {{ buteur.prenom }}</td>
-                                        <td>{{ buteur.stats.butsA }}</td>
-                                        <td>{{ buteur.stats.butsB }}</td>
-                                        <td>{{ buteur.stats.butsCoupe }}</td>
-                                        <td>{{ buteur.stats.butsA + buteur.stats.butsB + buteur.stats.butsCoupe }}</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="pills-veterans" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <div class="col-12 offset-md-2 col-md-8">
-                        <h2>Buteurs Vétérans</h2>
-                        <div class="table-responsive">
-                            <table class="table table-sm tableauButeur3Colonnes">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Buts en A</th>
-                                    <th scope="col">Buts en Coupe</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for buteur in veterans %}
-                                    <tr>
-                                        <td><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nom }} {{ buteur.prenom }}</td>
-                                        <td>{{ buteur.stats.butsVeteranChampionnat }}</td>
-                                        <td>{{ buteur.stats.butVeteranCoupe }}</td>
-                                        <td>{{ buteur.stats.butsVeteranChampionnat + buteur.stats.butVeteranCoupe }}</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="pills-seniorsF" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <div class="col-12 offset-md-2 col-md-8">
-                        <h2>Buteuses Seniors</h2>
-                        <div class="table-responsive">
-                            <table class="table table-sm tableauButeur3Colonnes">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Buts en A</th>
-                                    <th scope="col">Buts en Coupe</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for buteur in seniorsF %}
-                                    <tr>
-                                        <td><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nom }} {{ buteur.prenom }}</td>
-                                        <td>{{ buteur.stats.butsA }}</td>
-                                        <td>{{ buteur.stats.butsCoupe }}</td>
-                                        <td>{{ buteur.stats.butsA + buteur.stats.butsCoupe }}</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="pills-U18" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <div class="col-12 offset-md-2 col-md-8">
-                        <h2>Buteurs U18</h2>
-                        <div class="table-responsive">
-                            <table class="table table-sm tableauButeur3Colonnes">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Buts en A</th>
-                                    <th scope="col">Buts en Coupe</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for buteur in U18 %}
-                                    <tr>
-                                        <td><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nom }} {{ buteur.prenom }}</td>
-                                        <td>{{ buteur.stats.butsA }}</td>
-                                        <td>{{ buteur.stats.butsCoupe }}</td>
-                                        <td>{{ buteur.stats.butsA + buteur.stats.butsCoupe }}</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="pills-U15" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <div class="col-12 offset-md-2 col-md-8">
-                        <h2>Buteurs U15</h2>
-                        <div class="table-responsive">
-                            <table class="table table-sm tableauButeur3Colonnes">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Buts en A</th>
-                                    <th scope="col">Buts en Coupe</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for buteur in U15 %}
-                                    <tr>
-                                        <td><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nom }} {{ buteur.prenom }}</td>
-                                        <td>{{ buteur.stats.butsA }}</td>
-                                        <td>{{ buteur.stats.butsCoupe }}</td>
-                                        <td>{{ buteur.stats.butsA + buteur.stats.butsCoupe }}</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="pills-U13" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <div class="col-12 offset-md-2 col-md-8">
-                        <h2>Buteurs U13</h2>
-                        <div class="table-responsive">
-                            <table class="table table-sm tableauButeur">
-                                <thead>
-                                <tr>
-                                    <th scope="col">Nom</th>
-                                    <th scope="col">Buts en A</th>
-                                    <th scope="col">Buts en B</th>
-                                    <th scope="col">Buts en Coupe</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for buteur in U13 %}
-                                    <tr>
-                                        <td><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nom }} {{ buteur.prenom }}</td>
-                                        <td>{{ buteur.stats.butsA }}</td>
-                                        <td>{{ buteur.stats.butsB }}</td>
-                                        <td>{{ buteur.stats.butsCoupe }}</td>
-                                        <td>{{ buteur.stats.butsA + buteur.stats.butsCoupe }}</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                {% include 'template/template-classement-buteurs.html.twig' with {id:"pills-seniors", title: "Buteurs Seniors", buteurs: seniors } %}
+                {% include 'template/template-classement-buteurs.html.twig' with {id:"pills-veterans", title: "Buteurs Veterans", buteurs: veterans } %}
+                {% include 'template/template-classement-buteurs.html.twig' with {id:"pills-seniorsF", title: "Buteuses Seniors", buteurs: seniorsF } %}
+                {% include 'template/template-classement-buteurs.html.twig' with {id:"pills-U18", title: "Buteurs U18", buteurs: U18 } %}
+                {% include 'template/template-classement-buteurs.html.twig' with {id:"pills-U15", title: "Buteurs U15", buteurs: U15 } %}
+                {% include 'template/template-classement-buteurs.html.twig' with {id:"pills-U13", title: "Buteurs U13", buteurs: U13 } %}
             </div>
         </div>
     </div>
@@ -219,20 +56,7 @@
 
     <script>
         $('.tableauButeur').DataTable({
-            "order": [[4, "desc"]],
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
-            },
-            "autoWidth": false,
-            "paging": false,
-            "bInfo": false,
-            "searching": false
-        });
-    </script>
-
-    <script>
-        $('.tableauButeur3Colonnes').DataTable({
-            "order": [[3, "desc"]],
+            "order": [[1, "desc"]],
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
             },

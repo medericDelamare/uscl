@@ -1491,3 +1491,12 @@ ul.scrollmenu .nav-item {
         z-index: 2;
     }
 }
+
+.tr-buteurs{
+    height: 50px;
+}
+
+.tr-buteurs a{
+    color: black;
+    font-weight: bold;
+}

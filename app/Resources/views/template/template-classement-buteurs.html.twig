@@ -1,0 +1,32 @@
+<div class="tab-pane fade {% if id == 'pills-seniors' %}show active{% endif %}" id="{{id}}" role="tabpanel"
+     aria-labelledby="pills-home-tab">
+    <div class="col-12 offset-md-2 col-md-8 p-0">
+        <h2 class="text-center m-4">{{title}}</h2>
+        <div class="table-responsive">
+            <table class="table table-sm tableauButeur">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Buts</th>
+                    <th scope="col">Mat.</th>
+                    <th scope="col">Rat.</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for buteur in buteurs %}
+                    <tr class="tr-buteurs">
+                        <td class="pl-4"><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nom }} {{ buteur.prenom }}</td>
+                        <td>{{ buteur.stats.butsA + buteur.stats.butsB + buteur.stats.butsCoupe }}</td>
+                        <td>{{ buteur.statsRencontresJoueurs|length }}</td>
+                        {% if buteur.statsRencontresJoueurs|length > 0  %}
+                            <td>{{ ((buteur.stats.butsA + buteur.stats.butsB + buteur.stats.butsCoupe) / buteur.statsRencontresJoueurs|length)|number_format(2, '.', ',') }}</td>
+                        {% else %}
+                            <td>-</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
