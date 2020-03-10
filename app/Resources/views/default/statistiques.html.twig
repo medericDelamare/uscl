@@ -13,29 +13,22 @@
         </div>
     </div>
 </header>
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
-        <li class="breadcrumb-item " aria-current="page">Statistiques</li>
-        <li class="breadcrumb-item active" aria-current="page">{{ infosCompetition.name }}</li>
-    </ol>
-</nav>
+<ul class="nav nav-pills mb-3 scrollmenu" id="pills-tab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-classement" role="tab" aria-controls="pills-home" aria-selected="true">Classement</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-resultats" role="tab" aria-controls="pills-resultats" aria-selected="false">Résultats</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-agenda" role="tab" aria-controls="pills-agenda" aria-selected="false">Agenda</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-calendrier" role="tab" aria-controls="pills-calendrier" aria-selected="false">Calendrier</a>
+    </li>
+</ul>
 <div class="container-fluid">
-    <h1 class="sous-titre">Statistiques {{ infosCompetition.name }}</small></h1>
-    <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-classement" role="tab" aria-controls="pills-home" aria-selected="true">Classement</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-resultats" role="tab" aria-controls="pills-resultats" aria-selected="false">Résultats</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-agenda" role="tab" aria-controls="pills-agenda" aria-selected="false">Agenda</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-calendrier" role="tab" aria-controls="pills-calendrier" aria-selected="false">Calendrier</a>
-        </li>
-    </ul>
+    <h2 class="text-center">Statistiques {{ infosCompetition.name }}</small></h2>
     <div class="row">
         <div class="tab-content col-12" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-classement" role="tabpanel" aria-labelledby="pills-home-tab">
