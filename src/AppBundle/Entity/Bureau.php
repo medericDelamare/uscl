@@ -90,7 +90,7 @@ class Bureau
      * @var Licencie
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Licencie")
      */
-    private $responsabeU15;
+    private $responsableU15;
 
     /**
      * @var Licencie
@@ -325,18 +325,18 @@ class Bureau
     /**
      * @return Licencie
      */
-    public function getResponsabeU15()
+    public function getResponsableU15()
     {
-        return $this->responsabeU15;
+        return $this->responsableU15;
     }
 
     /**
-     * @param Licencie $responsabeU15
+     * @param Licencie $responsableU15
      * @return Bureau
      */
-    public function setResponsabeU15($responsabeU15)
+    public function setResponsableU15($responsableU15)
     {
-        $this->responsabeU15 = $responsabeU15;
+        $this->responsableU15 = $responsableU15;
         return $this;
     }
 
