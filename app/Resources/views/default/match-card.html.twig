@@ -1,0 +1,51 @@
+<div class="card box-shadow border-primary">
+    <div class="card-header text-center border-primary">
+        <h5>{{game.equipeDomicile.categorie}}</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-8">
+                <div class="row ">
+                    <div class="col-12 mb-2">
+                        <div class="media">
+                            <img class="mr-3 logo-match-semaine"
+                                 src="{{ asset('pictures/Logos/' ~ game.equipeDomicile.club.logo) }}"
+                                 alt="Generic placeholder image">
+                            <div class="media-body align-self-center mr-3">
+                                <div class="mt-0">{{ game.equipeDomicile.club.nom|length > 13 ? game.equipeDomicile.club.nom|slice(0, 13) ~ '...' : game.equipeDomicile.club.nom }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mt-2">
+                        <div class="media">
+                            <img class="mr-3 logo-match-semaine"
+                                 src="{{ asset('pictures/Logos/' ~ game.equipeExterieure.club.logo) }}"
+                                 alt="Generic placeholder image">
+                            <div class="media-body align-self-center mr-3">
+                                <div class="mt-0">{{ game.equipeExterieure.club.nom|length > 13 ? game.equipeExterieure.club.nom|slice(0, 13) ~ '...' : game.equipeExterieure.club.nom }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 border-left">
+                <div class="row h-50">
+                    <div class="col-12">
+                        <div class="h-100 d-flex align-items-end justify-content-center">
+                            {{ game.date|date("d/m/Y") }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row h-50">
+                    <div class="col-12">
+                        <div class="h-100 d-flex align-items-start justify-content-center">
+                            {{ game.date|date("H:i") }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
