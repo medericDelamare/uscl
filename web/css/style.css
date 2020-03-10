@@ -1493,6 +1493,7 @@ ul.scrollmenu .nav-item {
 
 :root {
     --avatar-size: 5rem;
+    --avatar-size-mobile: 3rem;
     /* change this value anything, e.g., 100px, 10rem, etc. */
 }
 
@@ -1503,6 +1504,22 @@ ul.scrollmenu .nav-item {
     height: var(--avatar-size);
     text-align: center;
     width: var(--avatar-size);
+}
+
+.circle-mobile {
+    background: rgb(0,80,161);
+    background: linear-gradient(90deg, rgba(0,80,161,1) 0%, rgba(255,255,255,1) 100%);
+    border-radius: 50%;
+    height: var(--avatar-size-mobile);
+    text-align: center;
+    width: var(--avatar-size-mobile);
+}
+
+.initials-mobile{
+    font-size: calc(var(--avatar-size-mobile) / 2); /* 50% of parent */
+    line-height: 1;
+    position: relative;
+    top: calc(var(--avatar-size-mobile) / 4); /* 25% of parent */
 }
 
 .initials {
@@ -1539,4 +1556,23 @@ ul.scrollmenu .nav-item {
 .btn-outline-uscl:hover {
     color: white;
     background-color: #0050a1;
+}
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
 }
