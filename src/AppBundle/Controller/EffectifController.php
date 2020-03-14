@@ -37,7 +37,7 @@ class EffectifController extends Controller
                 'u9' => $u9,
                 'u11' => $u11
             ];
-            return $this->render('effectif-football-animation.html.twig', [
+            return $this->render('default/effectif-football-animation.html.twig', [
                 'u7' => $u7,
                 'u9' => $u9,
                 'u11' => $u11,

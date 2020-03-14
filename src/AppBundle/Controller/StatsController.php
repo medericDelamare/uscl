@@ -65,7 +65,7 @@ class StatsController extends Controller
         /** @var ScorencoService $scorencoService */
         $scorencoService = $this->container->get('scorenco.scorenco_service');
         $calendrierParEquipe = $scorencoService->getCalendrierByEquipeAndCompetition($teamId, $competitionId);
-        return $this->render('tableau-calendrier.html.twig', [
+        return $this->render('default/tableau-calendrier.html.twig', [
             'equipes' => $calendrierParEquipe
         ]);
     }
