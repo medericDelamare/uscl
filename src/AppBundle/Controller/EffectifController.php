@@ -38,11 +38,10 @@ class EffectifController extends Controller
                 'u11' => $u11
             ];
             return $this->render('default/effectifFootballAnimation.html.twig', [
-                'joueursParCategorie' => $joueurs,
+                'u7' => $u7,
+                'u9' => $u9,
+                'u11' => $u11,
                 'category' => $category,
-                'nb_u7' => count($joueurs['u7']),
-                'nb_u9' => count($joueurs['u9']),
-                'nb_u11' => count($joueurs['u11']),
             ]);
         } else{
             $gardiens = $em->getRepository(CarriereJoueur::class)->findLicencieBySaisonAndCategorie($category,$saisonEnCours,1);

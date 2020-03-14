@@ -1,7 +1,4 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
-    <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-{% endblock %}
 {% block body %}
     <header class="business-header business-header-eff">
         <div class="container">
@@ -12,57 +9,48 @@
             </div>
         </div>
     </header>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
-            <li class="breadcrumb-item " aria-current="page">Effectif</li>
-            <li class="breadcrumb-item active" aria-current="page">Football d'animation</li>
-        </ol>
-    </nav>
-    <div class="container">
-        <h1 class = "page-header">{{ category }} -<small> {{ nb_u7 + nb_u9 + nb_u11 }} Joueurs ({{ nb_u7 }} U7/{{ nb_u9 }} U9/{{ nb_u11 }} U11)</small></h1>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Catégorie</th>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <th>Numéro de téléphone</th>
-                {% endif %}
-            </tr>
-            </thead>
-            <tbody>
-            {% for joueurs in joueursParCategorie %}
-                {% for joueur in joueurs %}
-                <tr>
-                    <td><strong><a class="nom-effectif" href="{{ path('profile', {'id': joueur.id}) }}">{{ joueur.nom }}</a></strong></td>
-                    <td>{{ joueur.prenom }}</td>
-                    <td>{{ joueur.categorie }}</td>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <td>{{ joueur.telephonePortable }}</td>
-                    {% endif %}
-                </tr>
+    <div class="container p-0">
+        <h1 class="page-header mt-5 mb-5">{{ category }}</h1>
+        <h2 class="mt-5 mb-4">U7 - <small>{{ u7|length }} joueurs</small></h2>
+
+        <div class="d-none d-md-block ">
+            <div class="row">
+                {% for licencie in u7 %}
+                    {% include 'template/template-card-effectif.html.twig'  with {'licencie': licencie} %}
                 {% endfor %}
+            </div>
+        </div>
+        <div class="d-block d-md-none">
+            {% for licencie in u7 %}
+                {% include 'template/template-card-effectif-mobile.html.twig'  with {'licencie': licencie} %}
             {% endfor %}
-            </tbody>
-        </table>
+        </div>
+
+        <h2 class="mt-5 mb-4">U9 - <small>{{ u9|length }} joueurs</small></h2>
+        <div class="d-none d-md-block ">
+            <div class="row">
+                {% for licencie in u9 %}
+                    {% include 'template/template-card-effectif.html.twig'  with {'licencie': licencie} %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="d-block d-md-none">
+            {% for licencie in u9 %}
+                {% include 'template/template-card-effectif-mobile.html.twig'  with {'licencie': licencie} %}
+            {% endfor %}
+        </div>
+        <h2 class="mt-5 mb-4">U11 - <small>{{ u11|length }} joueurs</small></h2>
+        <div class="d-none d-md-block ">
+            <div class="row">
+                {% for licencie in u11 %}
+                    {% include 'template/template-card-effectif.html.twig'  with {'licencie': licencie} %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="d-block d-md-none">
+            {% for licencie in u11 %}
+                {% include 'template/template-card-effectif-mobile.html.twig'  with {'licencie': licencie} %}
+            {% endfor %}
+        </div>
     </div>
-{% endblock %}
-
-{% block javascripts %}
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-
-    <script >
-        $(document).ready( function () {
-            $('.table').DataTable({
-                "paging": false,
-                "bInfo" : false,
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
-                },
-                "order": false
-            });
-        } );
-    </script>
 {% endblock %}

@@ -1,7 +1,4 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
-    <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-{% endblock %}
 {% block body %}
     <header class="business-header business-header-eff">
         <div class="container">
@@ -15,27 +12,55 @@
     <div class="container p-0">
         <h1 class="page-header mt-5 mb-5">{{ category }} -<small> {{ nb_joueurs }} Joueurs</small></h1>
         <h2 class="mt-5 mb-4">Gardiens</h2>
-        <div class="row">
+        <div class="d-none d-md-block ">
+            <div class="row">
+                {% for gardien in gardiens %}
+                    {% include 'template/template-card-effectif.html.twig'  with {'licencie': gardien} %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="d-block d-md-none">
             {% for gardien in gardiens %}
-                {% include 'template/template-card-effectif.html.twig'  with {'licencie': gardien} %}
+                {% include 'template/template-card-effectif-mobile.html.twig'  with {'licencie': gardien} %}
             {% endfor %}
         </div>
         <h2 class="mt-5 mb-4">Defenseurs</h2>
-        <div class="row">
+        <div class="d-none d-md-block ">
+            <div class="row">
+                {% for defenseur in defenseurs %}
+                    {% include 'template/template-card-effectif.html.twig'  with {'licencie': defenseur} %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="d-block d-md-none">
             {% for defenseur in defenseurs %}
-                {% include 'template/template-card-effectif.html.twig'  with {'licencie': defenseur} %}
+                {% include 'template/template-card-effectif-mobile.html.twig'  with {'licencie': defenseur} %}
             {% endfor %}
         </div>
         <h2 class="mt-5 mb-4">Milieux</h2>
-        <div class="row">
+        <div class="d-none d-md-block ">
+            <div class="row">
+                {% for milieu in milieux %}
+                    {% include 'template/template-card-effectif.html.twig'  with {'licencie': milieu} %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="d-block d-md-none">
             {% for milieu in milieux %}
-                {% include 'template/template-card-effectif.html.twig'  with {'licencie': milieu} %}
+                {% include 'template/template-card-effectif-mobile.html.twig'  with {'licencie': milieu} %}
             {% endfor %}
         </div>
         <h2 class="mt-5 mb-4">Attaquants</h2>
-        <div class="row">
+        <div class="d-none d-md-block ">
+            <div class="row">
+                {% for attaquant in attaquants %}
+                    {% include 'template/template-card-effectif.html.twig'  with {'licencie': attaquant} %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="d-block d-md-none">
             {% for attaquant in attaquants %}
-                {% include 'template/template-card-effectif.html.twig'  with {'licencie': attaquant} %}
+                {% include 'template/template-card-effectif-mobile.html.twig'  with {'licencie': attaquant} %}
             {% endfor %}
         </div>
     </div>

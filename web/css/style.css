@@ -1591,3 +1591,17 @@ ul.scrollmenu .nav-item {
     text-decoration: none;
     color: black;
 }
+
+.card-profil-mobile{
+    text-decoration: none;
+    color: black;
+}
+
+@media (max-width: 574px) {
+    .col-card-profile{
+        padding: 0;
+    }
+    .card-profil{
+        border: 1px solid rgba(0,0,0,.125) !important;
+    }
+}
