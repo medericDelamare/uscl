@@ -9,13 +9,7 @@
             </div>
         </div>
     </header>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Bureau</li>
-        </ol>
-    </nav>
-    <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
+    <ul class="nav nav-pills scrollmenu" id="pills-tab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#bureau" role="tab" aria-controls="bureau" aria-selected="true">Bureau</a>
         </li>
@@ -23,65 +17,31 @@
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#responsables" role="tab" aria-controls="responsables" aria-selected="false">Résponsables par catégorie</a>
         </li>
     </ul>
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="bureau" role="tabpanel" aria-labelledby="bureau-tab"><div class="container text-center">
-                <div class="row">
-                    <div class="col-12 offset-lg-4 col-lg-4">
-                        {% include ':default:profileCard.html.twig' with {'licencie': bureau.president, 'role': 'Président'} %}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-lg-4">
-                        {% include ':default:profileCard.html.twig' with {'licencie': bureau.vicePresident, 'role': 'Vice-président'} %}
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        {% include ':default:profileCard.html.twig' with {'licencie': bureau.vicePresident2, 'role': 'Vice-président'} %}
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        {% include ':default:profileCard.html.twig' with {'licencie': bureau.vicePresident3, 'role': 'Vice-président'} %}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-lg-6">
-                        {% include ':default:profileCard.html.twig' with {'licencie': bureau.secretaire, 'role': 'Secrétaire'} %}
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        {% include ':default:profileCard.html.twig' with {'licencie': bureau.tresorier, 'role': 'Tresorière'} %}
-                    </div>
-                </div>
-            </div></div>
-        <div class="tab-pane fade" id="responsables" role="tabpanel" aria-labelledby="responsables-tab"><div class="container text-center">
-                <div class="row">
-                    <div class="col-12 col-lg-6">
-                        {% include ':default:profileCard.html.twig' with {'licencie': bureau.responsableSeniorA, 'role': 'Séniors A'} %}
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        {% include ':default:profileCard.html.twig' with {'licencie': bureau.responsableSeniorB, 'role': 'Séniors B'} %}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-lg-4">
-                        {% include ':default:profileCard.html.twig' with {'licencie': bureau.responsableU18, 'role': 'U18'} %}
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        {% include ':default:profileCard.html.twig' with {'licencie': bureau.responsabeU15, 'role': 'U15'} %}
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        {% include ':default:profileCard.html.twig' with {'licencie': bureau.responsableU13, 'role': 'U13'} %}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-lg-4">
-                        {% include ':default:profileCard.html.twig' with {'licencie': bureau.responsableU11, 'role': 'U11'} %}
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        {% include ':default:profileCard.html.twig' with {'licencie': bureau.responsableU9, 'role': 'U9'} %}
-                    </div>
-                    <div class="col-12 col-lg-4">
-                        {% include ':default:profileCard.html.twig' with {'licencie': bureau.responsableU7, 'role': 'U7'} %}
-                    </div>
-                </div>
-            </div></div>
+    <div class="tab-content mt-5" id="myTabContent">
+        <div class="tab-pane fade show active" id="bureau" role="tabpanel" aria-labelledby="bureau-tab">
+            <div class="container p-0">
+                <h2 class="text-center m-4">Bureau</h2>
+                {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.president, 'role': 'Président'} %}
+                {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.vicePresident, 'role': 'Vice-président'} %}
+                {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.vicePresident2, 'role': 'Vice-président'} %}
+                {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.vicePresident3, 'role': 'Vice-président'} %}
+                {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.secretaire, 'role': 'Secrétaire'} %}
+                {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.tresorier, 'role': 'Trésorier'} %}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="responsables" role="tabpanel" aria-labelledby="responsables-tab">
+            <div class="container p-0">
+                <h2 class="text-center m-4">Responsables par équipe</h2>
+                {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.responsableSeniorA, 'role': 'Senior A'} %}
+                {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.responsableSeniorB, 'role': 'Senior B'} %}
+                {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.responsableU18, 'role': 'U18'} %}
+                {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.responsableU15, 'role': 'U15'} %}
+                {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.responsableU13, 'role': 'U13'} %}
+                {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.responsableU11, 'role': 'U11'} %}
+                {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.responsableU9, 'role': 'U9'} %}
+                {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.responsableU7, 'role': 'U7'} %}
+            </div>
+        </div>
     </div>
 
 

@@ -649,6 +649,10 @@ class Licencie
         return $birthDate->diff($to)->y;
     }
 
+    public function getInitiales(){
+        return substr($this->getPrenom(),0,1) . substr($this->getNom(),0,1);
+    }
+
     public function __toString()
     {
         return $this->getNomComplet();

@@ -1,0 +1,51 @@
+<div class="card mt-2 d-none d-lg-block box-shadow border-primary">
+    <div class="card-body">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <div class="media">
+                    <div class="circle">
+                        <span class="initials">{{ licencie.initiales }}</span>
+                    </div>
+                    <div class="media-body ml-5 mt-3">
+                        <h5 class="mt-0">{{ licencie.nomComplet }}</h5>
+                        {{role}}
+                    </div>
+                </div>
+            </div>
+            <div class="p-2 d-flex align-items-center">
+                <button type="button" class="btn btn-outline-uscl btn-lg" href="tel:{{licencie.telephonePortable}}">
+                    <i class="fa fa-phone"></i> {{ licencie.telephonePortable }}
+                </button>
+            </div>
+            <div class="p-2 d-flex align-items-center">
+                <button type="button" class="btn btn-outline-uscl btn-lg" href="mailto:{{ licencie.email }}">
+                    <i class="fa fa-envelope"></i> {{ licencie.email }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card d-block d-lg-none ">
+    <div class="card-body p-0">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <div class="media">
+                    <div class="circle-mobile mt-2">
+                        <span class="initials-mobile">{{ licencie.initiales }}</span>
+                    </div>
+                    <div class="media-body ml-2 mt-2">
+                        <h5 class="mt-0" style="font-size: 15px;">{{licencie.nomComplet}}</h5>
+                        {{role}}
+                    </div>
+                </div>
+            </div>
+            <div class="p-2 d-flex align-items-center">
+                <button href="tel:{{licencie.telephonePortable}}" type="button" class="btn btn-uscl btn-circle btn-lg"><i class="fa fa-phone"></i></button>
+            </div>
+            <div class="p-2 d-flex align-items-center">
+                <button href="mailto:{{ licencie.email }}" type="button" class="btn btn-uscl btn-circle btn-lg"><i class="fa fa-envelope"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
