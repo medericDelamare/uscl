@@ -1576,3 +1576,18 @@ ul.scrollmenu .nav-item {
     font-size: 12px;
     line-height: 1.42857;
 }
+
+.table .thead-uscl th {
+    color: #fff;
+    background-color: #0050a1;
+    border-color: #0050a1;
+}
+
+.img-effectif{
+    width: 75px;
+}
+
+.card-profil{
+    text-decoration: none;
+    color: black;
+}
