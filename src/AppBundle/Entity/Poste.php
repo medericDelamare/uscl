@@ -102,6 +102,10 @@ class Poste
         return $this;
     }
 
+    public function getAccronyme(){
+        return substr($this->getNom(),0,3) . '.';
+    }
+
     public function __toString()
     {
         return $this->nom;

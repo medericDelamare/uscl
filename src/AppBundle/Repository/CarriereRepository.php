@@ -22,7 +22,7 @@ class CarriereRepository extends EntityRepository
             ->getSingleScalarResult();
     }
 
-    public function findLicencieBySaisonAndCategorie($categorie, $saison)
+    public function findLicencieBySaisonAndCategorie($categorie, $saison, $poste)
     {
         return $this
             ->createQueryBuilder('carriere')
@@ -34,8 +34,10 @@ class CarriereRepository extends EntityRepository
             ->where('c.nom LIKE :categorie')
             ->andWhere('s.poste IS NOT NULL')
             ->andWhere('carriere.saison = :saison')
+            ->andWhere('s.poste = :poste' )
             ->setParameter('categorie', $categorie)
             ->setParameter('saison', $saison)
+            ->setParameter('poste', $poste)
             ->getQuery()
             ->getResult();
     }

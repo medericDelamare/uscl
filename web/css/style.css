@@ -1576,3 +1576,32 @@ ul.scrollmenu .nav-item {
     font-size: 12px;
     line-height: 1.42857;
 }
+
+.table .thead-uscl th {
+    color: #fff;
+    background-color: #0050a1;
+    border-color: #0050a1;
+}
+
+.img-effectif{
+    width: 75px;
+}
+
+.card-profil{
+    text-decoration: none;
+    color: black;
+}
+
+.card-profil-mobile{
+    text-decoration: none;
+    color: black;
+}
+
+@media (max-width: 574px) {
+    .col-card-profile{
+        padding: 0;
+    }
+    .card-profil{
+        border: 1px solid rgba(0,0,0,.125) !important;
+    }
+}

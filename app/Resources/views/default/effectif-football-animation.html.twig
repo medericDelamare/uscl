@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <header class="business-header business-header-eff">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="tagline"></h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container p-0">
+        <h1 class="page-header mt-5 mb-5">{{ category }}</h1>
+        <h2 class="mt-5 mb-4">U7 - <small>{{ u7|length }} joueurs</small></h2>
+
+        <div class="d-none d-md-block ">
+            <div class="row">
+                {% for licencie in u7 %}
+                    {% include 'template/template-card-effectif.html.twig'  with {'licencie': licencie} %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="d-block d-md-none">
+            {% for licencie in u7 %}
+                {% include 'template/template-card-effectif-mobile.html.twig'  with {'licencie': licencie} %}
+            {% endfor %}
+        </div>
+
+        <h2 class="mt-5 mb-4">U9 - <small>{{ u9|length }} joueurs</small></h2>
+        <div class="d-none d-md-block ">
+            <div class="row">
+                {% for licencie in u9 %}
+                    {% include 'template/template-card-effectif.html.twig'  with {'licencie': licencie} %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="d-block d-md-none">
+            {% for licencie in u9 %}
+                {% include 'template/template-card-effectif-mobile.html.twig'  with {'licencie': licencie} %}
+            {% endfor %}
+        </div>
+        <h2 class="mt-5 mb-4">U11 - <small>{{ u11|length }} joueurs</small></h2>
+        <div class="d-none d-md-block ">
+            <div class="row">
+                {% for licencie in u11 %}
+                    {% include 'template/template-card-effectif.html.twig'  with {'licencie': licencie} %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="d-block d-md-none">
+            {% for licencie in u11 %}
+                {% include 'template/template-card-effectif-mobile.html.twig'  with {'licencie': licencie} %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

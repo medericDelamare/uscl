@@ -5,6 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\CarriereJoueur;
 use AppBundle\Entity\Joueur;
 use AppBundle\Entity\Licencie;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Expr\Comparison;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,20 +37,24 @@ class EffectifController extends Controller
                 'u9' => $u9,
                 'u11' => $u11
             ];
-            return $this->render('default/effectifFootballAnimation.html.twig', [
-                'joueursParCategorie' => $joueurs,
+            return $this->render('default/effectif-football-animation.html.twig', [
+                'u7' => $u7,
+                'u9' => $u9,
+                'u11' => $u11,
                 'category' => $category,
-                'nb_u7' => count($joueurs['u7']),
-                'nb_u9' => count($joueurs['u9']),
-                'nb_u11' => count($joueurs['u11']),
             ]);
         } else{
-            $joueurs = $em->getRepository(CarriereJoueur::class)
-                ->findLicencieBySaisonAndCategorie($category,$saisonEnCours);
+            $gardiens = $em->getRepository(CarriereJoueur::class)->findLicencieBySaisonAndCategorie($category,$saisonEnCours,1);
+            $defenseurs = $em->getRepository(CarriereJoueur::class)->findLicencieBySaisonAndCategorie($category,$saisonEnCours,2);
+            $mileux = $em->getRepository(CarriereJoueur::class)->findLicencieBySaisonAndCategorie($category,$saisonEnCours,3);
+            $attaquants = $em->getRepository(CarriereJoueur::class)->findLicencieBySaisonAndCategorie($category,$saisonEnCours,4);
             return $this->render('default/effectif.html.twig', [
-                'joueurs' => $joueurs,
+                'gardiens' => $gardiens,
+                'defenseurs' => $defenseurs,
+                'milieux' => $mileux,
+                'attaquants' => $attaquants,
                 'category' => $category,
-                'nb_joueurs' => count($joueurs)
+                'nb_joueurs' => count(array_merge($gardiens,$defenseurs,$mileux,$attaquants))
             ]);
         }
 
