@@ -17,33 +17,25 @@
         <h2 class="mt-5 mb-4">Gardiens</h2>
         <div class="row">
             {% for gardien in gardiens %}
-                <div class="col-4">
-                    {% include 'template/template-card-effectif.html.twig'  with {'licencie': gardien} %}
-                </div>
+                {% include 'template/template-card-effectif.html.twig'  with {'licencie': gardien} %}
             {% endfor %}
         </div>
         <h2 class="mt-5 mb-4">Defenseurs</h2>
         <div class="row">
             {% for defenseur in defenseurs %}
-                <div class="col-4">
-                    {% include 'template/template-card-effectif.html.twig'  with {'licencie': defenseur} %}
-                </div>
+                {% include 'template/template-card-effectif.html.twig'  with {'licencie': defenseur} %}
             {% endfor %}
         </div>
         <h2 class="mt-5 mb-4">Milieux</h2>
         <div class="row">
             {% for milieu in milieux %}
-                <div class="col-4">
-                    {% include 'template/template-card-effectif.html.twig'  with {'licencie': milieu} %}
-                </div>
+                {% include 'template/template-card-effectif.html.twig'  with {'licencie': milieu} %}
             {% endfor %}
         </div>
         <h2 class="mt-5 mb-4">Attaquants</h2>
         <div class="row">
             {% for attaquant in attaquants %}
-                <div class="col-4">
-                    {% include 'template/template-card-effectif.html.twig'  with {'licencie': attaquant} %}
-                </div>
+                {% include 'template/template-card-effectif.html.twig'  with {'licencie': attaquant} %}
             {% endfor %}
         </div>
     </div>
