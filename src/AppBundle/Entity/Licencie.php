@@ -654,6 +654,18 @@ class Licencie
         return substr($this->getPrenom(),0,1) . substr($this->getNom(),0,1);
     }
 
+    public function getMatchsVeteran(){
+        $arr = [];
+        /** @var StatsRencontre $rencontresJoueur */
+        foreach ($this->getStatsRencontresJoueurs() as $rencontresJoueur){
+            if (in_array($rencontresJoueur->getRencontre()->getEquipeDomicile()->getCategorie(), ['veteranA','coupeVeterans'])){
+                $arr[] = $rencontresJoueur;
+            }
+        }
+
+        return $arr;
+    }
+
     public function __toString()
     {
         return $this->getNomComplet();

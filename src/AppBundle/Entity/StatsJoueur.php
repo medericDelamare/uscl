@@ -49,7 +49,7 @@ class StatsJoueur
     /**
      * @var integer
      */
-    private $butVeteranCoupe = 0;
+    private $butsVeteranCoupe = 0;
 
     /**
      * @var integer
@@ -293,18 +293,18 @@ class StatsJoueur
     /**
      * @return int
      */
-    public function getButVeteranCoupe()
+    public function getButsVeteranCoupe()
     {
-        return $this->butVeteranCoupe;
+        return $this->butsVeteranCoupe;
     }
 
     /**
-     * @param int $butVeteranCoupe
+     * @param int $butsVeteranCoupe
      * @return StatsJoueur
      */
-    public function setButVeteranCoupe($butVeteranCoupe)
+    public function setButsVeteranCoupe($butsVeteranCoupe)
     {
-        $this->butVeteranCoupe = $butVeteranCoupe;
+        $this->butsVeteranCoupe = $butsVeteranCoupe;
         return $this;
     }
 
@@ -335,6 +335,6 @@ class StatsJoueur
     }
 
     public function incrementButVeteranCoupe(){
-        $this->butVeteranCoupe = $this->butVeteranCoupe + 1;
+        $this->butsVeteranCoupe = $this->butsVeteranCoupe + 1;
     }
 }
