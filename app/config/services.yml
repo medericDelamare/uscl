@@ -8,18 +8,8 @@ services:
       class: Twig_Extensions_Extension_Intl
       tags:
         - { name: twig.extension }
-    app.form.registration:
-        class: AppBundle\Form\RegistrationType
-        arguments: [%fos_user.model.user.class%]
-        tags:
-            - { name: form.type, alias: app_user_registration }
     import.csvtoarray:
             class: AppBundle\Service\Import\ConvertCsvToArray
-
-    parse.parse_scores:
-            class: AppBundle\Service\Parse\ParseService
-            arguments:
-                    entityManager: "@doctrine.orm.entity_manager"
 
     scorenco.scorenco_service:
       class: AppBundle\Service\Scorenco\ScorencoService
