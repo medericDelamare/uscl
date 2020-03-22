@@ -12,8 +12,8 @@
         "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
     },
     "require": {
-        "php": ">=5.5.9",
-        "beberlei/DoctrineExtensions": "^1.1",
+        "php": "7.2.4",
+        "beberlei/doctrineextensions": "^1.1",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-cache-bundle": "^1.2",
         "doctrine/doctrine-migrations-bundle": "^1.2",
@@ -36,7 +36,9 @@
         "twig/twig": "^1.0||^2.0",
         "xmon/color-picker-type-bundle": "^1.0",
         "yectep/phpspreadsheet-bundle": "^0.0.4",
-        "symfony/webpack-encore-bundle": "^1.7"
+        "symfony/webpack-encore-bundle": "^1.7",
+        "symfony/maker-bundle": "^1.14",
+        "laminas/laminas-code": "^3.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
