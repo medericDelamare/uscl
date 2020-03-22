@@ -145,66 +145,32 @@
             <div class="col-lg-12">
                 <h2 class="sous-titre">Dernières photos</h2>
             </div>
-            <section class="gallery-block compact-gallery">
-                <div class="container">
-                    <div class="row no-gutters">
-                        <div class="col-md-6 col-lg-4 item zoom-on-hover">
-                            <a class="lightbox" href="{{ asset('pictures/index/1.jpg') }}">
-                                <img class="img-fluid image" src="{{ asset('pictures/index/1.jpg') }}">
-                                <span class="description">
-                            <span class="description-heading">Tournoi de fin de saison 17/18</span>
-                            <span class="description-body">Remise des trophés</span>
-                        </span>
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 item zoom-on-hover">
-                            <a class="lightbox" href="{{ asset('pictures/index/2.jpg') }}">
-                                <img class="img-fluid image" src="{{ asset('pictures/index/2.jpg') }}">
-                                <span class="description">
-                            <span class="description-heading">Tournoi de fin de saison 17/18</span>
-                            <span class="description-body">Match U9</span>
-                        </span>
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 item zoom-on-hover">
-                            <a class="lightbox" href="{{ asset('pictures/index/3.jpg') }}">
-                                <img class="img-fluid image" src="{{ asset('pictures/index/3.jpg') }}">
-                                <span class="description">
-                            <span class="description-heading">Tournoi de fin de saison 17/18</span>
-                            <span class="description-body">Equipe U9</span>
-                        </span>
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 item zoom-on-hover">
-                            <a class="lightbox" href="{{ asset('pictures/index/4.jpg') }}">
-                                <img class="img-fluid image" src="{{ asset('pictures/index/4.jpg') }}">
-                                <span class="description">
-                            <span class="description-heading">Equipe Senior A</span>
-                            <span class="description-body">Remise des maillots par Les Ptits Loups</span>
-                        </span>
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 item zoom-on-hover">
-                            <a class="lightbox" href="{{ asset('pictures/index/5.jpg') }}">
-                                <img class="img-fluid image" src="{{ asset('pictures/index/5.jpg') }}">
-                                <span class="description">
-                            <span class="description-heading">Tournoi de fin de saison</span>
-                            <span class="description-body">Equipe Dirigeante</span>
-                        </span>
-                            </a>
-                        </div>
-                        <div class="col-md-6 col-lg-4 item zoom-on-hover">
-                            <a class="lightbox" href="{{ asset('pictures/index/6.jpg') }}">
-                                <img class="img-fluid image" src="{{ asset('pictures/index/6.jpg') }}">
-                                <span class="description">
-                            <span class="description-heading">Entraînement USCL</span>
-                            <span class="description-body">Equipe U11 avec Maurizio et Morgan</span>
-                        </span>
-                            </a>
+            <div class="col-12">
+                <div class="row">
+                    <div class="swiper-container gallery-block compact-gallery">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                {% include'template/template-photo-accueil.html.twig' with {'photo': asset('pictures/index/1.jpg'), 'heading': 'Tournoi de fin de saison 17/18', 'body': 'Match U9' } %}
+                            </div>
+                            <div class="swiper-slide">
+                                {% include'template/template-photo-accueil.html.twig' with {'photo': asset('pictures/index/2.jpg'), 'heading': 'Tournoi de fin de saison 17/18', 'body': 'Remise des trophés' } %}
+                            </div>
+                            <div class="swiper-slide">
+                                {% include'template/template-photo-accueil.html.twig' with {'photo': asset('pictures/index/3.jpg'), 'heading': 'Tournoi de fin de saison 17/18', 'body': 'Equipe U9' } %}
+                            </div>
+                            <div class="swiper-slide">
+                                {% include'template/template-photo-accueil.html.twig' with {'photo': asset('pictures/index/4.jpg'), 'heading': 'Equipe Senior A', 'body': 'Remise des maillots par Les Ptits Loups' } %}
+                            </div>
+                            <div class="swiper-slide">
+                                {% include'template/template-photo-accueil.html.twig' with {'photo': asset('pictures/index/5.jpg'), 'heading': 'Tournoi de fin de saison', 'body': 'Equipe Dirigeante' } %}
+                            </div>
+                            <div class="swiper-slide">
+                                {% include'template/template-photo-accueil.html.twig' with {'photo': asset('pictures/index/6.jpg'), 'heading': 'Entraînement USCL', 'body': 'Equipe U11 avec Maurizio et Morgan' } %}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
     </div>
 
