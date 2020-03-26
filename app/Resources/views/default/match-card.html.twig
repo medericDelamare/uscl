@@ -1,4 +1,4 @@
-<div class="card box-shadow border-primary">
+<div class="card box-shadow border-primary card-match-semaine">
     <div class="card-header text-center border-primary">
         <h5>{{game.equipeDomicile.categorie}}</h5>
     </div>
@@ -12,7 +12,7 @@
                                  src="{{ asset('pictures/Logos/' ~ game.equipeDomicile.club.logo) }}"
                                  alt="Generic placeholder image">
                             <div class="media-body align-self-center mr-3">
-                                <div class="mt-0">{{ game.equipeDomicile.club.nom|length > 13 ? game.equipeDomicile.club.nom|slice(0, 13) ~ '...' : game.equipeDomicile.club.nom }}</div>
+                                <div class="mt-0">{{ game.equipeDomicile.club.nom|length > 10 ? game.equipeDomicile.club.nom|slice(0, 10) ~ '...' : game.equipeDomicile.club.nom }}</div>
                             </div>
                         </div>
                     </div>
@@ -24,7 +24,7 @@
                                  src="{{ asset('pictures/Logos/' ~ game.equipeExterieure.club.logo) }}"
                                  alt="Generic placeholder image">
                             <div class="media-body align-self-center mr-3">
-                                <div class="mt-0">{{ game.equipeExterieure.club.nom|length > 13 ? game.equipeExterieure.club.nom|slice(0, 13) ~ '...' : game.equipeExterieure.club.nom }}</div>
+                                <div class="mt-0">{{ game.equipeExterieure.club.nom|length > 10 ? game.equipeExterieure.club.nom|slice(0, 10) ~ '...' : game.equipeExterieure.club.nom }}</div>
                             </div>
                         </div>
                     </div>
