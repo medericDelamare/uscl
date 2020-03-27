@@ -49,7 +49,7 @@ class StatistiquesService
         foreach ($statsRencontresJoueurs as $stats) {
             $scoreDom = $stats->getRencontre()->getScoreDom();
             $scoreExt = $stats->getRencontre()->getScoreExt();
-            $usclScorencoParameter = $this->kernel->getContainer()->getParameter('uscl_scorenco_id');
+            $usclScorencoParameter = $this->kernel->getContainer()->getParameter('equipe')['uscl'];
 
             if ($scoreDom != null && $scoreDom == $scoreExt) {
                 $n++;

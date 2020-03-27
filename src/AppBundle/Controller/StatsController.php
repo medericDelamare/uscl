@@ -26,14 +26,7 @@ class StatsController extends Controller
     {
         /** @var ScorencoService $scorencoService */
         $scorencoService = $this->container->get('scorenco.scorenco_service');
-
-        $anneDebutSaison = $this->getParameter('debut_annee');
-        $debutSaison = $anneDebutSaison . '-08-15';
-        $anneeFinSaison = $this->getParameter('fin_annee');
-        $finSaison = $anneeFinSaison . '-08-15';
-
-        $teamId = $this->getParameter('teamId_' . $category);
-        $competitionId = $this->getParameter('competitionId_' . $category);
+        $competitionId = $this->getParameter('competition')[$category];
 
 
         $classement = $scorencoService->getClassementByUrl($competitionId);
