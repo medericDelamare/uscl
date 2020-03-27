@@ -33,7 +33,7 @@ class SaveRencontresCommand extends ContainerAwareCommand
         $em = $doctrine->getManager();
 
         $categorie = $input->getArgument('categorie');
-        $competitionId = $this->getContainer()->getParameter("competitionId_" . $categorie);
+        $competitionId = $this->getContainer()->getParameter("competition")[$categorie];
 
         $nbEquipes = count($scorencoService->getDisctinctTeams("https://scorenco.com/backend/v1/competitions/" . $competitionId . "/rankings/"));
         for ($i = 1; $i <= ($nbEquipes - 1) * 2; $i++) {
