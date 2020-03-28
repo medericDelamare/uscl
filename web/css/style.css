@@ -311,6 +311,10 @@ body {
     background: url('../pictures/documents.jpg') center center no-repeat scroll;
 }
 
+.business-header-films{
+    background: url('../pictures/films.jpg') center center no-repeat scroll;
+}
+
 .tagline {
     text-shadow: 2px 2px 2px #000;
     color: #fff;

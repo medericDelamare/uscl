@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <header class="business-header business-header-films">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="tagline"></h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container mt-4">
+        <h1 class="sous-titre">Films</h1>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Nom</td>
+                        <td>Actions</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in files %}
+                        <tr>
+                            <td>{{ file }}</td>
+                            <td>
+                                <a href="{{ path('download-film', {'nom': file} ) }}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
