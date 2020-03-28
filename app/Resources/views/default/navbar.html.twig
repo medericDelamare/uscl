@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar navbar-dark bg-uscl navbar-uscl sticky">
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-navbar navbar-uscl sticky">
     <a href="{{ path('homepage') }}" class="d-block d-lg-none"><img src="{{ asset('pictures/Logo.png') }}" class="logo-navbar-responsive"></a>
     <button class="hamburger hamburger--slider d-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target=".dual-nav">
         <span class="hamburger-box">
@@ -30,7 +30,7 @@
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-bar-chart" aria-hidden="true"></i> Classements
+                    <i class="fa fa-bar-chart" aria-hidden="true"></i> Stats
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="{{ path('statistiques', {'category': 'seniorA'} ) }}">Seniors A</a>
