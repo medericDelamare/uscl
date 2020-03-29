@@ -1,7 +1,4 @@
 $(document).ready(function(){
-    $('.hamburger').click(function(){
-        $(this).toggleClass('is-active');
-    });
     var sticky = document.querySelector('.sticky');
 
     if (sticky.style.position !== 'sticky') {

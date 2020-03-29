@@ -6,6 +6,10 @@
   .logo-navbar {
     width: 100px;
   }
+  .logo-navbar-responsive{
+    width: 35px;
+    margin-left: 35%;
+  }
   .nav-link{
     &:hover{
       color: white !important;
@@ -13,6 +17,25 @@
     &:focus{
       color: white !important;
     }
+  }
+  .custom-toggler.navbar-toggler {
+    border-color: white;
+  }
+  .navbar-toggler-icon{
+    i{
+      font-size: 28px;
+      color: white;
+    }
+  }
+  .navbar-toggler {
+    color: white;
+    border-color: white;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar-dark .navbar-nav .nav-link {
+    color: white;
   }
 }
 
