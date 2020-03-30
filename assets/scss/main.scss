@@ -1,5 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
+@import '~swiper/css/swiper.min.css';
+@import '~chart.js/dist/Chart.min.css';
+@import '~fullcalendar/dist/fullcalendar.min.css';
+@import '~baguettebox.js/dist/baguetteBox.min.css';
 @import "parametres/variables";
+
 @import "elements/body";
 @import "elements/navbar";
 @import "elements/footer";
+
+@import "composants/buisiness-header";
+@import "composants/card";
+@import "composants/badge";
+
+@import "pages/index";
