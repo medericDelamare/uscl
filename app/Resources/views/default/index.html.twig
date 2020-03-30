@@ -40,19 +40,7 @@
             <div class="col-12 mb-3">
                 <h2>Quelques chiffres</h2>
                 <div class="row">
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <i class="fa fa-line-chart" aria-hidden="true"></i> Evolution du nombre de licenciés
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <canvas id="my-chart-index" data-annees={{ annees|json_encode|raw }} data-nb-licencies={{ nbLicencies|json_encode|raw }} ></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
+                    <div class="col-12 col-lg-4 mb-3">
                         <div class="card">
                             <div class="card-header">
                                 <i class="fa fa-users" aria-hidden="true"></i> Nombre d'équipes
@@ -62,19 +50,19 @@
                                     <div class="row no-gutters">
                                         <div class="col-6">
                                             <ul class="list-group">
-                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center p-1">
                                                     Seniors F
                                                     <span class="badge badge-f badge-pill">1</span>
                                                 </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center p-1">
                                                     Vétérans
                                                     <span class="badge badge-primary badge-pill">1</span>
                                                 </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center p-1">
                                                     Seniors
                                                     <span class="badge badge-seniors badge-pill">2</span>
                                                 </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center p-1">
                                                     U18
                                                     <span class="badge badge-U18 badge-pill">1</span>
                                                 </li>
@@ -82,23 +70,23 @@
                                         </div>
                                         <div class="col-6">
                                             <ul class="list-group">
-                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center p-1">
                                                     U15
                                                     <span class="badge badge-U15 badge-pill">1</span>
                                                 </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center p-1">
                                                     U13
                                                     <span class="badge badge-U13 badge-pill">2</span>
                                                 </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center p-1">
                                                     U11
                                                     <span class="badge badge-U11 badge-pill">3</span>
                                                 </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center p-1">
                                                     U9
                                                     <span class="badge badge-U9 badge-pill">3</span>
                                                 </li>
-                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center p-1">
                                                     U7
                                                     <span class="badge badge-U7 badge-pill">4</span>
                                                 </li>
@@ -109,13 +97,25 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-12 col-lg-4 mb-3">
                         <div class="card">
                             <div class="card-header">
                                 <i class="fa fa-calendar" aria-hidden="true"></i> Calendrier des entraînements
                             </div>
                             <div class="card-body">
                                 <div id='calendar-index'></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4 mb-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="fa fa-line-chart" aria-hidden="true"></i> Evolution du nombre de licenciés
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <canvas id="my-chart-index" data-annees={{ annees|json_encode|raw }} data-nb-licencies={{ nbLicencies|json_encode|raw }} ></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
