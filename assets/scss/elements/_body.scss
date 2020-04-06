@@ -12,8 +12,12 @@ html {
     background-color: $color-uscl-primary;
   }
 
+  .border-uscl-primary{
+    border-color: $color-uscl-primary;
+  }
+
   h2{
-    border-left: 3px solid #0050a1;
+    border-left: 3px solid $color-uscl-primary;
     line-height: 1.1em;
     padding: 10px 0 10px 15px;
     margin-bottom: 20px;

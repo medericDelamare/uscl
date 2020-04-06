@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <header class="business-header business-header-bureau">
+    <header class="business-header" style="background: url({{ asset('pictures/bueau.jpg') }}) center center no-repeat scroll;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -20,7 +20,7 @@
     <div class="tab-content mt-5" id="myTabContent">
         <div class="tab-pane fade show active" id="bureau" role="tabpanel" aria-labelledby="bureau-tab">
             <div class="container p-0">
-                <h2 class="text-center m-4">Bureau</h2>
+                <h1 class="text-center m-4">Bureau</h1>
                 {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.president, 'role': 'Président'} %}
                 {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.vicePresident, 'role': 'Vice-président'} %}
                 {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.vicePresident2, 'role': 'Vice-président'} %}
@@ -31,7 +31,7 @@
         </div>
         <div class="tab-pane fade" id="responsables" role="tabpanel" aria-labelledby="responsables-tab">
             <div class="container p-0">
-                <h2 class="text-center m-4">Responsables par équipe</h2>
+                <h1 class="text-center m-4">Responsables par équipe</h1>
                 {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.responsableSeniorA, 'role': 'Senior A'} %}
                 {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.responsableSeniorB, 'role': 'Senior B'} %}
                 {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.responsableU18, 'role': 'U18'} %}
