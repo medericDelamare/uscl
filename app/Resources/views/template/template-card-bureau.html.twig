@@ -1,4 +1,4 @@
-<div class="card card-bureau mt-2 d-none d-lg-block box-shadow border-uscl-primary">
+<div class="card card-bureau mt-2 box-shadow border-uscl-primary">
     <div class="card-body">
         <div class="d-flex">
             <div class="mr-auto p-2">
@@ -11,38 +11,14 @@
                 </div>
             </div>
             <div class="p-2 d-flex align-items-center">
-                <a href="tel:{{licencie.telephonePortable}}" type="button" class="btn btn-uscl btn-circle btn-lg" data-toggle="tooltip" data-placement="top" title="{{licencie.telephonePortable}}">
+                <a href="tel:{{licencie.telephonePortable}}" type="button" class="btn btn-uscl btn-circle" data-toggle="tooltip" data-placement="top" title="{{licencie.telephonePortable}}">
                     <i class="fa fa-phone"></i>
                 </a>
             </div>
             <div class="p-2 d-flex align-items-center">
-                <a href="mailto:{{ licencie.email }}" type="button" class="btn btn-uscl btn-circle btn-lg" data-toggle="tooltip" data-placement="top" title="{{licencie.email}}">
+                <a href="mailto:{{ licencie.email }}" type="button" class="btn btn-uscl btn-circle" data-toggle="tooltip" data-placement="top" title="{{licencie.email}}">
                     <i class="fa fa-envelope"></i>
                 </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="card d-block d-lg-none ">
-    <div class="card-body p-0">
-        <div class="d-flex">
-            <div class="mr-auto p-2">
-                <div class="media">
-                    <div class="circle-mobile mt-2">
-                        <span class="initials-mobile">{{ licencie.initiales }}</span>
-                    </div>
-                    <div class="media-body ml-2 mt-2">
-                        <h5 class="mt-0" style="font-size: 15px;">{{licencie.nomComplet}}</h5>
-                        {{role}}
-                    </div>
-                </div>
-            </div>
-            <div class="p-2 d-flex align-items-center">
-                <a href="tel:{{licencie.telephonePortable}}" type="button" class="btn btn-uscl btn-circle btn-lg"><i class="fa fa-phone"></i></a>
-            </div>
-            <div class="p-2 d-flex align-items-center">
-                <a href="mailto:{{ licencie.email }}" type="button" class="btn btn-uscl btn-circle btn-lg"><i class="fa fa-envelope"></i></a>
             </div>
         </div>
     </div>

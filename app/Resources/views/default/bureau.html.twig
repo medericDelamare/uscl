@@ -17,9 +17,9 @@
             <a class="nav-link" id="profile-tab" data-toggle="tab" href="#responsables" role="tab" aria-controls="responsables" aria-selected="false">Résponsables par catégorie</a>
         </li>
     </ul>
-    <div class="tab-content mt-5" id="myTabContent">
-        <div class="tab-pane fade show active" id="bureau" role="tabpanel" aria-labelledby="bureau-tab">
-            <div class="container p-0">
+    <div class="container p-0" id="container-bureau">
+        <div class="tab-content mt-5" id="myTabContent">
+            <div class="tab-pane fade show active" id="bureau" role="tabpanel" aria-labelledby="bureau-tab">
                 <h1 class="text-center m-4">Bureau</h1>
                 {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.president, 'role': 'Président'} %}
                 {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.vicePresident, 'role': 'Vice-président'} %}
@@ -28,9 +28,7 @@
                 {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.secretaire, 'role': 'Secrétaire'} %}
                 {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.tresorier, 'role': 'Trésorier'} %}
             </div>
-        </div>
-        <div class="tab-pane fade" id="responsables" role="tabpanel" aria-labelledby="responsables-tab">
-            <div class="container p-0">
+            <div class="tab-pane fade" id="responsables" role="tabpanel" aria-labelledby="responsables-tab">
                 <h1 class="text-center m-4">Responsables par équipe</h1>
                 {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.responsableSeniorA, 'role': 'Senior A'} %}
                 {% include 'template/template-card-bureau.html.twig' with {'licencie': bureau.responsableSeniorB, 'role': 'Senior B'} %}
@@ -43,8 +41,4 @@
             </div>
         </div>
     </div>
-
-
-
-
 {% endblock %}

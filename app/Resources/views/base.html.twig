@@ -11,9 +11,7 @@
     </head>
     <body>
         {{ include('default/navbar.html.twig') }}
-        <div class="bottom">
-            {% block body %}{% endblock %}
-        </div>
+        {% block body %}{% endblock %}
         {{ include('default/footer.html.twig') }}
         <script src="{{ asset('vendor/jquery/dist/jquery.min.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
