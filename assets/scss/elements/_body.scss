@@ -16,6 +16,10 @@ html {
     border-color: $color-uscl-primary;
   }
 
+  .box-shadow{
+    box-shadow: 2px 2px 11px rgba(0,0,0,0.7);
+  }
+
   h2{
     border-left: 3px solid $color-uscl-primary;
     line-height: 1.1em;

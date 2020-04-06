@@ -1,0 +1,24 @@
+.card-profil{
+  text-decoration: none;
+  color: black;
+  .img-effectif {
+    width: 75px;
+  }
+}
+
+.card-profil-mobile{
+  text-decoration: none;
+  color: black;
+  .img-effectif {
+    width: 75px;
+  }
+}
+
+@media (max-width: 574px) {
+  .col-card-profile{
+    padding: 0;
+  }
+  .card-profil{
+    border: 1px solid rgba(0,0,0,.125) !important;
+  }
+}
