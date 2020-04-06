@@ -50,8 +50,12 @@
   }
 }
 
+.swiper-container {
+   padding-left: 15px !important;
+}
+
 .swiper-slide {
-  width: 320px !important;
+  max-width: 320px !important;
   .card-match-semaine{
     height: 200px;
     .logo-match-semaine{
