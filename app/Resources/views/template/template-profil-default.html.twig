@@ -1,0 +1,141 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card mt-2 box-shadow">
+            <div class="card-header text-center">{{ joueur.nomComplet }}</div>
+            <div class="card-body bg-uscl-primary">
+                <div class="row">
+                    <div class="col-12 col-lg-4">
+                        <div class="media">
+                            <img class="img-profil" src="{{ joueur.photo }}" alt="{{ joueur.photo }}">
+                            <div class="media-body ml-3">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="color-blanc">{{ joueur.stats.poste }}</p>
+                                        <hr class="bg-uscl-blanc">
+                                        <p class="color-blanc mb-0">Né le {{ joueur.dateDeNaissance|date("d/m/Y") }} à {{ joueur.lieuDeNaissance }}</p>
+                                        <p class="color-blanc">( {{ joueur.age }} ans )</p>
+                                        <hr class="bg-uscl-blanc">
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <div class="color-blanc">Educateur :</div>
+                                            </div>
+                                            <div class="col-2">
+                                                <div class="text-left">
+                                                    {% if joueur.educateur %}
+                                                        <i class="fa fa-check fa-lg color-green"></i>
+                                                    {% else %}
+                                                        <i class="fa fa-times fa-lg color-red"
+                                                           aria-hidden="true"></i>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <div class="color-blanc">Dirigeant :</div>
+                                            </div>
+                                            <div class="col-2">
+                                                <div class="text-left">
+                                                    {% if joueur.dirigeant %}
+                                                        <i class="fa fa-check fa-lg color-green"></i>
+                                                    {% else %}
+                                                        <i class="fa fa-times fa-lg color-red"
+                                                           aria-hidden="true"></i>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-8 mt-3 mt-lg-0">
+                        <div class="d-none d-md-block row color-blanc text-center mb-3"><h4>
+                                Saison {{ debut_annee }}-{{ fin_annee }} avec l'USCL</h4></div>
+                        <div class="d-block d-md-none row color-blanc text-center mt-3">
+                            <h4>{{ debut_annee }}/{{ fin_annee }} :</h4></div>
+                        <div class="row text-center">
+                            <div class="offset-1 col-2">
+                                <div class="milestone-counter">
+                                    <img src="{{ asset('pictures/icons/strategy.png') }}">
+                                    <span class="stat-count highlight counter">{{ joueur.statsRencontresJoueurs|length }}</span>
+                                    <div class="d-none d-md-block milestone-details">Matchs joués
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="milestone-counter">
+                                    <img src="{{ asset('pictures/icons/soccer-ball.png') }}">
+                                    <span class="stat-count highlight counter">{{ joueur.buts|length }}</span>
+                                    <div class="d-none d-md-block milestone-details">Buts</div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="milestone-counter">
+                                    <img src="{{ asset('pictures/icons/soccer.png') }}">
+                                    <span class="stat-count highlight counter">{{ joueur.passes|length }}</span>
+                                    <div class="d-none d-md-block milestone-details">Passes
+                                        Décisives
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="milestone-counter">
+                                    <img src="{{ asset('pictures/icons/yellow-card.png') }}">
+                                    <span class="stat-count highlight counter">{{ joueur.statsRencontresCartonsJaunes|length }}</span>
+                                    <div class="d-none d-md-block milestone-details">Cartons
+                                        Jaunes
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="milestone-counter">
+                                    <img src="{{ asset('pictures/icons/red-card.png') }}">
+                                    <span class="stat-count highlight counter">{{ joueur.statsRencontresCartonsRouges|length }}</span>
+                                    <div class="d-none d-md-block milestone-details">Cartons
+                                        Rouges
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 offset-xl-2 col-xl-4">
+        <div class="card box-shadow mt-3 h-100">
+            <div class="card-header text-center">Statistiques rencontres</div>
+            <div class="card-body">
+                <canvas id="myChart" height="200px"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-xl-4 mt-3 mt-md-0">
+        <div class="card h-100 box-shadow mt-3">
+            <div class="card-header text-center">5 dernières rencontres</div>
+            <div class="card-body">
+                <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+                    {% for result in lastResults %}
+                        {% for key, value in result %}
+                            {% if key == 'N' %}
+                                <span data-toggle="tooltip" data-placement="top" title="{{ value }}"
+                                      class="bg-uscl-yellow acronym-circle d-flex align-items-center justify-content-center">{{ key }}</span>
+                            {% elseif key == 'V' %}
+                                <span data-toggle="tooltip" data-placement="top" title="{{ value }}"
+                                      class="bg-uscl-green acronym-circle d-flex align-items-center justify-content-center">{{ key }}</span>
+                            {% elseif key == 'D' %}
+                                <span data-toggle="tooltip" data-placement="top" title="{{ value }}"
+                                      class="bg-uscl-red acronym-circle d-flex align-items-center justify-content-center">{{ key }}</span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

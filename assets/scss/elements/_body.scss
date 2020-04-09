@@ -2,29 +2,84 @@ html {
   height: 100%;
   body {
     min-height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
     position: relative;
     font-family: 'Open Sans', sans-serif;
+
+    .color-primary{
+      color: $color-uscl-primary;
+    }
+
+    .bg-uscl-primary{
+      background-color: $color-uscl-primary;
+    }
+
+    .border-uscl-primary{
+      border-color: $color-uscl-primary;
+    }
+
+    .color-red{
+      color: $color-uscl-rouge
+    }
+
+    .bg-uscl-red{
+      background-color: $color-uscl-rouge
+    }
+
+    .border-uscl-red{
+      border-color: $color-uscl-rouge;
+    }
+
+    .color-green{
+      color: $color-uscl-vert
+    }
+
+    .bg-uscl-green{
+      background-color: $color-uscl-vert
+    }
+
+    .border-uscl-green{
+      border-color: $color-uscl-vert;
+    }
+
+    .color-yellow{
+      color: $color-uscl-jaune;
+    }
+
+    .bg-uscl-yellow{
+      background-color: $color-uscl-jaune;
+    }
+
+    .border-uscl-yellow{
+      border-color: $color-uscl-jaune;
+    }
+
+    .color-blanc{
+      color: $color-uscl-blanc;
+    }
+
+    .bg-uscl-blanc{
+      background-color: $color-uscl-blanc;
+    }
+
+    .border-uscl-blanc{
+      border-color: $color-uscl-blanc;
+    }
+
+    .box-shadow{
+      box-shadow: 2px 2px 11px rgba(0,0,0,0.7);
+    }
+
+    h2{
+      border-left: 3px solid $color-uscl-primary;
+      line-height: 1.1em;
+      padding: 10px 0 10px 15px;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
   }
 
-  .bg-uscl-primary{
-    background-color: $color-uscl-primary;
-  }
 
-  .border-uscl-primary{
-    border-color: $color-uscl-primary;
-  }
-
-  .box-shadow{
-    box-shadow: 2px 2px 11px rgba(0,0,0,0.7);
-  }
-
-  h2{
-    border-left: 3px solid $color-uscl-primary;
-    line-height: 1.1em;
-    padding: 10px 0 10px 15px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-  }
 }

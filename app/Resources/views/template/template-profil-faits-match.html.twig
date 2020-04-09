@@ -1,0 +1,36 @@
+<div class="card card-stats-rencontre">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center font-weight-bold titre-rencontre">{{ match|upper }}</div>
+                <div class="text-center font-italic titre-rencontre  mb-2 ">{{ stat.categorie }}</div>
+            </div>
+        </div>
+        <div class="row text-center stats-rencontre">
+            <div class="col-3">
+                <div class="milestone-counter">
+                    <img src="{{ asset('pictures/icons/soccer-ball.png') }}">
+                    <span class="stat-count highlight counter">{{ stat.buts }}</span>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="milestone-counter">
+                    <img src="{{ asset('pictures/icons/soccer.png') }}">
+                    <span class="stat-count highlight counter">{{ stat.passes }}</span>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="milestone-counter">
+                    <img src="{{ asset('pictures/icons/yellow-card.png') }}">
+                    <span class="stat-count highlight counter">{{ stat.cartonsJ }}</span>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="milestone-counter">
+                    <img src="{{ asset('pictures/icons/red-card.png') }}">
+                    <span class="stat-count highlight counter">{{ stat.cartonsR }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

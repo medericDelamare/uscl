@@ -1,0 +1,81 @@
+.zone-play {
+  background: $color-uscl-primary;
+  padding: 2%;
+  .media{
+    .img-profil{
+      width: 100px;
+    }
+  }
+}
+
+.highlight {
+  color:#111;
+  padding:5px 0;
+  font-weight:bold;
+  display:block;
+  overflow:hidden;
+  margin-bottom:0;
+  font-size:48px;
+}
+
+.card-stats-rencontre{
+  width: 100%;
+  .titre-rencontre{
+    font-size: 13px;
+  }
+  .stats-rencontre{
+    .highlight {
+      font-size:20px;
+    }
+  }
+}
+
+
+.milestone-details {
+  font-weight:bold;
+  font-size:14px;
+  color:white;
+}
+
+.acronym-circle {
+  width: 50px;
+  height: 50px;
+  padding: 10px 18px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.img-carriere {
+  width: 30px;
+}
+
+.fait-match-td{
+  font-size: 12px;
+}
+
+@media (max-width: 576px) {
+  .card-stats-rencontre {
+    border-radius: 0px;
+    border-top: solid 1px #0050A1 !important;
+    border-left: solid 1px transparent !important;
+    border-right: solid 1px transparent !important;
+    border-bottom: solid 1px transparent !important;
+    box-shadow: none !important;
+    .card-body{
+      padding-bottom: 0px;
+      padding-top: 0px;
+    }
+  }
+  .highlight {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .highlight {
+    font-size: 15px;
+  }
+}
