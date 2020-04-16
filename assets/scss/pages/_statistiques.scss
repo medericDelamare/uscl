@@ -1,0 +1,102 @@
+.classement {
+  font-size: 14px;
+  .table {
+    & thead{
+      & th{
+        vertical-align: bottom;
+        border-bottom: none;
+      }
+    }
+    & > tbody {
+      & > tr {
+        height: 55px;
+        & > td {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  ul{
+    list-style-type: none;
+  }
+  .img-club {
+    width: 30px;
+  }
+  .fa-circle-v {
+    color: #b5e7a0;
+  }
+  .fa-circle-d {
+    color: #eca1a6;
+  }
+  .fa-circle-n {
+    color: #ffef96;
+  }
+  &.classement-U13A table tr td:first-child {
+    border-left: 20px solid transparent;
+  }
+
+  &.classement-U13A table tr:nth-child(-n+1) td:first-child {
+    border-left: 20px solid #b5e7a0;
+  }
+
+  &.classement-U13B table tr td:first-child {
+    border-left: 20px solid transparent;
+  }
+
+  &.classement-U13B table tr:nth-child(-n+1) td:first-child {
+    border-left: 20px solid #b5e7a0;
+  }
+
+  &.classement-U15 table tr td:first-child {
+    border-left: 20px solid transparent;
+  }
+
+  &.classement-U15 table tr:nth-child(-n+1) td:first-child {
+    border-left: 20px solid #b5e7a0;
+  }
+
+  &.classement-U18 table tr td:first-child {
+    border-left: 20px solid transparent;
+  }
+
+  &.classement-U18 table tr:nth-child(-n+1) td:first-child {
+    border-left: 20px solid #b5e7a0;
+  }
+
+  &.classement-seniorA table tr td:first-child {
+    border-left: 20px solid transparent;
+  }
+
+  &.classement-seniorA table tr:nth-child(-n+2) td:first-child {
+    border-left: 20px solid #b5e7a0;
+  }
+
+  &.classement-seniorB table tr td:first-child {
+    border-left: 20px solid transparent;
+  }
+
+  &.classement-seniorB table tr:nth-child(-n+2) td:first-child {
+    border-left: 20px solid #b5e7a0;
+  }
+
+  &.classement-seniorA table tr:nth-last-child(-n+3) td:first-child {
+    border-left: 20px solid #eca1a6;
+  }
+  .td-derniers-matchs{
+    width: 135px;
+    display: block;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
