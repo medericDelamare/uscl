@@ -34,17 +34,26 @@
         <div class="tab-pane fade" id="carriere" role="tabpanel" aria-labelledby="carriere-tab">
             <div class="container p-0">
                 <h1 class="text-center m-4">Carrière</h1>
-                {% for carriere in joueur.carriere %}
+                <div class="d-block d-md-none">
+                    {% for carriere in joueur.carriere %}
+                        {% include 'template/template-profil-carriere-mobile.html.twig' %}
+                    {% endfor %}
+                </div>
+                <div class="d-none d-md-block">
                     {% include 'template/template-profil-carriere.html.twig' %}
-                {% endfor %}
+                </div>
             </div>
         </div>
         <div class="tab-pane fade" id="fait-match" role="tabpanel" aria-labelledby="fait-match-tab">
-            <div class="container p-0">
+            <div class="container">
                 <h1 class="text-center m-4">Faits de match</h1>
-                {% for match,stat in stats %}
-                    {% include 'template/template-profil-faits-match.html.twig' %}
-                {% endfor %}
+                <div class="row">
+                    {% for match,stat in stats %}
+                        <div class="col-12 col-md-6 col-lg-4 mb-3 col-card-fait-match">
+                            {% include 'template/template-profil-faits-match.html.twig' %}
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
@@ -52,9 +61,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="//cdn.datatables.net/plug-ins/1.10.19/sorting/date-eu.js"></script>
-
     <script>
         $('.counter').each(function () {
             $(this).prop('Counter', 0).animate({
@@ -66,22 +72,6 @@
                     $(this).text(Math.ceil(now));
                 }
             });
-        });
-    </script>
-
-    <script>
-        $('#faits-match').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
-            },
-            "autoWidth": false,
-            "paging": false,
-            "bInfo": false,
-            "searching": false,
-            "order": [[0, "desc"]],
-            columnDefs: [
-                {type: 'date-eu', targets: 0}
-            ]
         });
     </script>
 
@@ -99,6 +89,4 @@
         });
 
     </script>
-
-
 {% endblock %}
