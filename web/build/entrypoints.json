@@ -20,6 +20,12 @@
         "/build/runtime.js",
         "/build/index.js"
       ]
+    },
+    "profil": {
+      "js": [
+        "/build/runtime.js",
+        "/build/profil.js"
+      ]
     }
   }
 }

@@ -61,32 +61,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script>
-        $('.counter').each(function () {
-            $(this).prop('Counter', 0).animate({
-                Counter: $(this).text()
-            }, {
-                duration: 2000,
-                easing: 'swing',
-                step: function (now) {
-                    $(this).text(Math.ceil(now));
-                }
-            });
-        });
-    </script>
-
-    <script>
-        var ctx = document.getElementById("myChart").getContext('2d');
-        var myDoughnutChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: {{ vnd|json_encode }},
-                    backgroundColor: ['#b5e7a0', '#ffef96', '#eca1a6']
-                }],
-                labels: ['Victoires', 'Nuls', 'Défaites'],
-            },
-        });
-
-    </script>
+    <script type="text/javascript" src="{{ asset('build/profil.js') }}"></script>
 {% endblock %}
