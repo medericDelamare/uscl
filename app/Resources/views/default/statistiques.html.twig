@@ -47,32 +47,5 @@
 
 
 {% block javascripts %}
-    <script>
-        var equipeId = $( "#selectEquipe" ).val();
-        var getUrl = window.location;
-        //var baseUrl = getUrl.protocol + "//" + getUrl.host + "/";
-        var baseUrl = "http://localhost/uscl/web/app_dev.php/";
-        var route = baseUrl + 'get-calendrier-par-equipe/';
-        var categorie = '{{ competitionId }}';
-        $(document).ready( function () {
-            $('#loaderCalendrier').show();
-            refreshClassement(route, equipeId, categorie);
-            $('#selectEquipe').change(function () {
-                $('#loaderCalendrier').addClass('d-flex').removeClass('d-none');
-                equipeId = $( "#selectEquipe" ).val();
-                refreshClassement(route, equipeId,categorie);
-            })
-            function refreshClassement(route, equipeCourante, categorie){
-                $.ajax({
-                    url: route + equipeCourante + '/' + categorie,
-                    type: "GET",
-                    success: function(data){
-                        $('#loaderCalendrier').removeClass('d-flex');
-                        $('#loaderCalendrier').addClass('d-none');
-                        $("#resultAjaxCalendrier").html(data);
-                    }
-                });
-            }
-        });
-    </script>
+    <script type="text/javascript" src="{{ asset('build/statistiques.js') }}"></script>
 {% endblock %}

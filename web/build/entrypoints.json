@@ -26,6 +26,12 @@
         "/build/runtime.js",
         "/build/profil.js"
       ]
+    },
+    "statistiques": {
+      "js": [
+        "/build/runtime.js",
+        "/build/statistiques.js"
+      ]
     }
   }
 }

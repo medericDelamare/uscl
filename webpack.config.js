@@ -8,6 +8,7 @@ Encore
     .addEntry('base', './assets/js/base.js')
     .addEntry('index', './assets/js/index.js')
     .addEntry('profil', './assets/js/profil.js')
+    .addEntry('statistiques', './assets/js/statistiques.js')
 
     .enableSingleRuntimeChunk()
     .enableSassLoader()
