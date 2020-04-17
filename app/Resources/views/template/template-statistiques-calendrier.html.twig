@@ -1,5 +1,5 @@
-<div class="col-12 offset-md-2 col-md-8" >
-    <h2 class="page-header">Calendrier</h2>
+<div class="col-12 offset-md-2 col-md-8 p-0" >
+    <h3 class="text-center mt-2 mb-2">Calendrier {{ infosCompetition.name }}</h3>
     <select class="form-control"  id="selectEquipe">
         {% for id, name in equipeListe %}
             <option value={{ id }} data-href="{{ path('calendrier-par-equipe', {'equipe': id}) }}">{{ name }}</option>

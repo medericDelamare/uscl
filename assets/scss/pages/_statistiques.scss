@@ -87,16 +87,33 @@
     display: block;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
+.resultats{
+  .header-result {
+    background-color: $color-uscl-primary;
+    color: white;
+    font-style: italic;
+    line-height: 12px;
+  }
+  & table{
+    & tr {
+      & td {
+        vertical-align: middle;
+      }
+    }
+  }
+}
+.agenda{
+  .header-result {
+    background-color: $color-uscl-primary;
+    color: white;
+    font-style: italic;
+    line-height: 12px;
+  }
+  & table{
+    & tr {
+      & td {
+        vertical-align: middle;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
-<div class="col-12 offset-md-2 col-md-8" >
-    <h2>Résultats</h2>
+<div class="col-12 offset-md-2 col-md-8 p-0" >
+    <h3 class="text-center mt-2 mb-2">Résultats {{ infosCompetition.name }}</h3>
     {% if rencontres is not null and rencontres.events|length > 0 %}
-        <div class="table-responsive">
+        <div class="table-responsive resultats">
             <table class="table table-sm">
                 {% for resultat in rencontres.events %}
                     <tr class="text-center header-result"><td colspan="4">{{ resultat.date|date("m/d/Y H:i") }}</td></tr>

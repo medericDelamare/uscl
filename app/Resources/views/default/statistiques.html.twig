@@ -47,11 +47,11 @@
 
 
 {% block javascripts %}
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script>
         var equipeId = $( "#selectEquipe" ).val();
         var getUrl = window.location;
-        var baseUrl = getUrl.protocol + "//" + getUrl.host + "/";
+        //var baseUrl = getUrl.protocol + "//" + getUrl.host + "/";
+        var baseUrl = "http://localhost/uscl/web/app_dev.php/";
         var route = baseUrl + 'get-calendrier-par-equipe/';
         var categorie = '{{ competitionId }}';
         $(document).ready( function () {
