@@ -13,31 +13,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for buteur in buteurs %}
-                    {% if id == 'pills-veterans' %}
-                        <tr>
-                            <td class="pl-4"><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nomComplet }}</td>
-                            <td>{{ buteur.stats.butsVeteranChampionnat + buteur.stats.butsVeteranCoupe }}</td>
-                            <td>{{ buteur.matchsVeteran|length }}</td>
-                            {% if buteur.matchsVeteran|length > 0  %}
-                                <td>{{ ((buteur.stats.butsVeteranChampionnat + buteur.stats.butsVeteranCoupe) / buteur.matchsVeteran|length)|number_format(2, '.', ',') }}</td>
-                            {% else %}
-                                <td>-</td>
-                            {% endif %}
-                        </tr>
-                    {% else %}
-                        <tr class="tr-buteurs">
-                            <td class="pl-4"><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nomComplet }}</a>
-                            </td>
-                            <td>{{ buteur.stats.butsA + buteur.stats.butsB + buteur.stats.butsCoupe }}</td>
-                            <td>{{ buteur.statsRencontresJoueurs|length - buteur.matchsVeteran|length }}</td>
-                            {% if buteur.statsRencontresJoueurs|length > 0  %}
-                                <td>{{ ((buteur.stats.butsA + buteur.stats.butsB + buteur.stats.butsCoupe) / (buteur.statsRencontresJoueurs|length - buteur.matchsVeteran|length))|number_format(2, '.', ',') }}</td>
-                            {% else %}
-                                <td>-</td>
-                            {% endif %}
-                        </tr>
-                    {% endif %}
+                {% for nom, buteur in buteurs %}
+                    <tr class="tr-buteurs">
+                        <td class="pl-4"><a href="{{ path('profile', {'id': buteur.id}) }}">{{ nom }}</a>
+                        </td>
+                        <td>{{ buteur.nb_buts }}</td>
+                        <td>{{ buteur.nb_matchs }}</td>
+                        {% if buteur.nb_matchs|length > 0  %}
+                            <td>{{ (buteur.nb_buts / buteur.nb_matchs)|number_format(2, '.', ',') }}</td>
+                        {% else %}
+                            <td>-</td>
+                        {% endif %}
+                    </tr>
                 {% endfor %}
                 </tbody>
             </table>

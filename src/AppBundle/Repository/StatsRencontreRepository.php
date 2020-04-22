@@ -34,4 +34,21 @@ class StatsRencontreRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getStatsRencontreByCategorie($dateDepart, $dateFin, $categories){
+        return $this->createQueryBuilder('s')
+            ->join('s.rencontre', 'r')
+            ->join('r.equipeDomicile', 'e')
+            ->andWhere('r.date > :dateDepart')
+            ->andWhere('r.date < :dateFin')
+            ->andWhere('e.categorie in (:categories)')
+            ->orderBy('r.date')
+            ->setParameters([
+                'dateDepart' => $dateDepart,
+                'dateFin' => $dateFin,
+                'categories' => $categories
+            ])
+            ->getQuery()
+            ->getResult();
+    }
 }

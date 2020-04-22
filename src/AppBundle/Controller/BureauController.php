@@ -19,9 +19,6 @@ class BureauController extends Controller
     {
         $bureau = $this->getDoctrine()->getManager()->getRepository(Bureau::class)->find(1);
 
-
-
-        // replace this example code with whatever you need
         return $this->render(':default:bureau.html.twig', [
             'bureau' => $bureau
         ]);
