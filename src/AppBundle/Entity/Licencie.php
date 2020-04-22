@@ -122,13 +122,6 @@ class Licencie
     private $carriere;
 
     /**
-     * One Cart has One Customer.
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\StatsJoueur", inversedBy="licencie", cascade={"all"})
-     * @ORM\JoinColumn(name="stats_id", referencedColumnName="id", nullable=true)
-     */
-    private $stats;
-
-    /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\StatsRencontre", mappedBy="joueurs", fetch="EAGER")
      */
     private $statsRencontresJoueurs;
@@ -162,6 +155,12 @@ class Licencie
      */
     private $historiqueStats;
 
+    /**
+     * @var string
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Poste")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $poste;
 
     public function __construct()
     {
@@ -481,24 +480,6 @@ class Licencie
     }
 
     /**
-     * @return StatsJoueur
-     */
-    public function getStats()
-    {
-        return $this->stats;
-    }
-
-    /**
-     * @param mixed $stats
-     * @return Licencie
-     */
-    public function setStats($stats)
-    {
-        $this->stats = $stats;
-        return $this;
-    }
-
-    /**
      * @return ArrayCollection
      */
     public function getStatsRencontresJoueurs()
@@ -664,6 +645,24 @@ class Licencie
         }
 
         return $arr;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPoste(): string
+    {
+        return $this->poste;
+    }
+
+    /**
+     * @param string $poste
+     * @return Licencie
+     */
+    public function setPoste(string $poste): Licencie
+    {
+        $this->poste = $poste;
+        return $this;
     }
 
     public function __toString()
