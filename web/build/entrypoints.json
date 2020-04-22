@@ -32,6 +32,12 @@
         "/build/runtime.js",
         "/build/statistiques.js"
       ]
+    },
+    "buteurs": {
+      "js": [
+        "/build/runtime.js",
+        "/build/buteurs.js"
+      ]
     }
   }
 }

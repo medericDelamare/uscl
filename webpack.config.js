@@ -9,6 +9,7 @@ Encore
     .addEntry('index', './assets/js/index.js')
     .addEntry('profil', './assets/js/profil.js')
     .addEntry('statistiques', './assets/js/statistiques.js')
+    .addEntry('buteurs', './assets/js/buteurs.js')
 
     .enableSingleRuntimeChunk()
     .enableSassLoader()
@@ -17,5 +18,6 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
 ;
+
 
 module.exports = Encore.getWebpackConfig();

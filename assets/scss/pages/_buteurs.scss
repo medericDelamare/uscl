@@ -1,0 +1,11 @@
+.tableau-buteur {
+  a{
+    color: black !important;
+  }
+  tr {
+    td:first-child {
+      color: black !important;
+      font-weight: bold !important;
+    }
+  }
+}
