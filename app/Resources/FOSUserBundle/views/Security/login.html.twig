@@ -1,13 +1,9 @@
 {% extends "@FOSUser/layout.html.twig" %}
-
 {% block fos_user_content %}
-    <h1 class = "sous-titre">Connexion</h1>
+    <h1 class = "text-center">Connexion</h1>
     <div class="container">
         <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 offset-md-3 col-sm-8 offset-md-2">
             <div class="card card-uscl" >
-                <div class="card-header">
-                    <div class="card-title">Connexion</div>
-                </div>
                 <div style="padding-top:30px" class="card-body" >
                     <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                     {{ include('@FOSUser/Security/login_content.html.twig') }}
