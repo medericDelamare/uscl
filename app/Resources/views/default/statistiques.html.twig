@@ -1,10 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
-    <link href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-{% endblock %}
 {% block body %}
-<header class="business-header {{ class }}">
+<header class="business-header" style="background: url({{ asset('pictures/seniorB.JPG') }}) center center no-repeat scroll;">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -28,139 +25,19 @@
     </li>
 </ul>
 <div class="container-fluid">
-    <h2 class="text-center">Statistiques {{ infosCompetition.name }}</small></h2>
     <div class="row">
-        <div class="tab-content col-12" id="pills-tabContent">
+        <div class="tab-content col-12 p-0" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-classement" role="tabpanel" aria-labelledby="pills-home-tab">
-                <div class="col-12 offset-md-2 col-md-8" >
-                    <h2>Classement</h2>
-                    <div class="table-responsive classement  {{ tableClass }}">
-                        <table class="table table-sm">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Equipe</th>
-                                <th scope="col">Pts</th>
-                                <th scope="col">Jo</th>
-                                <th scope="col">G</th>
-                                <th scope="col">N</th>
-                                <th scope="col">D</th>
-                                <th scope="col">F</th>
-                                <th scope="col">BP</th>
-                                <th scope="col">BC</th>
-                                <th scope="col">Diff</th>
-                                <th scope="col">5 derniers matchs</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for equipe in classement.teams %}
-                                <tr class="classement-tr">
-                                    <td>{{ loop.index }}</td>
-                                    <td>
-                                        <img data-toggle="tooltip" data-placement="top" title="{{ equipe.name }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ equipe.clubId ~ '.png') }}">
-                                        <span class="d-none d-lg-inline-block">{{ equipe.name|upper }}</span>
-                                    </td>
-                                    <td class="font-weight-bold">{{ equipe.rankingData.points }}</td>
-                                    <td>{{ equipe.rankingData.journees }}</td>
-                                    <td>{{ equipe.rankingData.victoires }}</td>
-                                    <td>{{ equipe.rankingData.nuls }}</td>
-                                    <td>{{ equipe.rankingData.defaites }}</td>
-                                    <td>{{ equipe.rankingData.forfaits }}</td>
-                                    <td>{{ equipe.rankingData.butsP }}</td>
-                                    <td>{{ equipe.rankingData.butsC }}</td>
-                                    <td>{{ equipe.rankingData.diff }}</td>
-                                    <td>
-                                        <ul class="p-0 my-auto">
-                                            <li class="result-li">
-                                                {% for result in equipe.lastResults %}
-                                                    <i class="fa fa-circle fa-circle-{{ result }}" aria-hidden="true"></i>
-                                                {% endfor %}
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                {% include 'template/template-statistiques-classement.html.twig' %}
             </div>
             <div class="tab-pane fade" id="pills-resultats" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <div class="col-12 offset-md-2 col-md-8" >
-                    <h2>Résultats</h2>
-                    {% if rencontres is not null and rencontres.events|length > 0 %}
-                        <div class="table-responsive">
-                            <table class="table table-sm">
-                                {% for resultat in rencontres.events %}
-                                    <tr class="text-center header-result"><td colspan="4">{{ resultat.date|date("m/d/Y H:i") }}</td></tr>
-                                    <tr>
-                                        <td>
-                                            <img data-toggle="tooltip" data-placement="top" title="{{ resultat.teams[0].name }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ resultat.teams[0].clubId ~ '.png') }}">
-                                            <span class="d-none d-lg-inline-block">{{ resultat.teams[0].name|upper }}</span>
-                                        </td>
-                                        {% if resultat.teams[0].score is not null %}
-                                            <td class=" text-center score text-nowrap font-weight-bold">{{ resultat.teams[0].score ~ '-' ~ resultat.teams[1].score }}</td>
-                                        {% else %}
-                                            <td class="text-center score text-nowrap font-weight-bold">VS</td>
-                                        {% endif %}
-                                        <td class="text-right">
-                                            <span class="d-none d-lg-inline-block">{{ resultat.teams[1].name|upper }}</span>
-                                            <img data-toggle="tooltip" data-placement="top" title="{{ resultat.teams[1].name }}" class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ resultat.teams[1].clubId ~ '.png') }}">
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </table>
-                        </div>
-                    {% endif %}
-                </div>
+                {% include 'template/template-statistiques-resultats.html.twig' %}
             </div>
             <div class="tab-pane fade" id="pills-agenda" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <div class="col-12 offset-md-2 col-md-8"  >
-                    <h2>Agenda</h2>
-                    <div class="table-responsive">
-                        <table class="table table-sm">
-                            {% for agenda in agendas.events %}
-                                <tr>
-                                    <td>{{ agenda.date|date("m/d/Y H:i") }}</td>
-                                    <td>
-                                        <img data-toggle="tooltip" data-placement="top" title="{{ agenda.teams[0].name }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ agenda.teams[0].clubId ~ '.png') }}">
-                                        <span class="d-none d-lg-inline-block">{{ agenda.teams[0].name|upper }}</span>
-                                    </td>
-                                    {% if agenda.teams[0].score is not null %}
-                                        <td class=" text-center score text-nowrap">{{ agenda.teams[0].score ~ '-' ~ agenda.teams[1].score }}</td>
-                                    {% else %}
-                                        <td class="text-center score text-nowrap">VS</td>
-                                    {% endif %}
-                                    <td class="text-right">
-                                        <span class="d-none d-lg-inline-block">{{ agenda.teams[1].name }}</span>
-                                        <img data-toggle="tooltip" data-placement="top" title="{{ agenda.teams[1].name|upper }}" class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ agenda.teams[1].clubId ~ '.png') }}">
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </table>
-                    </div>
-                </div>
+                {% include 'template/template-statistiques-agenda.html.twig' %}
             </div>
             <div class="tab-pane fade" id="pills-calendrier" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <div class="col-12 offset-md-2 col-md-8" >
-                    <h2 class="page-header">Calendrier</h2>
-                    <select class="form-control"  id="selectEquipe">
-                        {% for id, name in equipeListe %}
-                            <option value={{ id }} data-href="{{ path('calendrier-par-equipe', {'equipe': id}) }}">{{ name }}</option>
-                        {% endfor %}
-                    </select>
-                    <div id="loaderCalendrier" class="d-flex justify-content-center m-4">
-                        <div class="spinner-border text-primary" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                    </div>
-                    <div class="table-responsive resultats mt-5">
-                        <table id="calendrier" class="table table-sm">
-                            <tbody id="resultAjaxCalendrier">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                {% include 'template/template-statistiques-calendrier.html.twig' %}
             </div>
         </div>
     </div>
@@ -170,32 +47,5 @@
 
 
 {% block javascripts %}
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script>
-        var equipeId = $( "#selectEquipe" ).val();
-        var getUrl = window.location;
-        var baseUrl = getUrl.protocol + "//" + getUrl.host + "/";
-        var route = baseUrl + 'get-calendrier-par-equipe/';
-        var categorie = '{{ competitionId }}';
-        $(document).ready( function () {
-            $('#loaderCalendrier').show();
-            refreshClassement(route, equipeId, categorie);
-            $('#selectEquipe').change(function () {
-                $('#loaderCalendrier').addClass('d-flex').removeClass('d-none');
-                equipeId = $( "#selectEquipe" ).val();
-                refreshClassement(route, equipeId,categorie);
-            })
-            function refreshClassement(route, equipeCourante, categorie){
-                $.ajax({
-                    url: route + equipeCourante + '/' + categorie,
-                    type: "GET",
-                    success: function(data){
-                        $('#loaderCalendrier').removeClass('d-flex');
-                        $('#loaderCalendrier').addClass('d-none');
-                        $("#resultAjaxCalendrier").html(data);
-                    }
-                });
-            }
-        });
-    </script>
+    <script type="text/javascript" src="{{ asset('build/statistiques.js') }}"></script>
 {% endblock %}

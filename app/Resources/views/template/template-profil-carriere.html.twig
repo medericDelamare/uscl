@@ -1,0 +1,26 @@
+<div class="table-responsive">
+    <table class="table text-center">
+        <thead>
+        <tr>
+            <td>Saison</td>
+            <td>Club</td>
+            <td>Catégorie</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for carriere in joueur.carriere %}
+            <tr>
+                <td>{{ carriere.saison }}</td>
+                <td>
+                    {% if carriere.club %}
+                        <img class='img-carriere' src="{{ asset('pictures/Logos/' ~ carriere.club.logo) }}"> {{ carriere.club.nom }}
+                    {% else %}
+                        {{ carriere.clubParse }}
+                    {% endif %}
+                </td>
+                <td>{{ carriere.SousCategorie }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,52 @@
+<div class="col-12 offset-md-2 col-md-8 p-0" >
+    <h3 class="text-center mt-2 mb-2">Classement {{ infosCompetition.name }}</h3>
+    <div class="table-responsive classement  {{ tableClass }}">
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Equipe</th>
+                <th scope="col">Pts</th>
+                <th scope="col">Jo</th>
+                <th scope="col">G</th>
+                <th scope="col">N</th>
+                <th scope="col">D</th>
+                <th scope="col">F</th>
+                <th scope="col">BP</th>
+                <th scope="col">BC</th>
+                <th scope="col">Diff</th>
+                <th scope="col">5 derniers matchs</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for equipe in classement.teams %}
+                <tr class="classement-tr">
+                    <td>{{ loop.index }}</td>
+                    <td>
+                        <img data-toggle="tooltip" data-placement="top" title="{{ equipe.name }}" class="img-club mr-md-4" src="{{ asset('pictures/Logos/' ~ equipe.clubId ~ '.png') }}">
+                        <span class="d-none d-lg-inline-block">{{ equipe.name|upper }}</span>
+                    </td>
+                    <td class="font-weight-bold">{{ equipe.rankingData.points }}</td>
+                    <td>{{ equipe.rankingData.journees }}</td>
+                    <td>{{ equipe.rankingData.victoires }}</td>
+                    <td>{{ equipe.rankingData.nuls }}</td>
+                    <td>{{ equipe.rankingData.defaites }}</td>
+                    <td>{{ equipe.rankingData.forfaits }}</td>
+                    <td>{{ equipe.rankingData.butsP }}</td>
+                    <td>{{ equipe.rankingData.butsC }}</td>
+                    <td>{{ equipe.rankingData.diff }}</td>
+                    <td class="td-derniers-matchs">
+                        <ul class="p-0 mt-3">
+                            <li class="result-li">
+                                {% for result in equipe.lastResults %}
+                                    <i class="fa fa-circle fa-circle-{{ result }}" aria-hidden="true"></i>
+                                {% endfor %}
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

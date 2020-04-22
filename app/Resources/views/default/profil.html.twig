@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    {{ include(':default:head.html.twig') }}
-
-    <header class="business-header business-header-buteurs">
+    <header class="business-header"
+            style="background: url({{ asset('pictures/buteurs.jpg') }}) center center no-repeat scroll;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -11,280 +10,56 @@
             </div>
         </div>
     </header>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item " aria-current="page"><a href="index.php">Accueil</a></li>
-            <li class="breadcrumb-item " aria-current="page">Profil</li>
-            <li class="breadcrumb-item active" aria-current="page">{{ joueur.nom }}  {{ joueur.prenom }}</li>
-        </ol>
-    </nav>
-
-    <div class="container zonePlay">
-        <div class="media">
-            <img class="image-profil" src="{{ joueur.photo }}" alt="{{ joueur.photo }}">
-            <div class="media-body ml-3">
+    <ul class="nav nav-pills scrollmenu" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="profil-tab" data-toggle="tab" href="#profil" role="tab"
+               aria-controls="profil" aria-selected="true">Profil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="carriere-tab" data-toggle="tab" href="#carriere" role="tab" aria-controls="carriere"
+               aria-selected="false">Carrière</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="fait-match-tab" data-toggle="tab" href="#fait-match" role="tab"
+               aria-controls="fait-match" aria-selected="false">Faits de match</a>
+        </li>
+    </ul>
+    <div class="tab-content mt-5" id="myTabContent">
+        <div class="tab-pane fade show active" id="profil" role="tabpanel" aria-labelledby="profil-tab">
+            <div class="container">
+                <h1 class="text-center m-4">Profil</h1>
+                {% include 'template/template-profil-default.html.twig' %}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="carriere" role="tabpanel" aria-labelledby="carriere-tab">
+            <div class="container p-0">
+                <h1 class="text-center m-4">Carrière</h1>
+                <div class="d-block d-md-none">
+                    {% for carriere in joueur.carriere %}
+                        {% include 'template/template-profil-carriere-mobile.html.twig' %}
+                    {% endfor %}
+                </div>
+                <div class="d-none d-md-block">
+                    {% include 'template/template-profil-carriere.html.twig' %}
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="fait-match" role="tabpanel" aria-labelledby="fait-match-tab">
+            <div class="container">
+                <h1 class="text-center m-4">Faits de match</h1>
                 <div class="row">
-                    <div class="col-md-4 col-12">
-                        <p class="text-white">{{ joueur.stats.poste }}</p>
-                        <hr class="bg-white">
-                        <p class="text-white">Né le {{ joueur.dateDeNaissance|date("d/m/Y") }} à {{ joueur.lieuDeNaissance }} ( {{ joueur.age }} ans )</p>
-                        <hr class="bg-white">
-                         <div class="row">
-                            <div class="col-6">
-                                <div class="text-white">Educateur :</div>
-                            </div>
-                            <div class="col-6">
-                                <div class="text-left">
-                                    {% if joueur.educateur %}
-                                        <i id="check-vert" class="fa fa-check fa-lg"></i>
-                                    {% else %}
-                                        <i id="croix-rouge" class="fa fa-times fa-lg" aria-hidden="true"></i>
-                                    {% endif %}
-                                </div>
-                            </div>
+                    {% for match,stat in stats %}
+                        <div class="col-12 col-md-6 col-lg-4 mb-3 col-card-fait-match">
+                            {% include 'template/template-profil-faits-match.html.twig' %}
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="text-white">Dirigeant :</div>
-                            </div>
-                            <div class="col-6">
-                                <div class="text-left">
-                                    {% if joueur.dirigeant %}
-                                        <i id="check-vert" class="fa fa-check fa-lg"></i>
-                                    {% else %}
-                                        <i id="croix-rouge" class="fa fa-times fa-lg" aria-hidden="true"></i>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-8 col-12">
-                        <div class="d-none d-md-block row saison-actuelle-profil text-center mb-3"><h4>Saison {{debut_annee}}-{{fin_annee}} avec l'USCL</h4></div>
-                        <div class="d-block d-md-none row saison-actuelle-profil text-center mt-3"><h4>2018/2019 :</h4></div>
-                        <div class="row stat">
-                            <div class="col-4 offset-md-1 col-md-2">
-                                <div class="milestone-counter">
-                                    <img src="{{ asset('pictures/icons/strategy.png') }}">
-                                    <span class="stat-count highlight counter">{{ joueur.statsRencontresJoueurs|length }}</span>
-                                    <div class="d-none d-md-block milestone-details">Matchs joués</div>
-                                </div>
-                            </div>
-                            <div class="col-4 col-md-2">
-                                <div class="milestone-counter">
-                                    <img src="{{ asset('pictures/icons/soccer-ball.png') }}">
-                                    <span class="stat-count highlight counter">{{ joueur.buts|length }}</span>
-                                    <div class="d-none d-md-block milestone-details">Buts</div>
-                                </div>
-                            </div>
-                            <div class="col-4 col-md-2">
-                                <div class="milestone-counter">
-                                    <img src="{{ asset('pictures/icons/soccer.png') }}">
-                                    <span class="stat-count highlight counter">{{ joueur.passes|length }}</span>
-                                    <div class="d-none d-md-block milestone-details">Passes Décisives</div>
-                                </div>
-                            </div>
-                            <div class="col-4 col-md-2">
-                                <div class="milestone-counter">
-                                    <img src="{{ asset('pictures/icons/yellow-card.png') }}">
-                                    <span class="stat-count highlight counter">{{ joueur.statsRencontresCartonsJaunes|length }}</span>
-                                    <div class="d-none d-md-block milestone-details">Cartons Jaunes</div>
-                                </div>
-                            </div>
-                            <div class="col-4 col-md-2">
-                                <div class="milestone-counter">
-                                    <img src="{{ asset('pictures/icons/red-card.png') }}">
-                                    <span class="stat-count highlight counter">{{ joueur.statsRencontresCartonsRouges|length }}</span>
-                                    <div class="d-none d-md-block milestone-details">Cartons Rouges</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="offset-sm-2 col-sm-8 offset-md-2 col-md-4">
-                <div class="card box-shadow">
-                    <div class="card-header">
-                        <h3>Statistiques rencontres</h3>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="myChart" height="200px"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="offset-sm-2 col-sm-8 offset-md-0 col-md-4">
-                <div class="card h-100 box-shadow">
-                    <div class="card-header">
-                        <h3>5 dernières rencontres</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-                            {% for result in lastResults %}
-                                {% for key, value in result %}
-                                    {% if key == 'N' %}
-                                        <span data-toggle="tooltip" data-placement="top" title="{{value}}" class="bg-n numberCircle d-flex align-items-center justify-content-center">{{ key }}</span>
-                                    {% elseif key == 'V' %}
-                                        <span data-toggle="tooltip" data-placement="top" title="{{value}}" class="bg-v numberCircle d-flex align-items-center justify-content-center">{{ key }}</span>
-                                    {% elseif key == 'D' %}
-                                        <span data-toggle="tooltip" data-placement="top" title="{{value}}" class="bg-d numberCircle d-flex align-items-center justify-content-center">{{ key }}</span>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endfor %}
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container mt-4">
-        <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-carriere" role="tab"
-                   aria-controls="pills-seniors" aria-selected="true">Carrière</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-faits-matchs" role="tab"
-                   aria-controls="pills-veterans" aria-selected="false">Faits de match</a>
-            </li>
-        </ul>
-
-        <div class="row">
-            <div class="tab-content col-12" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-carriere" role="tabpanel"
-                     aria-labelledby="pills-home-tab">
-                    <div class="col-12">
-                        <div class="table-responsive">
-                            <table class="table text-center">
-                                <thead>
-                                <tr>
-                                    <td>Saison</td>
-                                    <td>Club</td>
-                                    <td>Catégorie</td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for carriere in joueur.carriere %}
-                                    <tr>
-                                        <td>{{ carriere.saison }}</td>
-                                        <td>
-                                            {% if carriere.club %}
-                                                <img class='img-carriere'
-                                                     src="{{ asset('pictures/Logos/' ~ carriere.club.logo) }}"> - {{ carriere.club.nom }}
-                                            {% else %}
-                                                {{ carriere.clubParse }}
-                                            {% endif %}
-                                        </td>
-                                        <td>{{ carriere.SousCategorie }}</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade show" id="pills-faits-matchs" role="tabpanel"
-                     aria-labelledby="pills-home-tab">
-                    <div class="col-12">
-                        <div class="table-responsive">
-                        <table class="table" id="faits-match">
-                            <thead>
-                            <td>Date</td>
-                            <td>Fait de match</td>
-                            </thead>
-                            <tbody>
-                            {% for cartonsJaunes in joueur.statsRencontresCartonsJaunes%}
-                                <tr>
-                                    <td>{{ cartonsJaunes.rencontre.date|date("d/m/Y")  }}</td>
-                                    <td><img src="{{ asset('pictures/icons/yellow-card.png') }}"> A pris un carton jaune lors de <a href="{{ path('rencontre', {'id': cartonsJaunes.rencontre.id}) }}">{{ cartonsJaunes.rencontre  }}</a></td>
-                                </tr>
-                            {% endfor %}
-                            {% for cartonsRouges in joueur.statsRencontresCartonsRouges%}
-                                <tr>
-                                    <td>{{ cartonsRouges.rencontre.date|date("d/m/Y")  }}</td>
-                                    <td><img src="{{ asset('pictures/icons/red-card.png') }}"> A pris un carton rouge lors de <a href="{{ path('rencontre', {'id': cartonsRouges.rencontre.id}) }}">{{ cartonsRouges.rencontre  }}</a></td>
-                                </tr>
-                            {% endfor %}
-                            {% for rencontre in joueur.statsRencontresJoueurs %}
-                                <tr>
-                                    <td>{{ rencontre.rencontre.date|date("d/m/Y")  }}</td>
-                                    <td><img src="{{ asset('pictures/icons/strategy.png') }}"> A joué lors de <a href="{{ path('rencontre', {'id': rencontre.rencontre.id}) }}">{{ rencontre.rencontre  }}</a></td>
-                                </tr>
-                            {% endfor %}
-                            {% for but in joueur.buts%}
-                                <tr>
-                                    <td>{{ but.statsRencontres.rencontre.date|date("d/m/Y")  }}</td>
-                                    <td><img src="{{ asset('pictures/icons/soccer-ball.png') }}"> A marqué lors de <a href="{{ path('rencontre', {'id': but.statsRencontres.rencontre.id}) }}">{{ but.statsRencontres.rencontre  }}</a>{% if but.penalty %} sur penalty {% endif %}</td>
-                                </tr>
-                            {% endfor %}
-                            {% for passe in joueur.passes%}
-                                <tr>
-                                    <td>{{ passe.statsRencontres.rencontre.date|date("d/m/Y")  }}</td>
-                                    <td><img src="{{ asset('pictures/icons/soccer.png') }}"> A délivré une passe décisive lors de <a href="{{ path('rencontre', {'id': passe.statsRencontres.rencontre.id}) }}">{{ passe.statsRencontres.rencontre  }}</a></td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
 {% endblock %}
 
 {% block javascripts %}
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="//cdn.datatables.net/plug-ins/1.10.19/sorting/date-eu.js"></script>
-
-    <script>
-        $('.counter').each(function () {
-            $(this).prop('Counter', 0).animate({
-                Counter: $(this).text()
-            }, {
-                duration: 2000,
-                easing: 'swing',
-                step: function (now) {
-                    $(this).text(Math.ceil(now));
-                }
-            });
-        });
-    </script>
-
-    <script >
-        $('#faits-match').DataTable( {
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
-            },
-            "autoWidth": false,
-            "paging": false,
-            "bInfo" : false,
-            "searching" : false,
-            "order": [[ 0, "desc" ]],
-            columnDefs: [
-                {type: 'date-eu', targets: 0 }
-            ]
-        } );
-    </script>
-
-    <script>
-        var ctx = document.getElementById("myChart").getContext('2d');
-        var myDoughnutChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: {{ vnd|json_encode }},
-                backgroundColor: ['#b5e7a0', '#ffef96', '#eca1a6']
-                }],
-                labels:['Victoires', 'Nuls', 'Défaites'],
-            },
-        });
-
-    </script>
-
-
+    <script type="text/javascript" src="{{ asset('build/profil.js') }}"></script>
 {% endblock %}

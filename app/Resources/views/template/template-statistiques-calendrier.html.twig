@@ -1,0 +1,19 @@
+<div class="col-12 offset-md-2 col-md-8 p-0" >
+    <h3 class="text-center mt-2 mb-2">Calendrier {{ infosCompetition.name }}</h3>
+    <select class="form-control"  id="selectEquipe" data-competition-id="{{ competitionId }}">
+        {% for id, name in equipeListe %}
+            <option value={{ id }} data-href="{{ path('calendrier-par-equipe', {'equipe': id}) }}">{{ name }}</option>
+        {% endfor %}
+    </select>
+    <div id="loaderCalendrier" class="d-flex justify-content-center m-4">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div class="table-responsive resultats mt-5">
+        <table id="calendrier" class="table table-sm">
+            <tbody id="resultAjaxCalendrier">
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -43,8 +43,6 @@ class DefaultController extends Controller
             $nbLicencies[] = $stat->getNombreLicencies();
         }
 
-        $annees[] = $this->container->getParameter('debut_annee') . '/' . $this->container->getParameter('fin_annee');
-
         return $this->render('default/index.html.twig', [
             'weekGames' => $weekGames,
             'annees' => $annees,

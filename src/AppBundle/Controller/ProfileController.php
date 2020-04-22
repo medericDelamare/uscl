@@ -24,11 +24,9 @@ class ProfileController extends Controller
      * @Template()
      */
     public function profileShowAction($id){
-
+        $licencieService = $this->container->get('licencie.licencie_service');
         /** @var Licencie $joueur */
         $joueur = $this->getDoctrine()->getManager()->getRepository(Licencie::class)->find($id);
-
-
         $saisons = [];
         foreach ($joueur->getHistoriqueStats() as $historiqueStat){
             $saisons[] = $historiqueStat->getSaison();
@@ -38,11 +36,12 @@ class ProfileController extends Controller
         /** @var StatistiquesService $statistiquesService */
         $statistiquesService = $this->container->get('app.statistiques_service');
 
-        return $this->render(':default:profil.html.twig', [
+        return $this->render('default/profil.html.twig', [
             'joueur' => $joueur,
             'saisons' => $saisons,
             'vnd' => $statistiquesService->getStatistiquesRencontres($joueur),
-            'lastResults' => $statistiquesService->getLastFiveResultByPlayer($joueur)
+            'lastResults' => $statistiquesService->getLastFiveResultByPlayer($joueur),
+            'stats' => $licencieService->getStatistiquesRencontres($joueur)
         ]);
     }
 }

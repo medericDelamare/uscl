@@ -1,9 +1,9 @@
 <div class="tab-pane fade {% if id == 'pills-seniors' %}show active{% endif %}" id="{{id}}" role="tabpanel"
      aria-labelledby="pills-home-tab">
     <div class="col-12 offset-md-2 col-md-8 p-0">
-        <h2 class="text-center m-4">{{title}}</h2>
+        <h3 class="text-center mb-2 mt-2">{{title}}</h3>
         <div class="table-responsive">
-            <table class="table table-sm tableauButeur">
+            <table class="table table-sm tableau-buteur">
                 <thead>
                 <tr>
                     <th scope="col"></th>
@@ -15,8 +15,8 @@
                 <tbody>
                 {% for buteur in buteurs %}
                     {% if id == 'pills-veterans' %}
-                        <tr class="tr-buteurs">
-                            <td class="pl-4"><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nom }} {{ buteur.prenom }}</td>
+                        <tr>
+                            <td class="pl-4"><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nomComplet }}</td>
                             <td>{{ buteur.stats.butsVeteranChampionnat + buteur.stats.butsVeteranCoupe }}</td>
                             <td>{{ buteur.matchsVeteran|length }}</td>
                             {% if buteur.matchsVeteran|length > 0  %}
@@ -27,7 +27,8 @@
                         </tr>
                     {% else %}
                         <tr class="tr-buteurs">
-                            <td class="pl-4"><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nom }} {{ buteur.prenom }}</td>
+                            <td class="pl-4"><a href="{{ path('profile', {'id': buteur.id}) }}">{{ buteur.nomComplet }}</a>
+                            </td>
                             <td>{{ buteur.stats.butsA + buteur.stats.butsB + buteur.stats.butsCoupe }}</td>
                             <td>{{ buteur.statsRencontresJoueurs|length - buteur.matchsVeteran|length }}</td>
                             {% if buteur.statsRencontresJoueurs|length > 0  %}

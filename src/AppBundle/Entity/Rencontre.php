@@ -320,6 +320,22 @@ class Rencontre
         return $this;
     }
 
+    public function getNom(){
+        if ($this->getEquipeDomicile()){
+            $rencontre = $this->getEquipeDomicile()->getNomParse() . ' - ' . $this->getEquipeExterieure()->getNomParse();
+        }else{
+            $rencontre = 'rencontre';
+        }
+
+        return $rencontre;
+    }
+
+    public function getCategorie(){
+        $categoryFormat = ucfirst($this->getEquipeDomicile()->getCategorie());
+        $categoryFormat = preg_replace('/(?=(?<!^)[[:upper:]])/', ' ', $categoryFormat);
+        return  $categoryFormat;
+    }
+
     public function __toString()
     {
         if ($this->getEquipeDomicile()){
