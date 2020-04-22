@@ -161,6 +161,8 @@ class Licencie
      * @ORM\JoinColumn(nullable=true)
      */
     private $poste;
+    private $nbMatchs = 0;
+    private $nbButs = 0;
 
     public function __construct()
     {
@@ -663,6 +665,50 @@ class Licencie
     {
         $this->poste = $poste;
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbMatchs(): int
+    {
+        return $this->nbMatchs;
+    }
+
+    /**
+     * @param int $nbMatchs
+     * @return Licencie
+     */
+    public function setNbMatchs(int $nbMatchs): Licencie
+    {
+        $this->nbMatchs = $nbMatchs;
+        return $this;
+    }
+
+    public function incrementNbMatch(){
+        $this->nbMatchs ++;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbButs(): int
+    {
+        return $this->nbButs;
+    }
+
+    /**
+     * @param int $nbButs
+     * @return Licencie
+     */
+    public function setNbButs(int $nbButs): Licencie
+    {
+        $this->nbButs = $nbButs;
+        return $this;
+    }
+
+    public function incrementNbButs(){
+        $this->nbButs ++;
     }
 
     public function __toString()
