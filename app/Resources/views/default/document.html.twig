@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <header class="business-header business-header-document">
+    <header class="business-header" style="background: url({{ asset('pictures/documents.jpg') }}) center center no-repeat scroll;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -10,27 +10,27 @@
         </div>
     </header>
     <div class="container mt-4">
-        <h1 class="sous-titre">Documents</h1>
+        <h1 class="text-center mt-3 mb-3">Documents</h1>
         <div class="table-responsive">
             <table class="table">
                 <thead>
                     <tr>
                         <td>Nom</td>
-                        <td>Actions</td>
+                        <td class="text-right">Actions</td>
                     </tr>
                 </thead>
                 <tbody>
                     {% for file in files %}
                         <tr>
-                            <td>{{ file }}</td>
-                            <td>
-                                <a href="{{ path('document-download', {'nom': file, 'telecharger': false} ) }}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+                            <td class="align-middle">{{ file }}</td>
+                            <td class="text-right">
+                                <a href="{{ path('document-download', {'nom': file, 'telecharger': false} ) }}" target="_blank" class="btn btn-primary active" role="button" aria-pressed="true">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
-                                    Visualiser
+                                    <span class="d-none d-md-inline-block ">Visualiser</span>
                                 </a>
-                                <a href="{{ path('document-download', {'nom': file, 'telecharger': true} ) }}" target="_blank" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">
+                                <a href="{{ path('document-download', {'nom': file, 'telecharger': true} ) }}" target="_blank" class="btn btn-primary active" role="button" aria-pressed="true">
                                     <i class="fa fa-download" aria-hidden="true"></i>
-                                    Télécharger
+                                    <span class="d-none d-md-inline-block ">Télécharger</span>
                                 </a>
                             </td>
                         </tr>
