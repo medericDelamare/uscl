@@ -5,7 +5,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\But;
 use AppBundle\Entity\Joueur;
-use AppBundle\Entity\Licencie;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -61,7 +60,7 @@ class ButeursController extends Controller
             } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(), $this->categoriesVeteransA)) {
                 $buteur->getButeur()->getStats()->incrementButVeteranChampionnat();
                 $buteursVeterans[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
-            }  elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(), $this->categoriesVeteransCoupe)) {
+            } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(), $this->categoriesVeteransCoupe)) {
                 $buteur->getButeur()->getStats()->incrementButVeteranCoupe();
                 $buteursVeterans[$buteur->getButeur()->getNomComplet()] = $buteur->getButeur();
             } elseif (in_array($buteur->getStatsRencontres()->getRencontre()->getEquipeDomicile()->getCategorie(), $this->categoriesU18)) {
@@ -91,7 +90,7 @@ class ButeursController extends Controller
             }
         }
 
-        return $this->render(':default:buteurs.html.twig', [
+        return $this->render('default/buteurs.html.twig', [
             'seniors' => $buteursSenior,
             'seniorsF' => $buteursSeniorF,
             'veterans' => $buteursVeterans,

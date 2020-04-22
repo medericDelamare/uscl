@@ -1,0 +1,25 @@
+<div class="col-12 offset-md-2 col-md-8 p-0"  >
+    <h3 class="text-center mt-2 mb-2">Agenda {{ infosCompetition.name }}</h3>
+    <div class="table-responsive agenda">
+        <table class="table table-sm">
+            {% for agenda in agendas.events %}
+                <tr class="text-center header-result"><td colspan="4">{{ agenda.date|date("m/d/Y H:i") }}</td></tr>
+                <tr>
+                    <td>
+                        <img data-toggle="tooltip" data-placement="top" title="{{ agenda.teams[0].name }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ agenda.teams[0].clubId ~ '.png') }}">
+                        <span class="d-none d-lg-inline-block">{{ agenda.teams[0].name|upper }}</span>
+                    </td>
+                    {% if agenda.teams[0].score is not null %}
+                        <td class=" text-center score text-nowrap">{{ agenda.teams[0].score ~ '-' ~ agenda.teams[1].score }}</td>
+                    {% else %}
+                        <td class="text-center score text-nowrap font-weight-bold">VS</td>
+                    {% endif %}
+                    <td class="text-right">
+                        <span class="d-none d-lg-inline-block">{{ agenda.teams[1].name }}</span>
+                        <img data-toggle="tooltip" data-placement="top" title="{{ agenda.teams[1].name|upper }}" class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ agenda.teams[1].clubId ~ '.png') }}">
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>

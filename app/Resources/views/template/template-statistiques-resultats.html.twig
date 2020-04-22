@@ -1,0 +1,27 @@
+<div class="col-12 offset-md-2 col-md-8 p-0" >
+    <h3 class="text-center mt-2 mb-2">Résultats {{ infosCompetition.name }}</h3>
+    {% if rencontres is not null and rencontres.events|length > 0 %}
+        <div class="table-responsive resultats">
+            <table class="table table-sm">
+                {% for resultat in rencontres.events %}
+                    <tr class="text-center header-result"><td colspan="4">{{ resultat.date|date("m/d/Y H:i") }}</td></tr>
+                    <tr>
+                        <td>
+                            <img data-toggle="tooltip" data-placement="top" title="{{ resultat.teams[0].name }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ resultat.teams[0].clubId ~ '.png') }}">
+                            <span class="d-none d-lg-inline-block">{{ resultat.teams[0].name|upper }}</span>
+                        </td>
+                        {% if resultat.teams[0].score is not null %}
+                            <td class=" text-center score text-nowrap font-weight-bold">{{ resultat.teams[0].score ~ '-' ~ resultat.teams[1].score }}</td>
+                        {% else %}
+                            <td class="text-center score text-nowrap font-weight-bold">VS</td>
+                        {% endif %}
+                        <td class="text-right">
+                            <span class="d-none d-lg-inline-block">{{ resultat.teams[1].name|upper }}</span>
+                            <img data-toggle="tooltip" data-placement="top" title="{{ resultat.teams[1].name }}" class="img-carriere ml-4" src="{{ asset('pictures/Logos/' ~ resultat.teams[1].clubId ~ '.png') }}">
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+</div>

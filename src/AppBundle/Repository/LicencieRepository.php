@@ -43,7 +43,5 @@ class LicencieRepository extends EntityRepository
             ->setParameters(['day'=>$now->format('d'), 'month' => $now->format('m')])
             ->getQuery()
             ->getResult();
-
-
     }
 }
