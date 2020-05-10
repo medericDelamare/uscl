@@ -7,6 +7,7 @@ namespace AppBundle\Service\Licencie;
 use AppBundle\Entity\But;
 use AppBundle\Entity\Licencie;
 use AppBundle\Entity\StatsRencontre;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -135,6 +136,19 @@ class LicencieService
             }
         }
 
+        $buteurs = new ArrayCollection($buteurs);
+        $buteurs = $this->orderByNbButs($buteurs);
+
         return $buteurs;
+    }
+
+    private function orderByNbButs(ArrayCollection $buteurs){
+        $iterator = $buteurs->getIterator();
+
+        $iterator->uasort(function ($first, $second) {
+            return (int) $first["nb_buts"] < (int) $second["nb_buts"] ? 1 : -1;
+        });
+
+        return $iterator;
     }
 }
