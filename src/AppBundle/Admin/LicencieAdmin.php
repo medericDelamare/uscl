@@ -75,34 +75,9 @@ class LicencieAdmin extends AbstractAdmin
                         'label' => 'Catégorie',
                         'disabled'  => true,
                     ])
-                    ->add('stats.poste', 'entity', [
+                    ->add('poste', 'entity', [
                         'label' => 'Poste',
                         'class' => Poste::class
-                    ])
-                    ->add('stats.nbMatchs', null, [
-                        'label' => 'Nombre de matchs joués'
-                    ])
-                    ->add('stats.butsA', null, [
-                        'label' => 'Buts en équipes première'
-                    ])
-                    ->add('stats.butsB', null, [
-                        'label' => 'Buts en équipe reserve'
-                    ])
-                    ->add('stats.butsCoupe', null, [
-                        'label' => 'Buts en coupe'
-                    ])
-                    ->add('stats.cartonsJaunes', null, [
-                        'label' => 'Cartons jaunes'
-                    ])
-                    ->add('stats.cartonsRouges', null, [
-                        'label' => 'Cartons rouges'
-                    ])
-                    ->add('stats.buts', null, [
-                        'label' => 'Total de buts'
-                    ])
-                    ->add('stats.passes', null, [
-                        'label' => 'Passes',
-                        'disabled'  => true,
                     ])
                 ->end()
             ->end()
@@ -126,7 +101,7 @@ class LicencieAdmin extends AbstractAdmin
         $datagridMapper
             ->add('nom')
             ->add('prenom')
-            ->add('stats.poste')
+            ->add('poste')
             ->add('categorie');
     }
 
@@ -136,7 +111,7 @@ class LicencieAdmin extends AbstractAdmin
             ->addIdentifier('nom')
             ->add('prenom')
             ->add('categorie')
-            ->add('stats.poste')
+            ->add('poste')
             ->add('numeroLicence');
     }
 }
