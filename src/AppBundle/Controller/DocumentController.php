@@ -41,7 +41,7 @@ class DocumentController extends Controller
      */
     public function downloadAction($nom, $telecharger = false)
     {
-        $path = $this->get('kernel')->getRootDir() . '/Resources/documents/' . $nom;
+        $path = $this->get('kernel')->getRootDir() . '/Resources/Documents/' . $nom;
 
         $response = new BinaryFileResponse($path);
 
