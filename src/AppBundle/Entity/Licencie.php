@@ -488,8 +488,8 @@ class Licencie
     {
         return $this->statsRencontresJoueurs->filter(function(StatsRencontre $statsRencontre) {
             return
-                $statsRencontre->getRencontre()->getDate() > \DateTime::createFromFormat('Y-m-d', '2019-06-15') &&
-                $statsRencontre->getRencontre()->getDate() < \DateTime::createFromFormat('Y-m-d', '2020-06-15') ;
+                $statsRencontre->getRencontre()->getDate() > \DateTime::createFromFormat('Y-m-d', '2020-06-15') &&
+                $statsRencontre->getRencontre()->getDate() < \DateTime::createFromFormat('Y-m-d', '2021-06-15') ;
         });
     }
 
@@ -510,8 +510,8 @@ class Licencie
     {
         return $this->statsRencontresCartonsJaunes->filter(function(StatsRencontre $statsRencontre) {
             return
-                $statsRencontre->getRencontre()->getDate() > \DateTime::createFromFormat('Y-m-d', '2019-06-15') &&
-                $statsRencontre->getRencontre()->getDate() < \DateTime::createFromFormat('Y-m-d', '2020-06-15') ;
+                $statsRencontre->getRencontre()->getDate() > \DateTime::createFromFormat('Y-m-d', '2020-06-15') &&
+                $statsRencontre->getRencontre()->getDate() < \DateTime::createFromFormat('Y-m-d', '2021-06-15') ;
         });
     }
 
@@ -532,8 +532,8 @@ class Licencie
     {
         return $this->statsRencontresCartonsRouges->filter(function(StatsRencontre $statsRencontre) {
             return
-                $statsRencontre->getRencontre()->getDate() > \DateTime::createFromFormat('Y-m-d', '2019-06-15') &&
-                $statsRencontre->getRencontre()->getDate() < \DateTime::createFromFormat('Y-m-d', '2020-06-15') ;
+                $statsRencontre->getRencontre()->getDate() > \DateTime::createFromFormat('Y-m-d', '2020-06-15') &&
+                $statsRencontre->getRencontre()->getDate() < \DateTime::createFromFormat('Y-m-d', '2021-06-15') ;
         });
     }
 
@@ -558,8 +558,8 @@ class Licencie
     {
         return $this->buts->filter(function(But $but) {
             return
-                $but->getStatsRencontres()->getRencontre()->getDate() > \DateTime::createFromFormat('Y-m-d', '2019-06-15') &&
-                $but->getStatsRencontres()->getRencontre()->getDate() < \DateTime::createFromFormat('Y-m-d', '2020-06-15') ;
+                $but->getStatsRencontres()->getRencontre()->getDate() > \DateTime::createFromFormat('Y-m-d', '2020-06-15') &&
+                $but->getStatsRencontres()->getRencontre()->getDate() < \DateTime::createFromFormat('Y-m-d', '2021-06-15') ;
         });
     }
 
@@ -580,8 +580,8 @@ class Licencie
     {
         return $this->passes->filter(function(But $but) {
             return
-                $but->getStatsRencontres()->getRencontre()->getDate() > \DateTime::createFromFormat('Y-m-d', '2019-06-15') &&
-                $but->getStatsRencontres()->getRencontre()->getDate() < \DateTime::createFromFormat('Y-m-d', '2020-06-15') ;
+                $but->getStatsRencontres()->getRencontre()->getDate() > \DateTime::createFromFormat('Y-m-d', '2020-06-15') &&
+                $but->getStatsRencontres()->getRencontre()->getDate() < \DateTime::createFromFormat('Y-m-d', '2021-06-15') ;
         });
     }
 

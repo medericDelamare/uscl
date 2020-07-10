@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: delamare
- * Date: 08/09/2019
- * Time: 21:48
- */
 
 namespace AppBundle\Service\Scorenco;
 
