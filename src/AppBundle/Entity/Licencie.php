@@ -652,7 +652,7 @@ class Licencie
     /**
      * @return string
      */
-    public function getPoste(): string
+    public function getPoste()
     {
         return $this->poste;
     }
@@ -661,7 +661,7 @@ class Licencie
      * @param string $poste
      * @return Licencie
      */
-    public function setPoste(string $poste): Licencie
+    public function setPoste($poste)
     {
         $this->poste = $poste;
         return $this;
@@ -670,7 +670,7 @@ class Licencie
     /**
      * @return int
      */
-    public function getNbMatchs(): int
+    public function getNbMatchs()
     {
         return $this->nbMatchs;
     }
@@ -679,7 +679,7 @@ class Licencie
      * @param int $nbMatchs
      * @return Licencie
      */
-    public function setNbMatchs(int $nbMatchs): Licencie
+    public function setNbMatchs($nbMatchs)
     {
         $this->nbMatchs = $nbMatchs;
         return $this;
@@ -692,7 +692,7 @@ class Licencie
     /**
      * @return int
      */
-    public function getNbButs(): int
+    public function getNbButs()
     {
         return $this->nbButs;
     }
@@ -701,7 +701,7 @@ class Licencie
      * @param int $nbButs
      * @return Licencie
      */
-    public function setNbButs(int $nbButs): Licencie
+    public function setNbButs($nbButs)
     {
         $this->nbButs = $nbButs;
         return $this;
