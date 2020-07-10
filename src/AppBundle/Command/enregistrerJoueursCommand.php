@@ -22,8 +22,6 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
     private $logs = [];
 
     const NUMERO_CLUB = '550717';
-    const START_SEASON = '2019';
-
 
     protected function configure()
     {
@@ -200,7 +198,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
     }
 
     private function isSaisonCourante($licence){
-        if (substr($licence['startSeason'],0,4) == self::START_SEASON){
+        if (substr($licence['startSeason'],0,4) == $this->getContainer()->getParameter('date_debut')){
             return true;
         }
 
