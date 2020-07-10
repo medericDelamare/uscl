@@ -16,21 +16,30 @@ class StatsRencontreAdmin extends AbstractAdmin
 {
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $container = $this->getConfigurationPool()->getContainer();
+
+        $debutDate = $container->getParameter('debut_annee') . '-06-15';
+        $finDate = $container->getParameter('fin_annee') . '-06-15';
+
         if ($this->isCurrentRoute('create')) {
             $formMapper
                 ->add('rencontre', EntityType::class,[
                     'label' => 'Rencontre',
                     'class' => Rencontre::class,
-                    'query_builder' => function (EntityRepository $er) {
+                    'query_builder' => function (EntityRepository $er) use ($debutDate, $finDate) {
 
                         return $er->createQueryBuilder('r')
                             ->join(Equipe::class, 'ed', 'WITH', 'ed.id = r.equipeDomicile')
                             ->join(Equipe::class, 'ee', 'WITH', 'ee.id = r.equipeExterieure')
                             ->leftJoin(StatsRencontre::class, 'sr', 'WITH', 'sr.rencontre = r.id')
                             ->where('ed.club = 1 OR ee.club = 1')
-                            ->andWhere('r.date > \'2019-06-15\'')
-                            ->andWhere('r.date < \'2020-06-15\'')
+                            ->andWhere('r.date > :debutDate')
+                            ->andWhere('r.date < :finDate')
                             ->andWhere('sr.rencontre IS NULL')
+                            ->setParameters([
+                                'debutDate' => $debutDate,
+                                'finDate' => $finDate
+                            ])
                             ;
 
 
@@ -42,14 +51,18 @@ class StatsRencontreAdmin extends AbstractAdmin
                 ->add('rencontre', EntityType::class,[
                     'label' => 'Rencontre',
                     'class' => Rencontre::class,
-                    'query_builder' => function (EntityRepository $er) {
+                    'query_builder' => function (EntityRepository $er) use ($debutDate, $finDate) {
 
                         return $er->createQueryBuilder('r')
                             ->join(Equipe::class, 'ed', 'WITH', 'ed.id = r.equipeDomicile')
                             ->join(Equipe::class, 'ee', 'WITH', 'ee.id = r.equipeExterieure')
                             ->where('ed.club = 1 OR ee.club = 1')
-                            ->andWhere('r.date > \'2019-06-15\'')
-                            ->andWhere('r.date < \'2020-06-15\'')
+                            ->andWhere('r.date > :debutDate')
+                            ->andWhere('r.date < :finDate')
+                            ->setParameters([
+                                'debutDate' => $debutDate,
+                                'finDate' => $finDate
+                            ])
                             ;
 
 
