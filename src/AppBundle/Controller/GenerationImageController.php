@@ -46,7 +46,7 @@ class GenerationImageController extends Controller
         $categorie = preg_replace('/(?=(?<!^)[[:upper:]])/', ' ', $categorie);
 
 
-        $pathToSave = 'C:\wamp64\www\USCL\app\Resources\Documents\Resultats-images\\' .
+        $pathToSave = '/home/mdelamare/www/USCL/app/Resources/Documents/Resultats-images/' .
             $rencontre->getEquipeDomicile()->getCategorie() .
             '\\' .
             str_replace(' ', '', $rencontre->getEquipeDomicile()->getNomParse()) .
