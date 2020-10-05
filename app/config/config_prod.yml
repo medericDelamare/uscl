@@ -19,3 +19,9 @@ monolog:
             level: debug
         console:
             type: console
+
+knp_snappy:
+    image:
+        enabled:    true
+        binary:     /usr/local/bin/wkhtmltoimage
+        options:    []
