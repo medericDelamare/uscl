@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class SaveRencontresCommand extends ContainerAwareCommand
 {
@@ -27,6 +28,7 @@ class SaveRencontresCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $io = new SymfonyStyle($input, $output);
         $scorencoService = $this->getContainer()->get('scorenco.scorenco_service');
         $doctrine = $this->getContainer()->get('doctrine');
         /** @var EntityManager $em */
@@ -83,11 +85,16 @@ class SaveRencontresCommand extends ContainerAwareCommand
                         $rencontre->setScoreExt($teamExt->getScore());
                     }
 
+                    $io->text($rencontre . ' - '. $rencontre->getDate()->format('d/m/y'));
+
                     $em->persist($rencontre);
                     $em->flush();
                 }
             }
         }
+        $categoryFormat = ucfirst($categorie);
+        $categoryFormat = preg_replace('/(?=(?<!^)[[:upper:]])/', ' ', $categoryFormat);
+        $io->success('Sauvegarde des  rencontres des "' . $categoryFormat  .'" réussies');
     }
 
     private function getDate($scorencoDate)

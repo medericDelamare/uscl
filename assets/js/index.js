@@ -68,13 +68,19 @@ $(document).ready(function(){
             {
                 start: '19:00',
                 end: '21:00',
-                dow: [3, 5],
+                dow: [4],
                 backgroundColor: '#0050a1'
             },
             {
                 start: '17:00',
                 end: '19:00',
                 dow: [4],
+                backgroundColor: '#4CA66B'
+            },
+            {
+                start: '17:00',
+                end: '19:00',
+                dow: [3],
                 backgroundColor: '#4CA66B'
             },
             {
@@ -110,7 +116,7 @@ $(document).ready(function(){
             {
                 start: '19:00',
                 end: '21:00',
-                dow: [4],
+                dow: [5],
                 backgroundColor: '#8A2BE2'
             }
         ]
