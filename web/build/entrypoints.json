@@ -2,41 +2,41 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.cf4317a3.js",
-        "/build/app.367b309d.js"
+        "/build/runtime.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/app.5c0b0ba4.css"
+        "/build/app.css"
       ]
     },
     "base": {
       "js": [
-        "/build/runtime.cf4317a3.js",
-        "/build/base.61065247.js"
+        "/build/runtime.js",
+        "/build/base.js"
       ]
     },
     "index": {
       "js": [
-        "/build/runtime.cf4317a3.js",
-        "/build/index.b5e9425e.js"
+        "/build/runtime.js",
+        "/build/index.js"
       ]
     },
     "profil": {
       "js": [
-        "/build/runtime.cf4317a3.js",
-        "/build/profil.ceae0ae5.js"
+        "/build/runtime.js",
+        "/build/profil.js"
       ]
     },
     "statistiques": {
       "js": [
-        "/build/runtime.cf4317a3.js",
-        "/build/statistiques.5facba72.js"
+        "/build/runtime.js",
+        "/build/statistiques.js"
       ]
     },
     "buteurs": {
       "js": [
-        "/build/runtime.cf4317a3.js",
-        "/build/buteurs.fad12093.js"
+        "/build/runtime.js",
+        "/build/buteurs.js"
       ]
     }
   }
