@@ -39,41 +39,32 @@ class LicencieAdmin extends AbstractAdmin
                 ->with('Informations Personelles', ['class' => 'col-md-6'])
                     ->add('nom', null, [
                         'label' => 'Nom',
-                        'disabled'  => true,
                         ])
                     ->add('prenom', null, [
                         'label' => 'Prenom',
-                        'disabled'  => true,
                     ])
                     ->add('email', null, [
                         'label' => 'Email',
-                        'disabled'  => true,
                     ])
                     ->add('telephoneDomicile', null, [
                         'label' => 'Téléphone domicile',
-                        'disabled'  => true,
                     ])
                     ->add('telephonePortable', null, [
                         'label' => 'Numéro de portable',
-                        'disabled'  => true,
                     ])
                     ->add('dateDeNaissance', 'sonata_type_date_picker', [
                         'label' => 'Date de naissance',
-                        'disabled'  => true,
                     ])
                     ->add('lieuDeNaissance', null, [
                         'label' => 'Lieu de Naissance',
-                        'disabled'  => true,
                     ])
                     ->add('numeroLicence', null, [
                         'label' => 'Numéro de Licence',
-                        'disabled'  => true,
                     ])
                 ->end()
                 ->with('Statistiques', ['class' => 'col-md-6'])
                     ->add('categorie', null, [
                         'label' => 'Catégorie',
-                        'disabled'  => true,
                     ])
                     ->add('poste', 'entity', [
                         'label' => 'Poste',
