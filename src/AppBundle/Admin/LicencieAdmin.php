@@ -4,7 +4,9 @@
 namespace AppBundle\Admin;
 
 
+use AppBundle\Entity\Licencie;
 use AppBundle\Entity\Poste;
+use AppBundle\Entity\User;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -70,30 +72,40 @@ class LicencieAdmin extends AbstractAdmin
                         'label' => 'Poste',
                         'class' => Poste::class
                     ])
+                    ->add('joueur')
+                    ->add('dirigeant')
+                    ->add('educateur')
                 ->end()
             ->end()
-            ->tab('historique')
-                ->add('historiqueStats', 'sonata_type_collection', [
-                    'by_reference' => false,
-                    'label' => false,
-                    'btn_add' => 'Ajouter une année'
-                ],[
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                ])
-            ->end()
-
         ;
+
+    }
+
+    /**
+     * @param Licencie $user
+     */
+    public function preValidate($user)
+    {
+        parent::preValidate($user);
+        $user->setNationalite("Française");
 
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nom')
-            ->add('prenom')
-            ->add('poste')
-            ->add('categorie');
+            ->add('nom', null, [
+                'show_filter' => true
+            ])
+            ->add('prenom', null, [
+                'show_filter' => true
+            ])
+            ->add('poste', null, [
+                'show_filter' => true
+            ])
+            ->add('categorie', null, [
+                'show_filter' => true
+            ]);
     }
 
     protected function configureListFields(ListMapper $listMapper)
