@@ -8,10 +8,19 @@ use AppBundle\Repository\LicencieRepository;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class BureauAdmin extends AbstractAdmin
 {
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        parent::configureRoutes($collection);
+        $collection->remove('delete');
+        $collection->remove('create');
+        $collection->remove('export');
+    }
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -92,7 +101,7 @@ class BureauAdmin extends AbstractAdmin
                         ->where('l.dirigeant = true');
                 }
             ])
-            ->add('responsabeU15', EntityType::class,[
+            ->add('responsableU15', EntityType::class,[
                 'class' => Licencie::class,
                 'query_builder' => function(LicencieRepository $er) {
                     return $er->createQueryBuilder('l')
@@ -133,7 +142,9 @@ class BureauAdmin extends AbstractAdmin
     {
 
         $listMapper
-            ->add('president')
+
+            ->addIdentifier('id')
+            ->add('president', TextType::class)
             ->add('vicePresident')
             ->add('vicePresident2')
             ->add('vicePresident3')
