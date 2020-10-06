@@ -4,7 +4,9 @@
 namespace AppBundle\Admin;
 
 
+use AppBundle\Entity\Licencie;
 use AppBundle\Entity\Poste;
+use AppBundle\Entity\User;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -39,70 +41,71 @@ class LicencieAdmin extends AbstractAdmin
                 ->with('Informations Personelles', ['class' => 'col-md-6'])
                     ->add('nom', null, [
                         'label' => 'Nom',
-                        'disabled'  => true,
                         ])
                     ->add('prenom', null, [
                         'label' => 'Prenom',
-                        'disabled'  => true,
                     ])
                     ->add('email', null, [
                         'label' => 'Email',
-                        'disabled'  => true,
                     ])
                     ->add('telephoneDomicile', null, [
                         'label' => 'Téléphone domicile',
-                        'disabled'  => true,
                     ])
                     ->add('telephonePortable', null, [
                         'label' => 'Numéro de portable',
-                        'disabled'  => true,
                     ])
                     ->add('dateDeNaissance', 'sonata_type_date_picker', [
                         'label' => 'Date de naissance',
-                        'disabled'  => true,
                     ])
                     ->add('lieuDeNaissance', null, [
                         'label' => 'Lieu de Naissance',
-                        'disabled'  => true,
                     ])
                     ->add('numeroLicence', null, [
                         'label' => 'Numéro de Licence',
-                        'disabled'  => true,
                     ])
                 ->end()
                 ->with('Statistiques', ['class' => 'col-md-6'])
                     ->add('categorie', null, [
                         'label' => 'Catégorie',
-                        'disabled'  => true,
                     ])
                     ->add('poste', 'entity', [
                         'label' => 'Poste',
                         'class' => Poste::class
                     ])
+                    ->add('joueur')
+                    ->add('dirigeant')
+                    ->add('educateur')
                 ->end()
             ->end()
-            ->tab('historique')
-                ->add('historiqueStats', 'sonata_type_collection', [
-                    'by_reference' => false,
-                    'label' => false,
-                    'btn_add' => 'Ajouter une année'
-                ],[
-                    'edit' => 'inline',
-                    'inline' => 'table',
-                ])
-            ->end()
-
         ;
+
+    }
+
+    /**
+     * @param Licencie $user
+     */
+    public function preValidate($user)
+    {
+        parent::preValidate($user);
+        $user->setNationalite("Française");
 
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nom')
-            ->add('prenom')
-            ->add('poste')
-            ->add('categorie');
+            ->add('nom', null, [
+                'show_filter' => true
+            ])
+            ->add('prenom', null, [
+                'show_filter' => true
+            ])
+            ->add('poste', null, [
+                'show_filter' => true
+            ])
+            ->add('categorie', null, [
+                'show_filter' => true
+            ]);
     }
 
     protected function configureListFields(ListMapper $listMapper)
