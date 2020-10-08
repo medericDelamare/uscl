@@ -1,5 +1,5 @@
 {% for calendrierDetail in equipes %}
-    <tr class="text-center header-result"><td colspan="4">{{ calendrierDetail.date|date("m/d/Y H:i") }}</td></tr>
+    <tr class="text-center header-result"><td colspan="4">{{ calendrierDetail.date|date("d/m/Y H:i") }}</td></tr>
     <tr class="align-middle">
         <td>
             <img data-toggle="tooltip" data-placement="top" title="{{ calendrierDetail.teams[0].name }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ calendrierDetail.teams[0].clubId ~ '.png') }}">

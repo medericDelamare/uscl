@@ -4,7 +4,7 @@
         <div class="table-responsive resultats">
             <table class="table table-sm">
                 {% for resultat in rencontres.events %}
-                    <tr class="text-center header-result"><td colspan="4">{{ resultat.date|date("m/d/Y H:i") }}</td></tr>
+                    <tr class="text-center header-result"><td colspan="4">{{ resultat.date|date("d/m/Y H:i") }}</td></tr>
                     <tr>
                         <td>
                             <img data-toggle="tooltip" data-placement="top" title="{{ resultat.teams[0].name }}" class="img-carriere mr-4" src="{{ asset('pictures/Logos/' ~ resultat.teams[0].clubId ~ '.png') }}">
