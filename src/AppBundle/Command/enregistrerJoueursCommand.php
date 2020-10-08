@@ -5,12 +5,10 @@ namespace AppBundle\Command;
 
 
 use AppBundle\Entity\CarriereJoueur;
-use AppBundle\Entity\Categorie;
 use AppBundle\Entity\Licencie;
 use AppBundle\Entity\NomParse;
 use AppBundle\Entity\SousCategorie;
 use AppBundle\Entity\StatsJoueur;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -22,6 +20,8 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
     private $logs = [];
 
     const NUMERO_CLUB = '550717';
+    const START_SEASON = '2020';
+
 
     protected function configure()
     {
@@ -33,16 +33,9 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $now = new \DateTime();
-        $output->writeln('<comment>End : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
-        /*$curl_request = curl_init("https://fff-api.les-glandeurs.ovh/api/users/2018");
+        $output->writeln('<comment>Start : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
 
-        curl_setopt($curl_request, CURLOPT_HEADER, 0);
-        curl_setopt($curl_request, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl_request,CURLOPT_SSL_VERIFYPEER, false);
-
-        $result = curl_exec($curl_request);
-        curl_close($curl_request);*/
-        $json_data = file_get_contents($this->getContainer()->get('kernel')->getRootDir() . '/Resources/Documents/LicenciesJson/licencies-2019-09-10.json');
+        $json_data = file_get_contents($this->getContainer()->get('kernel')->getRootDir() . '/Resources/Documents/LicenciesJson/licencies-2020-10-08.json');
 
 
         $data = json_decode($json_data, true);
@@ -54,25 +47,25 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
 
         foreach ($data as $joueur) {
-            if ($this->hasLicenceValide($joueur['permits'])){
+            if ($this->hasLicenceValide($joueur['permits'])) {
                 $doctrine = $this->getContainer()->get('doctrine');
                 /** @var EntityManager $em */
                 $em = $doctrine->getManager();
 
-                if (!$licencie = $em->getRepository(Licencie::class)->findOneByNumeroLicence((integer)$joueur['id'])){
+                if (!$licencie = $em->getRepository(Licencie::class)->findOneByNumeroLicence((integer)$joueur['id'])) {
                     $licencie = new Licencie();
                 }
 
-                $licencie->getId() ? $nbMaj ++ : $nbCreation ++;
+                $licencie->getId() ? $nbMaj++ : $nbCreation++;
 
-                $simpleDate = explode('T',$joueur['birthday']['date']);
+                $simpleDate = explode('T', $joueur['birthday']['date']);
 
-                array_key_exists('Mobile personnel', $joueur['contacts']) ? $mobile = $joueur['contacts']['Mobile personnel'][0] :$mobile = null;
+                array_key_exists('Mobile personnel', $joueur['contacts']) ? $mobile = $joueur['contacts']['Mobile personnel'][0] : $mobile = null;
                 array_key_exists('Email principal', $joueur['contacts']) ? $email = $joueur['contacts']['Email principal'][0] : $email = null;
                 array_key_exists('Téléphone domicile', $joueur['contacts']) ? $fixe = $joueur['contacts']['Téléphone domicile'][0] : $fixe = null;
 
 
-                if ($this->getCategorie($joueur) != null && !$sousCategorie = $em->getRepository(SousCategorie::class)->findOneByNom($this->getCategorie($joueur))){
+                if ($this->getCategorie($joueur) != null && !$sousCategorie = $em->getRepository(SousCategorie::class)->findOneByNom($this->getCategorie($joueur))) {
                     $sousCategorie = new SousCategorie();
                     $sousCategorie->setNom($this->getCategorie($joueur));
                     $em->persist($sousCategorie);
@@ -96,7 +89,7 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
                     ->setDirigeant($this->isDirigeant($joueur))
                     ->setEducateur($this->isEducateur($joueur));
 
-                foreach ($licencie->getCarriere() as $carriereJoueur){
+                foreach ($licencie->getCarriere() as $carriereJoueur) {
                     $em->remove($carriereJoueur);
                 }
 
@@ -104,12 +97,12 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
                 $carriereParSaison = [];
 
-                foreach ($joueur['permits'] as $licence){
-                    $carriereParSaison[substr($licence['startSeason'],0,4) . '-' . substr($licence['endSeason'],0,4)][$licence['club']['name']][]=$licence['subCategory'];
+                foreach ($joueur['permits'] as $licence) {
+                    $carriereParSaison[substr($licence['startSeason'], 0, 4) . '-' . substr($licence['endSeason'], 0, 4)][$licence['club']['name']][] = $licence['subCategory'];
                 }
 
-                foreach ($carriereParSaison as $annee => $clubArray){
-                    foreach ($clubArray as $club => $categArray){
+                foreach ($carriereParSaison as $annee => $clubArray) {
+                    foreach ($clubArray as $club => $categArray) {
                         $carriere = new CarriereJoueur();
 
                         $carriere->setSaison($annee);
@@ -118,18 +111,13 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
                         is_null($entityClub) ? $this->logs[] = $club : $carriere->setClub($entityClub->getClub());
 
                         $carriere->setClubParse($club);
-                        foreach ($categArray as $key => $categ){
-                            $carriere->getSousCategorie() ? $carriere->setSousCategorie($carriere->getSousCategorie() . ' - '  . $categ) : $carriere->setSousCategorie($categ);
+                        foreach ($categArray as $key => $categ) {
+                            $carriere->getSousCategorie() ? $carriere->setSousCategorie($carriere->getSousCategorie() . ' - ' . $categ) : $carriere->setSousCategorie($categ);
                         }
                         $licencie->addCarriere($carriere);
                     }
                 }
 
-                if ($licencie->isJoueur() && !$licencie->getStats()){
-                    $stats = new StatsJoueur();
-                    $licencie->setStats($stats);
-                }
-                
                 $em->persist($licencie);
                 $em->flush();
             }
@@ -137,15 +125,16 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
 
 
         dump(array_unique($this->logs));
-        $output->writeln('<comment>Il y a ' . $nbCreation . ' créations et '. $nbMaj .' MAJ ---</comment>');
+        $output->writeln('<comment>Il y a ' . $nbCreation . ' créations et ' . $nbMaj . ' MAJ ---</comment>');
 
         $now = new \DateTime();
         $output->writeln('<comment>End : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
     }
 
-    private function isJoueur($joueur){
-        foreach ($joueur['permits'] as $licence){
-            if ($this->isValidee($licence) && $this->isSaisonCourante($licence) && $this->isCormeillesId($licence) && strpos($licence['subCategory'],'Libre') !== false){
+    private function isJoueur($joueur)
+    {
+        foreach ($joueur['permits'] as $licence) {
+            if ($this->isValidee($licence) && $this->isSaisonCourante($licence) && $this->isCormeillesId($licence) && strpos($licence['subCategory'], 'Libre') !== false) {
                 return true;
             }
         }
@@ -153,9 +142,10 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
         return false;
     }
 
-    private function isDirigeant($joueur){
-        foreach ($joueur['permits'] as $licence){
-            if ($this->isValidee($licence) && $this->isSaisonCourante($licence) && $this->isCormeillesId($licence) && strpos($licence['subCategory'],'Dirigeant') !== false ){
+    private function isDirigeant($joueur)
+    {
+        foreach ($joueur['permits'] as $licence) {
+            if ($this->isValidee($licence) && $this->isSaisonCourante($licence) && $this->isCormeillesId($licence) && strpos($licence['subCategory'], 'Dirigeant') !== false) {
                 return true;
             }
         }
@@ -163,9 +153,10 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
         return false;
     }
 
-    private function isEducateur($joueur){
-        foreach ($joueur['permits'] as $licence){
-            if ($this->isValidee($licence) && $this->isSaisonCourante($licence) &&  $this->isCormeillesId($licence) && strpos($licence['subCategory'],'Educateur') !== false ){
+    private function isEducateur($joueur)
+    {
+        foreach ($joueur['permits'] as $licence) {
+            if ($this->isValidee($licence) && $this->isSaisonCourante($licence) && $this->isCormeillesId($licence) && strpos($licence['subCategory'], 'Educateur') !== false) {
                 return true;
             }
         }
@@ -173,41 +164,46 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
         return false;
     }
 
-    private function getCategorie($joueur){
-        foreach ($joueur['permits'] as $licence){
-            if ($this->getContainer()->getParameter('debut_annee') ==  substr($licence['startSeason'],0,4) && strpos($licence['subCategory'],'Libre') !== false){
+    private function getCategorie($joueur)
+    {
+        foreach ($joueur['permits'] as $licence) {
+            if ($this->getContainer()->getParameter('debut_annee') == substr($licence['startSeason'], 0, 4) && strpos($licence['subCategory'], 'Libre') !== false) {
                 return $licence['subCategory'];
             }
         }
     }
 
-    private function isValidee($licence){
-        if ($licence['state'] == 'Validée'){
+    private function isValidee($licence)
+    {
+        if ($licence['state'] == 'Validée') {
             return true;
         }
 
         return false;
     }
 
-    private function isCormeillesId($licence){
-        if ($licence['club']['id'] == self::NUMERO_CLUB){
+    private function isCormeillesId($licence)
+    {
+        if ($licence['club']['id'] == self::NUMERO_CLUB) {
             return true;
         }
 
         return false;
     }
 
-    private function isSaisonCourante($licence){
-        if (substr($licence['startSeason'],0,4) == $this->getContainer()->getParameter('date_debut')){
+    private function isSaisonCourante($licence)
+    {
+        if (substr($licence['startSeason'], 0, 4) == self::START_SEASON) {
             return true;
         }
 
         return false;
     }
 
-    private function hasLicenceValide($licences){
+    private function hasLicenceValide($licences)
+    {
         foreach ($licences as $licence) {
-            if ($this->isValidee($licence) && $this->isSaisonCourante($licence) && $this->isCormeillesId($licence)){
+            if ($this->isValidee($licence) && $this->isSaisonCourante($licence) && $this->isCormeillesId($licence)) {
                 return true;
             }
         }
