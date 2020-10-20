@@ -34,9 +34,8 @@ class enregistrerJoueursCommand extends ContainerAwareCommand
     {
         $now = new \DateTime();
         $output->writeln('<comment>Start : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
-
-        $json_data = file_get_contents($this->getContainer()->get('kernel')->getRootDir() . '/Resources/Documents/LicenciesJson/licencies-2020-10-08.json');
-
+        
+        $json_data = file_get_contents($this->getContainer()->get('kernel')->getRootDir() . '/Resources/Documents/LicenciesJson/uscl.json');
 
         $data = json_decode($json_data, true);
 

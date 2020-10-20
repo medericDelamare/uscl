@@ -27,7 +27,6 @@ class StatsRencontreAdmin extends AbstractAdmin
                     'label' => 'Rencontre',
                     'class' => Rencontre::class,
                     'query_builder' => function (EntityRepository $er) use ($debutDate, $finDate) {
-
                         return $er->createQueryBuilder('r')
                             ->join(Equipe::class, 'ed', 'WITH', 'ed.id = r.equipeDomicile')
                             ->join(Equipe::class, 'ee', 'WITH', 'ee.id = r.equipeExterieure')
@@ -41,8 +40,6 @@ class StatsRencontreAdmin extends AbstractAdmin
                                 'finDate' => $finDate
                             ])
                             ;
-
-
                     }
                 ]);
         }
