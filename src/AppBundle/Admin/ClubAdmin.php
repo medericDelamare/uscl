@@ -5,13 +5,9 @@ namespace AppBundle\Admin;
 
 
 use AppBundle\Entity\Club;
-use Doctrine\DBAL\Types\ArrayType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\CoreBundle\Form\Type\CollectionType;
-use Sonata\CoreBundle\Form\Type\ColorSelectorType;
-use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Xmon\ColorPickerTypeBundle\Form\Type\ColorPickerType;
 
@@ -26,7 +22,7 @@ class ClubAdmin extends AbstractAdmin
         $help = '';
         if ($subject->getLogo()) {
             $help =
-                '<p>Prévisualisation : <img width="auto" style="max-width:200px" src="'. $fullPath . '/pictures/Logos/' .$subject->getLogo() . '" /></p>';
+                '<p>Prévisualisation : <img width="auto" style="max-width:200px" src="' . $fullPath . '/pictures/Logos/' . $subject->getLogo() . '" /></p>';
         }
 
         $formMapper
@@ -41,9 +37,9 @@ class ClubAdmin extends AbstractAdmin
                 'label' => 'Logo',
                 'required' => false,
                 'help' => $help
-            ])
-            ;
+            ]);
     }
+
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -52,24 +48,24 @@ class ClubAdmin extends AbstractAdmin
     }
 
     /**
-     * @param Club $club
+     * @param Club $produit
      */
-    public function prePersist($club)
+    public function prePersist($produit)
     {
-        if ($club->getFile()){
-            $club->refreshUpdated();
-            $club->setLogo($club->getFile()->getClientOriginalName());
+        if ($produit->getFile()) {
+            $produit->refreshUpdated();
+            $produit->setLogo($produit->getFile()->getClientOriginalName());
         }
     }
 
     /**
-     * @param Club $club
+     * @param Club $produit
      */
-    public function preUpdate($club)
+    public function preUpdate($produit)
     {
-        if ($club->getFile()){
-            $club->refreshUpdated();
-            $club->setLogo($club->getFile()->getClientOriginalName());
+        if ($produit->getFile()) {
+            $produit->refreshUpdated();
+            $produit->setLogo($produit->getFile()->getClientOriginalName());
         }
     }
 

@@ -70,7 +70,7 @@ class Produit
     /**
      * @return string
      */
-    public function getNom(): string
+    public function getNom()
     {
         return $this->nom;
     }
@@ -79,7 +79,7 @@ class Produit
      * @param string $nom
      * @return Produit
      */
-    public function setNom(string $nom): Produit
+    public function setNom($nom)
     {
         $this->nom = $nom;
         return $this;
@@ -106,7 +106,7 @@ class Produit
     /**
      * @return string
      */
-    public function getImage(): string
+    public function getImage()
     {
         return $this->image;
     }
@@ -115,7 +115,7 @@ class Produit
      * @param string $image
      * @return Produit
      */
-    public function setImage(string $image): Produit
+    public function setImage($image)
     {
         $this->image = $image;
         return $this;
@@ -124,7 +124,7 @@ class Produit
     /**
      * @return float
      */
-    public function getPrixCatalogue(): float
+    public function getPrixCatalogue()
     {
         return $this->prixCatalogue;
     }
@@ -133,7 +133,7 @@ class Produit
      * @param float $prixCatalogue
      * @return Produit
      */
-    public function setPrixCatalogue(float $prixCatalogue): Produit
+    public function setPrixCatalogue($prixCatalogue)
     {
         $this->prixCatalogue = $prixCatalogue;
         return $this;
@@ -142,7 +142,7 @@ class Produit
     /**
      * @return \DateTime
      */
-    public function getUpdated(): \DateTime
+    public function getUpdated()
     {
         return $this->updated;
     }
@@ -151,7 +151,7 @@ class Produit
      * @param \DateTime $updated
      * @return Produit
      */
-    public function setUpdated(\DateTime $updated): Produit
+    public function setUpdated($updated)
     {
         $this->updated = $updated;
         return $this;
@@ -160,7 +160,7 @@ class Produit
     /**
      * @return string
      */
-    public function getReference(): string
+    public function getReference()
     {
         return $this->reference;
     }
@@ -169,7 +169,7 @@ class Produit
      * @param string $reference
      * @return Produit
      */
-    public function setReference(string $reference): Produit
+    public function setReference($reference)
     {
         $this->reference = $reference;
         return $this;
