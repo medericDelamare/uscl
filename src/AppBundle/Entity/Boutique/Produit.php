@@ -9,12 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Produit
  * @package AppBundle\Entity
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProduitRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Produit
 {
-    const SERVER_PATH_TO_IMAGE_FOLDER =  '/../../../web/pictures/Boutique';
+    const SERVER_PATH_TO_IMAGE_FOLDER =  '/../../../../web/pictures/Boutique';
 
     /**
      * @var int

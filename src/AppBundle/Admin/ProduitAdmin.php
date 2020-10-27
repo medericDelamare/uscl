@@ -22,7 +22,7 @@ class ProduitAdmin extends AbstractAdmin
         $help = '';
         if ($subject->getImage()) {
             $help =
-                '<p>Prévisualisation : <img width="auto" style="max-width:200px" src="' . $fullPath . '/pictures/Logos/' . $subject->getImage() . '" /></p>';
+                '<p>Prévisualisation : <img width="auto" style="max-width:200px" src="' . $fullPath . '/pictures/Boutique/' . $subject->getImage() . '" /></p>';
         }
 
         $formMapper
@@ -39,7 +39,7 @@ class ProduitAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('nom')
+            ->addIdentifier('nom')
             ->add('prixCatalogue')
             ->add('reference');
     }

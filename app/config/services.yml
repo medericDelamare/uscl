@@ -22,6 +22,16 @@ services:
       class: AppBundle\Service\StatistiquesService
       arguments: ["@kernel"]
 
+    app.repository.produit_repository:
+      class: AppBundle\Repository\ProduitRepository
+      factory: 'Doctrine\ORM\EntityManagerInterface:getRepository'
+      arguments:
+        - AppBundle\Entity\Boutique\Produit
+
+    app.boutique.panier.panier_service:
+      class: AppBundle\Service\Boutique\Panier\PanierService
+      arguments: ['@Symfony\Component\HttpFoundation\Session\SessionInterface', '@app.repository.produit_repository']
+
 
     app.generation_image_controller:
       class: AppBundle\Controller\GenerationImageController

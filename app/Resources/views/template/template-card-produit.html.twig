@@ -1,0 +1,16 @@
+<div class="card box-shadow card-profil text-center border-uscl-primary">
+    <div class="card-body p-0 pb-2">
+        <div class="card-header text-center border-uscl-primary">
+            {{produit.nom}}
+        </div>
+        <div class="col-12">
+            <img src="{{ asset('pictures/Boutique/') ~ produit.image }}" style="width: 150px">
+        </div>
+        <div class="col-12">
+            <span>{{produit.prixCatalogue}}€</span>
+        </div>
+        <div class="col-12">
+            <a href="{{ path('panier_add', {'id': produit.id}) }}" class="btn btn-primary col-12 color-blanc"><i class="fa fa-cart-plus" aria-hidden="true"></i> Ajouter au panier</a>
+        </div>
+    </div>
+</div>
