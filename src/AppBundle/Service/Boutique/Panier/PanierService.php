@@ -67,4 +67,9 @@ class PanierService
 
         return $total;
     }
+
+    public function resetPanier()
+    {
+        $this->session->set('panier', []);
+    }
 }

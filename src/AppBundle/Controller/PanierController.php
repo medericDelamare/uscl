@@ -18,14 +18,13 @@ class PanierController extends Controller
         $panierService = $this->get('app.boutique.panier.panier_service');
         return $this->render('default/panier.html.twig', [
             'items' => $panierService->getFullPanier(),
-            'total' => $panierService->getTotal()
+            'total' => $panierService->getTotal(),
         ]);
     }
 
     /**
      * @Route("/panier/add/{id}", name="panier_add")
      * @param $id
-     * @param SessionInterface $session
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function add($id)
@@ -42,6 +41,15 @@ class PanierController extends Controller
     {
         $panierService = $this->get('app.boutique.panier.panier_service');
         $panierService->remove($id);
+        return $this->redirectToRoute('panier');
+    }
+
+    /**
+     * @Route("/panier/reset", name="panier_reset")
+     */
+    public function reset(){
+        $panierService = $this->get('app.boutique.panier.panier_service');
+        $panierService->resetPanier();
         return $this->redirectToRoute('panier');
     }
 }
