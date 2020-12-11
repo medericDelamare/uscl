@@ -35,12 +35,12 @@ class PanierController extends Controller
     }
 
     /**
-     * @Route("/panier/remove/{id}", name="panier_remove")
+     * @Route("/panier/remove/{id}/{taille}/{initiales}", name="panier_remove")
      */
-    public function remove($id)
+    public function remove($id, $taille, $initiales)
     {
         $panierService = $this->get('app.boutique.panier.panier_service');
-        $panierService->remove($id);
+        $panierService->remove($id, $taille, $initiales);
         return $this->redirectToRoute('panier');
     }
 

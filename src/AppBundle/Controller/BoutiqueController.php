@@ -43,7 +43,7 @@ class BoutiqueController extends Controller
             if ($form->isValid()) {
                 $caracteristique = $form->getData();
                 $panierService->add($produit->getId(),$caracteristique);
-                $this->redirectToRoute('panier');
+                return $this->redirectToRoute('panier');
             }
         }
         return $this->render('default/produit.html.twig', [

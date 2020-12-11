@@ -7,7 +7,6 @@ namespace AppBundle\Service\Boutique\Panier;
 use AppBundle\Model\Boutique\CaracteristiqueCommandeProduit;
 use AppBundle\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use function Couchbase\defaultDecoder;
 
 class PanierService
 {
@@ -26,11 +25,11 @@ class PanierService
 
         $produitExist = false;
 
-        if (empty($panier[$id])){
+        if (empty($panier[$id])) {
 
             $produitExist = true;
             $panier[$id][] = ['taille' => $caracteristique->getTaille(), 'quantite' => $caracteristique->getQuantite(), 'initiales' => $caracteristique->getInitiales()];
-        }else{
+        } else {
             foreach ($panier[$id] as $index => $item) {
                 if ($item['taille'] == $caracteristique->getTaille() && $item['initiales'] == $caracteristique->getInitiales()) {
                     $item['quantite'] += $caracteristique->getQuantite();
@@ -40,19 +39,24 @@ class PanierService
             }
         }
 
-        if (!$produitExist){
+        if (!$produitExist) {
             $panier[$id][] = ['taille' => $caracteristique->getTaille(), 'quantite' => $caracteristique->getQuantite(), 'initiales' => $caracteristique->getInitiales()];
         }
 
         $this->session->set('panier', $panier);
     }
 
-    public function remove($id)
+    /* TODO Utiliser un plutot que x arguments  */
+    public function remove($id, $taille, $initiales)
     {
         $panier = $this->session->get('panier', []);
 
         if (!empty($panier[$id])) {
-            unset($panier[$id]);
+            foreach ($panier[$id] as $index => $article) {
+                if ($article['taille'] == $taille && $article['initiales'] == $initiales) {
+                    unset($panier[$id][$index]);
+                }
+            }
         }
 
         $this->session->set('panier', $panier);
@@ -65,7 +69,7 @@ class PanierService
         $panierWithData = [];
 
         foreach ($panier as $id => $articles) {
-            foreach ($articles as $article){
+            foreach ($articles as $article) {
                 $panierWithData[] = [
                     'produit' => $this->produitRepository->find($id),
                     'taille' => $article['taille'],
