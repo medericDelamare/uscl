@@ -29,6 +29,9 @@ class ProduitAdmin extends AbstractAdmin
             ->add('nom')
             ->add('prixCatalogue')
             ->add('reference')
+            ->add('logo',null,[
+                'label' => 'Logo obligatoire'
+            ])
             ->add('file', FileType::class, [
                 'label' => 'Image',
                 'required' => false,
@@ -41,7 +44,8 @@ class ProduitAdmin extends AbstractAdmin
         $listMapper
             ->addIdentifier('nom')
             ->add('prixCatalogue')
-            ->add('reference');
+            ->add('reference')
+            ->add('logo');
     }
 
     /**
@@ -49,6 +53,7 @@ class ProduitAdmin extends AbstractAdmin
      */
     public function prePersist($produit)
     {
+        $produit->setPrixClub($this->calculatePrixClub($produit));
         if ($produit->getFile()) {
             $produit->refreshUpdated();
             $produit->setImage($produit->getFile()->getClientOriginalName());
@@ -60,6 +65,7 @@ class ProduitAdmin extends AbstractAdmin
      */
     public function preUpdate($produit)
     {
+        $produit->setPrixClub($this->calculatePrixClub($produit));
         if ($produit->getFile()) {
             $produit->refreshUpdated();
             $produit->setImage($produit->getFile()->getClientOriginalName());
@@ -73,5 +79,14 @@ class ProduitAdmin extends AbstractAdmin
     public function toString($produit)
     {
         return $produit->getId() ? $produit->getNom() : 'Produit';
+    }
+
+    /**
+     * @param Produit $produit
+     * @return mixed
+     */
+    private function calculatePrixClub(Produit $produit)
+    {
+        return $produit->getPrixCatalogue() - ($produit->getPrixCatalogue() * 0.3);
     }
 }

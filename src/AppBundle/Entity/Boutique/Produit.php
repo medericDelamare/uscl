@@ -54,6 +54,18 @@ class Produit
     private $prixCatalogue;
 
     /**
+     * @var float
+     * @ORM\Column(type="float", nullable=false)
+     */
+    private $prixClub;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $logo;
+
+    /**
      * @var string
      * @ORM\Column(type="string", nullable=false)
      */
@@ -175,7 +187,41 @@ class Produit
         return $this;
     }
 
+    /**
+     * @return float
+     */
+    public function getPrixClub(): float
+    {
+        return $this->prixClub;
+    }
 
+    /**
+     * @param float $prixClub
+     * @return Produit
+     */
+    public function setPrixClub(float $prixClub): Produit
+    {
+        $this->prixClub = $prixClub;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLogo(): bool
+    {
+        return $this->logo;
+    }
+
+    /**
+     * @param bool $logo
+     * @return Produit
+     */
+    public function setLogo(bool $logo): Produit
+    {
+        $this->logo = $logo;
+        return $this;
+    }
 
     /**
      * Manages the copying of the file to the relevant place on the server
