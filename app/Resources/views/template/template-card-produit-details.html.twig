@@ -1,0 +1,32 @@
+<div class="card box-shadow card-profil text-center border-uscl-primary">
+    <div class="card-body p-0 pb-2">
+        <div class="card-header text-center border-uscl-primary">
+            {{produit.nom}}
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <img src="{{ asset('pictures/Boutique/') ~ produit.image }}" style="width: 150px">
+            </div>
+            <div class="col-6">
+                <span>{{produit.prixCatalogue}}€</span>
+                {{ form_start(form) }}
+                <div class="form-group">
+                    {{ form_label(form.taille) }}
+                    {{ form_errors(form.taille) }}
+                    {{ form_widget(form.taille) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.quantite) }}
+                    {{ form_errors(form.quantite) }}
+                    {{ form_widget(form.quantite) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.initiales) }}
+                    {{ form_errors(form.initiales) }}
+                    {{ form_widget(form.initiales) }}
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>

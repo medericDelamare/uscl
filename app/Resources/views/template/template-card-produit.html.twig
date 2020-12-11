@@ -10,7 +10,7 @@
             <span>{{produit.prixCatalogue}}€</span>
         </div>
         <div class="col-12">
-            <a href="{{ path('panier_add', {'id': produit.id}) }}" class="btn btn-primary col-12 color-blanc"><i class="fa fa-cart-plus" aria-hidden="true"></i> Ajouter au panier</a>
+            <a href="{{ path('boutique_produit', {'produit': produit.id}) }}" class="btn btn-primary col-12 color-blanc"><i class="fa fa-search-plus" aria-hidden="true"></i> Détails</a>
         </div>
     </div>
 </div>

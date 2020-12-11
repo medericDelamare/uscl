@@ -29,6 +29,8 @@
                 <thead>
                 <tr>
                     <th>Produit</th>
+                    <th>Taille</th>
+                    <th>Initiales</th>
                     <th>Prix</th>
                     <th>Quantité</th>
                     <th>Total</th>
@@ -36,25 +38,27 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% for item in items %}
                 <tr>
-                    {% for item in items %}
-                        <td>{{ item.produit.nom }}</td>
-                        <td>{{ item.produit.prixCatalogue }}</td>
-                        <td>{{ item.quantite }}</td>
-                        <td>{{ item.produit.prixCatalogue * item.quantite }}</td>
-                        <td>
-                            <a href="{{ path('panier_remove', {'id': item.produit.id}) }}"
-                               class="btn-danger btn-sm">
-                                <i class="fa fa-trash"></i>
-                            </a>
-                        </td>
-                    {% endfor %}
+                    <td>{{ item.produit.nom }}</td>
+                    <td>{{ item.taille }}</td>
+                    <td>{% if item.initiales == 0 %}Non{% else %}Oui{% endif %}</td>
+                    <td>{{ item.produit.prixCatalogue }} €</td>
+                    <td>{{ item.quantite }}</td>
+                    <td>{{ item.produit.prixCatalogue * item.quantite }} €</td>
+                    <td>
+                        <a href="{{ path('panier_remove', {'id': item.produit.id}) }}"
+                           class="btn-danger btn-sm">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
                 </tr>
+                {% endfor %}
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td colspan="3" class="text-right">Total :</td>
-                    <td>{{ total }}</td>
+                    <td colspan="5" class="text-right">Total :</td>
+                    <td>{{ total }} €</td>
                     <td></td>
                 </tr>
                 </tfoot>
