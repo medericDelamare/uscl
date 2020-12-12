@@ -31,7 +31,7 @@
                     <th>Produit</th>
                     <th>Taille</th>
                     <th>Initiales</th>
-                    <th>Prix</th>
+                    <th>Prix Unitaire</th>
                     <th>Quantité</th>
                     <th>Total</th>
                     <th></th>
@@ -43,9 +43,9 @@
                     <td>{{ item.produit.nom }}</td>
                     <td>{{ item.taille }}</td>
                     <td>{% if item.initiales == 0 %}Non{% else %}Oui{% endif %}</td>
-                    <td>{{ item.produit.prixCatalogue }} €</td>
+                    <td>{% if item.initiales == 0 %}{{ item.produit.prixAvecLogo}}{% else %}{{ (item.produit.prixAvecLogo + 2.5)}}{% endif %} €</td>
                     <td>{{ item.quantite }}</td>
-                    <td>{{ item.produit.prixCatalogue * item.quantite }} €</td>
+                    <td>{% if item.initiales == 0 %}{{ item.produit.prixAvecLogo * item.quantite }}{% else %}{{ (item.produit.prixAvecLogo + 2.5) * item.quantite }}{% endif %} €</td>
                     <td>
                         <a href="{{ path('panier_remove', {'id': item.produit.id, 'taille': item.taille,'initiales': item.initiales}) }}"
                            class="btn-danger btn-sm">

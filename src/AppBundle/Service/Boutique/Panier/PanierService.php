@@ -86,7 +86,11 @@ class PanierService
     {
         $total = 0;
         foreach ($this->getFullPanier() as $item) {
-            $total += $item['produit']->getPrixCatalogue() * $item['quantite'];;
+            if ($item['initiales']){
+                $total += ($item['produit']->getPrixAvecLogo() + 2.5) * $item['quantite'];
+            } else{
+                $total += $item['produit']->getPrixAvecLogo() * $item['quantite'];
+            }
         }
 
         return $total;

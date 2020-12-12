@@ -1,13 +1,13 @@
 <div class="card box-shadow card-profil text-center border-uscl-primary">
     <div class="card-body p-0 pb-2">
         <div class="card-header text-center border-uscl-primary">
-            {{produit.nom}}
+            <h4>{{produit.nom}}</h4>
         </div>
         <div class="col-12">
-            <img src="{{ asset('pictures/Boutique/') ~ produit.image }}" style="width: 150px">
+            <img src="{{ asset('pictures/Boutique/') ~ produit.image }}" style="width: 150px; height: 150px">
         </div>
         <div class="col-12">
-            <span>{{produit.prixCatalogue}}€</span>
+            <h5>{{produit.prixCatalogue}}€</h5>
         </div>
         <div class="col-12">
             <a href="{{ path('boutique_produit', {'produit': produit.id}) }}" class="btn btn-primary col-12 color-blanc"><i class="fa fa-search-plus" aria-hidden="true"></i> Détails</a>

@@ -1,14 +1,16 @@
 <div class="card box-shadow card-profil text-center border-uscl-primary">
     <div class="card-body p-0 pb-2">
         <div class="card-header text-center border-uscl-primary">
-            {{produit.nom}}
+            <h1>{{produit.nom}}</h1>
+            {% if produit.logo %}<span><em>Logo obligatoire</em></span>{% endif %}
         </div>
-        <div class="row">
+        <div class="row m-3">
             <div class="col-6">
-                <img src="{{ asset('pictures/Boutique/') ~ produit.image }}" style="width: 150px">
+                <img style="width: 200px" src="{{ asset('pictures/Boutique/') ~ produit.image }}" style="width: 150px"><br>
+                <h3 class="font-weight-bold">{{produit.prixCatalogue}}€</h3>
+                <span><em>(Prix club nu)</em></span>
             </div>
             <div class="col-6">
-                <span>{{produit.prixCatalogue}}€</span>
                 {{ form_start(form) }}
                 <div class="form-group">
                     {{ form_label(form.taille) }}

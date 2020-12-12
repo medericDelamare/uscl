@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Produit
 {
     const SERVER_PATH_TO_IMAGE_FOLDER =  '/../../../../web/pictures/Boutique';
+    const PRIX_LOGO =  3;
 
     /**
      * @var int
@@ -257,5 +258,13 @@ class Produit
     public function refreshUpdated()
     {
         $this->setUpdated(new \DateTime());
+    }
+
+    public function getPrixAvecLogo(){
+        if ($this->logo){
+            return $this->getPrixClub() + SELF::PRIX_LOGO;
+        } else{
+            return $this->getPrixClub();
+        }
     }
 }
